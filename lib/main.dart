@@ -1,5 +1,4 @@
 import 'package:clijeo_public/controllers/app_localization/app_localization.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:clijeo_public/view/sign_up/sign_up_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

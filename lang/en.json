@@ -1,3 +1,7 @@
 {
-    "AppTitle": "CLIJEO"
+    "AppTitle": "CLIJEO",
+    "AppFullTitle": "CLINICAL JUSTICE EDUCATION ORGANISATION",
+    "SignUpHomePageHeadingSecondParaHeading": "Answering your queries",
+    "SignUpHomePageHeadingSecondParaBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut dapibus lectus. Quisque tristique id ex nec posuere. Duis justo arcu, tincidunt ac elementum eget, volutpat ut risus. Nullam vehicula, sem vitae eleifend cursus, eros lacus scelerisque.",
+    "SignInHomePageButton": "Sign In with Google"
 }
