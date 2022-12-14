@@ -1,4 +1,5 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/view/components/primary_button.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
@@ -51,7 +52,8 @@ class SignUpHomeScreen extends StatelessWidget {
               color: AppTheme.backgroundColor,
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: sizeConfig.SafeBlockSizeHorizontal(0.1)),
+                    left: sizeConfig.SafeBlockSizeHorizontal(0.1),
+                    right: sizeConfig.SafeBlockSizeHorizontal(0.1)),
                 child: SizedBox(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -75,15 +77,9 @@ class SignUpHomeScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: sizeConfig.SafeBlockSizeVertical(0.11)),
-                      GestureDetector(
-                          child: Container(
-                        height: sizeConfig.SafeBlockSizeVertical(0.07),
-                        width: sizeConfig.SafeBlockSizeHorizontal(0.8),
-                        decoration: const BoxDecoration(
-                            color: AppTheme.primaryColor,
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                      PrimaryButton(
+                          onTap: () {},
+                          sizeConfig: sizeConfig,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -100,9 +96,7 @@ class SignUpHomeScreen extends StatelessWidget {
                                 style: AppTextStyle.smallTitle,
                               )
                             ],
-                          ),
-                        ),
-                      )),
+                          ))
                     ],
                   ),
                 ),
