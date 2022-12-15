@@ -1,6 +1,7 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
 import 'package:clijeo_public/view/components/primary_button.dart';
 import 'package:clijeo_public/view/home/no_prev_query_widget.dart';
+import 'package:clijeo_public/view/home/query_cards.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
@@ -64,10 +65,16 @@ class HomePage extends StatelessWidget {
               LocaleTextClass.getTextWithKey(context, "PreviousQueries"),
               style: AppTextStyle.smallDarkTitle,
             ),
-            SizedBox(
-              height: sizeConfig.SafeBlockSizeVertical(0.1),
+            const SizedBox(
+              height: 20,
             ),
-            Center(child: NoPrevQueryWidget(sizeConfig: sizeConfig))
+            // Center(child: NoPrevQueryWidget(sizeConfig: sizeConfig))
+            QueryCard(
+              subject:
+                  "Filing a complaint against delayed building constructors",
+              sizeConfig: sizeConfig,
+              isActive: false,
+            )
           ]),
         ),
       ),

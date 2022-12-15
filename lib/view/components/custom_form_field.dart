@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +9,12 @@ class CustomFormField extends StatelessWidget {
       {super.key,
       required this.fieldTitle,
       required this.fieldHintText,
-      this.isLargeField = false});
+      this.minLines = 1,
+      this.maxLines = 1});
   final String fieldHintText;
   final String fieldTitle;
-  final bool isLargeField;
+  final int minLines;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +29,8 @@ class CustomFormField extends StatelessWidget {
           height: 10,
         ),
         TextFormField(
-          minLines: isLargeField ? 6 : 1,
-          maxLines: isLargeField ? 8 : 1,
+          minLines: minLines,
+          maxLines: maxLines,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

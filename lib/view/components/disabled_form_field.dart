@@ -7,10 +7,10 @@ class DisabledFormField extends StatelessWidget {
   const DisabledFormField(
       {super.key,
       required this.fieldTitle,
-      required this.fieldHintText,
+      required this.fieldValue,
       this.isLargeField = false});
-  final String fieldHintText;
   final String fieldTitle;
+  final String fieldValue;
   final bool isLargeField;
 
   @override
@@ -25,20 +25,19 @@ class DisabledFormField extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        TextFormField(
-          minLines: isLargeField ? 6 : 1,
-          maxLines: isLargeField ? 8 : 1,
-          decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            hintStyle: AppTextStyle.smallDarkLightBody,
-            focusedBorder: const OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: AppTheme.primaryColor, width: 1.5)),
-            enabledBorder: const OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: AppTheme.containerBorder, width: 1.5)),
-            hintText: fieldHintText,
+        Container(
+          height: isLargeField ? 130 : 45,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+              color: AppTheme.selectedColor,
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              fieldValue,
+              style: AppTextStyle.smallDarkText,
+            ),
           ),
         ),
       ],

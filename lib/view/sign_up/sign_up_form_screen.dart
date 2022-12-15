@@ -84,7 +84,8 @@ class SignUpFormScreen extends StatelessWidget {
               fieldTitle: LocaleTextClass.getTextWithKey(context, "Location"),
               fieldHintText:
                   LocaleTextClass.getTextWithKey(context, "Location-Hint"),
-              isLargeField: true,
+              minLines: 6,
+              maxLines: 8,
             ),
             const SizedBox(
               height: 20,

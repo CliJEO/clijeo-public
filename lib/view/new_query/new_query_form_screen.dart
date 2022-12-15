@@ -7,8 +7,8 @@ import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SettingsEditScreen extends StatelessWidget {
-  const SettingsEditScreen({super.key});
+class NewQueryFormScreen extends StatelessWidget {
+  const NewQueryFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class SettingsEditScreen extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                LocaleTextClass.getTextWithKey(context, "Settings-Edit"),
+                LocaleTextClass.getTextWithKey(context, "NewQuery"),
                 style: AppTextStyle.regularDarkTitle,
               )
             ],
@@ -43,60 +43,23 @@ class SettingsEditScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomFormField(
-                    fieldTitle: LocaleTextClass.getTextWithKey(context, "Name"),
-                    fieldHintText:
-                        LocaleTextClass.getTextWithKey(context, "Name-Hint"),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  CustomFormField(
-                    fieldTitle: LocaleTextClass.getTextWithKey(context, "Age"),
-                    fieldHintText:
-                        LocaleTextClass.getTextWithKey(context, "Age-Hint"),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  CustomToggleButton(
-                      fieldTitle:
-                          LocaleTextClass.getTextWithKey(context, "Gender"),
-                      sizeConfig: sizeConfig,
-                      options: [
-                        LocaleTextClass.getTextWithKey(context, "Male"),
-                        LocaleTextClass.getTextWithKey(context, "Female"),
-                        LocaleTextClass.getTextWithKey(context, "Other")
-                      ]),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  CustomToggleButton(
-                      fieldTitle: LocaleTextClass.getTextWithKey(
-                          context, "LanguagePreference"),
-                      sizeConfig: sizeConfig,
-                      options: [
-                        LocaleTextClass.getTextWithKey(context, "English"),
-                        LocaleTextClass.getTextWithKey(context, "Malayalam")
-                      ]),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  CustomFormField(
                     fieldTitle:
-                        LocaleTextClass.getTextWithKey(context, "PhoneNumber"),
-                    fieldHintText: LocaleTextClass.getTextWithKey(
-                        context, "PhoneNumber-Hint"),
+                        LocaleTextClass.getTextWithKey(context, "Subject"),
+                    fieldHintText:
+                        LocaleTextClass.getTextWithKey(context, "Subject-Hint"),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   CustomFormField(
-                    fieldTitle:
-                        LocaleTextClass.getTextWithKey(context, "Location"),
-                    fieldHintText: LocaleTextClass.getTextWithKey(
-                        context, "Location-Hint"),
-                    minLines: 6,
-                    maxLines: 8,
+                    fieldTitle: LocaleTextClass.getTextWithKey(context, "Body"),
+                    fieldHintText:
+                        LocaleTextClass.getTextWithKey(context, "Body-Hint"),
+                    minLines: 15,
+                    maxLines: 100,
+                  ),
+                  const SizedBox(
+                    height: 15,
                   ),
                   const SizedBox(
                     height: 20,
@@ -107,7 +70,7 @@ class SettingsEditScreen extends StatelessWidget {
                       child: Center(
                         child: Text(
                           LocaleTextClass.getTextWithKey(
-                              context, "SaveProfileDetails"),
+                              context, "RegisterQueryButton"),
                           style: AppTextStyle.smallLightTitle,
                         ),
                       ))

@@ -7,10 +7,35 @@ class AppTextStyle {
       fontWeight: FontWeight.bold,
       fontSize: 16,
       fontFamily: "Inter");
+  static const TextStyle verySmallLightTitle = TextStyle(
+      color: AppTheme.textLight,
+      fontWeight: FontWeight.bold,
+      fontSize: 10,
+      fontFamily: "Inter");
   static const TextStyle smallDarkTitle = TextStyle(
       color: AppTheme.textDark,
       fontWeight: FontWeight.bold,
       fontSize: 16,
+      fontFamily: "Inter");
+  static const TextStyle smallAccentTitle = TextStyle(
+      color: AppTheme.primaryColor,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      fontFamily: "Inter");
+  static const TextStyle smallDarkLightTitle = TextStyle(
+      color: AppTheme.textDarkLight,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      fontFamily: "Inter");
+  static const TextStyle smallDarkText = TextStyle(
+      color: AppTheme.textDark,
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+      fontFamily: "Inter");
+  static const TextStyle smallAccentText = TextStyle(
+      color: AppTheme.primaryColor,
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
       fontFamily: "Inter");
   static const TextStyle largeLightTitle = TextStyle(
       color: AppTheme.textLight,
@@ -33,6 +58,11 @@ class AppTextStyle {
       color: AppTheme.textDarkLight,
       fontWeight: FontWeight.bold,
       fontSize: 14,
+      fontFamily: "Inter");
+  static const TextStyle largeDarkLightBoldBody = TextStyle(
+      color: AppTheme.textDarkLight,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
       fontFamily: "Inter");
   static const TextStyle toggleButtonText =
       TextStyle(fontSize: 12, fontWeight: FontWeight.bold, fontFamily: "Inter");
