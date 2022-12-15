@@ -3,8 +3,8 @@ import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
-class CustomToggleButton extends StatefulWidget {
-  const CustomToggleButton(
+class DisabledToggleButton extends StatelessWidget {
+  const DisabledToggleButton(
       {super.key,
       required this.fieldTitle,
       required this.options,
@@ -14,34 +14,29 @@ class CustomToggleButton extends StatefulWidget {
   final SizeConfig sizeConfig;
 
   @override
-  State<CustomToggleButton> createState() => _CustomToggleButtonState();
-}
-
-class _CustomToggleButtonState extends State<CustomToggleButton> {
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.fieldTitle,
+          fieldTitle,
           style: AppTextStyle.smallDarkLightBoldBody,
         ),
         const SizedBox(
           height: 10,
         ),
         SizedBox(
-          height: widget.sizeConfig.SafeBlockSizeVertical(0.06),
+          height: sizeConfig.SafeBlockSizeVertical(0.06),
           width: double.infinity,
           child: ToggleButtons(
-              isSelected: widget.options.map((e) => true).toList(),
+              isSelected: options.map((e) => true).toList(),
               borderWidth: 1.5,
               borderColor: AppTheme.containerBorder,
               color: AppTheme.textDark,
               selectedBorderColor: AppTheme.primaryColor,
               selectedColor: AppTheme.primaryColor,
               fillColor: AppTheme.selectedColor,
-              children: widget.options
+              children: options
                   .map((value) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(

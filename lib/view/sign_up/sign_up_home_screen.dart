@@ -10,7 +10,7 @@ class SignUpHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig sizeConfig = SizeConfig(context);
+    final sizeConfig = SizeConfig(context);
     return Scaffold(
       body: Column(
         children: [
@@ -30,7 +30,7 @@ class SignUpHomeScreen extends StatelessWidget {
                   ),
                   Text(
                     LocaleTextClass.getTextWithKey(context, "AppTitle"),
-                    style: AppTextStyle.smallTitle,
+                    style: AppTextStyle.smallLightTitle,
                   ),
                   SizedBox(
                     height: sizeConfig.SafeBlockSizeVertical(0.15),
@@ -39,7 +39,7 @@ class SignUpHomeScreen extends StatelessWidget {
                     width: sizeConfig.SafeBlockSizeHorizontal(0.8),
                     child: Text(
                       LocaleTextClass.getTextWithKey(context, "AppFullTitle"),
-                      style: AppTextStyle.largeTitle,
+                      style: AppTextStyle.largeLightTitle,
                     ),
                   )
                 ],
@@ -65,7 +65,7 @@ class SignUpHomeScreen extends StatelessWidget {
                       Text(
                         LocaleTextClass.getTextWithKey(
                             context, "SignUpHomePageHeadingSecondParaHeading"),
-                        style: AppTextStyle.regularTitle,
+                        style: AppTextStyle.regularDarkTitle,
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
@@ -73,7 +73,7 @@ class SignUpHomeScreen extends StatelessWidget {
                         child: Text(
                           LocaleTextClass.getTextWithKey(
                               context, "SignUpHomePageHeadingSecondParaBody"),
-                          style: AppTextStyle.smallBody,
+                          style: AppTextStyle.smallDarkLightBody,
                         ),
                       ),
                       SizedBox(height: sizeConfig.SafeBlockSizeVertical(0.11)),
@@ -93,7 +93,7 @@ class SignUpHomeScreen extends StatelessWidget {
                               Text(
                                 LocaleTextClass.getTextWithKey(
                                     context, "SignInHomePageButton"),
-                                style: AppTextStyle.smallTitle,
+                                style: AppTextStyle.smallLightTitle,
                               )
                             ],
                           ))

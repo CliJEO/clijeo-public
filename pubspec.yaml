@@ -64,6 +64,7 @@ flutter:
     - lang/en.json
     - lang/ml.json
     - assets/google_logo.png
+    - assets/no_query_art.png
   
   fonts:
     - family: Inter

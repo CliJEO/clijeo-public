@@ -12,7 +12,7 @@ class SignUpFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig sizeConfig = SizeConfig(context);
+    final sizeConfig = SizeConfig(context);
     return Scaffold(
       backgroundColor: AppTheme.backgroundColor,
       body: SingleChildScrollView(
@@ -24,12 +24,12 @@ class SignUpFormScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(LocaleTextClass.getTextWithKey(context, "SignInFormPageTitle"),
-                style: AppTextStyle.signUpFormTitleAccent),
+                style: AppTextStyle.largerAccentTitle),
             const SizedBox(
               height: 15,
             ),
             Text(LocaleTextClass.getTextWithKey(context, "SignInFormPara"),
-                style: AppTextStyle.smallBoldBody),
+                style: AppTextStyle.smallDarkLightBoldBody),
             const SizedBox(
               height: 30,
             ),
@@ -51,6 +51,7 @@ class SignUpFormScreen extends StatelessWidget {
             ),
             CustomToggleButton(
                 fieldTitle: LocaleTextClass.getTextWithKey(context, "Gender"),
+                sizeConfig: sizeConfig,
                 options: [
                   LocaleTextClass.getTextWithKey(context, "Male"),
                   LocaleTextClass.getTextWithKey(context, "Female"),
@@ -62,6 +63,7 @@ class SignUpFormScreen extends StatelessWidget {
             CustomToggleButton(
                 fieldTitle: LocaleTextClass.getTextWithKey(
                     context, "LanguagePreference"),
+                sizeConfig: sizeConfig,
                 options: [
                   LocaleTextClass.getTextWithKey(context, "English"),
                   LocaleTextClass.getTextWithKey(context, "Malayalam")
@@ -94,7 +96,7 @@ class SignUpFormScreen extends StatelessWidget {
                   child: Text(
                     LocaleTextClass.getTextWithKey(
                         context, "SaveProfileDetails"),
-                    style: AppTextStyle.smallTitle,
+                    style: AppTextStyle.smallLightTitle,
                   ),
                 ))
           ],

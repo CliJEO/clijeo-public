@@ -1,4 +1,5 @@
 import 'package:clijeo_public/controllers/app_localization/app_localization.dart';
+import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/sign_up/sign_up_form_screen.dart';
 import 'package:clijeo_public/view/sign_up/sign_up_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: SignUpFormScreen(),
+      home: HomePage(),
     );
   }
 }

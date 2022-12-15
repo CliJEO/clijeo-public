@@ -21,5 +21,9 @@
     "Other": "Other",
     "LanguagePreference": "Language Preference",
     "English": "English",
-    "Malayalam": "Malayalam"
+    "Malayalam": "Malayalam",
+    "Hello": "Hello",
+    "RegisterQuery": "Register a new query",
+    "PreviousQueries": "Previous Queries",
+    "NoPostedQuery": "You have not posted any queries yet"
 }

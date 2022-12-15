@@ -1,9 +1,10 @@
+import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-class CustomFormField extends StatelessWidget {
-  const CustomFormField(
+class DisabledFormField extends StatelessWidget {
+  const DisabledFormField(
       {super.key,
       required this.fieldTitle,
       required this.fieldHintText,

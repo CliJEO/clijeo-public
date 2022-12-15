@@ -2,44 +2,46 @@ import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
-  static const TextStyle smallTitle = TextStyle(
+  static const TextStyle smallLightTitle = TextStyle(
       color: AppTheme.textLight,
       fontWeight: FontWeight.bold,
       fontSize: 16,
       fontFamily: "Inter");
-  static const TextStyle largeTitle = TextStyle(
+  static const TextStyle smallDarkTitle = TextStyle(
+      color: AppTheme.textDark,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      fontFamily: "Inter");
+  static const TextStyle largeLightTitle = TextStyle(
       color: AppTheme.textLight,
       fontWeight: FontWeight.bold,
       fontSize: 36,
       fontFamily: "Inter");
-  static const TextStyle regularTitle = TextStyle(
+  static const TextStyle regularDarkTitle = TextStyle(
       color: AppTheme.textDark,
       fontWeight: FontWeight.bold,
       fontSize: 20,
       fontFamily: "Inter");
-  static const TextStyle smallBody = TextStyle(
+  static const TextStyle regularAccentTitle = TextStyle(
+      color: AppTheme.primaryColor,
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      fontFamily: "Inter");
+  static const TextStyle smallDarkLightBody = TextStyle(
       color: AppTheme.textDarkLight, fontSize: 14, fontFamily: "Inter");
-  static const TextStyle smallBoldBody = TextStyle(
+  static const TextStyle smallDarkLightBoldBody = TextStyle(
       color: AppTheme.textDarkLight,
       fontWeight: FontWeight.bold,
       fontSize: 14,
       fontFamily: "Inter");
-  static const TextStyle toggleButtonText = TextStyle(
-      color: AppTheme.textDark,
-      fontSize: 12,
-      fontWeight: FontWeight.bold,
-      fontFamily: "Inter");
-  static const TextStyle selectedToggleButtonText = TextStyle(
-      color: AppTheme.primaryColor,
-      fontSize: 12,
-      fontWeight: FontWeight.bold,
-      fontFamily: "Inter");
-  static const TextStyle signUpFormTitleNormal = TextStyle(
+  static const TextStyle toggleButtonText =
+      TextStyle(fontSize: 12, fontWeight: FontWeight.bold, fontFamily: "Inter");
+  static const TextStyle largerDarkTitle = TextStyle(
       color: AppTheme.textDark,
       fontWeight: FontWeight.bold,
       fontSize: 24,
       fontFamily: "Inter");
-  static const TextStyle signUpFormTitleAccent = TextStyle(
+  static const TextStyle largerAccentTitle = TextStyle(
       color: AppTheme.primaryColor,
       fontWeight: FontWeight.bold,
       fontSize: 24,
