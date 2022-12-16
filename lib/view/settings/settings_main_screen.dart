@@ -1,12 +1,15 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
-import 'package:clijeo_public/view/components/disabled_form_field.dart';
-import 'package:clijeo_public/view/components/disabled_toggle_button.dart';
+import 'package:clijeo_public/view/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/common_components/disabled_form_field.dart';
+import 'package:clijeo_public/view/common_components/disabled_toggle_button.dart';
+import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SettingsMainScreen extends StatelessWidget {
+  static String id = "SettingsMainScreen";
   const SettingsMainScreen({super.key});
 
   @override
@@ -28,8 +31,7 @@ class SettingsMainScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(Icons.arrow_back,
-                          color: AppTheme.textDark, size: 20),
+                      const CustomBackButton(),
                       const SizedBox(
                         width: 10,
                       ),
@@ -39,7 +41,11 @@ class SettingsMainScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const Icon(Icons.edit, color: AppTheme.textDark, size: 20),
+                  GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, SettingsEditScreen.id),
+                      child: const Icon(Icons.edit,
+                          color: AppTheme.textDark, size: 20)),
                 ],
               ),
               const SizedBox(

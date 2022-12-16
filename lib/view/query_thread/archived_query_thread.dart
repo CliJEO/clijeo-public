@@ -1,4 +1,5 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/query_thread/components/badges.dart';
 import 'package:clijeo_public/view/query_thread/components/message_card.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
@@ -7,6 +8,7 @@ import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 class ArchivedQueryThread extends StatelessWidget {
+  static String id = "ArchivedQueryThread";
   const ArchivedQueryThread({super.key});
 
   @override
@@ -27,8 +29,7 @@ class ArchivedQueryThread extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.arrow_back,
-                                color: AppTheme.textDark, size: 20),
+                            const CustomBackButton(),
                             const SizedBox(
                               width: 10,
                             ),

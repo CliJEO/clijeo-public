@@ -20,20 +20,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'CLIJEO-PUBLIC',
-      locale: Locale('en'),
-      supportedLocales: [
-        Locale('en'),
-        Locale('ml'),
-      ],
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: ThreadRespondScreen(),
-    );
+    return MaterialApp(
+        title: 'CLIJEO-PUBLIC',
+        locale: const Locale('en'),
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ml'),
+        ],
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        initialRoute: HomeScreen.id,
+        routes: {
+          HomeScreen.id: (context) => const HomeScreen(),
+          NewQueryFormScreen.id: (context) => const NewQueryFormScreen(),
+          ActiveQueryThread.id: (context) => const ActiveQueryThread(),
+          ArchivedQueryThread.id: (context) => const ArchivedQueryThread(),
+          ThreadRespondScreen.id: (context) => const ThreadRespondScreen(),
+          SettingsMainScreen.id: (context) => const SettingsMainScreen(),
+          SettingsEditScreen.id: (context) => const SettingsEditScreen(),
+        });
   }
 }

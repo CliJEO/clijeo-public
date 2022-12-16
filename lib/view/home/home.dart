@@ -1,14 +1,17 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
-import 'package:clijeo_public/view/components/primary_button.dart';
-import 'package:clijeo_public/view/home/no_prev_query_widget.dart';
-import 'package:clijeo_public/view/home/query_cards.dart';
+import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/home/components/no_prev_query_widget.dart';
+import 'package:clijeo_public/view/home/components/query_cards.dart';
+import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
+import 'package:clijeo_public/view/settings/settings_main_screen.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  static String id = "HomeScreen";
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +45,18 @@ class HomePage extends StatelessWidget {
                     )
                   ],
                 ),
-                const Icon(Icons.settings, color: AppTheme.textDark, size: 25),
+                GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, SettingsMainScreen.id),
+                    child: const Icon(Icons.settings,
+                        color: AppTheme.textDark, size: 25)),
               ],
             ),
             const SizedBox(
               height: 30,
             ),
             PrimaryButton(
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(context, NewQueryFormScreen.id),
               sizeConfig: sizeConfig,
               child: Center(
                 child: Text(
@@ -73,7 +80,7 @@ class HomePage extends StatelessWidget {
               subject:
                   "Filing a complaint against delayed building constructors",
               sizeConfig: sizeConfig,
-              isActive: false,
+              isActive: true,
             )
           ]),
         ),

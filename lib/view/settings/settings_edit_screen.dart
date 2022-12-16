@@ -1,13 +1,15 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
-import 'package:clijeo_public/view/components/custom_form_field.dart';
-import 'package:clijeo_public/view/components/custom_toggle_buttons.dart';
-import 'package:clijeo_public/view/components/primary_button.dart';
+import 'package:clijeo_public/view/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/common_components/custom_form_field.dart';
+import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
+import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SettingsEditScreen extends StatelessWidget {
+  static String id = "SettingsEditScreen";
   const SettingsEditScreen({super.key});
 
   @override
@@ -24,7 +26,7 @@ class SettingsEditScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(Icons.arrow_back, color: AppTheme.textDark, size: 20),
+              const CustomBackButton(),
               const SizedBox(
                 width: 10,
               ),

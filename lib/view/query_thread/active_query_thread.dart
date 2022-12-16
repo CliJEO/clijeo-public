@@ -1,12 +1,15 @@
 import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/query_thread/components/badges.dart';
 import 'package:clijeo_public/view/query_thread/components/message_card.dart';
+import 'package:clijeo_public/view/query_thread/thread_respond.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 class ActiveQueryThread extends StatelessWidget {
+  static String id = "ActiveQueryThread";
   const ActiveQueryThread({super.key});
 
   @override
@@ -27,8 +30,7 @@ class ActiveQueryThread extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.arrow_back,
-                                color: AppTheme.textDark, size: 20),
+                            const CustomBackButton(),
                             const SizedBox(
                               width: 10,
                             ),
@@ -75,6 +77,8 @@ class ActiveQueryThread extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   GestureDetector(
+                                    onTap: () => Navigator.pushNamed(
+                                        context, ThreadRespondScreen.id),
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
