@@ -1,4 +1,4 @@
-import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/home/components/no_prev_query_widget.dart';
 import 'package:clijeo_public/view/home/components/query_cards.dart';

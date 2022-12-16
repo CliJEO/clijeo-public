@@ -1,12 +1,15 @@
-import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/user/clijeo_user.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/common_components/disabled_form_field.dart';
 import 'package:clijeo_public/view/common_components/disabled_toggle_button.dart';
+import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingsMainScreen extends StatelessWidget {
   static String id = "SettingsMainScreen";
@@ -104,7 +107,22 @@ class SettingsMainScreen extends StatelessWidget {
                       DisabledFormField(
                           fieldTitle: LocaleTextClass.getTextWithKey(
                               context, "Location"),
-                          fieldValue: "Location")
+                          fieldValue: "Location"),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      PrimaryButton(
+                          onTap: () async {
+                            await context.read<ClijeoUser>().signUserOut();
+                          },
+                          sizeConfig: sizeConfig,
+                          child: Center(
+                            child: Text(
+                              LocaleTextClass.getTextWithKey(
+                                  context, "SignOut"),
+                              style: AppTextStyle.smallLightTitle,
+                            ),
+                          ))
                     ]),
               ),
             ],

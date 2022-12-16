@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

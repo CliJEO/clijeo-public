@@ -1,4 +1,4 @@
-import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/query_thread/components/badges.dart';
 import 'package:clijeo_public/view/query_thread/components/message_card.dart';

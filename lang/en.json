@@ -1,4 +1,5 @@
 {
+    "NoNetwork": "Are you connected to the Network?",
     "AppTitle": "CLIJEO",
     "AppFullTitle": "CLINICAL JUSTICE EDUCATION ORGANISATION",
     "SignUpHomePageHeadingSecondParaHeading": "Answering your queries",
@@ -6,6 +7,7 @@
     "SignInHomePageButton": "Sign In with Google",
     "SignInFormPageTitle": "Welcome",
     "SignInFormPara": "Please fill in the following details to help us get a better idea of who you are.",
+    "SignOut": "Sign Out",
     "Name": "Name",
     "Name-Hint": "Enter name of user",
     "Age": "Age",

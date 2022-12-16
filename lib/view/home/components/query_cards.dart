@@ -1,4 +1,4 @@
-import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/view/query_thread/active_query_thread.dart';
 import 'package:clijeo_public/view/query_thread/archived_query_thread.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';

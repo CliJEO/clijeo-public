@@ -1,4 +1,4 @@
-import 'package:clijeo_public/controllers/app_localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
@@ -8,6 +8,7 @@ import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SignUpFormScreen extends StatelessWidget {
+  static String id = "SignUpFormScreen";
   const SignUpFormScreen({super.key});
 
   @override
