@@ -9,6 +9,8 @@ https://medium.com/flutter-community/flutter-effectively-scale-ui-according-to-d
 ## Flutter State Management
 https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple
 
+https://medium.com/flutter-community/making-sense-all-of-those-flutter-providers-e842e18f45dd
+
 ## AutoLogin
 https://medium.com/swlh/google-sign-in-with-auto-login-in-flutter-93281747bed4
 

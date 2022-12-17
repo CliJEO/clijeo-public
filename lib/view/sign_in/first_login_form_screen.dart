@@ -7,9 +7,9 @@ import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
-class SignUpFormScreen extends StatelessWidget {
+class FirstLoginFormScreen extends StatelessWidget {
   static String id = "SignUpFormScreen";
-  const SignUpFormScreen({super.key});
+  const FirstLoginFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

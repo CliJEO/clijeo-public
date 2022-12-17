@@ -1,15 +1,14 @@
-import 'package:clijeo_public/controllers/core/firebase_auth/google_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:clijeo_public/controllers/core/auth/google_auth.dart';
 import 'package:flutter/material.dart';
 
 class ClijeoUser extends ChangeNotifier {
-  UserCredential? userCredential;
+  String? idToken;
 
   Future<void> getCredentials() async {
     try {
-      userCredential = await GoogleAuth.signInWithGoogle();
+      idToken = await GoogleAuth.signInWithGoogle();
       notifyListeners();
-      print("Credentials received: " + userCredential.toString());
+      print("Credentials received");
     } catch (error) {
       print(error);
     }

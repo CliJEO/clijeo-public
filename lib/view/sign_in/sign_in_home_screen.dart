@@ -1,5 +1,6 @@
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/user/clijeo_user.dart';
+import 'package:clijeo_public/controllers/sign_in/sign_in_controller.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
@@ -7,9 +8,9 @@ import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SignUpHomeScreen extends StatelessWidget {
+class SignInHomeScreen extends StatelessWidget {
   static String id = "SignUpHomeScreen";
-  const SignUpHomeScreen({Key? key}) : super(key: key);
+  const SignInHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,8 +83,7 @@ class SignUpHomeScreen extends StatelessWidget {
                       SizedBox(height: sizeConfig.SafeBlockSizeVertical(0.11)),
                       PrimaryButton(
                           onTap: () async {
-                            var user = context.read<ClijeoUser>();
-                            await user.getCredentials();
+                            await SignInController.signIn();
                           },
                           sizeConfig: sizeConfig,
                           child: Row(
