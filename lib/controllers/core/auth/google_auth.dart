@@ -1,11 +1,7 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleAuth {
-  static String clientId =
-      "626402316921-e6us5e5r6hoahuijr5h1ot5t3or8iers.apps.googleusercontent.com";
   static Future<String?> signInWithGoogle() async {
     // Trigger the authentication flow
     GoogleSignInAccount? googleUser = await GoogleSignIn(
@@ -19,11 +15,11 @@ class GoogleAuth {
         await googleUser?.authentication;
 
     var idToken = googleAuth?.idToken;
-    // using the log functoin here because print() caps at 1024 chars
+    // using the log function here because print() caps at 1024 chars
     // took some time to figure that out (:smileinpain:)
     if (idToken != null) log(idToken);
 
-    return googleAuth?.accessToken;
+    return googleAuth?.idToken;
   }
 
   static Future<void> googleSignOut() async {
