@@ -74,7 +74,7 @@ class ClijeoApp extends StatelessWidget {
         ],
         initialRoute:
             // user.idToken == null ? SignInHomeScreen.id :
-            FirstLoginFormScreen.id,
+            SignInHomeScreen.id,
         routes: {
           HomeScreen.id: (context) => const HomeScreen(),
           NewQueryFormScreen.id: (context) => const NewQueryFormScreen(),
