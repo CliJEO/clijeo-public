@@ -20,7 +20,6 @@ import 'package:clijeo_public/view/sign_in/sign_in_home_screen.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   final userNotifier = ClijeoUserNotifier();

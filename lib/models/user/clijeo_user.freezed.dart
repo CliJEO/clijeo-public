@@ -15,21 +15,65 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ClijeoUser _$ClijeoUserFromJson(Map<String, dynamic> json) {
-  return _ClijeoUser.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'default':
+      return _ClijeoUser.fromJson(json);
+    case 'empty':
+      return _ClijeoEmptyUser.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'ClijeoUser',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
 mixin _$ClijeoUser {
-  String get name => throw _privateConstructorUsedError;
-  int? get age => throw _privateConstructorUsedError;
-  String? get gender => throw _privateConstructorUsedError;
-  String? get phoneNumber => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClijeoUserCopyWith<ClijeoUser> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int? age, String? gender, String? phoneNumber,
+            String? location)
+        $default, {
+    required TResult Function() empty,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int? age, String? gender,
+            String? phoneNumber, String? location)?
+        $default, {
+    TResult? Function()? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int? age, String? gender, String? phoneNumber,
+            String? location)?
+        $default, {
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ClijeoUser value) $default, {
+    required TResult Function(_ClijeoEmptyUser value) empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ClijeoUser value)? $default, {
+    TResult? Function(_ClijeoEmptyUser value)? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ClijeoUser value)? $default, {
+    TResult Function(_ClijeoEmptyUser value)? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -37,13 +81,6 @@ abstract class $ClijeoUserCopyWith<$Res> {
   factory $ClijeoUserCopyWith(
           ClijeoUser value, $Res Function(ClijeoUser) then) =
       _$ClijeoUserCopyWithImpl<$Res, ClijeoUser>;
-  @useResult
-  $Res call(
-      {String name,
-      int? age,
-      String? gender,
-      String? phoneNumber,
-      String? location});
 }
 
 /// @nodoc
@@ -55,48 +92,13 @@ class _$ClijeoUserCopyWithImpl<$Res, $Val extends ClijeoUser>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? age = freezed,
-    Object? gender = freezed,
-    Object? phoneNumber = freezed,
-    Object? location = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      age: freezed == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_ClijeoUserCopyWith<$Res>
-    implements $ClijeoUserCopyWith<$Res> {
+abstract class _$$_ClijeoUserCopyWith<$Res> {
   factory _$$_ClijeoUserCopyWith(
           _$_ClijeoUser value, $Res Function(_$_ClijeoUser) then) =
       __$$_ClijeoUserCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {String name,
@@ -156,7 +158,9 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
       this.age,
       this.gender,
       this.phoneNumber,
-      this.location});
+      this.location,
+      final String? $type})
+      : $type = $type ?? 'default';
 
   factory _$_ClijeoUser.fromJson(Map<String, dynamic> json) =>
       _$$_ClijeoUserFromJson(json);
@@ -171,6 +175,9 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
   final String? phoneNumber;
   @override
   final String? location;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -215,6 +222,74 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
       __$$_ClijeoUserCopyWithImpl<_$_ClijeoUser>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int? age, String? gender, String? phoneNumber,
+            String? location)
+        $default, {
+    required TResult Function() empty,
+  }) {
+    return $default(name, age, gender, phoneNumber, location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int? age, String? gender,
+            String? phoneNumber, String? location)?
+        $default, {
+    TResult? Function()? empty,
+  }) {
+    return $default?.call(name, age, gender, phoneNumber, location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int? age, String? gender, String? phoneNumber,
+            String? location)?
+        $default, {
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(name, age, gender, phoneNumber, location);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ClijeoUser value) $default, {
+    required TResult Function(_ClijeoEmptyUser value) empty,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ClijeoUser value)? $default, {
+    TResult? Function(_ClijeoEmptyUser value)? empty,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ClijeoUser value)? $default, {
+    TResult Function(_ClijeoEmptyUser value)? empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$_ClijeoUserToJson(
       this,
@@ -233,18 +308,145 @@ abstract class _ClijeoUser implements ClijeoUser {
   factory _ClijeoUser.fromJson(Map<String, dynamic> json) =
       _$_ClijeoUser.fromJson;
 
-  @override
   String get name;
-  @override
   int? get age;
-  @override
   String? get gender;
-  @override
   String? get phoneNumber;
-  @override
   String? get location;
-  @override
   @JsonKey(ignore: true)
   _$$_ClijeoUserCopyWith<_$_ClijeoUser> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ClijeoEmptyUserCopyWith<$Res> {
+  factory _$$_ClijeoEmptyUserCopyWith(
+          _$_ClijeoEmptyUser value, $Res Function(_$_ClijeoEmptyUser) then) =
+      __$$_ClijeoEmptyUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClijeoEmptyUserCopyWithImpl<$Res>
+    extends _$ClijeoUserCopyWithImpl<$Res, _$_ClijeoEmptyUser>
+    implements _$$_ClijeoEmptyUserCopyWith<$Res> {
+  __$$_ClijeoEmptyUserCopyWithImpl(
+      _$_ClijeoEmptyUser _value, $Res Function(_$_ClijeoEmptyUser) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ClijeoEmptyUser
+    with DiagnosticableTreeMixin
+    implements _ClijeoEmptyUser {
+  _$_ClijeoEmptyUser({final String? $type}) : $type = $type ?? 'empty';
+
+  factory _$_ClijeoEmptyUser.fromJson(Map<String, dynamic> json) =>
+      _$$_ClijeoEmptyUserFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ClijeoUser.empty()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'ClijeoUser.empty'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ClijeoEmptyUser);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int? age, String? gender, String? phoneNumber,
+            String? location)
+        $default, {
+    required TResult Function() empty,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int? age, String? gender,
+            String? phoneNumber, String? location)?
+        $default, {
+    TResult? Function()? empty,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int? age, String? gender, String? phoneNumber,
+            String? location)?
+        $default, {
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ClijeoUser value) $default, {
+    required TResult Function(_ClijeoEmptyUser value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ClijeoUser value)? $default, {
+    TResult? Function(_ClijeoEmptyUser value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ClijeoUser value)? $default, {
+    TResult Function(_ClijeoEmptyUser value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ClijeoEmptyUserToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClijeoEmptyUser implements ClijeoUser {
+  factory _ClijeoEmptyUser() = _$_ClijeoEmptyUser;
+
+  factory _ClijeoEmptyUser.fromJson(Map<String, dynamic> json) =
+      _$_ClijeoEmptyUser.fromJson;
 }

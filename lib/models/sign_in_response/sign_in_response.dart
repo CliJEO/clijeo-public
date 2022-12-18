@@ -7,6 +7,8 @@ part 'sign_in_response.freezed.dart';
 class SignInResponse with _$SignInResponse {
   const factory SignInResponse(
       {required bool firstLogin, required String jwt}) = _SignInResponse;
+
+  const factory SignInResponse.error() = _SignInResponseError;
   factory SignInResponse.fromJson(Map<String, dynamic> json) =>
-      _$SignInResponseFromJson(json);
+      _SignInResponse.fromJson(json);
 }
