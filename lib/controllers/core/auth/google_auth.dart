@@ -17,7 +17,7 @@ class GoogleAuth {
     var idToken = googleAuth?.idToken;
     // using the log function here because print() caps at 1024 chars
     // took some time to figure that out (:smileinpain:)
-    if (idToken != null) log(idToken);
+    // if (idToken != null) log(idToken);
 
     return googleAuth?.idToken;
   }

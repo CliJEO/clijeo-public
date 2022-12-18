@@ -12,12 +12,9 @@ class ClijeoUser with _$ClijeoUser {
       String? gender,
       String? phoneNumber,
       String? location}) = _ClijeoUser;
-  factory ClijeoUser.fromJson(Map<String, dynamic> json) =>
-      _$ClijeoUserFromJson(json);
 
-  factory ClijeoUser.empty() {
-    return const ClijeoUser(
-      name: "",
-    );
-  }
+  factory ClijeoUser.empty() = _ClijeoEmptyUser;
+
+  factory ClijeoUser.fromJson(Map<String, dynamic> json) =>
+      _ClijeoUser.fromJson(json);
 }

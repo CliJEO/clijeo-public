@@ -1,7 +1,10 @@
+import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/controllers/sign_in/sign_in_controller.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/sign_in/first_login_form_screen.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
@@ -14,6 +17,15 @@ class SignInHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> signIn() async {
+      final signInResponse = await SignInController.signIn();
+      signInResponse.when((firstLogin, _) async {
+        if (!firstLogin) {
+          Navigator.pushReplacementNamed(context, FirstLoginFormScreen.id);
+        }
+      }, error: () {});
+    }
+
     final sizeConfig = SizeConfig(context);
     return Scaffold(
       body: Column(
@@ -82,9 +94,7 @@ class SignInHomeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: sizeConfig.SafeBlockSizeVertical(0.11)),
                       PrimaryButton(
-                          onTap: () async {
-                            await SignInController.signIn();
-                          },
+                          onTap: signIn,
                           sizeConfig: sizeConfig,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

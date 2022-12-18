@@ -13,6 +13,7 @@ _$_ClijeoUser _$$_ClijeoUserFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       location: json['location'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_ClijeoUserToJson(_$_ClijeoUser instance) =>
@@ -22,4 +23,15 @@ Map<String, dynamic> _$$_ClijeoUserToJson(_$_ClijeoUser instance) =>
       'gender': instance.gender,
       'phoneNumber': instance.phoneNumber,
       'location': instance.location,
+      'runtimeType': instance.$type,
+    };
+
+_$_ClijeoEmptyUser _$$_ClijeoEmptyUserFromJson(Map<String, dynamic> json) =>
+    _$_ClijeoEmptyUser(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_ClijeoEmptyUserToJson(_$_ClijeoEmptyUser instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
     };
