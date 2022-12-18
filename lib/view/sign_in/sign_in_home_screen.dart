@@ -1,5 +1,5 @@
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/controllers/core/user/clijeo_user.dart';
+import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/controllers/sign_in/sign_in_controller.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';

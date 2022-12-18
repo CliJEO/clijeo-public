@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,7 +12,7 @@ class _AppLocalizationsDelegate
   @override
   bool isSupported(Locale locale) {
     // Include all of your supported language codes here
-    return ['en', 'ml'].contains(locale.languageCode);
+    return Language.getSupportedLanguages().contains(locale.languageCode);
   }
 
   @override
