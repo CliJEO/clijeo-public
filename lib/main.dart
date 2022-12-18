@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/controllers/notifiers/clijeo_user_change_notifier.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
@@ -27,8 +29,8 @@ void main() async {
   runApp(const MyApp());
 
   await ClijeoSharedPref.loadSharedPrefToApp();
-  print("Token: ${BackendAuth.getToken()}");
-  print("Language: ${Language.getCurrentLanguageCode()}");
+  log("Token: ${BackendAuth.getToken()}");
+  log("Language: ${Language.getCurrentLanguageCode()}");
 }
 
 class MyApp extends StatelessWidget {
