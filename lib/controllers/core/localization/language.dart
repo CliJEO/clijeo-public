@@ -1,4 +1,4 @@
-import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 
 class Language {

@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/controllers/form_validation/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/first_login_form/first_login_form_notifier.dart';
+import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
+import 'package:clijeo_public/controllers/first_login_form/first_login_form_controller.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
@@ -26,7 +26,7 @@ class FirstLoginFormScreen extends StatefulWidget {
 }
 
 class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
-  final FirstLoginFormNotifier _loginForm = FirstLoginFormNotifier();
+  final FirstLoginFormController _loginForm = FirstLoginFormController();
   final _formKey = GlobalKey<FormState>();
 
   final List<String> _allGenderList = Constants.getAllGenders();
@@ -57,9 +57,9 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
   @override
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
-    return ChangeNotifierProvider<FirstLoginFormNotifier>(
+    return ChangeNotifierProvider<FirstLoginFormController>(
       create: (context) => _loginForm,
-      child: Consumer<FirstLoginFormNotifier>(
+      child: Consumer<FirstLoginFormController>(
           builder: (context, value, child) => value.state.when(
               loading: () => const Loading(),
               error: (error) {

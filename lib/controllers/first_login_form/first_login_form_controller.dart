@@ -1,16 +1,16 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
-import 'package:clijeo_public/models/notifier/first_login_form/first_login_form_state.dart';
+import 'package:clijeo_public/controllers/first_login_form/first_login_form_state.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class FirstLoginFormNotifier extends ChangeNotifier {
+class FirstLoginFormController extends ChangeNotifier {
   FirstLoginFormState state = const FirstLoginFormState.loading();
 
   void updateStableStateName(String? updatedName) {
@@ -83,16 +83,12 @@ class FirstLoginFormNotifier extends ChangeNotifier {
           },
         ),
       );
-      ClijeoUser.fromJson(result.data).maybeWhen(
-          (name, age, gender, phoneNumber, location) {
-        state = FirstLoginFormState.stable(
-            name: name,
-            language: Language.getCurrentLanguageCode(),
-            gender: Constants.getAllGenders().first);
-        notifyListeners();
-      }, orElse: () {
-        state = const FirstLoginFormState.error("State Error: Invalid State");
-      });
+      final user = ClijeoUser.fromJson(result.data);
+      state = FirstLoginFormState.stable(
+          name: user.name,
+          language: Language.getCurrentLanguageCode(),
+          gender: Constants.getAllGenders().first);
+      notifyListeners();
     } on DioError catch (e) {
       state = FirstLoginFormState.error("Dio Error: ${e.response}");
     } on Error catch (e) {
@@ -115,7 +111,7 @@ class FirstLoginFormNotifier extends ChangeNotifier {
           notifyListeners();
 
           try {
-            await DioBase.dioInstance.put(ApiUtils.userUpdateUrl,
+            await DioBase.dioInstance.put(ApiUtils.userProfileUpdateUrl,
                 options: Options(
                   headers: {
                     'Authorization': 'Bearer ${BackendAuth.getToken()}',
