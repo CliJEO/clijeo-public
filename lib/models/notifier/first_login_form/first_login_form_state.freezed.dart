@@ -23,7 +23,6 @@ mixin _$FirstLoginFormState {
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +32,6 @@ mixin _$FirstLoginFormState {
         stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
-    TResult? Function()? completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +41,6 @@ mixin _$FirstLoginFormState {
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? completed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,7 +49,6 @@ mixin _$FirstLoginFormState {
     required TResult Function(_FirstLoginFormStable value) stable,
     required TResult Function(_FirstLoginFormLoading value) loading,
     required TResult Function(_FirstLoginFormError value) error,
-    required TResult Function(_FirstLoginFormCompleted value) completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,7 +56,6 @@ mixin _$FirstLoginFormState {
     TResult? Function(_FirstLoginFormStable value)? stable,
     TResult? Function(_FirstLoginFormLoading value)? loading,
     TResult? Function(_FirstLoginFormError value)? error,
-    TResult? Function(_FirstLoginFormCompleted value)? completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +63,6 @@ mixin _$FirstLoginFormState {
     TResult Function(_FirstLoginFormStable value)? stable,
     TResult Function(_FirstLoginFormLoading value)? loading,
     TResult Function(_FirstLoginFormError value)? error,
-    TResult Function(_FirstLoginFormCompleted value)? completed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -218,7 +212,6 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() completed,
   }) {
     return stable(name, age, gender, language, phoneNumber, location);
   }
@@ -231,7 +224,6 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
         stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
-    TResult? Function()? completed,
   }) {
     return stable?.call(name, age, gender, language, phoneNumber, location);
   }
@@ -244,7 +236,6 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (stable != null) {
@@ -259,7 +250,6 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
     required TResult Function(_FirstLoginFormStable value) stable,
     required TResult Function(_FirstLoginFormLoading value) loading,
     required TResult Function(_FirstLoginFormError value) error,
-    required TResult Function(_FirstLoginFormCompleted value) completed,
   }) {
     return stable(this);
   }
@@ -270,7 +260,6 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
     TResult? Function(_FirstLoginFormStable value)? stable,
     TResult? Function(_FirstLoginFormLoading value)? loading,
     TResult? Function(_FirstLoginFormError value)? error,
-    TResult? Function(_FirstLoginFormCompleted value)? completed,
   }) {
     return stable?.call(this);
   }
@@ -281,7 +270,6 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
     TResult Function(_FirstLoginFormStable value)? stable,
     TResult Function(_FirstLoginFormLoading value)? loading,
     TResult Function(_FirstLoginFormError value)? error,
-    TResult Function(_FirstLoginFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (stable != null) {
@@ -354,7 +342,6 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() completed,
   }) {
     return loading();
   }
@@ -367,7 +354,6 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
         stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
-    TResult? Function()? completed,
   }) {
     return loading?.call();
   }
@@ -380,7 +366,6 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -395,7 +380,6 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
     required TResult Function(_FirstLoginFormStable value) stable,
     required TResult Function(_FirstLoginFormLoading value) loading,
     required TResult Function(_FirstLoginFormError value) error,
-    required TResult Function(_FirstLoginFormCompleted value) completed,
   }) {
     return loading(this);
   }
@@ -406,7 +390,6 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
     TResult? Function(_FirstLoginFormStable value)? stable,
     TResult? Function(_FirstLoginFormLoading value)? loading,
     TResult? Function(_FirstLoginFormError value)? error,
-    TResult? Function(_FirstLoginFormCompleted value)? completed,
   }) {
     return loading?.call(this);
   }
@@ -417,7 +400,6 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
     TResult Function(_FirstLoginFormStable value)? stable,
     TResult Function(_FirstLoginFormLoading value)? loading,
     TResult Function(_FirstLoginFormError value)? error,
-    TResult Function(_FirstLoginFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -501,7 +483,6 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() completed,
   }) {
     return error(this.error);
   }
@@ -514,7 +495,6 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
         stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
-    TResult? Function()? completed,
   }) {
     return error?.call(this.error);
   }
@@ -527,7 +507,6 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -542,7 +521,6 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
     required TResult Function(_FirstLoginFormStable value) stable,
     required TResult Function(_FirstLoginFormLoading value) loading,
     required TResult Function(_FirstLoginFormError value) error,
-    required TResult Function(_FirstLoginFormCompleted value) completed,
   }) {
     return error(this);
   }
@@ -553,7 +531,6 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
     TResult? Function(_FirstLoginFormStable value)? stable,
     TResult? Function(_FirstLoginFormLoading value)? loading,
     TResult? Function(_FirstLoginFormError value)? error,
-    TResult? Function(_FirstLoginFormCompleted value)? completed,
   }) {
     return error?.call(this);
   }
@@ -564,7 +541,6 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
     TResult Function(_FirstLoginFormStable value)? stable,
     TResult Function(_FirstLoginFormLoading value)? loading,
     TResult Function(_FirstLoginFormError value)? error,
-    TResult Function(_FirstLoginFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -582,125 +558,4 @@ abstract class _FirstLoginFormError implements FirstLoginFormState {
   @JsonKey(ignore: true)
   _$$_FirstLoginFormErrorCopyWith<_$_FirstLoginFormError> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_FirstLoginFormCompletedCopyWith<$Res> {
-  factory _$$_FirstLoginFormCompletedCopyWith(_$_FirstLoginFormCompleted value,
-          $Res Function(_$_FirstLoginFormCompleted) then) =
-      __$$_FirstLoginFormCompletedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_FirstLoginFormCompletedCopyWithImpl<$Res>
-    extends _$FirstLoginFormStateCopyWithImpl<$Res, _$_FirstLoginFormCompleted>
-    implements _$$_FirstLoginFormCompletedCopyWith<$Res> {
-  __$$_FirstLoginFormCompletedCopyWithImpl(_$_FirstLoginFormCompleted _value,
-      $Res Function(_$_FirstLoginFormCompleted) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_FirstLoginFormCompleted implements _FirstLoginFormCompleted {
-  const _$_FirstLoginFormCompleted();
-
-  @override
-  String toString() {
-    return 'FirstLoginFormState.completed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_FirstLoginFormCompleted);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String gender,
-            String language, String? phoneNumber, String? location)
-        stable,
-    required TResult Function() loading,
-    required TResult Function(String error) error,
-    required TResult Function() completed,
-  }) {
-    return completed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
-        stable,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
-    TResult? Function()? completed,
-  }) {
-    return completed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
-        stable,
-    TResult Function()? loading,
-    TResult Function(String error)? error,
-    TResult Function()? completed,
-    required TResult orElse(),
-  }) {
-    if (completed != null) {
-      return completed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FirstLoginFormStable value) stable,
-    required TResult Function(_FirstLoginFormLoading value) loading,
-    required TResult Function(_FirstLoginFormError value) error,
-    required TResult Function(_FirstLoginFormCompleted value) completed,
-  }) {
-    return completed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FirstLoginFormStable value)? stable,
-    TResult? Function(_FirstLoginFormLoading value)? loading,
-    TResult? Function(_FirstLoginFormError value)? error,
-    TResult? Function(_FirstLoginFormCompleted value)? completed,
-  }) {
-    return completed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FirstLoginFormStable value)? stable,
-    TResult Function(_FirstLoginFormLoading value)? loading,
-    TResult Function(_FirstLoginFormError value)? error,
-    TResult Function(_FirstLoginFormCompleted value)? completed,
-    required TResult orElse(),
-  }) {
-    if (completed != null) {
-      return completed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FirstLoginFormCompleted implements FirstLoginFormState {
-  const factory _FirstLoginFormCompleted() = _$_FirstLoginFormCompleted;
 }

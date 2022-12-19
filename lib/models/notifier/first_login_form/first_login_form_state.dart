@@ -13,5 +13,4 @@ abstract class FirstLoginFormState with _$FirstLoginFormState {
       String? location}) = _FirstLoginFormStable;
   const factory FirstLoginFormState.loading() = _FirstLoginFormLoading;
   const factory FirstLoginFormState.error(String error) = _FirstLoginFormError;
-  const factory FirstLoginFormState.completed() = _FirstLoginFormCompleted;
 }

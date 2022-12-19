@@ -125,14 +125,13 @@ class FirstLoginFormNotifier extends ChangeNotifier {
 
             // Updating the shared pref and static variable for language
             await Language.setCurrentLanguageCodeAndUpdateSharedPref(language);
-            log("COMPLETED");
-            state = const FirstLoginFormState.completed();
           } on DioError catch (e) {
             state = FirstLoginFormState.error("Dio Error: ${e.response}");
+            notifyListeners();
           } on Error catch (e) {
             state = FirstLoginFormState.error("Error: ${e.toString()}");
+            notifyListeners();
           }
-          notifyListeners();
         },
         orElse: () {});
   }

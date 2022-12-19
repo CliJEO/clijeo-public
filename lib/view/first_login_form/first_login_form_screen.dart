@@ -46,19 +46,16 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
     _loginForm.updateStableStateLanguage(_allLanguageList[index]);
   }
 
+  Future<void> _saveProfileDetails(context) async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      await _loginForm.saveProfileDetails();
+      Navigator.of(context).pushReplacementNamed(HomeScreen.id);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future<void> _saveProfileDetails() async {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save();
-        await _loginForm.saveProfileDetails();
-        _loginForm.state.maybeWhen(
-            completed: () =>
-                Navigator.of(context).pushReplacementNamed(HomeScreen.id),
-            orElse: () {});
-      }
-    }
-
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<FirstLoginFormNotifier>(
       create: (context) => _loginForm,
@@ -68,7 +65,6 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
               error: (error) {
                 return const ErrorScreen();
               },
-              completed: () => const Loading(),
               stable: (name, age, gender, language, phoneNumber, location) {
                 return Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
@@ -181,7 +177,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                             height: 20,
                           ),
                           PrimaryButton(
-                              onTap: _saveProfileDetails,
+                              onTap: () => _saveProfileDetails(context),
                               sizeConfig: sizeConfig,
                               child: Center(
                                 child: Text(
