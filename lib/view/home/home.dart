@@ -96,9 +96,10 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final query = userController.user.queries[index];
                           return QueryCard(
-                            subject: query.title,
-                            sizeConfig: sizeConfig,
+                            queryId: query.id,
+                            title: query.title,
                             isArchived: query.closed,
+                            sizeConfig: sizeConfig,
                           );
                         },
                       )

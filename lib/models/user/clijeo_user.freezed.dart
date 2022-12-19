@@ -25,7 +25,7 @@ mixin _$ClijeoUser {
   String? get gender => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  List<Query> get queries => throw _privateConstructorUsedError;
+  List<UserQuery> get queries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $ClijeoUserCopyWith<$Res> {
       String? gender,
       String? phoneNumber,
       String? location,
-      List<Query> queries});
+      List<UserQuery> queries});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class _$ClijeoUserCopyWithImpl<$Res, $Val extends ClijeoUser>
       queries: null == queries
           ? _value.queries
           : queries // ignore: cast_nullable_to_non_nullable
-              as List<Query>,
+              as List<UserQuery>,
     ) as $Val);
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$_ClijeoUserCopyWith<$Res>
       String? gender,
       String? phoneNumber,
       String? location,
-      List<Query> queries});
+      List<UserQuery> queries});
 }
 
 /// @nodoc
@@ -156,7 +156,7 @@ class __$$_ClijeoUserCopyWithImpl<$Res>
       queries: null == queries
           ? _value._queries
           : queries // ignore: cast_nullable_to_non_nullable
-              as List<Query>,
+              as List<UserQuery>,
     ));
   }
 }
@@ -170,7 +170,7 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
       this.gender,
       this.phoneNumber,
       this.location,
-      required final List<Query> queries})
+      required final List<UserQuery> queries})
       : _queries = queries;
 
   factory _$_ClijeoUser.fromJson(Map<String, dynamic> json) =>
@@ -186,9 +186,9 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
   final String? phoneNumber;
   @override
   final String? location;
-  final List<Query> _queries;
+  final List<UserQuery> _queries;
   @override
-  List<Query> get queries {
+  List<UserQuery> get queries {
     if (_queries is EqualUnmodifiableListView) return _queries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_queries);
@@ -253,7 +253,7 @@ abstract class _ClijeoUser implements ClijeoUser {
       final String? gender,
       final String? phoneNumber,
       final String? location,
-      required final List<Query> queries}) = _$_ClijeoUser;
+      required final List<UserQuery> queries}) = _$_ClijeoUser;
 
   factory _ClijeoUser.fromJson(Map<String, dynamic> json) =
       _$_ClijeoUser.fromJson;
@@ -269,7 +269,7 @@ abstract class _ClijeoUser implements ClijeoUser {
   @override
   String? get location;
   @override
-  List<Query> get queries;
+  List<UserQuery> get queries;
   @override
   @JsonKey(ignore: true)
   _$$_ClijeoUserCopyWith<_$_ClijeoUser> get copyWith =>

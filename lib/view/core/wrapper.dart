@@ -13,9 +13,9 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<MainAppController>(
         builder: (context, mainAppController, _) {
-      return mainAppController.state.maybeMap(
-          authenticated: (_) => const HomeScreen(),
-          loading: (_) => const Loading(),
+      return mainAppController.state.maybeWhen(
+          authenticated: () => const HomeScreen(),
+          loading: () => const Loading(),
           orElse: () => const SignInHomeScreen());
     });
   }
