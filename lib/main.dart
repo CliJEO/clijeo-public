@@ -86,6 +86,10 @@ class _MyAppState extends State<MyApp> {
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission();
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
     await FirebaseMessaging.instance
@@ -110,17 +114,28 @@ class _MyAppState extends State<MyApp> {
 
     FirebaseMessaging.onMessage.listen(_notificationHandler);
 
-    var token = await FirebaseMessaging.instance.getToken();
-    print("fcm token is");
-    print(token);
+    FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
+      // TODO make a backend call??
+      // save to shared pref and send to backend whenever value is changed??
+      // or just call backend all the time??
+
+      // Note: This callback is fired at each app startup and whenever a new
+      // token is generated.
+      print("fcm token is");
+      print(fcmToken);
+    }).onError((err) {
+      // Error getting token.
+    });
   }
 
   void _handleMessage(RemoteMessage message) {
-    // if (message.data['type'] == 'chat') {
+    var queryId = message.data['queryId'];
+
     //   Navigator.pushNamed(context, '/chat',
     //     arguments: ChatArguments(message),
     //   );
-    // }
+
+    //TODO is a service in manifest needed to handle foreground notification clicks?
     print(message.data);
   }
 
