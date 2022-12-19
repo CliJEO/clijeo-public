@@ -3,5 +3,5 @@ class Constants {
   static List<String> getSupportedLanguages() => ["en", "ml"];
 
   // List of all genders
-  static List<String> getAllGenders() => ["Male", "Female", "Other"];
+  static List<String> getAllGenders() => ["male", "female", "other"];
 }
