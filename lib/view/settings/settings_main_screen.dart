@@ -1,5 +1,4 @@
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/common_components/disabled_form_field.dart';
 import 'package:clijeo_public/view/common_components/disabled_toggle_button.dart';
