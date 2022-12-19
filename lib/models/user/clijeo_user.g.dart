@@ -14,7 +14,7 @@ _$_ClijeoUser _$$_ClijeoUserFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phoneNumber'] as String?,
       location: json['location'] as String?,
       queries: (json['queries'] as List<dynamic>)
-          .map((e) => Query.fromJson(e as Map<String, dynamic>))
+          .map((e) => UserQuery.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

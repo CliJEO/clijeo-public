@@ -1,4 +1,5 @@
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/models/query/query.dart';
 import 'package:clijeo_public/view/query_thread/active_query_thread.dart';
 import 'package:clijeo_public/view/query_thread/archived_query_thread.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
@@ -9,20 +10,22 @@ import 'package:flutter/material.dart';
 class QueryCard extends StatelessWidget {
   const QueryCard(
       {super.key,
-      required this.subject,
-      required this.sizeConfig,
-      required this.isArchived});
+      required this.queryId,
+      required this.title,
+      required this.isArchived,
+      required this.sizeConfig});
   final SizeConfig sizeConfig;
+  final int queryId;
+  final String title;
   final bool isArchived;
-  final String subject;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context,
-            isArchived ? ArchivedQueryThread.id : ActiveQueryThread.id),
+        onTap: () =>
+            Navigator.pushNamed(context, QueryThread.id, arguments: queryId),
         child: Container(
           width: double.infinity,
           decoration: const BoxDecoration(
@@ -90,7 +93,7 @@ class QueryCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  subject,
+                  title,
                   style: AppTextStyle.smallDarkLightBody,
                 ),
               ),

@@ -20,42 +20,46 @@ class MessageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        color: AppTheme.backgroundColor,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        boxShadow: [
-          BoxShadow(
-              color: Color(0x33000000), blurRadius: 4.0, offset: Offset(0, 2))
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                user,
-                style: isArchived
-                    ? AppTextStyle.smallDarkLightTitle
-                    : AppTextStyle.smallAccentTitle,
-              ),
-              Text(
-                date,
-                style: AppTextStyle.smallDarkLightBoldBody,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            body,
-            style: AppTextStyle.smallDarkLightBody,
-          ),
-        ]),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          color: AppTheme.backgroundColor,
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          boxShadow: [
+            BoxShadow(
+                color: Color(0x33000000), blurRadius: 4.0, offset: Offset(0, 2))
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  user,
+                  style: isArchived
+                      ? AppTextStyle.smallDarkLightTitle
+                      : AppTextStyle.smallAccentTitle,
+                ),
+                Text(
+                  date,
+                  style: AppTextStyle.smallDarkLightBoldBody,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              body,
+              style: AppTextStyle.smallDarkLightBody,
+            ),
+          ]),
+        ),
       ),
     );
   }

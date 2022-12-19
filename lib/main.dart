@@ -39,10 +39,6 @@ void main() async {
 
   await ClijeoSharedPref.loadSharedPrefToApp();
   userController.setUser(await appController.getUser());
-
-  log("Token: ${BackendAuth.getToken()}");
-  log("Language: ${Language.getCurrentLanguageCode()}");
-  log("User: ");
 }
 
 class MainApp extends StatelessWidget {
@@ -67,8 +63,7 @@ class MainApp extends StatelessWidget {
         routes: {
           HomeScreen.id: (context) => const HomeScreen(),
           NewQueryFormScreen.id: (context) => const NewQueryFormScreen(),
-          ActiveQueryThread.id: (context) => const ActiveQueryThread(),
-          ArchivedQueryThread.id: (context) => const ArchivedQueryThread(),
+          QueryThread.id: (context) => const QueryThread(),
           ThreadRespondScreen.id: (context) => const ThreadRespondScreen(),
           SettingsMainScreen.id: (context) => const SettingsMainScreen(),
           SettingsEditScreen.id: (context) => const SettingsEditScreen(),

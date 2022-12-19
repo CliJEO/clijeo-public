@@ -1,4 +1,5 @@
 import 'package:clijeo_public/models/query/query.dart';
+import 'package:clijeo_public/models/user/query/user_query.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +14,7 @@ class ClijeoUser with _$ClijeoUser {
       String? gender,
       String? phoneNumber,
       String? location,
-      required List<Query> queries}) = _ClijeoUser;
+      required List<UserQuery> queries}) = _ClijeoUser;
 
   factory ClijeoUser.empty() {
     return const ClijeoUser(name: "", queries: []);

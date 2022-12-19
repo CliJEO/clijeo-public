@@ -11,8 +11,6 @@ class ApiUtils {
   // For creating a new query
   static const String createQueryUrl = '/query/create';
 
-  // //Set event results
-  // static String getAddEventResultsUrl(int eventID) =>
-  //     '/events/$eventID/setresults';
-
+  // For getting a particular queries details
+  static String getQueryDetailsUrl(int queryId) => '/query/$queryId';
 }
