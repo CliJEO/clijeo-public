@@ -12,7 +12,37 @@ import 'package:flutter/material.dart';
 class FirstLoginFormNotifier extends ChangeNotifier {
   FirstLoginFormState state = const FirstLoginFormState.loading();
 
-  Future<String?> getUserNameFromBackend() async {
+  void updateStableStateName(String? updatedName) {
+    print("HEREEEE");
+    state = state.maybeMap(
+        stable: (value) => value.copyWith(name: updatedName ?? ""),
+        orElse: () =>
+            const FirstLoginFormState.error("State Error: Invalid State"));
+  }
+
+  void updateStableStateAge(String? age) {
+    state = state.maybeMap(
+        stable: (value) =>
+            value.copyWith(age: age == null ? null : int.tryParse(age)),
+        orElse: () =>
+            const FirstLoginFormState.error("State Error: Invalid State"));
+  }
+
+  void updateStableStatePhoneNumber(String? phoneNumber) {
+    state = state.maybeMap(
+        stable: (value) => value.copyWith(phoneNumber: phoneNumber),
+        orElse: () =>
+            const FirstLoginFormState.error("State Error: Invalid State"));
+  }
+
+  void updateStableStateLocation(String? location) {
+    state = state.maybeMap(
+        stable: (value) => value.copyWith(location: location),
+        orElse: () =>
+            const FirstLoginFormState.error("State Error: Invalid State"));
+  }
+
+  Future<void> getUserNameFromBackend() async {
     try {
       final result = await DioBase.dioInstance.get(
         ApiUtils.userUrl,
@@ -24,11 +54,10 @@ class FirstLoginFormNotifier extends ChangeNotifier {
       );
       ClijeoUser.fromJson(result.data).maybeWhen(
           (name, age, gender, phoneNumber, location) {
-        state = const FirstLoginFormState.stable();
+        state = FirstLoginFormState.stable(name: name);
         notifyListeners();
-        return name;
       }, orElse: () {
-        state = const FirstLoginFormState.error("Invalid Backend Response");
+        state = const FirstLoginFormState.error("State Error: Invalid State");
       });
     } on DioError catch (e) {
       state = FirstLoginFormState.error("Dio Error: ${e.response}");
@@ -36,14 +65,37 @@ class FirstLoginFormNotifier extends ChangeNotifier {
       state = FirstLoginFormState.error("Error: ${e.toString()}");
     }
     notifyListeners();
-    return null;
   }
 
-  static String? nullStringValidation(String? val) {
-    if (val == null) {
-      return "Please enter a valid non-empty string";
-    } else {
-      return null;
-    }
+  Future<void> saveProfileDetails() async {
+    state.maybeWhen(
+        stable: (name, age, gender, phoneNumber, location) async {
+          final user = ClijeoUser(
+              name: name,
+              age: age,
+              gender: gender,
+              phoneNumber: phoneNumber,
+              location: location);
+
+          state = const FirstLoginFormState.loading();
+          notifyListeners();
+
+          try {
+            await DioBase.dioInstance.put(ApiUtils.userUpdateUrl,
+                options: Options(
+                  headers: {
+                    'Authorization': 'Bearer ${BackendAuth.getToken()}',
+                  },
+                ),
+                data: user.toJson());
+            state = FirstLoginFormState.completed();
+          } on DioError catch (e) {
+            state = FirstLoginFormState.error("Dio Error: ${e.response}");
+          } on Error catch (e) {
+            state = FirstLoginFormState.error("Error: ${e.toString()}");
+          }
+          notifyListeners();
+        },
+        orElse: () {});
   }
 }

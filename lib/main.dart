@@ -41,20 +41,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class NetworkErrorPage extends StatelessWidget {
-  const NetworkErrorPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            backgroundColor: AppTheme.backgroundColor,
-            body: Center(
-              child: Text(LocaleTextClass.getTextWithKey(context, "NoNetwork")),
-            )));
-  }
-}
-
 class ClijeoApp extends StatelessWidget {
   const ClijeoApp({
     Key? key,
