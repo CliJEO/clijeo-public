@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FirstLoginFormState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String? gender,
-            String? phoneNumber, String? location)
+    required TResult Function(String name, int? age, String gender,
+            String language, String? phoneNumber, String? location)
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -28,7 +28,7 @@ mixin _$FirstLoginFormState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String? gender,
+    TResult? Function(String name, int? age, String gender, String language,
             String? phoneNumber, String? location)?
         stable,
     TResult? Function()? loading,
@@ -38,8 +38,8 @@ mixin _$FirstLoginFormState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String? gender, String? phoneNumber,
-            String? location)?
+    TResult Function(String name, int? age, String gender, String language,
+            String? phoneNumber, String? location)?
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -101,7 +101,8 @@ abstract class _$$_FirstLoginFormStableCopyWith<$Res> {
   $Res call(
       {String name,
       int? age,
-      String? gender,
+      String gender,
+      String language,
       String? phoneNumber,
       String? location});
 }
@@ -119,7 +120,8 @@ class __$$_FirstLoginFormStableCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? age = freezed,
-    Object? gender = freezed,
+    Object? gender = null,
+    Object? language = null,
     Object? phoneNumber = freezed,
     Object? location = freezed,
   }) {
@@ -132,10 +134,14 @@ class __$$_FirstLoginFormStableCopyWithImpl<$Res>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as int?,
-      gender: freezed == gender
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -154,7 +160,8 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
   const _$_FirstLoginFormStable(
       {required this.name,
       this.age,
-      this.gender,
+      required this.gender,
+      required this.language,
       this.phoneNumber,
       this.location});
 
@@ -163,7 +170,9 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
   @override
   final int? age;
   @override
-  final String? gender;
+  final String gender;
+  @override
+  final String language;
   @override
   final String? phoneNumber;
   @override
@@ -171,7 +180,7 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
 
   @override
   String toString() {
-    return 'FirstLoginFormState.stable(name: $name, age: $age, gender: $gender, phoneNumber: $phoneNumber, location: $location)';
+    return 'FirstLoginFormState.stable(name: $name, age: $age, gender: $gender, language: $language, phoneNumber: $phoneNumber, location: $location)';
   }
 
   @override
@@ -182,6 +191,8 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.location, location) ||
@@ -189,8 +200,8 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, age, gender, phoneNumber, location);
+  int get hashCode => Object.hash(
+      runtimeType, name, age, gender, language, phoneNumber, location);
 
   @JsonKey(ignore: true)
   @override
@@ -202,34 +213,34 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String? gender,
-            String? phoneNumber, String? location)
+    required TResult Function(String name, int? age, String gender,
+            String language, String? phoneNumber, String? location)
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
     required TResult Function() completed,
   }) {
-    return stable(name, age, gender, phoneNumber, location);
+    return stable(name, age, gender, language, phoneNumber, location);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String? gender,
+    TResult? Function(String name, int? age, String gender, String language,
             String? phoneNumber, String? location)?
         stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
     TResult? Function()? completed,
   }) {
-    return stable?.call(name, age, gender, phoneNumber, location);
+    return stable?.call(name, age, gender, language, phoneNumber, location);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String? gender, String? phoneNumber,
-            String? location)?
+    TResult Function(String name, int? age, String gender, String language,
+            String? phoneNumber, String? location)?
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -237,7 +248,7 @@ class _$_FirstLoginFormStable implements _FirstLoginFormStable {
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(name, age, gender, phoneNumber, location);
+      return stable(name, age, gender, language, phoneNumber, location);
     }
     return orElse();
   }
@@ -284,13 +295,15 @@ abstract class _FirstLoginFormStable implements FirstLoginFormState {
   const factory _FirstLoginFormStable(
       {required final String name,
       final int? age,
-      final String? gender,
+      required final String gender,
+      required final String language,
       final String? phoneNumber,
       final String? location}) = _$_FirstLoginFormStable;
 
   String get name;
   int? get age;
-  String? get gender;
+  String get gender;
+  String get language;
   String? get phoneNumber;
   String? get location;
   @JsonKey(ignore: true)
@@ -336,8 +349,8 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String? gender,
-            String? phoneNumber, String? location)
+    required TResult Function(String name, int? age, String gender,
+            String language, String? phoneNumber, String? location)
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -349,7 +362,7 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String? gender,
+    TResult? Function(String name, int? age, String gender, String language,
             String? phoneNumber, String? location)?
         stable,
     TResult? Function()? loading,
@@ -362,8 +375,8 @@ class _$_FirstLoginFormLoading implements _FirstLoginFormLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String? gender, String? phoneNumber,
-            String? location)?
+    TResult Function(String name, int? age, String gender, String language,
+            String? phoneNumber, String? location)?
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -483,8 +496,8 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String? gender,
-            String? phoneNumber, String? location)
+    required TResult Function(String name, int? age, String gender,
+            String language, String? phoneNumber, String? location)
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -496,7 +509,7 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String? gender,
+    TResult? Function(String name, int? age, String gender, String language,
             String? phoneNumber, String? location)?
         stable,
     TResult? Function()? loading,
@@ -509,8 +522,8 @@ class _$_FirstLoginFormError implements _FirstLoginFormError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String? gender, String? phoneNumber,
-            String? location)?
+    TResult Function(String name, int? age, String gender, String language,
+            String? phoneNumber, String? location)?
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -610,8 +623,8 @@ class _$_FirstLoginFormCompleted implements _FirstLoginFormCompleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String? gender,
-            String? phoneNumber, String? location)
+    required TResult Function(String name, int? age, String gender,
+            String language, String? phoneNumber, String? location)
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -623,7 +636,7 @@ class _$_FirstLoginFormCompleted implements _FirstLoginFormCompleted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String? gender,
+    TResult? Function(String name, int? age, String gender, String language,
             String? phoneNumber, String? location)?
         stable,
     TResult? Function()? loading,
@@ -636,8 +649,8 @@ class _$_FirstLoginFormCompleted implements _FirstLoginFormCompleted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String? gender, String? phoneNumber,
-            String? location)?
+    TResult Function(String name, int? age, String gender, String language,
+            String? phoneNumber, String? location)?
         stable,
     TResult Function()? loading,
     TResult Function(String error)? error,

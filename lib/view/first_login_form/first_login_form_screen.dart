@@ -1,12 +1,15 @@
 import 'dart:developer';
 
+import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/controllers/form_validation.dart/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/sign_in/first_login_form_notifier.dart';
+import 'package:clijeo_public/controllers/form_validation/form_validation_controller.dart';
+import 'package:clijeo_public/controllers/first_login_form/first_login_form_notifier.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/home/home.dart';
+import 'package:clijeo_public/view/misc_screens/error_screen.dart';
 import 'package:clijeo_public/view/misc_screens/loading.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
@@ -25,10 +28,12 @@ class FirstLoginFormScreen extends StatefulWidget {
 class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
   final FirstLoginFormNotifier _loginForm = FirstLoginFormNotifier();
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
-  final TextEditingController _phnoController = TextEditingController();
-  final TextEditingController _locationController = TextEditingController();
+
+  final List<String> _allGenderList = Constants.getAllGenders();
+  final List<String> _allLanguageList = Constants.getSupportedLanguages();
+
+  // String _selectedGender = FormValidationController.getAllGenders().first;
+  // String _selectedLanguage = Language.getCurrentLanguageCode();
 
   @override
   void initState() {
@@ -37,28 +42,18 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
   }
 
   Future<void> _saveProfileDetails() async {
-    _formKey.currentState!.save();
-    _loginForm.state.maybeWhen(
-        stable: (name, age, gender, phoneNumber, location) {
-          log("Name: " + name!);
-          log("Location:" + location!);
-        },
-        orElse: () {});
-
     if (_formKey.currentState!.validate()) {
-      _loginForm.state.maybeWhen(
-          stable: (name, age, gender, phoneNumber, location) {
-            log("Name: " + name!);
-            log("Location:" + location!);
-          },
-          orElse: () {});
-      // await _loginForm.saveProfileDetails(
-      //     _nameController.text,
-      //     int.parse(_ageController.text),
-      //     "male",
-      //     _phnoController.text,
-      //     _locationController.text);
+      _formKey.currentState!.save();
+      await _loginForm.saveProfileDetails();
     }
+  }
+
+  void _genderTogglePressed(int index) {
+    _loginForm.updateStableStateGender(_allGenderList[index]);
+  }
+
+  void _languageTogglePressed(int index) {
+    _loginForm.updateStableStateLanguage(_allLanguageList[index]);
   }
 
   @override
@@ -70,16 +65,13 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
           builder: (context, value, child) => value.state.when(
               loading: () => const Loading(),
               error: (error) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(error)),
-                );
-                return Container();
+                return const ErrorScreen();
               },
               completed: () {
                 Navigator.pushReplacementNamed(context, HomeScreen.id);
                 return const Loading();
               },
-              stable: (name, age, gender, phoneNumber, location) {
+              stable: (name, age, gender, language, phoneNumber, location) {
                 return Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
@@ -133,28 +125,32 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                             height: 15,
                           ),
                           CustomToggleButton(
+                              isSelected: _allGenderList
+                                  .map((e) => e == gender)
+                                  .toList(),
+                              onPressed: _genderTogglePressed,
                               fieldTitle: LocaleTextClass.getTextWithKey(
                                   context, "Gender"),
                               sizeConfig: sizeConfig,
-                              options: [
-                                LocaleTextClass.getTextWithKey(context, "Male"),
-                                LocaleTextClass.getTextWithKey(
-                                    context, "Female"),
-                                LocaleTextClass.getTextWithKey(context, "Other")
-                              ]),
+                              options: _allGenderList
+                                  .map((e) => LocaleTextClass.getTextWithKey(
+                                      context, e))
+                                  .toList()),
                           const SizedBox(
                             height: 15,
                           ),
                           CustomToggleButton(
+                              isSelected: _allLanguageList
+                                  .map((e) => e == language)
+                                  .toList(),
+                              onPressed: _languageTogglePressed,
                               fieldTitle: LocaleTextClass.getTextWithKey(
                                   context, "LanguagePreference"),
                               sizeConfig: sizeConfig,
-                              options: [
-                                LocaleTextClass.getTextWithKey(
-                                    context, "English"),
-                                LocaleTextClass.getTextWithKey(
-                                    context, "Malayalam")
-                              ]),
+                              options: _allLanguageList
+                                  .map((e) => LocaleTextClass.getTextWithKey(
+                                      context, e))
+                                  .toList()),
                           const SizedBox(
                             height: 15,
                           ),

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/notifiers/clijeo_user_change_notifier.dart';
+import 'package:clijeo_public/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/app_localization.dart';
@@ -15,14 +15,13 @@ import 'package:clijeo_public/view/query_thread/archived_query_thread.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
 import 'package:clijeo_public/view/settings/settings_main_screen.dart';
-import 'package:clijeo_public/view/sign_in/first_login_form_screen.dart';
+import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
 import 'package:clijeo_public/view/sign_in/sign_in_home_screen.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
-  final userNotifier = ClijeoUserNotifier();
   DioBase.initDio();
 
   runApp(const MyApp());
@@ -52,7 +51,7 @@ class ClijeoApp extends StatelessWidget {
         title: 'CLIJEO-PUBLIC',
         locale: Locale(Language.getCurrentLanguageCode()),
         supportedLocales:
-            Language.getSupportedLanguages().map((e) => Locale(e)).toList(),
+            Constants.getSupportedLanguages().map((e) => Locale(e)).toList(),
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
