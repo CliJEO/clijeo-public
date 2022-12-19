@@ -9,7 +9,7 @@ class CustomFormField extends StatelessWidget {
       {super.key,
       required this.fieldTitle,
       this.validator,
-      this.controller,
+      this.onSaved,
       this.textInputType = TextInputType.text,
       this.initialValue = "",
       this.fieldHintText = "",
@@ -17,7 +17,8 @@ class CustomFormField extends StatelessWidget {
       this.maxLines = 1});
 
   final String? Function(String?)? validator;
-  final TextEditingController? controller;
+  final void Function(String?)? onSaved;
+  // final TextEditingController? controller;
   final TextInputType textInputType;
   final String initialValue;
   final String fieldHintText;
@@ -39,7 +40,8 @@ class CustomFormField extends StatelessWidget {
         ),
         TextFormField(
           validator: validator,
-          controller: controller,
+          onSaved: onSaved,
+          initialValue: initialValue,
           keyboardType: textInputType,
           minLines: minLines,
           maxLines: maxLines,

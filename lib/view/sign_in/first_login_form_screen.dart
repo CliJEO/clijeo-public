@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/form_validation.dart/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/sign_in/first_login_form_notifier.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
@@ -31,28 +32,54 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
 
   @override
   void initState() {
-    _loginForm.getUserNameFromBackend().then((value) {
-      _nameController.text = value ?? "";
-      log(value ?? "");
-    });
+    _loginForm.getUserNameFromBackend();
     super.initState();
+  }
+
+  Future<void> _saveProfileDetails() async {
+    _formKey.currentState!.save();
+    _loginForm.state.maybeWhen(
+        stable: (name, age, gender, phoneNumber, location) {
+          log("Name: " + name!);
+          log("Location:" + location!);
+        },
+        orElse: () {});
+
+    if (_formKey.currentState!.validate()) {
+      _loginForm.state.maybeWhen(
+          stable: (name, age, gender, phoneNumber, location) {
+            log("Name: " + name!);
+            log("Location:" + location!);
+          },
+          orElse: () {});
+      // await _loginForm.saveProfileDetails(
+      //     _nameController.text,
+      //     int.parse(_ageController.text),
+      //     "male",
+      //     _phnoController.text,
+      //     _locationController.text);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    void _saveProfileDetails() {
-      Navigator.pushReplacementNamed(context, HomeScreen.id);
-    }
-
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<FirstLoginFormNotifier>(
       create: (context) => _loginForm,
       child: Consumer<FirstLoginFormNotifier>(
-          builder: (context, value, child) => value.state.maybeWhen(
+          builder: (context, value, child) => value.state.when(
               loading: () => const Loading(),
-              orElse: () {
-                log("NAME:");
-                log(_nameController.text);
+              error: (error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(error)),
+                );
+                return Container();
+              },
+              completed: () {
+                Navigator.pushReplacementNamed(context, HomeScreen.id);
+                return const Loading();
+              },
+              stable: (name, age, gender, phoneNumber, location) {
                 return Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
@@ -81,8 +108,9 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           ),
                           CustomFormField(
                             validator:
-                                FirstLoginFormNotifier.nullStringValidation,
-                            controller: _nameController,
+                                FormValidationController.nullStringValidation,
+                            initialValue: name,
+                            onSaved: _loginForm.updateStableStateName,
                             fieldTitle:
                                 LocaleTextClass.getTextWithKey(context, "Name"),
                             fieldHintText: LocaleTextClass.getTextWithKey(
@@ -93,8 +121,8 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           ),
                           CustomFormField(
                             validator:
-                                FirstLoginFormNotifier.nullStringValidation,
-                            controller: _ageController,
+                                FormValidationController.nullStringValidation,
+                            onSaved: _loginForm.updateStableStateAge,
                             textInputType: TextInputType.number,
                             fieldTitle:
                                 LocaleTextClass.getTextWithKey(context, "Age"),
@@ -132,8 +160,8 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           ),
                           CustomFormField(
                             validator:
-                                FirstLoginFormNotifier.nullStringValidation,
-                            controller: _phnoController,
+                                FormValidationController.nullStringValidation,
+                            onSaved: _loginForm.updateStableStatePhoneNumber,
                             textInputType: TextInputType.phone,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "PhoneNumber"),
@@ -145,8 +173,8 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           ),
                           CustomFormField(
                             validator:
-                                FirstLoginFormNotifier.nullStringValidation,
-                            controller: _locationController,
+                                FormValidationController.nullStringValidation,
+                            onSaved: _loginForm.updateStableStateLocation,
                             textInputType: TextInputType.text,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "Location"),
