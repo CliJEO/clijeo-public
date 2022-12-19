@@ -22,12 +22,9 @@ class SignInController {
 
       final signInResponse = SignInResponse.fromJson(result.data);
 
-      signInResponse.when((firstLogin, jwt) {
+      signInResponse.when((firstLogin, jwt) async {
         // Setting the BackendAuth static variable to the jwt token
-        BackendAuth.setToken(jwt);
-
-        // Adding the jwt token to shared prefs
-        ClijeoSharedPref.addUserAccessTokenToSharedPref(jwt);
+        await BackendAuth.setTokenAndUpdateSharedPref(jwt);
       }, error: () {});
 
       // Returns the SignInResponse Object

@@ -61,6 +61,7 @@ class SettingsEditScreen extends StatelessWidget {
                     height: 15,
                   ),
                   CustomToggleButton(
+                      isSelected: [],
                       fieldTitle:
                           LocaleTextClass.getTextWithKey(context, "Gender"),
                       sizeConfig: sizeConfig,
@@ -73,6 +74,7 @@ class SettingsEditScreen extends StatelessWidget {
                     height: 15,
                   ),
                   CustomToggleButton(
+                      isSelected: [],
                       fieldTitle: LocaleTextClass.getTextWithKey(
                           context, "LanguagePreference"),
                       sizeConfig: sizeConfig,

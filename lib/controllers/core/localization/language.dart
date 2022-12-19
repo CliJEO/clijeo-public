@@ -1,14 +1,18 @@
+import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
+
 class Language {
-  // List of all supported languages
-  static const List<String> _supportedLanguages = ["en", "ml"];
-
   // Currently selected language
-  static String _currentLanguageCode = _supportedLanguages.first;
-
-  static List<String> getSupportedLanguages() => _supportedLanguages;
+  static String _currentLanguageCode = Constants.getSupportedLanguages().first;
 
   static void setCurrentLanguageCode(String languageCode) {
     _currentLanguageCode = languageCode;
+  }
+
+  static Future<void> setCurrentLanguageCodeAndUpdateSharedPref(
+      String languageCode) async {
+    _currentLanguageCode = languageCode;
+    await ClijeoSharedPref.addLanguageToSharedPref(languageCode);
   }
 
   static String getCurrentLanguageCode() => _currentLanguageCode;

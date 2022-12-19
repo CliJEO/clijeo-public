@@ -1,3 +1,4 @@
+import 'package:clijeo_public/constants.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,15 +41,13 @@ class ClijeoSharedPref {
     final userToken = await _getUserAccessTokenFromSharedPref();
     if (userToken != null) {
       BackendAuth.setToken(userToken);
-    } else {
-      await addUserAccessTokenToSharedPref("");
     }
 
     final languageCode = await _getLanguageFromSharedPref();
     if (languageCode != null) {
       Language.setCurrentLanguageCode(languageCode);
     } else {
-      await addLanguageToSharedPref(Language.getSupportedLanguages().first);
+      await addLanguageToSharedPref(Constants.getSupportedLanguages().first);
     }
   }
 }

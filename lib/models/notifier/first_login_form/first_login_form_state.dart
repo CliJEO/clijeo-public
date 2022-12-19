@@ -7,7 +7,8 @@ abstract class FirstLoginFormState with _$FirstLoginFormState {
   const factory FirstLoginFormState.stable(
       {required String name,
       int? age,
-      String? gender,
+      required String gender,
+      required String language,
       String? phoneNumber,
       String? location}) = _FirstLoginFormStable;
   const factory FirstLoginFormState.loading() = _FirstLoginFormLoading;
