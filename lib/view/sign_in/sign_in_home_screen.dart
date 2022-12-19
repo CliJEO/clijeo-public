@@ -1,7 +1,6 @@
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/controllers/sign_in/sign_in_controller.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';

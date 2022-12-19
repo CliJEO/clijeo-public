@@ -1,3 +1,4 @@
+import 'package:clijeo_public/models/query/query.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,10 +12,11 @@ class ClijeoUser with _$ClijeoUser {
       int? age,
       String? gender,
       String? phoneNumber,
-      String? location}) = _ClijeoUser;
+      String? location,
+      required List<Query> queries}) = _ClijeoUser;
 
   factory ClijeoUser.empty() {
-    return const ClijeoUser(name: "");
+    return const ClijeoUser(name: "", queries: []);
   }
 
   factory ClijeoUser.fromJson(Map<String, dynamic> json) =>

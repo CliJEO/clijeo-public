@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/home/components/no_prev_query_widget.dart';
 import 'package:clijeo_public/view/home/components/query_cards.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
     final sizeConfig = SizeConfig(context);
     return Consumer<ClijeoUserController>(
       builder: (context, userController, _) {
+        log(userController.user.toString());
         return Scaffold(
           backgroundColor: AppTheme.backgroundColor,
           body: SingleChildScrollView(
@@ -84,13 +86,22 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    // Center(child: NoPrevQueryWidget(sizeConfig: sizeConfig))
-                    QueryCard(
-                      subject:
-                          "Filing a complaint against delayed building constructors",
-                      sizeConfig: sizeConfig,
-                      isActive: true,
-                    )
+                    if (userController.user.queries.isEmpty)
+                      Center(child: NoPrevQueryWidget(sizeConfig: sizeConfig)),
+                    if (userController.user.queries.isNotEmpty)
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: userController.user.queries.length,
+                        itemBuilder: (context, index) {
+                          final query = userController.user.queries[index];
+                          return QueryCard(
+                            subject: query.title,
+                            sizeConfig: sizeConfig,
+                            isArchived: query.closed,
+                          );
+                        },
+                      )
                   ]),
             ),
           ),

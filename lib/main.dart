@@ -9,7 +9,6 @@ import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
 import 'package:clijeo_public/view/misc_screens/loading.dart';

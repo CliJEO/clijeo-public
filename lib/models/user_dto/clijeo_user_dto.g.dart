@@ -1,29 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'clijeo_user.dart';
+part of 'clijeo_user_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ClijeoUser _$$_ClijeoUserFromJson(Map<String, dynamic> json) =>
-    _$_ClijeoUser(
+_$_ClijeoUserDto _$$_ClijeoUserDtoFromJson(Map<String, dynamic> json) =>
+    _$_ClijeoUserDto(
       name: json['name'] as String,
       age: json['age'] as int?,
       gender: json['gender'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       location: json['location'] as String?,
-      queries: (json['queries'] as List<dynamic>)
-          .map((e) => Query.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
 
-Map<String, dynamic> _$$_ClijeoUserToJson(_$_ClijeoUser instance) =>
+Map<String, dynamic> _$$_ClijeoUserDtoToJson(_$_ClijeoUserDto instance) =>
     <String, dynamic>{
       'name': instance.name,
       'age': instance.age,
       'gender': instance.gender,
       'phoneNumber': instance.phoneNumber,
       'location': instance.location,
-      'queries': instance.queries,
     };

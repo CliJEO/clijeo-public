@@ -1,12 +1,12 @@
 import 'dart:developer';
 
+import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/first_login_form/first_login_form_state.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -83,7 +83,7 @@ class FirstLoginFormController extends ChangeNotifier {
           },
         ),
       );
-      final user = ClijeoUser.fromJson(result.data);
+      final user = ClijeoUserDto.fromJson(result.data);
       state = FirstLoginFormState.stable(
           name: user.name,
           language: Language.getCurrentLanguageCode(),
@@ -100,12 +100,12 @@ class FirstLoginFormController extends ChangeNotifier {
   Future<void> saveProfileDetails() async {
     state.maybeWhen(
         stable: (name, age, gender, language, phoneNumber, location) async {
-          final user = ClijeoUser(
+          final user = ClijeoUserDto(
               name: name,
               age: age,
               gender: gender,
               phoneNumber: phoneNumber,
-              location: location);
+              location: location,);
 
           state = const FirstLoginFormState.loading();
           notifyListeners();

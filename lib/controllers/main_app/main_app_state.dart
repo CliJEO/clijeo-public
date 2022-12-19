@@ -1,4 +1,3 @@
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'main_app_state.freezed.dart';
