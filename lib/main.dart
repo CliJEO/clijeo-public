@@ -114,18 +114,9 @@ class _MyAppState extends State<MyApp> {
 
     FirebaseMessaging.onMessage.listen(_notificationHandler);
 
-    FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      // TODO make a backend call??
-      // save to shared pref and send to backend whenever value is changed??
-      // or just call backend all the time??
-
-      // Note: This callback is fired at each app startup and whenever a new
-      // token is generated.
-      print("fcm token is");
-      print(fcmToken);
-    }).onError((err) {
-      // Error getting token.
-    });
+    var token = await FirebaseMessaging.instance.getToken();
+    print("fcm token is $token");
+    // TODO save to sharedPref and update backend whenever diff?
   }
 
   void _handleMessage(RemoteMessage message) {
