@@ -32,20 +32,10 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
   final List<String> _allGenderList = Constants.getAllGenders();
   final List<String> _allLanguageList = Constants.getSupportedLanguages();
 
-  // String _selectedGender = FormValidationController.getAllGenders().first;
-  // String _selectedLanguage = Language.getCurrentLanguageCode();
-
   @override
   void initState() {
     _loginForm.getUserNameFromBackend();
     super.initState();
-  }
-
-  Future<void> _saveProfileDetails() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      await _loginForm.saveProfileDetails();
-    }
   }
 
   void _genderTogglePressed(int index) {
@@ -58,6 +48,17 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _saveProfileDetails() async {
+      if (_formKey.currentState!.validate()) {
+        _formKey.currentState!.save();
+        await _loginForm.saveProfileDetails();
+        _loginForm.state.maybeWhen(
+            completed: () =>
+                Navigator.of(context).pushReplacementNamed(HomeScreen.id),
+            orElse: () {});
+      }
+    }
+
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<FirstLoginFormNotifier>(
       create: (context) => _loginForm,
@@ -67,10 +68,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
               error: (error) {
                 return const ErrorScreen();
               },
-              completed: () {
-                Navigator.pushReplacementNamed(context, HomeScreen.id);
-                return const Loading();
-              },
+              completed: () => const Loading(),
               stable: (name, age, gender, language, phoneNumber, location) {
                 return Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
