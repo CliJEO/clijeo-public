@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Loading extends StatelessWidget {
+  static String id = "Loading";
   const Loading({super.key});
 
   @override
