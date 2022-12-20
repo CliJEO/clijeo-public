@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$QueryThreadState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function(Query query) stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -25,6 +26,7 @@ mixin _$QueryThreadState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function(Query query)? stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
@@ -32,6 +34,7 @@ mixin _$QueryThreadState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function(Query query)? stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -40,6 +43,7 @@ mixin _$QueryThreadState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_QueryThreadInitial value) initial,
     required TResult Function(_QueryThreadStable value) stable,
     required TResult Function(_QueryThreadLoading value) loading,
     required TResult Function(_QueryThreadError value) error,
@@ -47,6 +51,7 @@ mixin _$QueryThreadState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QueryThreadInitial value)? initial,
     TResult? Function(_QueryThreadStable value)? stable,
     TResult? Function(_QueryThreadLoading value)? loading,
     TResult? Function(_QueryThreadError value)? error,
@@ -54,6 +59,7 @@ mixin _$QueryThreadState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QueryThreadInitial value)? initial,
     TResult Function(_QueryThreadStable value)? stable,
     TResult Function(_QueryThreadLoading value)? loading,
     TResult Function(_QueryThreadError value)? error,
@@ -78,6 +84,120 @@ class _$QueryThreadStateCopyWithImpl<$Res, $Val extends QueryThreadState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_QueryThreadInitialCopyWith<$Res> {
+  factory _$$_QueryThreadInitialCopyWith(_$_QueryThreadInitial value,
+          $Res Function(_$_QueryThreadInitial) then) =
+      __$$_QueryThreadInitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_QueryThreadInitialCopyWithImpl<$Res>
+    extends _$QueryThreadStateCopyWithImpl<$Res, _$_QueryThreadInitial>
+    implements _$$_QueryThreadInitialCopyWith<$Res> {
+  __$$_QueryThreadInitialCopyWithImpl(
+      _$_QueryThreadInitial _value, $Res Function(_$_QueryThreadInitial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_QueryThreadInitial implements _QueryThreadInitial {
+  const _$_QueryThreadInitial();
+
+  @override
+  String toString() {
+    return 'QueryThreadState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_QueryThreadInitial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Query query) stable,
+    required TResult Function() loading,
+    required TResult Function(String error) error,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(Query query)? stable,
+    TResult? Function()? loading,
+    TResult? Function(String error)? error,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Query query)? stable,
+    TResult Function()? loading,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_QueryThreadInitial value) initial,
+    required TResult Function(_QueryThreadStable value) stable,
+    required TResult Function(_QueryThreadLoading value) loading,
+    required TResult Function(_QueryThreadError value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QueryThreadInitial value)? initial,
+    TResult? Function(_QueryThreadStable value)? stable,
+    TResult? Function(_QueryThreadLoading value)? loading,
+    TResult? Function(_QueryThreadError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QueryThreadInitial value)? initial,
+    TResult Function(_QueryThreadStable value)? stable,
+    TResult Function(_QueryThreadLoading value)? loading,
+    TResult Function(_QueryThreadError value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _QueryThreadInitial implements QueryThreadState {
+  const factory _QueryThreadInitial() = _$_QueryThreadInitial;
 }
 
 /// @nodoc
@@ -155,6 +275,7 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function(Query query) stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -165,6 +286,7 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function(Query query)? stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
@@ -175,6 +297,7 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function(Query query)? stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -189,6 +312,7 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_QueryThreadInitial value) initial,
     required TResult Function(_QueryThreadStable value) stable,
     required TResult Function(_QueryThreadLoading value) loading,
     required TResult Function(_QueryThreadError value) error,
@@ -199,6 +323,7 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QueryThreadInitial value)? initial,
     TResult? Function(_QueryThreadStable value)? stable,
     TResult? Function(_QueryThreadLoading value)? loading,
     TResult? Function(_QueryThreadError value)? error,
@@ -209,6 +334,7 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QueryThreadInitial value)? initial,
     TResult Function(_QueryThreadStable value)? stable,
     TResult Function(_QueryThreadLoading value)? loading,
     TResult Function(_QueryThreadError value)? error,
@@ -269,6 +395,7 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function(Query query) stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -279,6 +406,7 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function(Query query)? stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
@@ -289,6 +417,7 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function(Query query)? stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -303,6 +432,7 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_QueryThreadInitial value) initial,
     required TResult Function(_QueryThreadStable value) stable,
     required TResult Function(_QueryThreadLoading value) loading,
     required TResult Function(_QueryThreadError value) error,
@@ -313,6 +443,7 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QueryThreadInitial value)? initial,
     TResult? Function(_QueryThreadStable value)? stable,
     TResult? Function(_QueryThreadLoading value)? loading,
     TResult? Function(_QueryThreadError value)? error,
@@ -323,6 +454,7 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QueryThreadInitial value)? initial,
     TResult Function(_QueryThreadStable value)? stable,
     TResult Function(_QueryThreadLoading value)? loading,
     TResult Function(_QueryThreadError value)? error,
@@ -403,6 +535,7 @@ class _$_QueryThreadError implements _QueryThreadError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function(Query query) stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
@@ -413,6 +546,7 @@ class _$_QueryThreadError implements _QueryThreadError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function(Query query)? stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
@@ -423,6 +557,7 @@ class _$_QueryThreadError implements _QueryThreadError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function(Query query)? stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
@@ -437,6 +572,7 @@ class _$_QueryThreadError implements _QueryThreadError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_QueryThreadInitial value) initial,
     required TResult Function(_QueryThreadStable value) stable,
     required TResult Function(_QueryThreadLoading value) loading,
     required TResult Function(_QueryThreadError value) error,
@@ -447,6 +583,7 @@ class _$_QueryThreadError implements _QueryThreadError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QueryThreadInitial value)? initial,
     TResult? Function(_QueryThreadStable value)? stable,
     TResult? Function(_QueryThreadLoading value)? loading,
     TResult? Function(_QueryThreadError value)? error,
@@ -457,6 +594,7 @@ class _$_QueryThreadError implements _QueryThreadError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QueryThreadInitial value)? initial,
     TResult Function(_QueryThreadStable value)? stable,
     TResult Function(_QueryThreadLoading value)? loading,
     TResult Function(_QueryThreadError value)? error,

@@ -13,33 +13,23 @@ import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class QueryThread extends StatefulWidget {
-  static String id = "ActiveQueryThread";
+class QueryThread extends StatelessWidget {
+  static String id = "QueryThread";
   const QueryThread({super.key});
-
-  @override
-  State<QueryThread> createState() => _QueryThreadState();
-}
-
-class _QueryThreadState extends State<QueryThread> {
-  QueryThreadController _queryThreadController = QueryThreadController();
-
-  @override
-  void initState() {
-    final queryId = ModalRoute.of(context)!.settings.arguments as int;
-    _queryThreadController.getQueryDetails(queryId);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
-
+    final queryId = ModalRoute.of(context)!.settings.arguments as int;
     return ChangeNotifierProvider<QueryThreadController>(
-      create: (context) => _queryThreadController,
+      create: (context) => QueryThreadController(),
       child: Consumer<QueryThreadController>(
           builder: (context, queryThreadController, _) {
         return queryThreadController.state.when(
+            initial: () {
+              queryThreadController.getQueryDetails(queryId);
+              return const Loading();
+            },
             loading: () => const Loading(),
             error: (error) => const ErrorScreen(),
             stable: (query) => Scaffold(

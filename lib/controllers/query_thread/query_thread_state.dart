@@ -5,6 +5,7 @@ part 'query_thread_state.freezed.dart';
 
 @freezed
 abstract class QueryThreadState with _$QueryThreadState {
+  const factory QueryThreadState.initial() = _QueryThreadInitial;
   const factory QueryThreadState.stable({required Query query}) =
       _QueryThreadStable;
   const factory QueryThreadState.loading() = _QueryThreadLoading;
