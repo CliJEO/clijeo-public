@@ -17,12 +17,12 @@ class NewQueryFormScreen extends StatelessWidget {
   const NewQueryFormScreen({super.key});
 
   static final _formKey = GlobalKey<FormState>();
-  static final _newQueryFormController = NewQueryFormController();
 
-  Future<void> registerQuery(context) async {
+  Future<void> registerQuery(
+      context, NewQueryFormController newQueryFormController) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await _newQueryFormController.registerQuery();
+      await newQueryFormController.registerQuery();
       Navigator.pop(context);
     }
   }
@@ -31,7 +31,7 @@ class NewQueryFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<NewQueryFormController>(
-        create: (context) => _newQueryFormController,
+        create: (context) => NewQueryFormController(),
         child: Consumer<NewQueryFormController>(
             builder: (context, newQueryFormController, _) {
           return newQueryFormController.state.maybeWhen(
@@ -109,7 +109,8 @@ class NewQueryFormScreen extends StatelessWidget {
                                       ),
                                       PrimaryButton(
                                           onTap: () async {
-                                            registerQuery(context);
+                                            registerQuery(context,
+                                                newQueryFormController);
                                           },
                                           sizeConfig: sizeConfig,
                                           child: Center(

@@ -1,7 +1,6 @@
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/models/query/query.dart';
 import 'package:clijeo_public/view/query_thread/query_thread.dart';
-import 'package:clijeo_public/view/query_thread/archived_query_thread.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
