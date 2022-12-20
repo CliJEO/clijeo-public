@@ -12,7 +12,7 @@ _$_UserQuery _$$_UserQueryFromJson(Map<String, dynamic> json) => _$_UserQuery(
       content: json['content'] as String,
       closed: json['closed'] as bool,
       timestamp: json['timestamp'] as String,
-      responseCountUser: json['responseCountUser'] as int,
+      responseCount: json['responseCount'] as int,
     );
 
 Map<String, dynamic> _$$_UserQueryToJson(_$_UserQuery instance) =>
@@ -22,5 +22,5 @@ Map<String, dynamic> _$$_UserQueryToJson(_$_UserQuery instance) =>
       'content': instance.content,
       'closed': instance.closed,
       'timestamp': instance.timestamp,
-      'responseCountUser': instance.responseCountUser,
+      'responseCount': instance.responseCount,
     };
