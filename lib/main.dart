@@ -13,7 +13,7 @@ import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
 import 'package:clijeo_public/view/misc_screens/loading.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
-import 'package:clijeo_public/view/query_thread/active_query_thread.dart';
+import 'package:clijeo_public/view/query_thread/query_thread.dart';
 import 'package:clijeo_public/view/query_thread/archived_query_thread.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';

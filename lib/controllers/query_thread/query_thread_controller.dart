@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
@@ -8,7 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class QueryThreadController extends ChangeNotifier {
-  QueryThreadState state = const QueryThreadState.loading();
+  QueryThreadState state = const QueryThreadState.initial();
 
   static bool isAdminResponse(QueryResponse queryResponse) =>
       queryResponse.admin != null;
@@ -25,12 +27,13 @@ class QueryThreadController extends ChangeNotifier {
       );
       final query = Query.fromJson(result.data);
       state = QueryThreadState.stable(query: query);
-      notifyListeners();
     } on DioError catch (e) {
       state = QueryThreadState.error("Dio Error: ${e.response}");
     } on Error catch (e) {
       state = QueryThreadState.error("Error: ${e.toString()}");
+      log("Error: ${e.toString()}");
     }
+    log("Heree");
     notifyListeners();
   }
 
