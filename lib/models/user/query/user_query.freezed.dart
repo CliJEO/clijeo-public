@@ -25,7 +25,7 @@ mixin _$UserQuery {
   String get content => throw _privateConstructorUsedError;
   bool get closed => throw _privateConstructorUsedError;
   String get timestamp => throw _privateConstructorUsedError;
-  int get responseCountUser => throw _privateConstructorUsedError;
+  int get responseCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $UserQueryCopyWith<$Res> {
       String content,
       bool closed,
       String timestamp,
-      int responseCountUser});
+      int responseCount});
 }
 
 /// @nodoc
@@ -65,7 +65,7 @@ class _$UserQueryCopyWithImpl<$Res, $Val extends UserQuery>
     Object? content = null,
     Object? closed = null,
     Object? timestamp = null,
-    Object? responseCountUser = null,
+    Object? responseCount = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -88,9 +88,9 @@ class _$UserQueryCopyWithImpl<$Res, $Val extends UserQuery>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as String,
-      responseCountUser: null == responseCountUser
-          ? _value.responseCountUser
-          : responseCountUser // ignore: cast_nullable_to_non_nullable
+      responseCount: null == responseCount
+          ? _value.responseCount
+          : responseCount // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -109,7 +109,7 @@ abstract class _$$_UserQueryCopyWith<$Res> implements $UserQueryCopyWith<$Res> {
       String content,
       bool closed,
       String timestamp,
-      int responseCountUser});
+      int responseCount});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$$_UserQueryCopyWithImpl<$Res>
     Object? content = null,
     Object? closed = null,
     Object? timestamp = null,
-    Object? responseCountUser = null,
+    Object? responseCount = null,
   }) {
     return _then(_$_UserQuery(
       id: null == id
@@ -151,9 +151,9 @@ class __$$_UserQueryCopyWithImpl<$Res>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as String,
-      responseCountUser: null == responseCountUser
-          ? _value.responseCountUser
-          : responseCountUser // ignore: cast_nullable_to_non_nullable
+      responseCount: null == responseCount
+          ? _value.responseCount
+          : responseCount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -168,7 +168,7 @@ class _$_UserQuery with DiagnosticableTreeMixin implements _UserQuery {
       required this.content,
       required this.closed,
       required this.timestamp,
-      required this.responseCountUser});
+      required this.responseCount});
 
   factory _$_UserQuery.fromJson(Map<String, dynamic> json) =>
       _$$_UserQueryFromJson(json);
@@ -184,11 +184,11 @@ class _$_UserQuery with DiagnosticableTreeMixin implements _UserQuery {
   @override
   final String timestamp;
   @override
-  final int responseCountUser;
+  final int responseCount;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserQuery(id: $id, title: $title, content: $content, closed: $closed, timestamp: $timestamp, responseCountUser: $responseCountUser)';
+    return 'UserQuery(id: $id, title: $title, content: $content, closed: $closed, timestamp: $timestamp, responseCount: $responseCount)';
   }
 
   @override
@@ -201,7 +201,7 @@ class _$_UserQuery with DiagnosticableTreeMixin implements _UserQuery {
       ..add(DiagnosticsProperty('content', content))
       ..add(DiagnosticsProperty('closed', closed))
       ..add(DiagnosticsProperty('timestamp', timestamp))
-      ..add(DiagnosticsProperty('responseCountUser', responseCountUser));
+      ..add(DiagnosticsProperty('responseCount', responseCount));
   }
 
   @override
@@ -215,14 +215,14 @@ class _$_UserQuery with DiagnosticableTreeMixin implements _UserQuery {
             (identical(other.closed, closed) || other.closed == closed) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
-            (identical(other.responseCountUser, responseCountUser) ||
-                other.responseCountUser == responseCountUser));
+            (identical(other.responseCount, responseCount) ||
+                other.responseCount == responseCount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, title, content, closed, timestamp, responseCountUser);
+      runtimeType, id, title, content, closed, timestamp, responseCount);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +245,7 @@ abstract class _UserQuery implements UserQuery {
       required final String content,
       required final bool closed,
       required final String timestamp,
-      required final int responseCountUser}) = _$_UserQuery;
+      required final int responseCount}) = _$_UserQuery;
 
   factory _UserQuery.fromJson(Map<String, dynamic> json) =
       _$_UserQuery.fromJson;
@@ -261,7 +261,7 @@ abstract class _UserQuery implements UserQuery {
   @override
   String get timestamp;
   @override
-  int get responseCountUser;
+  int get responseCount;
   @override
   @JsonKey(ignore: true)
   _$$_UserQueryCopyWith<_$_UserQuery> get copyWith =>

@@ -12,7 +12,7 @@ class UserQuery with _$UserQuery {
       required String content,
       required bool closed,
       required String timestamp,
-      required int responseCountUser}) = _UserQuery;
+      required int responseCount}) = _UserQuery;
 
   factory UserQuery.fromJson(Map<String, dynamic> json) =>
       _UserQuery.fromJson(json);
