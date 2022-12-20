@@ -12,8 +12,8 @@ import 'package:flutter/material.dart';
 class QueryThreadController extends ChangeNotifier {
   QueryThreadState state = const QueryThreadState.initial();
 
-  static bool isAdminResponse(QueryResponse queryResponse) =>
-      queryResponse.admin != null;
+  static String getResponderName(QueryResponse queryResponse) =>
+      queryResponse.admin == null ? "You" : "Admin";
 
   Future<void> getQueryDetails(int queryId) async {
     try {
@@ -38,7 +38,7 @@ class QueryThreadController extends ChangeNotifier {
   }
 
   static String getDatetimeString(String datetime) {
-    final dateObj = DateTime.parse(datetime);
+    final dateObj = DateTime.parse(datetime).toLocal();
     return "${dateObj.day}/${dateObj.month}/${dateObj.year} ${dateObj.hour}:${dateObj.minute}";
   }
 }

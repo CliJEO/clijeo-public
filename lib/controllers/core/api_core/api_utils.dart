@@ -13,4 +13,7 @@ class ApiUtils {
 
   // For getting a particular queries details
   static String getQueryDetailsUrl(int queryId) => '/query/$queryId';
+
+  // For replying to a particular query
+  static String replyQueryUrl(int queryId) => '/respond/$queryId/user';
 }

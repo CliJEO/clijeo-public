@@ -16,7 +16,6 @@ import 'package:provider/provider.dart';
 class QueryThread extends StatelessWidget {
   static String id = "QueryThread";
   const QueryThread({super.key});
-
   @override
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
@@ -99,7 +98,7 @@ class QueryThread extends StatelessWidget {
                                                 date: QueryThreadController
                                                     .getDatetimeString(
                                                         query.timestamp),
-                                                isArchived: false,
+                                                isArchived: query.closed,
                                                 sizeConfig: sizeConfig),
                                             if (query.responses.isNotEmpty)
                                               ListView.builder(
@@ -111,16 +110,15 @@ class QueryThread extends StatelessWidget {
                                                   itemBuilder: (context, index) => MessageCard(
                                                       user: LocaleTextClass.getTextWithKey(
                                                           context,
-                                                          QueryThreadController.isAdminResponse(query.responses[index])
-                                                              ? "Admin"
-                                                              : "You"),
+                                                          QueryThreadController.getResponderName(
+                                                              query.responses[
+                                                                  index])),
                                                       body: query
                                                           .responses[index]
                                                           .content,
                                                       date: QueryThreadController
-                                                          .getDatetimeString(query
-                                                              .responses[index]
-                                                              .timestamp),
+                                                          .getDatetimeString(
+                                                              query.responses[index].timestamp),
                                                       isArchived: query.closed,
                                                       sizeConfig: sizeConfig)),
                                             if (!query.closed)
@@ -133,7 +131,8 @@ class QueryThread extends StatelessWidget {
                                                         Navigator.pushNamed(
                                                             context,
                                                             ThreadRespondScreen
-                                                                .id),
+                                                                .id,
+                                                            arguments: queryId),
                                                     child: Container(
                                                       alignment:
                                                           Alignment.center,
