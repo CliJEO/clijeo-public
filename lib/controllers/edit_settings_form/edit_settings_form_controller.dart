@@ -1,24 +1,39 @@
 import 'dart:developer';
 
+import 'package:clijeo_public/controllers/edit_settings_form/edit_settings_form_state.dart';
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
-import 'package:clijeo_public/controllers/first_login_form/first_login_form_state.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class FirstLoginFormController extends ChangeNotifier {
-  FirstLoginFormState state = const FirstLoginFormState.loading();
+class EditSettingsFormController extends ChangeNotifier {
+  EditSettingsFormState state;
+
+  EditSettingsFormController(
+      {required String name,
+      int? age,
+      required String gender,
+      required String language,
+      String? phoneNumber,
+      String? location})
+      : state = EditSettingsFormState.stable(
+            name: name,
+            age: age,
+            gender: gender,
+            language: language,
+            phoneNumber: phoneNumber,
+            location: location);
 
   void updateStableStateName(String? updatedName) {
     if (updatedName != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(name: updatedName),
           orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+              const EditSettingsFormState.error("State Error: Invalid State"));
     }
   }
 
@@ -27,7 +42,7 @@ class FirstLoginFormController extends ChangeNotifier {
       state = state.maybeMap(
           stable: (value) => value.copyWith(gender: updatedGender),
           orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+              const EditSettingsFormState.error("State Error: Invalid State"));
 
       // Since these fields correspond to UI that needs to change
       notifyListeners();
@@ -39,7 +54,7 @@ class FirstLoginFormController extends ChangeNotifier {
       state = state.maybeMap(
           stable: (value) => value.copyWith(language: updatedLanguage),
           orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+              const EditSettingsFormState.error("State Error: Invalid State"));
 
       // Since these fields correspond to UI that needs to change
       notifyListeners();
@@ -51,7 +66,7 @@ class FirstLoginFormController extends ChangeNotifier {
       state = state.maybeMap(
           stable: (value) => value.copyWith(age: int.tryParse(updatedAge)),
           orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+              const EditSettingsFormState.error("State Error: Invalid State"));
     }
   }
 
@@ -60,7 +75,7 @@ class FirstLoginFormController extends ChangeNotifier {
       state = state.maybeMap(
           stable: (value) => value.copyWith(phoneNumber: updatedPhoneNumber),
           orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+              const EditSettingsFormState.error("State Error: Invalid State"));
     }
   }
 
@@ -69,36 +84,12 @@ class FirstLoginFormController extends ChangeNotifier {
       state = state.maybeMap(
           stable: (value) => value.copyWith(location: updatedLocation),
           orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+              const EditSettingsFormState.error("State Error: Invalid State"));
     }
-  }
-
-  Future<void> getUserNameFromBackend() async {
-    try {
-      final result = await DioBase.dioInstance.get(
-        ApiUtils.userUrl,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer ${BackendAuth.getToken()}',
-          },
-        ),
-      );
-      final user = ClijeoUserDto.fromJson(result.data);
-      state = FirstLoginFormState.stable(
-          name: user.name,
-          language: Language.getCurrentLanguageCode(),
-          gender: Constants.getAllGenders().first);
-      notifyListeners();
-    } on DioError catch (e) {
-      state = FirstLoginFormState.error("Dio Error: ${e.response}");
-    } on Error catch (e) {
-      state = FirstLoginFormState.error("Error: ${e.toString()}");
-    }
-    notifyListeners();
   }
 
   Future<void> saveProfileDetails() async {
-    state.maybeWhen(
+    await state.maybeWhen(
         stable: (name, age, gender, language, phoneNumber, location) async {
           final user = ClijeoUserDto(
             name: name,
@@ -108,7 +99,7 @@ class FirstLoginFormController extends ChangeNotifier {
             location: location,
           );
 
-          state = const FirstLoginFormState.loading();
+          state = const EditSettingsFormState.loading();
           notifyListeners();
 
           try {
@@ -123,10 +114,10 @@ class FirstLoginFormController extends ChangeNotifier {
             // Updating the shared pref and static variable for language
             await Language.setCurrentLanguageCodeAndUpdateSharedPref(language);
           } on DioError catch (e) {
-            state = FirstLoginFormState.error("Dio Error: ${e.response}");
+            state = EditSettingsFormState.error("Dio Error: ${e.response}");
             notifyListeners();
           } on Error catch (e) {
-            state = FirstLoginFormState.error("Error: ${e.toString()}");
+            state = EditSettingsFormState.error("Error: ${e.toString()}");
             notifyListeners();
           }
         },

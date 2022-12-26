@@ -49,7 +49,9 @@ class NewQueryFormScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                const CustomBackButton(),
+                                const CustomBackButton(
+                                  returnValueOnPop: false,
+                                ),
                                 const SizedBox(
                                   width: 10,
                                 ),

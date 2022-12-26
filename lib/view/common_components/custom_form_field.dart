@@ -11,16 +11,15 @@ class CustomFormField extends StatelessWidget {
       this.validator,
       this.onSaved,
       this.textInputType = TextInputType.text,
-      this.initialValue = "",
+      this.initialValue,
       this.fieldHintText = "",
       this.minLines = 1,
       this.maxLines = 1});
 
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
-  // final TextEditingController? controller;
   final TextInputType textInputType;
-  final String initialValue;
+  final String? initialValue;
   final String fieldHintText;
   final String fieldTitle;
   final int minLines;
@@ -41,7 +40,7 @@ class CustomFormField extends StatelessWidget {
         TextFormField(
           validator: validator,
           onSaved: onSaved,
-          initialValue: initialValue,
+          initialValue: initialValue ?? "",
           keyboardType: textInputType,
           minLines: minLines,
           maxLines: maxLines,
