@@ -12,6 +12,11 @@ class ClijeoUserController extends ChangeNotifier {
   ClijeoUserController()
       : state = ClijeoUserState.stable(user: ClijeoUser.empty());
 
+  void clearUserState() {
+    state = ClijeoUserState.stable(user: ClijeoUser.empty());
+    notifyListeners();
+  }
+
   Future<void> refreshUser() async {
     state = const ClijeoUserState.loading();
     notifyListeners();

@@ -1,6 +1,7 @@
 import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/common_components/disabled_form_field.dart';
@@ -27,6 +28,13 @@ class SettingsMainScreen extends StatelessWidget {
     if (shouldRefresh is bool && shouldRefresh) {
       await userController.refreshUser();
     }
+  }
+
+  Future<void> _signOutButtonPressed(
+      context, ClijeoUserController userController) async {
+    await Provider.of<MainAppController>(context, listen: false)
+        .signUserOut(userController);
+    Navigator.pop(context);
   }
 
   @override
@@ -132,7 +140,8 @@ class SettingsMainScreen extends StatelessWidget {
                                 height: 20,
                               ),
                               PrimaryButton(
-                                  onTap: () {},
+                                  onTap: () => _signOutButtonPressed(
+                                      context, userController),
                                   sizeConfig: sizeConfig,
                                   child: Center(
                                     child: Text(

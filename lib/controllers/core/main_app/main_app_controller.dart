@@ -1,6 +1,7 @@
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
+import 'package:clijeo_public/controllers/core/auth/google_auth.dart';
 import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/core/main_app/main_app_state.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
@@ -25,6 +26,22 @@ class MainAppController extends ChangeNotifier {
   void checkAuthenticationStatus() {
     if (BackendAuth.getToken().isNotEmpty) {
       state = const MainAppState.authenticated();
+      notifyListeners();
+    }
+  }
+
+  Future<void> signUserOut(ClijeoUserController userController) async {
+    state = const MainAppState.loading();
+    notifyListeners();
+
+    try {
+      await GoogleAuth.googleSignOut();
+      userController.clearUserState();
+      BackendAuth.clearToken();
+      state = const MainAppState.unauthenticated();
+      notifyListeners();
+    } catch (e) {
+      state = MainAppState.error(e.toString());
       notifyListeners();
     }
   }
