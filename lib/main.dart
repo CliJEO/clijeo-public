@@ -1,6 +1,7 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
@@ -8,13 +9,11 @@ import 'package:clijeo_public/controllers/core/localization/app_localization.dar
 import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
-import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
 import 'package:clijeo_public/view/misc_screens/loading.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
 import 'package:clijeo_public/view/query_thread/query_thread.dart';
-import 'package:clijeo_public/view/query_thread/archived_query_thread.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
 import 'package:clijeo_public/view/settings/settings_main_screen.dart';
@@ -37,8 +36,13 @@ void main() async {
         create: (context) => userController)
   ], child: const MainApp()));
 
-  await ClijeoSharedPref.loadSharedPrefToApp();
-  userController.setUser(await appController.getUser());
+  // ClijeoSharedPref.loadSharedPrefToApp().then((_) async {
+  //   appController.checkAuthenticationStatus();
+  //   await userController.refreshUser();
+  // });
+
+  // Initialize App properties
+  await appController.initializeApp(userController);
 }
 
 class MainApp extends StatelessWidget {

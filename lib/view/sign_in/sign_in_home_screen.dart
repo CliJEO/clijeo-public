@@ -30,28 +30,28 @@ class SignInHomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: sizeConfig.SafeBlockSizeVertical(0.5),
-            width: sizeConfig.SafeBlockSizeHorizontal(1),
+            height: sizeConfig.safeBlockSizeVertical(0.5),
+            width: sizeConfig.safeBlockSizeHorizontal(1),
             color: AppTheme.primaryColor,
             child: Padding(
               padding: EdgeInsets.only(
-                  left: sizeConfig.SafeBlockSizeHorizontal(0.1)),
+                  left: sizeConfig.safeBlockSizeHorizontal(0.1)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: sizeConfig.SafeBlockSizeVertical(0.05),
+                    height: sizeConfig.safeBlockSizeVertical(0.05),
                   ),
                   Text(
                     LocaleTextClass.getTextWithKey(context, "AppTitle"),
                     style: AppTextStyle.smallLightTitle,
                   ),
                   SizedBox(
-                    height: sizeConfig.SafeBlockSizeVertical(0.15),
+                    height: sizeConfig.safeBlockSizeVertical(0.15),
                   ),
                   SizedBox(
-                    width: sizeConfig.SafeBlockSizeHorizontal(0.8),
+                    width: sizeConfig.safeBlockSizeHorizontal(0.8),
                     child: Text(
                       LocaleTextClass.getTextWithKey(context, "AppFullTitle"),
                       style: AppTextStyle.largeLightTitle,
@@ -62,20 +62,20 @@ class SignInHomeScreen extends StatelessWidget {
             ),
           ),
           Container(
-              height: sizeConfig.SafeBlockSizeVertical(0.5),
-              width: sizeConfig.SafeBlockSizeHorizontal(1),
+              height: sizeConfig.safeBlockSizeVertical(0.5),
+              width: sizeConfig.safeBlockSizeHorizontal(1),
               color: AppTheme.backgroundColor,
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: sizeConfig.SafeBlockSizeHorizontal(0.1),
-                    right: sizeConfig.SafeBlockSizeHorizontal(0.1)),
+                    left: sizeConfig.safeBlockSizeHorizontal(0.1),
+                    right: sizeConfig.safeBlockSizeHorizontal(0.1)),
                 child: SizedBox(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: sizeConfig.SafeBlockSizeVertical(0.06),
+                        height: sizeConfig.safeBlockSizeVertical(0.06),
                       ),
                       Text(
                         LocaleTextClass.getTextWithKey(
@@ -84,14 +84,14 @@ class SignInHomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
-                        width: sizeConfig.SafeBlockSizeHorizontal(0.75),
+                        width: sizeConfig.safeBlockSizeHorizontal(0.75),
                         child: Text(
                           LocaleTextClass.getTextWithKey(
                               context, "SignUpHomePageHeadingSecondParaBody"),
                           style: AppTextStyle.smallDarkLightBody,
                         ),
                       ),
-                      SizedBox(height: sizeConfig.SafeBlockSizeVertical(0.11)),
+                      SizedBox(height: sizeConfig.safeBlockSizeVertical(0.11)),
                       PrimaryButton(
                           onTap: signIn,
                           sizeConfig: sizeConfig,
