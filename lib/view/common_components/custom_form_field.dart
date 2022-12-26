@@ -8,9 +8,18 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField(
       {super.key,
       required this.fieldTitle,
-      required this.fieldHintText,
+      this.validator,
+      this.onSaved,
+      this.textInputType = TextInputType.text,
+      this.initialValue,
+      this.fieldHintText = "",
       this.minLines = 1,
       this.maxLines = 1});
+
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
+  final TextInputType textInputType;
+  final String? initialValue;
   final String fieldHintText;
   final String fieldTitle;
   final int minLines;
@@ -29,6 +38,10 @@ class CustomFormField extends StatelessWidget {
           height: 10,
         ),
         TextFormField(
+          validator: validator,
+          onSaved: onSaved,
+          initialValue: initialValue ?? "",
+          keyboardType: textInputType,
           minLines: minLines,
           maxLines: maxLines,
           decoration: InputDecoration(

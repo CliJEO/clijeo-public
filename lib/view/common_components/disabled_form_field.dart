@@ -10,7 +10,7 @@ class DisabledFormField extends StatelessWidget {
       required this.fieldValue,
       this.isLargeField = false});
   final String fieldTitle;
-  final String fieldValue;
+  final String? fieldValue;
   final bool isLargeField;
 
   @override
@@ -35,7 +35,8 @@ class DisabledFormField extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              fieldValue,
+              fieldValue ??
+                  LocaleTextClass.getTextWithKey(context, "Unspecified"),
               style: AppTextStyle.smallDarkText,
             ),
           ),

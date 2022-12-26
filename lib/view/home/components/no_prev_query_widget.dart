@@ -12,10 +12,10 @@ class NoPrevQueryWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: sizeConfig.SafeBlockSizeVertical(0.1),
+          height: sizeConfig.safeBlockSizeVertical(0.1),
         ),
         SizedBox(
-          width: sizeConfig.SafeBlockSizeHorizontal(0.7),
+          width: sizeConfig.safeBlockSizeHorizontal(0.7),
           child: Image.asset("assets/no_query_art.png"),
         ),
         Text(
