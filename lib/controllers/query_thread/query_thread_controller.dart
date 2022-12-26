@@ -11,11 +11,14 @@ import 'package:flutter/material.dart';
 
 class QueryThreadController extends ChangeNotifier {
   QueryThreadState state = const QueryThreadState.initial();
+  int queryId;
+
+  QueryThreadController({required this.queryId});
 
   static String getResponderName(QueryResponse queryResponse) =>
       queryResponse.admin == null ? "You" : "Admin";
 
-  Future<void> getQueryDetails(int queryId) async {
+  Future<void> getQueryDetails() async {
     try {
       final result = await DioBase.dioInstance.get(
         ApiUtils.getQueryDetailsUrl(queryId),
@@ -27,13 +30,14 @@ class QueryThreadController extends ChangeNotifier {
       );
       final query = Query.fromJson(result.data);
       state = QueryThreadState.stable(query: query);
+      log("QUERY: " + query.toString());
     } on DioError catch (e) {
       state = QueryThreadState.error("Dio Error: ${e.response}");
     } on Error catch (e) {
       state = QueryThreadState.error("Error: ${e.toString()}");
       log("Error: ${e.toString()}");
     }
-    log("Heree");
+    log("REACHED HERE");
     notifyListeners();
   }
 

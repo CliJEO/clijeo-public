@@ -20,8 +20,8 @@ class NewQueryFormController extends ChangeNotifier {
           const NewQueryFormState.error("State Error: Invalid state"));
 
   Future<void> registerQuery() async {
-    state.maybeWhen(stable: (subject, body) async {
-      state = NewQueryFormState.loading();
+    await state.maybeWhen(stable: (subject, body) async {
+      state = const NewQueryFormState.loading();
       notifyListeners();
 
       try {

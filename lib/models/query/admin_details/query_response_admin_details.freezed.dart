@@ -21,8 +21,8 @@ QueryResponseAdminDetails _$QueryResponseAdminDetailsFromJson(
 
 /// @nodoc
 mixin _$QueryResponseAdminDetails {
-  String? get name => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get avatar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $QueryResponseAdminDetailsCopyWith<$Res> {
           $Res Function(QueryResponseAdminDetails) then) =
       _$QueryResponseAdminDetailsCopyWithImpl<$Res, QueryResponseAdminDetails>;
   @useResult
-  $Res call({String? name, String? avatar});
+  $Res call({String name, String avatar});
 }
 
 /// @nodoc
@@ -53,18 +53,18 @@ class _$QueryResponseAdminDetailsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? avatar = freezed,
+    Object? name = null,
+    Object? avatar = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatar: freezed == avatar
+              as String,
+      avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$_QueryResponseAdminDetailsCopyWith<$Res>
       __$$_QueryResponseAdminDetailsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, String? avatar});
+  $Res call({String name, String avatar});
 }
 
 /// @nodoc
@@ -94,18 +94,18 @@ class __$$_QueryResponseAdminDetailsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? avatar = freezed,
+    Object? name = null,
+    Object? avatar = null,
   }) {
     return _then(_$_QueryResponseAdminDetails(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatar: freezed == avatar
+              as String,
+      avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -122,9 +122,9 @@ class _$_QueryResponseAdminDetails
       _$$_QueryResponseAdminDetailsFromJson(json);
 
   @override
-  final String? name;
+  final String name;
   @override
-  final String? avatar;
+  final String avatar;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -170,16 +170,16 @@ class _$_QueryResponseAdminDetails
 
 abstract class _QueryResponseAdminDetails implements QueryResponseAdminDetails {
   const factory _QueryResponseAdminDetails(
-      {required final String? name,
-      required final String? avatar}) = _$_QueryResponseAdminDetails;
+      {required final String name,
+      required final String avatar}) = _$_QueryResponseAdminDetails;
 
   factory _QueryResponseAdminDetails.fromJson(Map<String, dynamic> json) =
       _$_QueryResponseAdminDetails.fromJson;
 
   @override
-  String? get name;
+  String get name;
   @override
-  String? get avatar;
+  String get avatar;
   @override
   @JsonKey(ignore: true)
   _$$_QueryResponseAdminDetailsCopyWith<_$_QueryResponseAdminDetails>

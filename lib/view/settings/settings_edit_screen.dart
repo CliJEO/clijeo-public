@@ -20,8 +20,8 @@ class SettingsEditScreen extends StatelessWidget {
       body: SingleChildScrollView(
           child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: sizeConfig.SafeBlockSizeHorizontal(0.06),
-            vertical: sizeConfig.SafeBlockSizeVertical(0.04)),
+            horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
+            vertical: sizeConfig.safeBlockSizeVertical(0.04)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,

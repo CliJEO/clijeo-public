@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
@@ -14,7 +16,7 @@ class ThreadRespondFormController extends ChangeNotifier {
           const ThreadRespondFormState.error("State Error: Invalid state"));
 
   Future<void> replyInThread(int queryId) async {
-    state.maybeWhen(stable: (body) async {
+    await state.maybeWhen(stable: (body) async {
       state = const ThreadRespondFormState.loading();
       notifyListeners();
 
@@ -26,6 +28,7 @@ class ThreadRespondFormController extends ChangeNotifier {
               },
             ),
             data: {"content": body});
+        log("COMPLETED");
       } on DioError catch (e) {
         state = ThreadRespondFormState.error("Dio Error: ${e.response}");
         print("Dio Error: ${e.response}");

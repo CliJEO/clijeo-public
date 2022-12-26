@@ -16,17 +16,28 @@ import 'package:provider/provider.dart';
 class QueryThread extends StatelessWidget {
   static String id = "QueryThread";
   const QueryThread({super.key});
+
+  void _replyInThreadPressed(
+      context, QueryThreadController queryThreadController) async {
+    var shouldRefresh = await Navigator.pushNamed(
+        context, ThreadRespondScreen.id,
+        arguments: queryThreadController.queryId);
+    if (shouldRefresh is bool && shouldRefresh) {
+      await queryThreadController.getQueryDetails();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     final queryId = ModalRoute.of(context)!.settings.arguments as int;
     return ChangeNotifierProvider<QueryThreadController>(
-      create: (context) => QueryThreadController(),
+      create: (context) => QueryThreadController(queryId: queryId),
       child: Consumer<QueryThreadController>(
           builder: (context, queryThreadController, _) {
         return queryThreadController.state.when(
             initial: () {
-              queryThreadController.getQueryDetails(queryId);
+              queryThreadController.getQueryDetails();
               return const Loading();
             },
             loading: () => const Loading(),
@@ -37,8 +48,8 @@ class QueryThread extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal:
-                                  sizeConfig.SafeBlockSizeHorizontal(0.06),
-                              vertical: sizeConfig.SafeBlockSizeVertical(0.04)),
+                                  sizeConfig.safeBlockSizeHorizontal(0.06),
+                              vertical: sizeConfig.safeBlockSizeVertical(0.04)),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -128,11 +139,9 @@ class QueryThread extends StatelessWidget {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: () =>
-                                                        Navigator.pushNamed(
+                                                        _replyInThreadPressed(
                                                             context,
-                                                            ThreadRespondScreen
-                                                                .id,
-                                                            arguments: queryId),
+                                                            queryThreadController),
                                                     child: Container(
                                                       alignment:
                                                           Alignment.center,

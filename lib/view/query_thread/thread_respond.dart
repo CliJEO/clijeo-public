@@ -1,5 +1,6 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/controllers/thread_respond_from/thread_respond_form_controller.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
@@ -23,7 +24,7 @@ class ThreadRespondScreen extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       await threadRespondFormController.replyInThread(queryId);
-      Navigator.pop(context);
+      Navigator.pop(context, true);
     }
   }
 
@@ -43,8 +44,8 @@ class ThreadRespondScreen extends StatelessWidget {
                   body: SingleChildScrollView(
                       child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: sizeConfig.SafeBlockSizeHorizontal(0.06),
-                        vertical: sizeConfig.SafeBlockSizeVertical(0.04)),
+                        horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
+                        vertical: sizeConfig.safeBlockSizeVertical(0.04)),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

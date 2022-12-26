@@ -36,7 +36,7 @@ class _CustomToggleButtonState extends State<CustomToggleButton> {
           height: 10,
         ),
         SizedBox(
-          height: widget.sizeConfig.SafeBlockSizeVertical(0.06),
+          height: widget.sizeConfig.safeBlockSizeVertical(0.06),
           width: double.infinity,
           child: ToggleButtons(
               isSelected: widget.isSelected,

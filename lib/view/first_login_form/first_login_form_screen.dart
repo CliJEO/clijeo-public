@@ -71,8 +71,8 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                   body: SingleChildScrollView(
                       child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: sizeConfig.SafeBlockSizeHorizontal(0.08),
-                        vertical: sizeConfig.SafeBlockSizeVertical(0.05)),
+                        horizontal: sizeConfig.safeBlockSizeHorizontal(0.08),
+                        vertical: sizeConfig.safeBlockSizeVertical(0.05)),
                     child: Form(
                       key: _formKey,
                       child: Column(

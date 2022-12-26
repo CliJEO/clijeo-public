@@ -21,8 +21,8 @@ class SettingsMainScreen extends StatelessWidget {
         backgroundColor: AppTheme.backgroundColor,
         body: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: sizeConfig.SafeBlockSizeHorizontal(0.06),
-              vertical: sizeConfig.SafeBlockSizeVertical(0.04)),
+              horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
+              vertical: sizeConfig.safeBlockSizeVertical(0.04)),
           child: SingleChildScrollView(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
