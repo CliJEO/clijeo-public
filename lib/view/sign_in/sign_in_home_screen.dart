@@ -1,7 +1,8 @@
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
+import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
-import 'package:clijeo_public/controllers/sign_in/sign_in_controller.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
@@ -14,17 +15,15 @@ class SignInHomeScreen extends StatelessWidget {
   static String id = "SignUpHomeScreen";
   const SignInHomeScreen({Key? key}) : super(key: key);
 
+  Future<void> signIn(context) async {
+    ClijeoUserController userController =
+        Provider.of<ClijeoUserController>(context, listen: false);
+    await Provider.of<MainAppController>(context, listen: false)
+        .signIn(userController);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future<void> signIn() async {
-      final signInResponse = await SignInController.signIn();
-      signInResponse.when((firstLogin, _) async {
-        if (!firstLogin) {
-          Navigator.pushReplacementNamed(context, FirstLoginFormScreen.id);
-        }
-      }, error: () {});
-    }
-
     final sizeConfig = SizeConfig(context);
     return Scaffold(
       body: Column(
@@ -93,7 +92,7 @@ class SignInHomeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: sizeConfig.safeBlockSizeVertical(0.11)),
                       PrimaryButton(
-                          onTap: signIn,
+                          onTap: () => signIn(context),
                           sizeConfig: sizeConfig,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

@@ -36,11 +36,6 @@ void main() async {
         create: (context) => userController)
   ], child: const MainApp()));
 
-  // ClijeoSharedPref.loadSharedPrefToApp().then((_) async {
-  //   appController.checkAuthenticationStatus();
-  //   await userController.refreshUser();
-  // });
-
   // Initialize App properties
   await appController.initializeApp(userController);
 }

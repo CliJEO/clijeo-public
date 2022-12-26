@@ -31,8 +31,6 @@ class ClijeoUserController extends ChangeNotifier {
       );
       final user = ClijeoUser.fromJson(result.data);
       state = ClijeoUserState.stable(user: user);
-      notifyListeners();
-      print("Refreshed");
     } on DioError catch (e) {
       state = ClijeoUserState.error("Dio Error: ${e.response}");
     } on Error catch (e) {
