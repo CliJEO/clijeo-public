@@ -33,7 +33,6 @@ class NewQueryFormController extends ChangeNotifier {
               },
             ),
             data: formData);
-        print("SUCCESS");
       } on DioError catch (e) {
         state = NewQueryFormState.error("Dio Error: ${e.response}");
         print("Dio Error: ${e.response}");

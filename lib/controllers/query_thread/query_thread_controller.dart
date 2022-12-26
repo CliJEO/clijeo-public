@@ -30,14 +30,12 @@ class QueryThreadController extends ChangeNotifier {
       );
       final query = Query.fromJson(result.data);
       state = QueryThreadState.stable(query: query);
-      log("QUERY: " + query.toString());
     } on DioError catch (e) {
       state = QueryThreadState.error("Dio Error: ${e.response}");
     } on Error catch (e) {
       state = QueryThreadState.error("Error: ${e.toString()}");
       log("Error: ${e.toString()}");
     }
-    log("REACHED HERE");
     notifyListeners();
   }
 

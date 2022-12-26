@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
+import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/localization/language.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
@@ -17,40 +20,44 @@ import 'package:clijeo_public/view/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FirstLoginFormScreen extends StatefulWidget {
+class FirstLoginFormScreen extends StatelessWidget {
   static String id = "SignUpFormScreen";
   const FirstLoginFormScreen({super.key});
 
-  @override
-  State<FirstLoginFormScreen> createState() => _FirstLoginFormScreenState();
-}
+  static final _formKey = GlobalKey<FormState>();
 
-class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
-  final FirstLoginFormController _loginForm = FirstLoginFormController();
-  final _formKey = GlobalKey<FormState>();
+  static final List<String> _allGenderList = Constants.getAllGenders();
 
-  final List<String> _allGenderList = Constants.getAllGenders();
-  final List<String> _allLanguageList = Constants.getSupportedLanguages();
+  static final List<String> _allLanguageList =
+      Constants.getSupportedLanguages();
 
-  @override
-  void initState() {
-    _loginForm.getUserNameFromBackend();
-    super.initState();
+  String _getUsername(context) {
+    var ans = Provider.of<ClijeoUserController>(context, listen: false)
+        .state
+        .maybeMap(stable: (state) => state.user.name, orElse: () => "");
+    print("USERNAME: $ans");
+    return ans;
   }
 
-  void _genderTogglePressed(int index) {
-    _loginForm.updateStableStateGender(_allGenderList[index]);
+  Function(int) _genderTogglePressed(FirstLoginFormController controller) {
+    return (index) => controller.updateStableStateGender(_allGenderList[index]);
   }
 
-  void _languageTogglePressed(int index) {
-    _loginForm.updateStableStateLanguage(_allLanguageList[index]);
+  Function(int) _languageTogglePressed(FirstLoginFormController controller) {
+    return (index) =>
+        controller.updateStableStateLanguage(_allLanguageList[index]);
   }
 
-  Future<void> _saveProfileDetails(context) async {
+  Future<void> _saveProfileDetails(
+      context, FirstLoginFormController controller) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await _loginForm.saveProfileDetails();
-      Navigator.of(context).pushReplacementNamed(HomeScreen.id);
+      await controller.saveProfileDetails();
+
+      ClijeoUserController userController =
+          Provider.of<ClijeoUserController>(context, listen: false);
+      await Provider.of<MainAppController>(context, listen: false)
+          .firstLoginCompleted(userController);
     }
   }
 
@@ -58,9 +65,9 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<FirstLoginFormController>(
-      create: (context) => _loginForm,
+      create: (context) => FirstLoginFormController(_getUsername(context)),
       child: Consumer<FirstLoginFormController>(
-          builder: (context, value, child) => value.state.when(
+          builder: (context, controller, child) => controller.state.when(
               loading: () => const Loading(),
               error: (error) {
                 return const ErrorScreen();
@@ -96,7 +103,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                             validator:
                                 FormValidationController.nullStringValidation,
                             initialValue: name,
-                            onSaved: _loginForm.updateStableStateName,
+                            onSaved: controller.updateStableStateName,
                             fieldTitle:
                                 LocaleTextClass.getTextWithKey(context, "Name"),
                             fieldHintText: LocaleTextClass.getTextWithKey(
@@ -108,7 +115,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           CustomFormField(
                             validator:
                                 FormValidationController.nullStringValidation,
-                            onSaved: _loginForm.updateStableStateAge,
+                            onSaved: controller.updateStableStateAge,
                             textInputType: TextInputType.number,
                             fieldTitle:
                                 LocaleTextClass.getTextWithKey(context, "Age"),
@@ -122,7 +129,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                               isSelected: _allGenderList
                                   .map((e) => e == gender)
                                   .toList(),
-                              onPressed: _genderTogglePressed,
+                              onPressed: _genderTogglePressed(controller),
                               fieldTitle: LocaleTextClass.getTextWithKey(
                                   context, "Gender"),
                               sizeConfig: sizeConfig,
@@ -137,7 +144,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                               isSelected: _allLanguageList
                                   .map((e) => e == language)
                                   .toList(),
-                              onPressed: _languageTogglePressed,
+                              onPressed: _languageTogglePressed(controller),
                               fieldTitle: LocaleTextClass.getTextWithKey(
                                   context, "LanguagePreference"),
                               sizeConfig: sizeConfig,
@@ -151,7 +158,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           CustomFormField(
                             validator:
                                 FormValidationController.nullStringValidation,
-                            onSaved: _loginForm.updateStableStatePhoneNumber,
+                            onSaved: controller.updateStableStatePhoneNumber,
                             textInputType: TextInputType.phone,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "PhoneNumber"),
@@ -164,7 +171,7 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                           CustomFormField(
                             validator:
                                 FormValidationController.nullStringValidation,
-                            onSaved: _loginForm.updateStableStateLocation,
+                            onSaved: controller.updateStableStateLocation,
                             textInputType: TextInputType.text,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "Location"),
@@ -177,7 +184,8 @@ class _FirstLoginFormScreenState extends State<FirstLoginFormScreen> {
                             height: 20,
                           ),
                           PrimaryButton(
-                              onTap: () => _saveProfileDetails(context),
+                              onTap: () =>
+                                  _saveProfileDetails(context, controller),
                               sizeConfig: sizeConfig,
                               child: Center(
                                 child: Text(

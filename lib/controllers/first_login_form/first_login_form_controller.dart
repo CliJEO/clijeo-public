@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
@@ -11,7 +12,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class FirstLoginFormController extends ChangeNotifier {
-  FirstLoginFormState state = const FirstLoginFormState.loading();
+  FirstLoginFormState state;
+
+  FirstLoginFormController(String name)
+      : state = FirstLoginFormState.stable(
+            name: name,
+            gender: Constants.getAllGenders().first,
+            language: Language.getCurrentLanguageCode());
 
   void updateStableStateName(String? updatedName) {
     if (updatedName != null) {
@@ -98,7 +105,7 @@ class FirstLoginFormController extends ChangeNotifier {
   }
 
   Future<void> saveProfileDetails() async {
-    state.maybeWhen(
+    await state.maybeWhen(
         stable: (name, age, gender, language, phoneNumber, location) async {
           final user = ClijeoUserDto(
             name: name,
