@@ -6,9 +6,14 @@ import 'package:flutter/material.dart';
 class CustomToggleButton extends StatefulWidget {
   const CustomToggleButton(
       {super.key,
+      required this.isSelected,
+      this.onPressed,
       required this.fieldTitle,
       required this.options,
       required this.sizeConfig});
+
+  final List<bool> isSelected;
+  final Function(int)? onPressed;
   final String fieldTitle;
   final List<String> options;
   final SizeConfig sizeConfig;
@@ -31,10 +36,11 @@ class _CustomToggleButtonState extends State<CustomToggleButton> {
           height: 10,
         ),
         SizedBox(
-          height: widget.sizeConfig.SafeBlockSizeVertical(0.06),
+          height: widget.sizeConfig.safeBlockSizeVertical(0.06),
           width: double.infinity,
           child: ToggleButtons(
-              isSelected: widget.options.map((e) => true).toList(),
+              isSelected: widget.isSelected,
+              onPressed: widget.onPressed,
               borderWidth: 1.5,
               borderColor: AppTheme.containerBorder,
               color: AppTheme.textDark,

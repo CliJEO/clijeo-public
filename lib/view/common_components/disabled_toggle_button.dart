@@ -26,7 +26,7 @@ class DisabledToggleButton extends StatelessWidget {
           height: 10,
         ),
         SizedBox(
-          height: sizeConfig.SafeBlockSizeVertical(0.06),
+          height: sizeConfig.safeBlockSizeVertical(0.06),
           width: double.infinity,
           child: ToggleButtons(
               isSelected: options.map((e) => true).toList(),

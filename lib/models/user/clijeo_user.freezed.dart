@@ -25,6 +25,7 @@ mixin _$ClijeoUser {
   String? get gender => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
+  List<UserQuery> get queries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $ClijeoUserCopyWith<$Res> {
       int? age,
       String? gender,
       String? phoneNumber,
-      String? location});
+      String? location,
+      List<UserQuery> queries});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$ClijeoUserCopyWithImpl<$Res, $Val extends ClijeoUser>
     Object? gender = freezed,
     Object? phoneNumber = freezed,
     Object? location = freezed,
+    Object? queries = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -86,6 +89,10 @@ class _$ClijeoUserCopyWithImpl<$Res, $Val extends ClijeoUser>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      queries: null == queries
+          ? _value.queries
+          : queries // ignore: cast_nullable_to_non_nullable
+              as List<UserQuery>,
     ) as $Val);
   }
 }
@@ -103,7 +110,8 @@ abstract class _$$_ClijeoUserCopyWith<$Res>
       int? age,
       String? gender,
       String? phoneNumber,
-      String? location});
+      String? location,
+      List<UserQuery> queries});
 }
 
 /// @nodoc
@@ -122,6 +130,7 @@ class __$$_ClijeoUserCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? phoneNumber = freezed,
     Object? location = freezed,
+    Object? queries = null,
   }) {
     return _then(_$_ClijeoUser(
       name: null == name
@@ -144,6 +153,10 @@ class __$$_ClijeoUserCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      queries: null == queries
+          ? _value._queries
+          : queries // ignore: cast_nullable_to_non_nullable
+              as List<UserQuery>,
     ));
   }
 }
@@ -156,7 +169,9 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
       this.age,
       this.gender,
       this.phoneNumber,
-      this.location});
+      this.location,
+      required final List<UserQuery> queries})
+      : _queries = queries;
 
   factory _$_ClijeoUser.fromJson(Map<String, dynamic> json) =>
       _$$_ClijeoUserFromJson(json);
@@ -171,10 +186,17 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
   final String? phoneNumber;
   @override
   final String? location;
+  final List<UserQuery> _queries;
+  @override
+  List<UserQuery> get queries {
+    if (_queries is EqualUnmodifiableListView) return _queries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_queries);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClijeoUser(name: $name, age: $age, gender: $gender, phoneNumber: $phoneNumber, location: $location)';
+    return 'ClijeoUser(name: $name, age: $age, gender: $gender, phoneNumber: $phoneNumber, location: $location, queries: $queries)';
   }
 
   @override
@@ -186,7 +208,8 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
       ..add(DiagnosticsProperty('age', age))
       ..add(DiagnosticsProperty('gender', gender))
       ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
-      ..add(DiagnosticsProperty('location', location));
+      ..add(DiagnosticsProperty('location', location))
+      ..add(DiagnosticsProperty('queries', queries));
   }
 
   @override
@@ -200,13 +223,14 @@ class _$_ClijeoUser with DiagnosticableTreeMixin implements _ClijeoUser {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            const DeepCollectionEquality().equals(other._queries, _queries));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, age, gender, phoneNumber, location);
+  int get hashCode => Object.hash(runtimeType, name, age, gender, phoneNumber,
+      location, const DeepCollectionEquality().hash(_queries));
 
   @JsonKey(ignore: true)
   @override
@@ -228,7 +252,8 @@ abstract class _ClijeoUser implements ClijeoUser {
       final int? age,
       final String? gender,
       final String? phoneNumber,
-      final String? location}) = _$_ClijeoUser;
+      final String? location,
+      required final List<UserQuery> queries}) = _$_ClijeoUser;
 
   factory _ClijeoUser.fromJson(Map<String, dynamic> json) =
       _$_ClijeoUser.fromJson;
@@ -243,6 +268,8 @@ abstract class _ClijeoUser implements ClijeoUser {
   String? get phoneNumber;
   @override
   String? get location;
+  @override
+  List<UserQuery> get queries;
   @override
   @JsonKey(ignore: true)
   _$$_ClijeoUserCopyWith<_$_ClijeoUser> get copyWith =>

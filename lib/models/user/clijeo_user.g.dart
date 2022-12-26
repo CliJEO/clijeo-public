@@ -13,6 +13,9 @@ _$_ClijeoUser _$$_ClijeoUserFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       location: json['location'] as String?,
+      queries: (json['queries'] as List<dynamic>)
+          .map((e) => UserQuery.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ClijeoUserToJson(_$_ClijeoUser instance) =>
@@ -22,4 +25,5 @@ Map<String, dynamic> _$$_ClijeoUserToJson(_$_ClijeoUser instance) =>
       'gender': instance.gender,
       'phoneNumber': instance.phoneNumber,
       'location': instance.location,
+      'queries': instance.queries,
     };

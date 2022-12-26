@@ -5,8 +5,15 @@ class ApiUtils {
   // For getting user data including queries
   static const String userUrl = '/user/me';
 
-  // //Set event results
-  // static String getAddEventResultsUrl(int eventID) =>
-  //     '/events/$eventID/setresults';
+  // For updating user data
+  static const String userProfileUpdateUrl = '/user/update';
 
+  // For creating a new query
+  static const String createQueryUrl = '/query/create';
+
+  // For getting a particular queries details
+  static String getQueryDetailsUrl(int queryId) => '/query/$queryId';
+
+  // For replying to a particular query
+  static String replyQueryUrl(int queryId) => '/respond/$queryId/user';
 }
