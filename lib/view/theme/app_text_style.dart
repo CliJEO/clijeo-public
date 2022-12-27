@@ -12,6 +12,11 @@ class AppTextStyle {
       fontWeight: FontWeight.bold,
       fontSize: 10,
       fontFamily: "Inter");
+  static const TextStyle verySmallDarkTitle = TextStyle(
+      color: AppTheme.textDark,
+      fontWeight: FontWeight.bold,
+      fontSize: 10,
+      fontFamily: "Inter");
   static const TextStyle smallDarkTitle = TextStyle(
       color: AppTheme.textDark,
       fontWeight: FontWeight.bold,

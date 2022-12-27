@@ -5,3 +5,5 @@ class Constants {
   // List of all genders
   static List<String> getAllGenders() => ["male", "female", "other"];
 }
+
+enum RecognizedFileTypes { image, video, audio, document }

@@ -1,10 +1,12 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
+import 'package:clijeo_public/view/common_components/attachment_widget.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/misc_screens/error_screen.dart';
 import 'package:clijeo_public/view/misc_screens/loading.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
@@ -34,9 +36,10 @@ class NewQueryFormScreen extends StatelessWidget {
         create: (context) => NewQueryFormController(),
         child: Consumer<NewQueryFormController>(
             builder: (context, newQueryFormController, _) {
-          return newQueryFormController.state.maybeWhen(
+          return newQueryFormController.state.when(
               loading: () => const Loading(),
-              orElse: () => Scaffold(
+              error: (error) => ErrorScreen(),
+              stable: (subject, body, otherAttachments) => Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
                     child: Padding(
@@ -106,6 +109,41 @@ class NewQueryFormScreen extends StatelessWidget {
                                       const SizedBox(
                                         height: 15,
                                       ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            LocaleTextClass.getTextWithKey(
+                                                context, "OtherAttachments"),
+                                            style: AppTextStyle
+                                                .smallDarkLightBoldBody,
+                                          ),
+                                          GestureDetector(
+                                            onTap: newQueryFormController
+                                                .addFilesToOtherAttachments,
+                                            child: const Icon(Icons.add,
+                                                color: AppTheme.textDarkLight,
+                                                size: 20),
+                                          )
+                                        ],
+                                      ),
+                                      if (otherAttachments != null &&
+                                          otherAttachments.isNotEmpty)
+                                        ListView.builder(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount: otherAttachments.length,
+                                            itemBuilder: (context, index) =>
+                                                AttachmentWidget(
+                                                    closeFunction: () =>
+                                                        newQueryFormController
+                                                            .removeFileFromOtherAttachments(
+                                                                index),
+                                                    name:
+                                                        otherAttachments[index]
+                                                            .name)),
                                       const SizedBox(
                                         height: 20,
                                       ),
