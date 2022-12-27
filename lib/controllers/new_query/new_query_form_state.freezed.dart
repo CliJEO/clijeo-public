@@ -18,21 +18,27 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NewQueryFormState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body) stable,
+    required TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)
+        stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body)? stable,
+    TResult? Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body)? stable,
+    TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -86,7 +92,8 @@ abstract class _$$_NewQueryFormStableCopyWith<$Res> {
           $Res Function(_$_NewQueryFormStable) then) =
       __$$_NewQueryFormStableCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? subject, String? body});
+  $Res call(
+      {String? subject, String? body, List<Attachments>? otherAttachments});
 }
 
 /// @nodoc
@@ -102,6 +109,7 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
   $Res call({
     Object? subject = freezed,
     Object? body = freezed,
+    Object? otherAttachments = freezed,
   }) {
     return _then(_$_NewQueryFormStable(
       subject: freezed == subject
@@ -112,6 +120,10 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String?,
+      otherAttachments: freezed == otherAttachments
+          ? _value._otherAttachments
+          : otherAttachments // ignore: cast_nullable_to_non_nullable
+              as List<Attachments>?,
     ));
   }
 }
@@ -119,16 +131,28 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewQueryFormStable implements _NewQueryFormStable {
-  const _$_NewQueryFormStable({this.subject, this.body});
+  const _$_NewQueryFormStable(
+      {this.subject, this.body, final List<Attachments>? otherAttachments})
+      : _otherAttachments = otherAttachments;
 
   @override
   final String? subject;
   @override
   final String? body;
+  final List<Attachments>? _otherAttachments;
+  @override
+  List<Attachments>? get otherAttachments {
+    final value = _otherAttachments;
+    if (value == null) return null;
+    if (_otherAttachments is EqualUnmodifiableListView)
+      return _otherAttachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'NewQueryFormState.stable(subject: $subject, body: $body)';
+    return 'NewQueryFormState.stable(subject: $subject, body: $body, otherAttachments: $otherAttachments)';
   }
 
   @override
@@ -137,11 +161,14 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
         (other.runtimeType == runtimeType &&
             other is _$_NewQueryFormStable &&
             (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.body, body) || other.body == body));
+            (identical(other.body, body) || other.body == body) &&
+            const DeepCollectionEquality()
+                .equals(other._otherAttachments, _otherAttachments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, subject, body);
+  int get hashCode => Object.hash(runtimeType, subject, body,
+      const DeepCollectionEquality().hash(_otherAttachments));
 
   @JsonKey(ignore: true)
   @override
@@ -153,33 +180,39 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body) stable,
+    required TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)
+        stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
-    return stable(subject, body);
+    return stable(subject, body, otherAttachments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body)? stable,
+    TResult? Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
-    return stable?.call(subject, body);
+    return stable?.call(subject, body, otherAttachments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body)? stable,
+    TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(subject, body);
+      return stable(subject, body, otherAttachments);
     }
     return orElse();
   }
@@ -221,10 +254,13 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
 
 abstract class _NewQueryFormStable implements NewQueryFormState {
   const factory _NewQueryFormStable(
-      {final String? subject, final String? body}) = _$_NewQueryFormStable;
+      {final String? subject,
+      final String? body,
+      final List<Attachments>? otherAttachments}) = _$_NewQueryFormStable;
 
   String? get subject;
   String? get body;
+  List<Attachments>? get otherAttachments;
   @JsonKey(ignore: true)
   _$$_NewQueryFormStableCopyWith<_$_NewQueryFormStable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -268,7 +304,9 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body) stable,
+    required TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)
+        stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
@@ -278,7 +316,9 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body)? stable,
+    TResult? Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -288,7 +328,9 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body)? stable,
+    TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -403,7 +445,9 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body) stable,
+    required TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)
+        stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
@@ -413,7 +457,9 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body)? stable,
+    TResult? Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -423,7 +469,9 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body)? stable,
+    TResult Function(
+            String? subject, String? body, List<Attachments>? otherAttachments)?
+        stable,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),

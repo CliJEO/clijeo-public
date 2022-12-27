@@ -47,5 +47,6 @@
     "ReplyInThreadTitle": "Reply in Thread",
     "Reply-Hint": "Enter reply here",
     "SendMessage": "Send Message",
-    "Unspecified": "Unspecified"
+    "Unspecified": "Unspecified",
+    "OtherAttachments": "Other Attachments"
 }
