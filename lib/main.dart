@@ -77,6 +77,7 @@ void main() async {
 
   // Initialize App properties
   await appController.initializeApp(userController);
+  log(BackendAuth.getToken());
 }
 
 class MyApp extends StatefulWidget {

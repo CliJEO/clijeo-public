@@ -1,4 +1,7 @@
+import 'package:clijeo_public/models/attachments/local_attachments.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/models/query/media/query_media.dart';
+import 'package:clijeo_public/view/query_thread/components/query_thread_attachment_widget.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
@@ -11,12 +14,16 @@ class MessageCard extends StatelessWidget {
       required this.body,
       required this.date,
       required this.isArchived,
-      required this.sizeConfig});
+      required this.sizeConfig,
+      required this.otherAttachments,
+      required this.otherAttachmentDownloadFunction});
   final SizeConfig sizeConfig;
   final String user;
   final bool isArchived;
   final String body;
   final String date;
+  final List<QueryMedia>? otherAttachments;
+  final Function(int)? otherAttachmentDownloadFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +65,21 @@ class MessageCard extends StatelessWidget {
               body,
               style: AppTextStyle.smallDarkLightBody,
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            if (!isArchived &&
+                otherAttachments != null &&
+                otherAttachments!.isNotEmpty)
+              ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: otherAttachments!.length,
+                  itemBuilder: (context, index) => QueryThreadAttachmentWidget(
+                      downloadFunction: () =>
+                          otherAttachmentDownloadFunction!(index),
+                      // TODO: Replace with name
+                      name: otherAttachments![index].filename)),
           ]),
         ),
       ),

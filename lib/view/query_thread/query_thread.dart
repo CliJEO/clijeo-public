@@ -102,15 +102,19 @@ class QueryThread extends StatelessWidget {
                                               height: 20,
                                             ),
                                             MessageCard(
-                                                user: LocaleTextClass
-                                                    .getTextWithKey(
-                                                        context, "You"),
-                                                body: query.content,
-                                                date: QueryThreadController
-                                                    .getDatetimeString(
-                                                        query.timestamp),
-                                                isArchived: query.closed,
-                                                sizeConfig: sizeConfig),
+                                              user: LocaleTextClass
+                                                  .getTextWithKey(
+                                                      context, "You"),
+                                              body: query.content,
+                                              date: QueryThreadController
+                                                  .getDatetimeString(
+                                                      query.timestamp),
+                                              isArchived: query.closed,
+                                              sizeConfig: sizeConfig,
+                                              otherAttachmentDownloadFunction:
+                                                  null,
+                                              otherAttachments: query.media,
+                                            ),
                                             if (query.responses.isNotEmpty)
                                               ListView.builder(
                                                   physics:
@@ -118,20 +122,31 @@ class QueryThread extends StatelessWidget {
                                                   shrinkWrap: true,
                                                   itemCount:
                                                       query.responses.length,
-                                                  itemBuilder: (context, index) => MessageCard(
-                                                      user: LocaleTextClass.getTextWithKey(
-                                                          context,
-                                                          QueryThreadController.getResponderName(
-                                                              query.responses[
-                                                                  index])),
-                                                      body: query
-                                                          .responses[index]
-                                                          .content,
-                                                      date: QueryThreadController
-                                                          .getDatetimeString(
-                                                              query.responses[index].timestamp),
-                                                      isArchived: query.closed,
-                                                      sizeConfig: sizeConfig)),
+                                                  itemBuilder: (context,
+                                                          index) =>
+                                                      MessageCard(
+                                                        user: LocaleTextClass.getTextWithKey(
+                                                            context,
+                                                            QueryThreadController
+                                                                .getResponderName(
+                                                                    query.responses[
+                                                                        index])),
+                                                        body: query
+                                                            .responses[index]
+                                                            .content,
+                                                        date: QueryThreadController
+                                                            .getDatetimeString(
+                                                                query
+                                                                    .responses[
+                                                                        index]
+                                                                    .timestamp),
+                                                        isArchived:
+                                                            query.closed,
+                                                        sizeConfig: sizeConfig,
+                                                        otherAttachmentDownloadFunction:
+                                                            null,
+                                                        otherAttachments: null,
+                                                      )),
                                             if (!query.closed)
                                               Row(
                                                 mainAxisAlignment:
