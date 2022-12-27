@@ -2,8 +2,8 @@ import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-class AttachmentWidget extends StatelessWidget {
-  const AttachmentWidget(
+class NewQueryFormAttachmentWidget extends StatelessWidget {
+  const NewQueryFormAttachmentWidget(
       {super.key, required this.name, required this.closeFunction});
   final String name;
   final Function() closeFunction;

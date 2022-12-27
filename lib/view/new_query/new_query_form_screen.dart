@@ -1,7 +1,7 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
-import 'package:clijeo_public/view/common_components/attachment_widget.dart';
+import 'package:clijeo_public/view/new_query/components/new_query_form_attachment_widget.dart';
 import 'package:clijeo_public/view/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
@@ -136,7 +136,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                             shrinkWrap: true,
                                             itemCount: otherAttachments.length,
                                             itemBuilder: (context, index) =>
-                                                AttachmentWidget(
+                                                NewQueryFormAttachmentWidget(
                                                     closeFunction: () =>
                                                         newQueryFormController
                                                             .removeFileFromOtherAttachments(

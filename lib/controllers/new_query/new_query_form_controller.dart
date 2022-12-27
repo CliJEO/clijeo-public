@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
-import 'package:clijeo_public/controllers/core/attachments/attachments.dart';
+import 'package:clijeo_public/models/attachments/local_attachments.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_state.dart';
 import 'package:dio/dio.dart';
@@ -70,14 +70,14 @@ class NewQueryFormController extends ChangeNotifier {
     result.files.retainWhere((element) => element.path != null);
 
     // obtain Attachment objects from the result object
-    List<Attachments> newOtherAttachments = result.files
-        .map((e) => Attachments(name: e.name, path: e.path!))
+    List<LocalAttachments> newOtherAttachments = result.files
+        .map((e) => LocalAttachments(name: e.name, path: e.path!))
         .toList();
 
     // update state with attachments
     state = state.maybeMap(
         stable: (value) {
-          List<Attachments> otherAttachments = [];
+          List<LocalAttachments> otherAttachments = [];
           if (value.otherAttachments != null) {
             otherAttachments.addAll(value.otherAttachments!);
           }
@@ -98,7 +98,7 @@ class NewQueryFormController extends ChangeNotifier {
         stable: (value) {
           if (value.otherAttachments != null &&
               index < value.otherAttachments!.length) {
-            List<Attachments> otherAttachments = [];
+            List<LocalAttachments> otherAttachments = [];
             otherAttachments.addAll(value.otherAttachments!);
             otherAttachments.removeAt(index);
             return value.copyWith(otherAttachments: otherAttachments);
