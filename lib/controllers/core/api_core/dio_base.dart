@@ -5,7 +5,10 @@ class DioBase {
 
   static void initDio() {
     //TODO: CHANGE TO BACKEND DOMAIN
-    final baseOptions = BaseOptions(baseUrl: 'http://10.0.2.2:3001');
+    final baseOptions =
+        BaseOptions(baseUrl: 'https://1f22-2-49-191-252.in.ngrok.io');
     dioInstance = Dio(baseOptions);
   }
 }
+
+// USUAL: 'http://10.0.2.2:3001'

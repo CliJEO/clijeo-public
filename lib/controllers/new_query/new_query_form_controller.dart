@@ -23,17 +23,31 @@ class NewQueryFormController extends ChangeNotifier {
       orElse: () =>
           const NewQueryFormState.error("State Error: Invalid state"));
 
+  void updateStableStateVoiceAttachmentPath(String? path) {
+    state = state.maybeMap(
+        stable: (value) => value.copyWith(voiceAttachmentPath: path),
+        orElse: () =>
+            const NewQueryFormState.error("State Error: Invalid state"));
+    notifyListeners();
+  }
+
   Future<void> registerQuery() async {
-    await state.maybeWhen(stable: (subject, body, otherAttachments) async {
+    await state.maybeWhen(
+        stable: (subject, body, voiceAttachmentPath, otherAttachments) async {
       state = const NewQueryFormState.loading();
       notifyListeners();
 
       try {
         final formData = FormData.fromMap({"title": subject, "content": body});
 
+        if (voiceAttachmentPath != null) {
+          formData.files.add(MapEntry(
+              "files", MultipartFile.fromFileSync(voiceAttachmentPath)));
+        }
+
         if (otherAttachments != null) {
-          formData.files.addAll(otherAttachments.map((e) => MapEntry(
-              "files", MultipartFile.fromFileSync(e.path, filename: e.name))));
+          formData.files.addAll(otherAttachments.map(
+              (e) => MapEntry("files", MultipartFile.fromFileSync(e.path))));
         }
 
         await DioBase.dioInstance.post(ApiUtils.createQueryUrl,
@@ -63,8 +77,6 @@ class NewQueryFormController extends ChangeNotifier {
 
     // if no file is picked
     if (result == null) return;
-
-    //TODO: ADD ATTACHMENT SIZE MAX LIMIT
 
     // remove all files without a path
     result.files.retainWhere((element) => element.path != null);

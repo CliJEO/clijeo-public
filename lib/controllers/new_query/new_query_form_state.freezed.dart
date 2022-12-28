@@ -18,7 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NewQueryFormState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body,
+    required TResult Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)
         stable,
     required TResult Function() loading,
@@ -27,7 +30,10 @@ mixin _$NewQueryFormState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body,
+    TResult? Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult? Function()? loading,
@@ -36,7 +42,7 @@ mixin _$NewQueryFormState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body,
+    TResult Function(String? subject, String? body, String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult Function()? loading,
@@ -95,6 +101,7 @@ abstract class _$$_NewQueryFormStableCopyWith<$Res> {
   $Res call(
       {String? subject,
       String? body,
+      String? voiceAttachmentPath,
       List<LocalAttachments>? otherAttachments});
 }
 
@@ -111,6 +118,7 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
   $Res call({
     Object? subject = freezed,
     Object? body = freezed,
+    Object? voiceAttachmentPath = freezed,
     Object? otherAttachments = freezed,
   }) {
     return _then(_$_NewQueryFormStable(
@@ -121,6 +129,10 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
       body: freezed == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voiceAttachmentPath: freezed == voiceAttachmentPath
+          ? _value.voiceAttachmentPath
+          : voiceAttachmentPath // ignore: cast_nullable_to_non_nullable
               as String?,
       otherAttachments: freezed == otherAttachments
           ? _value._otherAttachments
@@ -134,13 +146,18 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
 
 class _$_NewQueryFormStable implements _NewQueryFormStable {
   const _$_NewQueryFormStable(
-      {this.subject, this.body, final List<LocalAttachments>? otherAttachments})
+      {this.subject,
+      this.body,
+      this.voiceAttachmentPath,
+      final List<LocalAttachments>? otherAttachments})
       : _otherAttachments = otherAttachments;
 
   @override
   final String? subject;
   @override
   final String? body;
+  @override
+  final String? voiceAttachmentPath;
   final List<LocalAttachments>? _otherAttachments;
   @override
   List<LocalAttachments>? get otherAttachments {
@@ -154,7 +171,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
 
   @override
   String toString() {
-    return 'NewQueryFormState.stable(subject: $subject, body: $body, otherAttachments: $otherAttachments)';
+    return 'NewQueryFormState.stable(subject: $subject, body: $body, voiceAttachmentPath: $voiceAttachmentPath, otherAttachments: $otherAttachments)';
   }
 
   @override
@@ -164,12 +181,18 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             other is _$_NewQueryFormStable &&
             (identical(other.subject, subject) || other.subject == subject) &&
             (identical(other.body, body) || other.body == body) &&
+            (identical(other.voiceAttachmentPath, voiceAttachmentPath) ||
+                other.voiceAttachmentPath == voiceAttachmentPath) &&
             const DeepCollectionEquality()
                 .equals(other._otherAttachments, _otherAttachments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, subject, body,
+  int get hashCode => Object.hash(
+      runtimeType,
+      subject,
+      body,
+      voiceAttachmentPath,
       const DeepCollectionEquality().hash(_otherAttachments));
 
   @JsonKey(ignore: true)
@@ -182,31 +205,37 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body,
+    required TResult Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)
         stable,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
-    return stable(subject, body, otherAttachments);
+    return stable(subject, body, voiceAttachmentPath, otherAttachments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body,
+    TResult? Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
-    return stable?.call(subject, body, otherAttachments);
+    return stable?.call(subject, body, voiceAttachmentPath, otherAttachments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body,
+    TResult Function(String? subject, String? body, String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult Function()? loading,
@@ -214,7 +243,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(subject, body, otherAttachments);
+      return stable(subject, body, voiceAttachmentPath, otherAttachments);
     }
     return orElse();
   }
@@ -258,10 +287,12 @@ abstract class _NewQueryFormStable implements NewQueryFormState {
   const factory _NewQueryFormStable(
       {final String? subject,
       final String? body,
+      final String? voiceAttachmentPath,
       final List<LocalAttachments>? otherAttachments}) = _$_NewQueryFormStable;
 
   String? get subject;
   String? get body;
+  String? get voiceAttachmentPath;
   List<LocalAttachments>? get otherAttachments;
   @JsonKey(ignore: true)
   _$$_NewQueryFormStableCopyWith<_$_NewQueryFormStable> get copyWith =>
@@ -306,7 +337,10 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body,
+    required TResult Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)
         stable,
     required TResult Function() loading,
@@ -318,7 +352,10 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body,
+    TResult? Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult? Function()? loading,
@@ -330,7 +367,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body,
+    TResult Function(String? subject, String? body, String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult Function()? loading,
@@ -447,7 +484,10 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? subject, String? body,
+    required TResult Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)
         stable,
     required TResult Function() loading,
@@ -459,7 +499,10 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? subject, String? body,
+    TResult? Function(
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult? Function()? loading,
@@ -471,7 +514,7 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? subject, String? body,
+    TResult Function(String? subject, String? body, String? voiceAttachmentPath,
             List<LocalAttachments>? otherAttachments)?
         stable,
     TResult Function()? loading,
