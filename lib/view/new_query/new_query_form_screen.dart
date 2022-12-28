@@ -124,11 +124,11 @@ class NewQueryFormScreen extends StatelessWidget {
                                           ),
                                           if (voiceAttachmentPath == null)
                                             QueryRecording(
-                                              controller:
+                                              formController:
                                                   newQueryFormController,
                                             ),
                                           if (voiceAttachmentPath != null)
-                                            QueryRecordingPlayer(
+                                            QueryAudioPlayer(
                                               voiceAttachmentPath:
                                                   voiceAttachmentPath,
                                             ),
