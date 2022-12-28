@@ -8,6 +8,7 @@ abstract class NewQueryFormState with _$NewQueryFormState {
   const factory NewQueryFormState.stable(
       {String? subject,
       String? body,
+      String? voiceAttachmentPath,
       List<LocalAttachments>? otherAttachments}) = _NewQueryFormStable;
   const factory NewQueryFormState.loading() = _NewQueryFormLoading;
   const factory NewQueryFormState.error(String error) = _NewQueryFormError;
