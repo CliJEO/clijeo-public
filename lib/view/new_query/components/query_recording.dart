@@ -48,8 +48,10 @@ class QueryRecording extends StatelessWidget {
                 child: Text(
                   controller.state.maybeMap(
                       recording: (state) =>
-                          "${(state.duration / 60).floor()}:${state.duration % 60}",
-                      orElse: () => "0:00"),
+                          '${(Duration(seconds: state.duration))}'
+                              .split('.')[0]
+                              .substring(2),
+                      orElse: () => "00:00"),
                   style: controller.state.maybeMap(
                       recording: (_) => AppTextStyle.verySmallLightTitle,
                       orElse: () => AppTextStyle.verySmallDarkTitle),

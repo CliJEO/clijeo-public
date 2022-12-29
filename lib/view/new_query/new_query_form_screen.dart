@@ -2,14 +2,14 @@ import 'package:clijeo_public/controllers/core/form_validation/form_validation_c
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
 import 'package:clijeo_public/view/new_query/components/new_query_form_attachment_widget.dart';
-import 'package:clijeo_public/view/common_components/custom_back_button.dart';
-import 'package:clijeo_public/view/common_components/custom_form_field.dart';
-import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
+import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/new_query/components/query_recording.dart';
-import 'package:clijeo_public/view/new_query/components/query_recording_player.dart';
+import 'package:clijeo_public/view/new_query/components/query_audio_player.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
@@ -115,7 +115,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                           ),
                                           Text(
                                             LocaleTextClass.getTextWithKey(
-                                                context, "OtherAttachments"),
+                                                context, "VoiceAttachment"),
                                             style: AppTextStyle
                                                 .smallDarkLightBoldBody,
                                           ),
@@ -131,6 +131,10 @@ class NewQueryFormScreen extends StatelessWidget {
                                             QueryAudioPlayer(
                                               voiceAttachmentPath:
                                                   voiceAttachmentPath,
+                                              closeFunction: () =>
+                                                  newQueryFormController
+                                                      .updateStableStateVoiceAttachmentPath(
+                                                          null),
                                             ),
                                           const SizedBox(
                                             height: 15,

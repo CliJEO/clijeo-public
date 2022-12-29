@@ -2,11 +2,11 @@ import 'package:clijeo_public/controllers/core/form_validation/form_validation_c
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/controllers/thread_respond_from/thread_respond_form_controller.dart';
-import 'package:clijeo_public/view/common_components/custom_back_button.dart';
-import 'package:clijeo_public/view/common_components/custom_form_field.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';

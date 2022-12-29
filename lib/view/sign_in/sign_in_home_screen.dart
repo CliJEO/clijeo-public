@@ -3,7 +3,7 @@ import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controlle
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';
