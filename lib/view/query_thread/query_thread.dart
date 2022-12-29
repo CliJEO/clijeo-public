@@ -1,9 +1,9 @@
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/models/query/query.dart';
-import 'package:clijeo_public/view/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/query_thread/components/badges.dart';
 import 'package:clijeo_public/view/query_thread/components/message_card.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';

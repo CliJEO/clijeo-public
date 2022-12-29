@@ -2,7 +2,7 @@ import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/sign_in/sign_in_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

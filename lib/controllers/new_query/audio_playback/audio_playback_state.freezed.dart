@@ -18,28 +18,32 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AudioPlaybackState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() paused,
-    required TResult Function() playing,
+    required TResult Function() initial,
+    required TResult Function(Duration currentPos, Duration duration) paused,
+    required TResult Function(Duration currentPos, Duration duration) playing,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? paused,
-    TResult? Function()? playing,
+    TResult? Function()? initial,
+    TResult? Function(Duration currentPos, Duration duration)? paused,
+    TResult? Function(Duration currentPos, Duration duration)? playing,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? paused,
-    TResult Function()? playing,
+    TResult Function()? initial,
+    TResult Function(Duration currentPos, Duration duration)? paused,
+    TResult Function(Duration currentPos, Duration duration)? playing,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
     required TResult Function(_AudioPlaybackError value) error,
@@ -47,6 +51,7 @@ mixin _$AudioPlaybackState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
     TResult? Function(_AudioPlaybackError value)? error,
@@ -54,6 +59,7 @@ mixin _$AudioPlaybackState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
     TResult Function(_AudioPlaybackError value)? error,
@@ -81,10 +87,129 @@ class _$AudioPlaybackStateCopyWithImpl<$Res, $Val extends AudioPlaybackState>
 }
 
 /// @nodoc
+abstract class _$$_AudioPlaybackStateInitialCopyWith<$Res> {
+  factory _$$_AudioPlaybackStateInitialCopyWith(
+          _$_AudioPlaybackStateInitial value,
+          $Res Function(_$_AudioPlaybackStateInitial) then) =
+      __$$_AudioPlaybackStateInitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AudioPlaybackStateInitialCopyWithImpl<$Res>
+    extends _$AudioPlaybackStateCopyWithImpl<$Res, _$_AudioPlaybackStateInitial>
+    implements _$$_AudioPlaybackStateInitialCopyWith<$Res> {
+  __$$_AudioPlaybackStateInitialCopyWithImpl(
+      _$_AudioPlaybackStateInitial _value,
+      $Res Function(_$_AudioPlaybackStateInitial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
+  const _$_AudioPlaybackStateInitial();
+
+  @override
+  String toString() {
+    return 'AudioPlaybackState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AudioPlaybackStateInitial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Duration currentPos, Duration duration) paused,
+    required TResult Function(Duration currentPos, Duration duration) playing,
+    required TResult Function(String error) error,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(Duration currentPos, Duration duration)? paused,
+    TResult? Function(Duration currentPos, Duration duration)? playing,
+    TResult? Function(String error)? error,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Duration currentPos, Duration duration)? paused,
+    TResult Function(Duration currentPos, Duration duration)? playing,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AudioPlaybackStateInitial value) initial,
+    required TResult Function(_AudioPlaybackPaused value) paused,
+    required TResult Function(_AudioPlaybackPlaying value) playing,
+    required TResult Function(_AudioPlaybackError value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AudioPlaybackStateInitial value)? initial,
+    TResult? Function(_AudioPlaybackPaused value)? paused,
+    TResult? Function(_AudioPlaybackPlaying value)? playing,
+    TResult? Function(_AudioPlaybackError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AudioPlaybackStateInitial value)? initial,
+    TResult Function(_AudioPlaybackPaused value)? paused,
+    TResult Function(_AudioPlaybackPlaying value)? playing,
+    TResult Function(_AudioPlaybackError value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AudioPlaybackStateInitial implements AudioPlaybackState {
+  const factory _AudioPlaybackStateInitial() = _$_AudioPlaybackStateInitial;
+}
+
+/// @nodoc
 abstract class _$$_AudioPlaybackPausedCopyWith<$Res> {
   factory _$$_AudioPlaybackPausedCopyWith(_$_AudioPlaybackPaused value,
           $Res Function(_$_AudioPlaybackPaused) then) =
       __$$_AudioPlaybackPausedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Duration currentPos, Duration duration});
 }
 
 /// @nodoc
@@ -94,57 +219,96 @@ class __$$_AudioPlaybackPausedCopyWithImpl<$Res>
   __$$_AudioPlaybackPausedCopyWithImpl(_$_AudioPlaybackPaused _value,
       $Res Function(_$_AudioPlaybackPaused) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentPos = null,
+    Object? duration = null,
+  }) {
+    return _then(_$_AudioPlaybackPaused(
+      currentPos: null == currentPos
+          ? _value.currentPos
+          : currentPos // ignore: cast_nullable_to_non_nullable
+              as Duration,
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as Duration,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
-  const _$_AudioPlaybackPaused();
+  const _$_AudioPlaybackPaused(
+      {required this.currentPos, required this.duration});
+
+  @override
+  final Duration currentPos;
+  @override
+  final Duration duration;
 
   @override
   String toString() {
-    return 'AudioPlaybackState.paused()';
+    return 'AudioPlaybackState.paused(currentPos: $currentPos, duration: $duration)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AudioPlaybackPaused);
+        (other.runtimeType == runtimeType &&
+            other is _$_AudioPlaybackPaused &&
+            (identical(other.currentPos, currentPos) ||
+                other.currentPos == currentPos) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, currentPos, duration);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AudioPlaybackPausedCopyWith<_$_AudioPlaybackPaused> get copyWith =>
+      __$$_AudioPlaybackPausedCopyWithImpl<_$_AudioPlaybackPaused>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() paused,
-    required TResult Function() playing,
+    required TResult Function() initial,
+    required TResult Function(Duration currentPos, Duration duration) paused,
+    required TResult Function(Duration currentPos, Duration duration) playing,
     required TResult Function(String error) error,
   }) {
-    return paused();
+    return paused(currentPos, duration);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? paused,
-    TResult? Function()? playing,
+    TResult? Function()? initial,
+    TResult? Function(Duration currentPos, Duration duration)? paused,
+    TResult? Function(Duration currentPos, Duration duration)? playing,
     TResult? Function(String error)? error,
   }) {
-    return paused?.call();
+    return paused?.call(currentPos, duration);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? paused,
-    TResult Function()? playing,
+    TResult Function()? initial,
+    TResult Function(Duration currentPos, Duration duration)? paused,
+    TResult Function(Duration currentPos, Duration duration)? playing,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (paused != null) {
-      return paused();
+      return paused(currentPos, duration);
     }
     return orElse();
   }
@@ -152,6 +316,7 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
     required TResult Function(_AudioPlaybackError value) error,
@@ -162,6 +327,7 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
     TResult? Function(_AudioPlaybackError value)? error,
@@ -172,6 +338,7 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
     TResult Function(_AudioPlaybackError value)? error,
@@ -185,7 +352,15 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
 }
 
 abstract class _AudioPlaybackPaused implements AudioPlaybackState {
-  const factory _AudioPlaybackPaused() = _$_AudioPlaybackPaused;
+  const factory _AudioPlaybackPaused(
+      {required final Duration currentPos,
+      required final Duration duration}) = _$_AudioPlaybackPaused;
+
+  Duration get currentPos;
+  Duration get duration;
+  @JsonKey(ignore: true)
+  _$$_AudioPlaybackPausedCopyWith<_$_AudioPlaybackPaused> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -193,6 +368,8 @@ abstract class _$$_AudioPlaybackPlayingCopyWith<$Res> {
   factory _$$_AudioPlaybackPlayingCopyWith(_$_AudioPlaybackPlaying value,
           $Res Function(_$_AudioPlaybackPlaying) then) =
       __$$_AudioPlaybackPlayingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Duration currentPos, Duration duration});
 }
 
 /// @nodoc
@@ -202,57 +379,96 @@ class __$$_AudioPlaybackPlayingCopyWithImpl<$Res>
   __$$_AudioPlaybackPlayingCopyWithImpl(_$_AudioPlaybackPlaying _value,
       $Res Function(_$_AudioPlaybackPlaying) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentPos = null,
+    Object? duration = null,
+  }) {
+    return _then(_$_AudioPlaybackPlaying(
+      currentPos: null == currentPos
+          ? _value.currentPos
+          : currentPos // ignore: cast_nullable_to_non_nullable
+              as Duration,
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as Duration,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
-  const _$_AudioPlaybackPlaying();
+  const _$_AudioPlaybackPlaying(
+      {required this.currentPos, required this.duration});
+
+  @override
+  final Duration currentPos;
+  @override
+  final Duration duration;
 
   @override
   String toString() {
-    return 'AudioPlaybackState.playing()';
+    return 'AudioPlaybackState.playing(currentPos: $currentPos, duration: $duration)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AudioPlaybackPlaying);
+        (other.runtimeType == runtimeType &&
+            other is _$_AudioPlaybackPlaying &&
+            (identical(other.currentPos, currentPos) ||
+                other.currentPos == currentPos) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, currentPos, duration);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AudioPlaybackPlayingCopyWith<_$_AudioPlaybackPlaying> get copyWith =>
+      __$$_AudioPlaybackPlayingCopyWithImpl<_$_AudioPlaybackPlaying>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() paused,
-    required TResult Function() playing,
+    required TResult Function() initial,
+    required TResult Function(Duration currentPos, Duration duration) paused,
+    required TResult Function(Duration currentPos, Duration duration) playing,
     required TResult Function(String error) error,
   }) {
-    return playing();
+    return playing(currentPos, duration);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? paused,
-    TResult? Function()? playing,
+    TResult? Function()? initial,
+    TResult? Function(Duration currentPos, Duration duration)? paused,
+    TResult? Function(Duration currentPos, Duration duration)? playing,
     TResult? Function(String error)? error,
   }) {
-    return playing?.call();
+    return playing?.call(currentPos, duration);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? paused,
-    TResult Function()? playing,
+    TResult Function()? initial,
+    TResult Function(Duration currentPos, Duration duration)? paused,
+    TResult Function(Duration currentPos, Duration duration)? playing,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (playing != null) {
-      return playing();
+      return playing(currentPos, duration);
     }
     return orElse();
   }
@@ -260,6 +476,7 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
     required TResult Function(_AudioPlaybackError value) error,
@@ -270,6 +487,7 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
     TResult? Function(_AudioPlaybackError value)? error,
@@ -280,6 +498,7 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
     TResult Function(_AudioPlaybackError value)? error,
@@ -293,7 +512,15 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
 }
 
 abstract class _AudioPlaybackPlaying implements AudioPlaybackState {
-  const factory _AudioPlaybackPlaying() = _$_AudioPlaybackPlaying;
+  const factory _AudioPlaybackPlaying(
+      {required final Duration currentPos,
+      required final Duration duration}) = _$_AudioPlaybackPlaying;
+
+  Duration get currentPos;
+  Duration get duration;
+  @JsonKey(ignore: true)
+  _$$_AudioPlaybackPlayingCopyWith<_$_AudioPlaybackPlaying> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -361,8 +588,9 @@ class _$_AudioPlaybackError implements _AudioPlaybackError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() paused,
-    required TResult Function() playing,
+    required TResult Function() initial,
+    required TResult Function(Duration currentPos, Duration duration) paused,
+    required TResult Function(Duration currentPos, Duration duration) playing,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -371,8 +599,9 @@ class _$_AudioPlaybackError implements _AudioPlaybackError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? paused,
-    TResult? Function()? playing,
+    TResult? Function()? initial,
+    TResult? Function(Duration currentPos, Duration duration)? paused,
+    TResult? Function(Duration currentPos, Duration duration)? playing,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -381,8 +610,9 @@ class _$_AudioPlaybackError implements _AudioPlaybackError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? paused,
-    TResult Function()? playing,
+    TResult Function()? initial,
+    TResult Function(Duration currentPos, Duration duration)? paused,
+    TResult Function(Duration currentPos, Duration duration)? playing,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -395,6 +625,7 @@ class _$_AudioPlaybackError implements _AudioPlaybackError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
     required TResult Function(_AudioPlaybackError value) error,
@@ -405,6 +636,7 @@ class _$_AudioPlaybackError implements _AudioPlaybackError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
     TResult? Function(_AudioPlaybackError value)? error,
@@ -415,6 +647,7 @@ class _$_AudioPlaybackError implements _AudioPlaybackError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
     TResult Function(_AudioPlaybackError value)? error,

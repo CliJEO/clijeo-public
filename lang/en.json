@@ -48,5 +48,6 @@
     "Reply-Hint": "Enter reply here",
     "SendMessage": "Send Message",
     "Unspecified": "Unspecified",
-    "OtherAttachments": "Other Attachments"
+    "OtherAttachments": "Other Attachments",
+    "VoiceAttachment": "Voice Attachment"
 }

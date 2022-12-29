@@ -11,7 +11,7 @@ import 'package:clijeo_public/controllers/core/localization/locale_text_class.da
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
 import 'package:clijeo_public/view/query_thread/query_thread.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';
