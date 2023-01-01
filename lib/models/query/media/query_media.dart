@@ -8,7 +8,8 @@ part 'query_media.freezed.dart';
 @freezed
 class QueryMedia with _$QueryMedia {
   // TODO: Add file name
-  const factory QueryMedia({required String filename}) = _QueryMedia;
+  const factory QueryMedia({required String url, required String mimetype}) =
+      _QueryMedia;
 
   factory QueryMedia.fromJson(Map<String, dynamic> json) =>
       _QueryMedia.fromJson(json);

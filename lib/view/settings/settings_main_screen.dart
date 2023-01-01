@@ -7,7 +7,7 @@ import 'package:clijeo_public/view/core/common_components/custom_back_button.dar
 import 'package:clijeo_public/view/core/common_components/disabled_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/disabled_toggle_button.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/misc_screens/error_screen.dart';
+import 'package:clijeo_public/view/error/error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';

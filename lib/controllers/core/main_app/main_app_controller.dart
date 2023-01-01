@@ -6,6 +6,7 @@ import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/auth/google_auth.dart';
 import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/core/main_app/main_app_state.dart';
+import 'package:clijeo_public/controllers/core/notifications/notifications.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:clijeo_public/models/sign_in_response/sign_in_response.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
@@ -17,19 +18,17 @@ class MainAppController extends ChangeNotifier {
 
   Future<void> initializeApp(ClijeoUserController userController) async {
     await ClijeoSharedPref.loadSharedPrefToApp();
-    checkAuthenticationStatus();
 
-    await state.maybeWhen(
-        authenticated: () async {
-          await userController.refreshUser();
-        },
-        orElse: () {});
-  }
-
-  void checkAuthenticationStatus() {
     if (BackendAuth.getToken().isNotEmpty) {
+      await ClijeoNotifications.setupNotifications();
       state = const MainAppState.authenticated();
       notifyListeners();
+
+      await state.maybeWhen(
+          authenticated: () async {
+            await userController.refreshUser();
+          },
+          orElse: () {});
     }
   }
 
