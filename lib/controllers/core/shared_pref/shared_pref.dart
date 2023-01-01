@@ -10,8 +10,21 @@ class ClijeoSharedPref {
 
   static const String languageTokenKey = "language";
 
+  static const String isFcmTokenPushedKey = "isFcmTokenPushed";
+
   static Future<void> _instantiateSharedPref() async {
     _sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  static Future<bool?> getIsFcmTokenPushedFromSharedPref() async {
+    if (_sharedPreferences == null) await _instantiateSharedPref();
+    return _sharedPreferences!.getBool(isFcmTokenPushedKey);
+  }
+
+  static Future<bool?> addIsFcmTokenPushedToSharedPref(
+      bool isFcmTokenPushed) async {
+    if (_sharedPreferences == null) await _instantiateSharedPref();
+    return _sharedPreferences!.setBool(isFcmTokenPushedKey, isFcmTokenPushed);
   }
 
   static Future<String?> _getUserAccessTokenFromSharedPref() async {

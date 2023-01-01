@@ -1,6 +1,8 @@
 import 'package:clijeo_public/models/attachments/local_attachments.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/models/query/media/query_media.dart';
+import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
+import 'package:clijeo_public/view/loading/loading_widget.dart';
 import 'package:clijeo_public/view/query_thread/components/query_thread_attachment_widget.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
@@ -15,14 +17,18 @@ class MessageCard extends StatelessWidget {
       required this.date,
       required this.isArchived,
       required this.sizeConfig,
-      required this.otherAttachments,
-      required this.otherAttachmentDownloadFunction});
+      required this.isLoadingAttachments,
+      this.voiceAttachments,
+      this.otherAttachments,
+      this.otherAttachmentDownloadFunction});
   final SizeConfig sizeConfig;
   final String user;
   final bool isArchived;
   final String body;
   final String date;
-  final List<QueryMedia>? otherAttachments;
+  final bool isLoadingAttachments;
+  final List<LocalAttachments>? otherAttachments;
+  final List<LocalAttachments>? voiceAttachments;
   final Function(int)? otherAttachmentDownloadFunction;
 
   @override
@@ -68,18 +74,40 @@ class MessageCard extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            if (!isArchived &&
-                otherAttachments != null &&
-                otherAttachments!.isNotEmpty)
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: otherAttachments!.length,
-                  itemBuilder: (context, index) => QueryThreadAttachmentWidget(
-                      downloadFunction: () =>
-                          otherAttachmentDownloadFunction!(index),
-                      // TODO: Replace with name
-                      name: otherAttachments![index].filename)),
+            if (isLoadingAttachments)
+              const SizedBox(height: 100, child: LoadingWidget()),
+            if (!isLoadingAttachments)
+              Column(
+                children: [
+                  if (!isArchived &&
+                      voiceAttachments != null &&
+                      voiceAttachments!.isNotEmpty)
+                    ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: voiceAttachments!.length,
+                        itemBuilder: (context, index) => QueryAudioPlayer(
+                            voiceAttachmentPath:
+                                voiceAttachments![index].path)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  if (!isArchived &&
+                      otherAttachments != null &&
+                      otherAttachments!.isNotEmpty &&
+                      otherAttachmentDownloadFunction != null)
+                    ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: otherAttachments!.length,
+                        itemBuilder: (context, index) =>
+                            QueryThreadAttachmentWidget(
+                                downloadFunction: () =>
+                                    otherAttachmentDownloadFunction!(index),
+                                // TODO: Replace with name
+                                name: otherAttachments![index].name)),
+                ],
+              ),
           ]),
         ),
       ),

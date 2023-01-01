@@ -20,7 +20,8 @@ QueryMedia _$QueryMediaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$QueryMedia {
-  String get filename => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+  String get mimetype => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $QueryMediaCopyWith<$Res> {
           QueryMedia value, $Res Function(QueryMedia) then) =
       _$QueryMediaCopyWithImpl<$Res, QueryMedia>;
   @useResult
-  $Res call({String filename});
+  $Res call({String url, String mimetype});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$QueryMediaCopyWithImpl<$Res, $Val extends QueryMedia>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filename = null,
+    Object? url = null,
+    Object? mimetype = null,
   }) {
     return _then(_value.copyWith(
-      filename: null == filename
-          ? _value.filename
-          : filename // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      mimetype: null == mimetype
+          ? _value.mimetype
+          : mimetype // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +75,7 @@ abstract class _$$_QueryMediaCopyWith<$Res>
       __$$_QueryMediaCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String filename});
+  $Res call({String url, String mimetype});
 }
 
 /// @nodoc
@@ -83,12 +89,17 @@ class __$$_QueryMediaCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filename = null,
+    Object? url = null,
+    Object? mimetype = null,
   }) {
     return _then(_$_QueryMedia(
-      filename: null == filename
-          ? _value.filename
-          : filename // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      mimetype: null == mimetype
+          ? _value.mimetype
+          : mimetype // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +108,19 @@ class __$$_QueryMediaCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_QueryMedia with DiagnosticableTreeMixin implements _QueryMedia {
-  const _$_QueryMedia({required this.filename});
+  const _$_QueryMedia({required this.url, required this.mimetype});
 
   factory _$_QueryMedia.fromJson(Map<String, dynamic> json) =>
       _$$_QueryMediaFromJson(json);
 
   @override
-  final String filename;
+  final String url;
+  @override
+  final String mimetype;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'QueryMedia(filename: $filename)';
+    return 'QueryMedia(url: $url, mimetype: $mimetype)';
   }
 
   @override
@@ -115,7 +128,8 @@ class _$_QueryMedia with DiagnosticableTreeMixin implements _QueryMedia {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'QueryMedia'))
-      ..add(DiagnosticsProperty('filename', filename));
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('mimetype', mimetype));
   }
 
   @override
@@ -123,13 +137,14 @@ class _$_QueryMedia with DiagnosticableTreeMixin implements _QueryMedia {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_QueryMedia &&
-            (identical(other.filename, filename) ||
-                other.filename == filename));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.mimetype, mimetype) ||
+                other.mimetype == mimetype));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, filename);
+  int get hashCode => Object.hash(runtimeType, url, mimetype);
 
   @JsonKey(ignore: true)
   @override
@@ -146,13 +161,17 @@ class _$_QueryMedia with DiagnosticableTreeMixin implements _QueryMedia {
 }
 
 abstract class _QueryMedia implements QueryMedia {
-  const factory _QueryMedia({required final String filename}) = _$_QueryMedia;
+  const factory _QueryMedia(
+      {required final String url,
+      required final String mimetype}) = _$_QueryMedia;
 
   factory _QueryMedia.fromJson(Map<String, dynamic> json) =
       _$_QueryMedia.fromJson;
 
   @override
-  String get filename;
+  String get url;
+  @override
+  String get mimetype;
   @override
   @JsonKey(ignore: true)
   _$$_QueryMediaCopyWith<_$_QueryMedia> get copyWith =>

@@ -6,10 +6,10 @@ import 'package:clijeo_public/view/core/common_components/custom_back_button.dar
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/misc_screens/error_screen.dart';
+import 'package:clijeo_public/view/error/error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/new_query/components/query_recording.dart';
-import 'package:clijeo_public/view/new_query/components/query_audio_player.dart';
+import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';
 import 'package:clijeo_public/view/theme/app_text_style.dart';
 import 'package:clijeo_public/view/theme/size_config.dart';

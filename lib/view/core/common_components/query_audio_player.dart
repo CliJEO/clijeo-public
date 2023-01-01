@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/controllers/new_query/audio_playback/audio_playback_controller.dart';
 import 'package:clijeo_public/view/loading/loading_widget.dart';
 import 'package:clijeo_public/view/misc_screens/error_widget.dart';
@@ -8,11 +10,9 @@ import 'package:provider/provider.dart';
 
 class QueryAudioPlayer extends StatelessWidget {
   const QueryAudioPlayer(
-      {super.key,
-      required this.voiceAttachmentPath,
-      required this.closeFunction});
+      {super.key, required this.voiceAttachmentPath, this.closeFunction});
   final String voiceAttachmentPath;
-  final Function() closeFunction;
+  final Function()? closeFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,8 @@ class QueryAudioPlayer extends StatelessWidget {
       create: (context) => AudioPlaybackController(path: voiceAttachmentPath),
       child:
           Consumer<AudioPlaybackController>(builder: (context, controller, _) {
+        log("VOICE PATH");
+        log(voiceAttachmentPath);
         return controller.state.maybeWhen(
             initial: () {
               controller.initAudioPlayer();
@@ -53,13 +55,13 @@ class QueryAudioPlayerWidget extends StatelessWidget {
       required this.duration,
       required this.actionFunction,
       required this.seekFunction,
-      required this.closeFunction});
+      this.closeFunction});
   final bool isPlaying;
   final Duration duration;
   final Duration currentPos;
   final Function() actionFunction;
   final Function(double) seekFunction;
-  final Function() closeFunction;
+  final Function()? closeFunction;
 
   String _getPlayerTimestamp(bool isPlaying, Duration duration) {
     if (!isPlaying && currentPos == 0) {
@@ -101,10 +103,11 @@ class QueryAudioPlayerWidget extends StatelessWidget {
                     onChanged: seekFunction,
                   ),
                 )),
-                GestureDetector(
-                    onTap: closeFunction,
-                    child: const Icon(Icons.close,
-                        color: AppTheme.textDark, size: 20)),
+                if (closeFunction != null)
+                  GestureDetector(
+                      onTap: closeFunction,
+                      child: const Icon(Icons.close,
+                          color: AppTheme.textDark, size: 20)),
               ],
             ),
             const SizedBox(

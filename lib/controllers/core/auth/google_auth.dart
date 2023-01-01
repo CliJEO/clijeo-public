@@ -1,12 +1,12 @@
 import 'dart:developer';
+import 'package:clijeo_public/config.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleAuth {
   static Future<String?> signInWithGoogle() async {
     // Trigger the authentication flow
     GoogleSignInAccount? googleUser = await GoogleSignIn(
-      serverClientId:
-          "626402316921-85lpg5k0qr7ino8dal6ic8a5s6kscsg9.apps.googleusercontent.com",
+      serverClientId: ClijeoConfig.serverClientId,
       scopes: ['email', 'openid', 'profile'],
     ).signIn();
 
