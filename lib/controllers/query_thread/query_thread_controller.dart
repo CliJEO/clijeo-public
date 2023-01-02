@@ -49,6 +49,7 @@ class QueryThreadController extends ChangeNotifier {
           isLoadingAttachments: false);
     } on DioError catch (e) {
       state = QueryThreadState.error("Dio Error: ${e.response}");
+      log("Error: ${e.message}");
     } on Error catch (e) {
       state = QueryThreadState.error("Error: ${e.toString()}");
       log("Error: ${e.toString()}");
