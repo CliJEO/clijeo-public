@@ -24,8 +24,12 @@ class HomeScreen extends StatelessWidget {
     var shouldRefresh =
         await Navigator.pushNamed(context, NewQueryFormScreen.id);
     if (shouldRefresh is bool && shouldRefresh) {
-      await userController.refreshUser();
+      await _refresh(userController);
     }
+  }
+
+  Future<void> _refresh(ClijeoUserController userController) async {
+    await userController.refreshUser();
   }
 
   @override
@@ -37,87 +41,96 @@ class HomeScreen extends StatelessWidget {
             loading: () => Loading(),
             stable: (ClijeoUser user) => Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
-                  body: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: sizeConfig.safeBlockSizeHorizontal(0.08),
-                          vertical: sizeConfig.safeBlockSizeVertical(0.04)),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      LocaleTextClass.getTextWithKey(
-                                          context, "Hello"),
-                                      style: AppTextStyle.regularDarkTitle,
-                                    ),
-                                    const SizedBox(
-                                      width: 3,
-                                    ),
-                                    Text(
-                                      user.name,
-                                      style: AppTextStyle.regularAccentTitle,
-                                    )
-                                  ],
-                                ),
-                                GestureDetector(
-                                    onTap: () => Navigator.pushNamed(
-                                        context, SettingsMainScreen.id),
-                                    child: const Icon(Icons.settings,
-                                        color: AppTheme.textDark, size: 25)),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            PrimaryButton(
-                              onTap: () => _registerNewQueryPressed(
-                                  context, userController),
-                              sizeConfig: sizeConfig,
-                              child: Center(
-                                child: Text(
-                                  LocaleTextClass.getTextWithKey(
-                                      context, "RegisterQuery"),
-                                  style: AppTextStyle.smallLightTitle,
+                  body: RefreshIndicator(
+                    backgroundColor: AppTheme.backgroundColor,
+                    color: AppTheme.primaryColor,
+                    strokeWidth: 3,
+                    triggerMode: RefreshIndicatorTriggerMode.onEdge,
+                    onRefresh: () => _refresh(userController),
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                sizeConfig.safeBlockSizeHorizontal(0.08),
+                            vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        LocaleTextClass.getTextWithKey(
+                                            context, "Hello"),
+                                        style: AppTextStyle.regularDarkTitle,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      Text(
+                                        user.name,
+                                        style: AppTextStyle.regularAccentTitle,
+                                      )
+                                    ],
+                                  ),
+                                  GestureDetector(
+                                      onTap: () => Navigator.pushNamed(
+                                          context, SettingsMainScreen.id),
+                                      child: const Icon(Icons.settings,
+                                          color: AppTheme.textDark, size: 25)),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              PrimaryButton(
+                                onTap: () => _registerNewQueryPressed(
+                                    context, userController),
+                                sizeConfig: sizeConfig,
+                                child: Center(
+                                  child: Text(
+                                    LocaleTextClass.getTextWithKey(
+                                        context, "RegisterQuery"),
+                                    style: AppTextStyle.smallLightTitle,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Text(
-                              LocaleTextClass.getTextWithKey(
-                                  context, "PreviousQueries"),
-                              style: AppTextStyle.smallDarkTitle,
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            if (user.queries.isEmpty)
-                              Center(
-                                  child: NoPrevQueryWidget(
-                                      sizeConfig: sizeConfig)),
-                            if (user.queries.isNotEmpty)
-                              ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: user.queries.length,
-                                itemBuilder: (context, index) {
-                                  final query = user.queries[index];
-                                  return QueryCard(
-                                    queryId: query.id,
-                                    title: query.title,
-                                    isArchived: query.closed,
-                                    sizeConfig: sizeConfig,
-                                  );
-                                },
-                              )
-                          ]),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                LocaleTextClass.getTextWithKey(
+                                    context, "PreviousQueries"),
+                                style: AppTextStyle.smallDarkTitle,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              if (user.queries.isEmpty)
+                                Center(
+                                    child: NoPrevQueryWidget(
+                                        sizeConfig: sizeConfig)),
+                              if (user.queries.isNotEmpty)
+                                ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: user.queries.length,
+                                  itemBuilder: (context, index) {
+                                    final query = user.queries[index];
+                                    return QueryCard(
+                                      queryId: query.id,
+                                      title: query.title,
+                                      isArchived: query.closed,
+                                      sizeConfig: sizeConfig,
+                                    );
+                                  },
+                                )
+                            ]),
+                      ),
                     ),
                   ),
                 )));

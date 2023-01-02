@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/models/query/query.dart';
@@ -17,14 +19,18 @@ class QueryThread extends StatelessWidget {
   static String id = "QueryThread";
   const QueryThread({super.key});
 
-  void _replyInThreadPressed(
+  Future<void> _replyInThreadPressed(
       context, QueryThreadController queryThreadController) async {
     var shouldRefresh = await Navigator.pushNamed(
         context, ThreadRespondScreen.id,
         arguments: queryThreadController.queryId);
     if (shouldRefresh is bool && shouldRefresh) {
-      await queryThreadController.getQueryDetails();
+      await _refresh(queryThreadController);
     }
+  }
+
+  Future<void> _refresh(QueryThreadController queryThreadController) async {
+    await queryThreadController.getQueryDetails();
   }
 
   @override
@@ -46,138 +52,152 @@ class QueryThread extends StatelessWidget {
                     otherAttachments) =>
                 Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
-                  body: SingleChildScrollView(
-                      child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  sizeConfig.safeBlockSizeHorizontal(0.06),
-                              vertical: sizeConfig.safeBlockSizeVertical(0.04)),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const CustomBackButton(),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          LocaleTextClass.getTextWithKey(
-                                              context, "QueryThread"),
-                                          style: AppTextStyle.regularDarkTitle,
-                                        ),
-                                      ],
-                                    ),
-                                    Badges(
-                                        text: LocaleTextClass.getTextWithKey(
-                                            context,
-                                            query.closed
-                                                ? "ARCHIVED"
-                                                : "ACTIVE"),
-                                        color: query.closed
-                                            ? AppTheme.disabledColor
-                                            : AppTheme.activeColor)
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                  body: RefreshIndicator(
+                    backgroundColor: AppTheme.backgroundColor,
+                    color: AppTheme.primaryColor,
+                    strokeWidth: 3,
+                    triggerMode: RefreshIndicatorTriggerMode.onEdge,
+                    onRefresh: () => _refresh(queryThreadController),
+                    child: SingleChildScrollView(
+                        child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    sizeConfig.safeBlockSizeHorizontal(0.06),
+                                vertical:
+                                    sizeConfig.safeBlockSizeVertical(0.04)),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text(
-                                            query.title,
-                                            style: AppTextStyle
-                                                .largeDarkLightBoldBody,
-                                          ),
+                                          const CustomBackButton(),
                                           const SizedBox(
-                                            height: 20,
+                                            width: 10,
                                           ),
-                                          MessageCard(
-                                            user:
-                                                LocaleTextClass.getTextWithKey(
-                                                    context, "You"),
-                                            body: query.content,
-                                            date: QueryThreadController
-                                                .getDatetimeString(
-                                                    query.timestamp),
-                                            isArchived: query.closed,
-                                            sizeConfig: sizeConfig,
-                                            otherAttachmentDownloadFunction:
-                                                QueryThreadController
-                                                    .getDownloadAttachmentFunction(
-                                                        otherAttachments),
-                                            otherAttachments: otherAttachments,
-                                            voiceAttachments: voiceAttachments,
-                                            isLoadingAttachments:
-                                                isLoadingAttachments,
+                                          Text(
+                                            LocaleTextClass.getTextWithKey(
+                                                context, "QueryThread"),
+                                            style:
+                                                AppTextStyle.regularDarkTitle,
                                           ),
-                                          if (query.responses.isNotEmpty)
-                                            ListView.builder(
-                                                physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                shrinkWrap: true,
-                                                itemCount:
-                                                    query.responses.length,
-                                                itemBuilder: (context, index) =>
-                                                    MessageCard(
-                                                      user: LocaleTextClass.getTextWithKey(
-                                                          context,
-                                                          QueryThreadController
-                                                              .getResponderName(
-                                                                  query.responses[
-                                                                      index])),
-                                                      body: query
-                                                          .responses[index]
-                                                          .content,
-                                                      date: QueryThreadController
-                                                          .getDatetimeString(
-                                                              query
-                                                                  .responses[
-                                                                      index]
-                                                                  .timestamp),
-                                                      isArchived: query.closed,
-                                                      sizeConfig: sizeConfig,
-                                                      otherAttachmentDownloadFunction:
-                                                          null,
-                                                      otherAttachments: null,
-                                                      isLoadingAttachments:
-                                                          false,
-                                                    )),
-                                          if (!query.closed)
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () =>
-                                                      _replyInThreadPressed(
-                                                          context,
-                                                          queryThreadController),
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      LocaleTextClass
-                                                          .getTextWithKey(
-                                                              context,
-                                                              "ReplyInThreadButton"),
-                                                      style: AppTextStyle
-                                                          .smallDarkLightBoldBody,
+                                        ],
+                                      ),
+                                      Badges(
+                                          text: LocaleTextClass.getTextWithKey(
+                                              context,
+                                              query.closed
+                                                  ? "ARCHIVED"
+                                                  : "ACTIVE"),
+                                          color: query.closed
+                                              ? AppTheme.disabledColor
+                                              : AppTheme.activeColor)
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              query.title,
+                                              style: AppTextStyle
+                                                  .largeDarkLightBoldBody,
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            MessageCard(
+                                              user: LocaleTextClass
+                                                  .getTextWithKey(
+                                                      context, "You"),
+                                              body: query.content,
+                                              date: QueryThreadController
+                                                  .getDatetimeString(
+                                                      query.timestamp),
+                                              isArchived: query.closed,
+                                              sizeConfig: sizeConfig,
+                                              otherAttachmentDownloadFunction:
+                                                  QueryThreadController
+                                                      .getDownloadAttachmentFunction(
+                                                          otherAttachments),
+                                              otherAttachments:
+                                                  otherAttachments,
+                                              voiceAttachments:
+                                                  voiceAttachments,
+                                              isLoadingAttachments:
+                                                  isLoadingAttachments,
+                                            ),
+                                            if (query.responses.isNotEmpty)
+                                              ListView.builder(
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount:
+                                                      query.responses.length,
+                                                  itemBuilder: (context,
+                                                          index) =>
+                                                      MessageCard(
+                                                        user: LocaleTextClass.getTextWithKey(
+                                                            context,
+                                                            QueryThreadController
+                                                                .getResponderName(
+                                                                    query.responses[
+                                                                        index])),
+                                                        body: query
+                                                            .responses[index]
+                                                            .content,
+                                                        date: QueryThreadController
+                                                            .getDatetimeString(
+                                                                query
+                                                                    .responses[
+                                                                        index]
+                                                                    .timestamp),
+                                                        isArchived:
+                                                            query.closed,
+                                                        sizeConfig: sizeConfig,
+                                                        otherAttachmentDownloadFunction:
+                                                            null,
+                                                        otherAttachments: null,
+                                                        isLoadingAttachments:
+                                                            false,
+                                                      )),
+                                            if (!query.closed)
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () =>
+                                                        _replyInThreadPressed(
+                                                            context,
+                                                            queryThreadController),
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        LocaleTextClass
+                                                            .getTextWithKey(
+                                                                context,
+                                                                "ReplyInThreadButton"),
+                                                        style: AppTextStyle
+                                                            .smallDarkLightBoldBody,
+                                                      ),
                                                     ),
-                                                  ),
-                                                )
-                                              ],
-                                            )
-                                        ])),
-                              ]))),
+                                                  )
+                                                ],
+                                              )
+                                          ])),
+                                ]))),
+                  ),
                 ));
       }),
     );
