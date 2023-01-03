@@ -10,5 +10,4 @@ abstract class RecordingState with _$RecordingState {
       _RecordingStateRecording;
   const factory RecordingState.recordingCompleted() =
       _RecordingStateRecordingCompleted;
-  const factory RecordingState.error(String error) = _RecordingStateError;
 }

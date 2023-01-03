@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:clijeo_public/controllers/error/error_controller.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
 import 'package:clijeo_public/controllers/new_query/recording/recording_state.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,10 @@ class RecordingController extends ChangeNotifier {
   RecordingState state = const RecordingState.notRecording();
   final Record _audioRecorder = Record();
   Timer? _timer;
+
+  void disposeController() {
+    _timer?.cancel();
+  }
 
   void _startTimer() {
     // cancel is a timer is running previously
@@ -23,33 +28,45 @@ class RecordingController extends ChangeNotifier {
     });
   }
 
-  Future<void> startRecording() async {
-    try {
-      if (await _audioRecorder.hasPermission()) {
-        await _audioRecorder.start();
-        state = const RecordingState.recording(duration: 0);
-        notifyListeners();
-        _startTimer();
-      }
-    } catch (e) {
-      log(e.toString());
-      state = RecordingState.error(e.toString());
-      notifyListeners();
-    }
+  Future<void> startRecording(NewQueryFormController formController) async {
+    await state.maybeWhen(
+        notRecording: () async {
+          try {
+            if (await _audioRecorder.hasPermission()) {
+              await _audioRecorder.start();
+              state = const RecordingState.recording(duration: 0);
+              notifyListeners();
+              _startTimer();
+            } else {
+              log("[RecordingController] (startRecording) Error: No Permission");
+              formController.updateStableStateVoiceAttachmentError(
+                  ErrorController.recordingPermission);
+            }
+          } catch (e) {
+            log("[RecordingController] (startRecording) Error:${e.toString()}");
+            formController.updateStableStateVoiceAttachmentError(
+                ErrorController.recordingError);
+          }
+        },
+        orElse: () {});
   }
 
   Future<void> stopRecording(NewQueryFormController controller) async {
-    // stop the timer callback
-    _timer?.cancel();
+    await state.maybeWhen(
+        recording: (_) async {
+          // stop the timer callback
+          _timer?.cancel();
 
-    final path = await _audioRecorder.stop();
-    if (path != null) {
-      controller.updateStableStateVoiceAttachmentPath(path);
-      state = const RecordingState.recordingCompleted();
-    } else {
-      log("NULL PATH");
-      state = RecordingState.error("NULL PATH");
-    }
-    notifyListeners();
+          final path = await _audioRecorder.stop();
+          if (path != null) {
+            controller.updateStableStateVoiceAttachmentPath(path);
+            state = const RecordingState.recordingCompleted();
+          } else {
+            log("[RecordingController] (stopRecording) Error: recording path is NULL");
+            state = const RecordingState.notRecording();
+          }
+          notifyListeners();
+        },
+        orElse: () {});
   }
 }

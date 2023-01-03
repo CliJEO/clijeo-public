@@ -53,5 +53,9 @@
     "Error": "ERROR",
     "SignInError":  "Sign In failed",
     "RefreshUserError": "Unable to refresh user data",
-    "SaveProfileDetailsError": "Failed to save profile details"
+    "SaveProfileDetailsError": "Failed to save profile details",
+    "RecorderError": "Audio Recording failed",
+    "RecordingPermission": "Insufficient Permissions for recording",
+    "RegisterQueryError": "Unable to register query",
+    "FileAttachmentPermission": "Insufficient Permissions to view device files"
 }

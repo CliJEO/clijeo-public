@@ -21,7 +21,6 @@ mixin _$AudioPlaybackState {
     required TResult Function() initial,
     required TResult Function(Duration currentPos, Duration duration) paused,
     required TResult Function(Duration currentPos, Duration duration) playing,
-    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +28,6 @@ mixin _$AudioPlaybackState {
     TResult? Function()? initial,
     TResult? Function(Duration currentPos, Duration duration)? paused,
     TResult? Function(Duration currentPos, Duration duration)? playing,
-    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +35,6 @@ mixin _$AudioPlaybackState {
     TResult Function()? initial,
     TResult Function(Duration currentPos, Duration duration)? paused,
     TResult Function(Duration currentPos, Duration duration)? playing,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +43,6 @@ mixin _$AudioPlaybackState {
     required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
-    required TResult Function(_AudioPlaybackError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +50,6 @@ mixin _$AudioPlaybackState {
     TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
-    TResult? Function(_AudioPlaybackError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +57,6 @@ mixin _$AudioPlaybackState {
     TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
-    TResult Function(_AudioPlaybackError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -130,7 +124,6 @@ class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
     required TResult Function() initial,
     required TResult Function(Duration currentPos, Duration duration) paused,
     required TResult Function(Duration currentPos, Duration duration) playing,
-    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -141,7 +134,6 @@ class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
     TResult? Function()? initial,
     TResult? Function(Duration currentPos, Duration duration)? paused,
     TResult? Function(Duration currentPos, Duration duration)? playing,
-    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -152,7 +144,6 @@ class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
     TResult Function()? initial,
     TResult Function(Duration currentPos, Duration duration)? paused,
     TResult Function(Duration currentPos, Duration duration)? playing,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -167,7 +158,6 @@ class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
     required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
-    required TResult Function(_AudioPlaybackError value) error,
   }) {
     return initial(this);
   }
@@ -178,7 +168,6 @@ class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
     TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
-    TResult? Function(_AudioPlaybackError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -189,7 +178,6 @@ class _$_AudioPlaybackStateInitial implements _AudioPlaybackStateInitial {
     TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
-    TResult Function(_AudioPlaybackError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -282,7 +270,6 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
     required TResult Function() initial,
     required TResult Function(Duration currentPos, Duration duration) paused,
     required TResult Function(Duration currentPos, Duration duration) playing,
-    required TResult Function(String error) error,
   }) {
     return paused(currentPos, duration);
   }
@@ -293,7 +280,6 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
     TResult? Function()? initial,
     TResult? Function(Duration currentPos, Duration duration)? paused,
     TResult? Function(Duration currentPos, Duration duration)? playing,
-    TResult? Function(String error)? error,
   }) {
     return paused?.call(currentPos, duration);
   }
@@ -304,7 +290,6 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
     TResult Function()? initial,
     TResult Function(Duration currentPos, Duration duration)? paused,
     TResult Function(Duration currentPos, Duration duration)? playing,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (paused != null) {
@@ -319,7 +304,6 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
     required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
-    required TResult Function(_AudioPlaybackError value) error,
   }) {
     return paused(this);
   }
@@ -330,7 +314,6 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
     TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
-    TResult? Function(_AudioPlaybackError value)? error,
   }) {
     return paused?.call(this);
   }
@@ -341,7 +324,6 @@ class _$_AudioPlaybackPaused implements _AudioPlaybackPaused {
     TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
-    TResult Function(_AudioPlaybackError value)? error,
     required TResult orElse(),
   }) {
     if (paused != null) {
@@ -442,7 +424,6 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
     required TResult Function() initial,
     required TResult Function(Duration currentPos, Duration duration) paused,
     required TResult Function(Duration currentPos, Duration duration) playing,
-    required TResult Function(String error) error,
   }) {
     return playing(currentPos, duration);
   }
@@ -453,7 +434,6 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
     TResult? Function()? initial,
     TResult? Function(Duration currentPos, Duration duration)? paused,
     TResult? Function(Duration currentPos, Duration duration)? playing,
-    TResult? Function(String error)? error,
   }) {
     return playing?.call(currentPos, duration);
   }
@@ -464,7 +444,6 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
     TResult Function()? initial,
     TResult Function(Duration currentPos, Duration duration)? paused,
     TResult Function(Duration currentPos, Duration duration)? playing,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (playing != null) {
@@ -479,7 +458,6 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
     required TResult Function(_AudioPlaybackStateInitial value) initial,
     required TResult Function(_AudioPlaybackPaused value) paused,
     required TResult Function(_AudioPlaybackPlaying value) playing,
-    required TResult Function(_AudioPlaybackError value) error,
   }) {
     return playing(this);
   }
@@ -490,7 +468,6 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
     TResult? Function(_AudioPlaybackStateInitial value)? initial,
     TResult? Function(_AudioPlaybackPaused value)? paused,
     TResult? Function(_AudioPlaybackPlaying value)? playing,
-    TResult? Function(_AudioPlaybackError value)? error,
   }) {
     return playing?.call(this);
   }
@@ -501,7 +478,6 @@ class _$_AudioPlaybackPlaying implements _AudioPlaybackPlaying {
     TResult Function(_AudioPlaybackStateInitial value)? initial,
     TResult Function(_AudioPlaybackPaused value)? paused,
     TResult Function(_AudioPlaybackPlaying value)? playing,
-    TResult Function(_AudioPlaybackError value)? error,
     required TResult orElse(),
   }) {
     if (playing != null) {
@@ -520,151 +496,5 @@ abstract class _AudioPlaybackPlaying implements AudioPlaybackState {
   Duration get duration;
   @JsonKey(ignore: true)
   _$$_AudioPlaybackPlayingCopyWith<_$_AudioPlaybackPlaying> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_AudioPlaybackErrorCopyWith<$Res> {
-  factory _$$_AudioPlaybackErrorCopyWith(_$_AudioPlaybackError value,
-          $Res Function(_$_AudioPlaybackError) then) =
-      __$$_AudioPlaybackErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
-}
-
-/// @nodoc
-class __$$_AudioPlaybackErrorCopyWithImpl<$Res>
-    extends _$AudioPlaybackStateCopyWithImpl<$Res, _$_AudioPlaybackError>
-    implements _$$_AudioPlaybackErrorCopyWith<$Res> {
-  __$$_AudioPlaybackErrorCopyWithImpl(
-      _$_AudioPlaybackError _value, $Res Function(_$_AudioPlaybackError) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_AudioPlaybackError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_AudioPlaybackError implements _AudioPlaybackError {
-  const _$_AudioPlaybackError(this.error);
-
-  @override
-  final String error;
-
-  @override
-  String toString() {
-    return 'AudioPlaybackState.error(error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AudioPlaybackError &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_AudioPlaybackErrorCopyWith<_$_AudioPlaybackError> get copyWith =>
-      __$$_AudioPlaybackErrorCopyWithImpl<_$_AudioPlaybackError>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Duration currentPos, Duration duration) paused,
-    required TResult Function(Duration currentPos, Duration duration) playing,
-    required TResult Function(String error) error,
-  }) {
-    return error(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(Duration currentPos, Duration duration)? paused,
-    TResult? Function(Duration currentPos, Duration duration)? playing,
-    TResult? Function(String error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Duration currentPos, Duration duration)? paused,
-    TResult Function(Duration currentPos, Duration duration)? playing,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AudioPlaybackStateInitial value) initial,
-    required TResult Function(_AudioPlaybackPaused value) paused,
-    required TResult Function(_AudioPlaybackPlaying value) playing,
-    required TResult Function(_AudioPlaybackError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AudioPlaybackStateInitial value)? initial,
-    TResult? Function(_AudioPlaybackPaused value)? paused,
-    TResult? Function(_AudioPlaybackPlaying value)? playing,
-    TResult? Function(_AudioPlaybackError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AudioPlaybackStateInitial value)? initial,
-    TResult Function(_AudioPlaybackPaused value)? paused,
-    TResult Function(_AudioPlaybackPlaying value)? playing,
-    TResult Function(_AudioPlaybackError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AudioPlaybackError implements AudioPlaybackState {
-  const factory _AudioPlaybackError(final String error) = _$_AudioPlaybackError;
-
-  String get error;
-  @JsonKey(ignore: true)
-  _$$_AudioPlaybackErrorCopyWith<_$_AudioPlaybackError> get copyWith =>
       throw _privateConstructorUsedError;
 }
