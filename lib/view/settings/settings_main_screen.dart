@@ -1,7 +1,7 @@
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
+import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/core/common_components/disabled_form_field.dart';

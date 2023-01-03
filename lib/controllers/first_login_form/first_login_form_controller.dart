@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';

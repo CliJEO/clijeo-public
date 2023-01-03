@@ -1,9 +1,9 @@
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
-import 'package:clijeo_public/view/core/constants.dart';
+import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
+import 'package:clijeo_public/controllers/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
-import 'package:clijeo_public/controllers/core/localization/app_localization.dart';
-import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/app_localization.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
 import 'package:clijeo_public/view/query_thread/query_thread.dart';

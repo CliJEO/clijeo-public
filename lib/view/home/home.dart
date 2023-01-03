@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/home/components/no_prev_query_widget.dart';
