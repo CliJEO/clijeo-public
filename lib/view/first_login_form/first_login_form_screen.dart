@@ -10,7 +10,7 @@ import 'package:clijeo_public/controllers/first_login_form/first_login_form_cont
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/error/error_widget.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';

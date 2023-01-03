@@ -6,7 +6,7 @@ import 'package:clijeo_public/view/core/common_components/custom_back_button.dar
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/new_query/components/query_recording.dart';
 import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
@@ -40,7 +40,7 @@ class NewQueryFormScreen extends StatelessWidget {
             builder: (context, newQueryFormController, _) {
           return newQueryFormController.state.when(
               loading: () => const Loading(),
-              error: (error) => ErrorScreen(),
+              error: (error) => QueryThreadErrorScreen(),
               stable: (subject, body, voiceAttachmentPath, otherAttachments) =>
                   Scaffold(
                       backgroundColor: AppTheme.backgroundColor,

@@ -29,15 +29,6 @@ class FirstLoginFormController extends ChangeNotifier {
     }
   }
 
-  void updateStableStateSaveProfileDetailsError(String error) {
-    state = state.maybeMap(
-        stable: (value) => value.copyWith(saveProfileDetailsError: error),
-        orElse: () => state);
-
-    // Since this field correspond to UI that needs to change
-    notifyListeners();
-  }
-
   void updateStableStateGender(String? updatedGender) {
     if (updatedGender != null) {
       state = state.maybeMap(
@@ -114,7 +105,7 @@ class FirstLoginFormController extends ChangeNotifier {
 
             return const FirstLoginFormState.completed();
           } on DioError catch (e) {
-            log("[FirstLoginFormController] (signProfileDetails) DioError:${e.message}");
+            log("[FirstLoginFormController] (saveProfileDetails) DioError:${e.message}");
             return oldState.copyWith(
                 saveProfileDetailsError:
                     ErrorController.saveProfileDetailsError);

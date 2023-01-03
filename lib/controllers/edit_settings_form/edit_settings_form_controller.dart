@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:clijeo_public/controllers/edit_settings_form/edit_settings_form_state.dart';
+import 'package:clijeo_public/controllers/error/error_controller.dart';
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
 import 'package:clijeo_public/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
@@ -32,8 +33,7 @@ class EditSettingsFormController extends ChangeNotifier {
     if (updatedName != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(name: updatedName),
-          orElse: () =>
-              const EditSettingsFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
@@ -41,8 +41,7 @@ class EditSettingsFormController extends ChangeNotifier {
     if (updatedGender != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(gender: updatedGender),
-          orElse: () =>
-              const EditSettingsFormState.error("State Error: Invalid State"));
+          orElse: () => state);
 
       // Since these fields correspond to UI that needs to change
       notifyListeners();
@@ -53,8 +52,7 @@ class EditSettingsFormController extends ChangeNotifier {
     if (updatedLanguage != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(language: updatedLanguage),
-          orElse: () =>
-              const EditSettingsFormState.error("State Error: Invalid State"));
+          orElse: () => state);
 
       // Since these fields correspond to UI that needs to change
       notifyListeners();
@@ -65,8 +63,7 @@ class EditSettingsFormController extends ChangeNotifier {
     if (updatedAge != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(age: int.tryParse(updatedAge)),
-          orElse: () =>
-              const EditSettingsFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
@@ -74,8 +71,7 @@ class EditSettingsFormController extends ChangeNotifier {
     if (updatedPhoneNumber != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(phoneNumber: updatedPhoneNumber),
-          orElse: () =>
-              const EditSettingsFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
@@ -83,22 +79,22 @@ class EditSettingsFormController extends ChangeNotifier {
     if (updatedLocation != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(location: updatedLocation),
-          orElse: () =>
-              const EditSettingsFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
   Future<void> saveProfileDetails(LanguageController languageController) async {
-    await state.maybeWhen(
-        stable: (name, age, gender, language, phoneNumber, location) async {
+    state = await state.maybeMap(
+        stable: (oldState) async {
           final user = ClijeoUserDto(
-            name: name,
-            age: age,
-            gender: gender,
-            phoneNumber: phoneNumber,
-            location: location,
+            name: oldState.name,
+            age: oldState.age,
+            gender: oldState.gender,
+            phoneNumber: oldState.phoneNumber,
+            location: oldState.location,
           );
 
+          // Setting the state to loading as processing continues
           state = const EditSettingsFormState.loading();
           notifyListeners();
 
@@ -113,17 +109,17 @@ class EditSettingsFormController extends ChangeNotifier {
 
             // Updating the shared pref and static variable for language
             await languageController
-                .setCurrentLanguageCodeAndUpdateSharedPref(language);
+                .setCurrentLanguageCodeAndUpdateSharedPref(oldState.language);
 
-            log("language added to shared pref");
+            return const EditSettingsFormState.completed();
           } on DioError catch (e) {
-            state = EditSettingsFormState.error("Dio Error: ${e.response}");
-            notifyListeners();
-          } on Error catch (e) {
-            state = EditSettingsFormState.error("Error: ${e.toString()}");
-            notifyListeners();
+            log("[EditSettingsFormController] (saveProfileDetails) DioError:${e.message}");
+            return oldState.copyWith(
+                saveProfileDetailsError:
+                    ErrorController.saveProfileDetailsError);
           }
         },
-        orElse: () {});
+        orElse: () => state);
+    notifyListeners();
   }
 }

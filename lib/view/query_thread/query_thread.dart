@@ -4,7 +4,7 @@ import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/models/query/query.dart';
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/query_thread/components/badges.dart';
 import 'package:clijeo_public/view/query_thread/components/message_card.dart';
@@ -47,7 +47,7 @@ class QueryThread extends StatelessWidget {
               return const Loading();
             },
             loading: () => const Loading(),
-            error: (error) => const ErrorScreen(),
+            error: (error) => const QueryThreadErrorScreen(),
             stable: (query, isLoadingAttachments, voiceAttachments,
                     otherAttachments) =>
                 Scaffold(

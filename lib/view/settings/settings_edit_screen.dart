@@ -8,7 +8,8 @@ import 'package:clijeo_public/view/core/common_components/custom_form_field.dart
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/constants.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/error_widget.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:clijeo_public/view/core/theme/app_text_style.dart';
@@ -41,7 +42,8 @@ class SettingsEditScreen extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       await controller.saveProfileDetails(languageController);
-      Navigator.of(context).pop(true);
+      controller.state.maybeWhen(
+          completed: () => Navigator.of(context).pop(true), orElse: () {});
     }
   }
 
@@ -62,9 +64,9 @@ class SettingsEditScreen extends StatelessWidget {
           builder: (context, settingsFormController, _) =>
               settingsFormController.state.when(
                   loading: () => Loading(),
-                  error: (error) => ErrorScreen(),
-                  stable: ((name, age, gender, language, phoneNumber,
-                          location) =>
+                  completed: () => const Loading(),
+                  stable: ((name, age, gender, language, phoneNumber, location,
+                          saveProfileDetailsError) =>
                       Scaffold(
                         backgroundColor: AppTheme.backgroundColor,
                         body: SingleChildScrollView(
@@ -123,7 +125,7 @@ class SettingsEditScreen extends StatelessWidget {
                                           CustomFormField(
                                             validator: FormValidationController
                                                 .nullStringValidation,
-                                            initialValue: age.toString(),
+                                            initialValue: age?.toString(),
                                             onSaved: settingsFormController
                                                 .updateStableStateAge,
                                             textInputType: TextInputType.number,
@@ -231,6 +233,13 @@ class SettingsEditScreen extends StatelessWidget {
                                         ],
                                       ),
                                     )),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                if (saveProfileDetailsError != null)
+                                  CustomErrorWidget(
+                                      errorText: LocaleTextClass.getTextWithKey(
+                                          context, saveProfileDetailsError)),
                               ]),
                         )),
                       )))),

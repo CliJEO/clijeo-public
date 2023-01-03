@@ -10,8 +10,8 @@ abstract class EditSettingsFormState with _$EditSettingsFormState {
       required String gender,
       required String language,
       String? phoneNumber,
-      String? location}) = _EditSettingsFormStable;
+      String? location,
+      String? saveProfileDetailsError}) = _EditSettingsFormStable;
   const factory EditSettingsFormState.loading() = _EditSettingsFormLoading;
-  const factory EditSettingsFormState.error(String error) =
-      _EditSettingsFormError;
+  const factory EditSettingsFormState.completed() = _EditSettingsFormCompleted;
 }
