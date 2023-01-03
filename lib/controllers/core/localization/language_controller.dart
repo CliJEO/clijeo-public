@@ -15,7 +15,7 @@ class LanguageController extends ChangeNotifier {
 
   void setCurrentLanguageCode(String languageCode) {
     languageCode = _stripCountryCode(languageCode);
-    log("Setting Language Code: $_currentLanguageCode");
+    log("Setting Language Code: $languageCode");
     if (Constants.getSupportedLanguages().contains(languageCode)) {
       _currentLanguageCode = languageCode;
       notifyListeners();

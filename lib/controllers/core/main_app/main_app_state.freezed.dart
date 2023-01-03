@@ -19,6 +19,7 @@ mixin _$MainAppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
     required TResult Function() authenticatedFirstLogin,
     required TResult Function() loading,
@@ -28,6 +29,7 @@ mixin _$MainAppState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticated,
+    TResult? Function()? initial,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticatedFirstLogin,
     TResult? Function()? loading,
@@ -37,6 +39,7 @@ mixin _$MainAppState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     TResult Function()? authenticatedFirstLogin,
     TResult Function()? loading,
@@ -47,6 +50,7 @@ mixin _$MainAppState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
     required TResult Function(_MainAppStateUnauthenticated value)
         unauthenticated,
     required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
@@ -58,6 +62,7 @@ mixin _$MainAppState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
     TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -68,6 +73,7 @@ mixin _$MainAppState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
     TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -138,6 +144,7 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
     required TResult Function() authenticatedFirstLogin,
     required TResult Function() loading,
@@ -150,6 +157,7 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticated,
+    TResult? Function()? initial,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticatedFirstLogin,
     TResult? Function()? loading,
@@ -162,6 +170,7 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     TResult Function()? authenticatedFirstLogin,
     TResult Function()? loading,
@@ -178,6 +187,7 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
     required TResult Function(_MainAppStateUnauthenticated value)
         unauthenticated,
     required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
@@ -192,6 +202,7 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
     TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -205,6 +216,7 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
     TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -221,6 +233,136 @@ class _$_MainAppStateAuthenticated implements _MainAppStateAuthenticated {
 
 abstract class _MainAppStateAuthenticated implements MainAppState {
   const factory _MainAppStateAuthenticated() = _$_MainAppStateAuthenticated;
+}
+
+/// @nodoc
+abstract class _$$_MainAppStateInitialCopyWith<$Res> {
+  factory _$$_MainAppStateInitialCopyWith(_$_MainAppStateInitial value,
+          $Res Function(_$_MainAppStateInitial) then) =
+      __$$_MainAppStateInitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_MainAppStateInitialCopyWithImpl<$Res>
+    extends _$MainAppStateCopyWithImpl<$Res, _$_MainAppStateInitial>
+    implements _$$_MainAppStateInitialCopyWith<$Res> {
+  __$$_MainAppStateInitialCopyWithImpl(_$_MainAppStateInitial _value,
+      $Res Function(_$_MainAppStateInitial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_MainAppStateInitial implements _MainAppStateInitial {
+  const _$_MainAppStateInitial();
+
+  @override
+  String toString() {
+    return 'MainAppState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_MainAppStateInitial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+    required TResult Function() authenticatedFirstLogin,
+    required TResult Function() loading,
+    required TResult Function(String error) error,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authenticated,
+    TResult? Function()? initial,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? authenticatedFirstLogin,
+    TResult? Function()? loading,
+    TResult? Function(String error)? error,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    TResult Function()? authenticatedFirstLogin,
+    TResult Function()? loading,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
+    required TResult Function(_MainAppStateUnauthenticated value)
+        unauthenticated,
+    required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
+        authenticatedFirstLogin,
+    required TResult Function(_MainAppStateLoading value) loading,
+    required TResult Function(_MainAppStateError value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
+    TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
+    TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
+        authenticatedFirstLogin,
+    TResult? Function(_MainAppStateLoading value)? loading,
+    TResult? Function(_MainAppStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
+    TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
+    TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
+        authenticatedFirstLogin,
+    TResult Function(_MainAppStateLoading value)? loading,
+    TResult Function(_MainAppStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MainAppStateInitial implements MainAppState {
+  const factory _MainAppStateInitial() = _$_MainAppStateInitial;
 }
 
 /// @nodoc
@@ -265,6 +407,7 @@ class _$_MainAppStateUnauthenticated implements _MainAppStateUnauthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
     required TResult Function() authenticatedFirstLogin,
     required TResult Function() loading,
@@ -277,6 +420,7 @@ class _$_MainAppStateUnauthenticated implements _MainAppStateUnauthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticated,
+    TResult? Function()? initial,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticatedFirstLogin,
     TResult? Function()? loading,
@@ -289,6 +433,7 @@ class _$_MainAppStateUnauthenticated implements _MainAppStateUnauthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     TResult Function()? authenticatedFirstLogin,
     TResult Function()? loading,
@@ -305,6 +450,7 @@ class _$_MainAppStateUnauthenticated implements _MainAppStateUnauthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
     required TResult Function(_MainAppStateUnauthenticated value)
         unauthenticated,
     required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
@@ -319,6 +465,7 @@ class _$_MainAppStateUnauthenticated implements _MainAppStateUnauthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
     TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -332,6 +479,7 @@ class _$_MainAppStateUnauthenticated implements _MainAppStateUnauthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
     TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -394,6 +542,7 @@ class _$_MainAppStateAuthenticatedFirstLogin
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
     required TResult Function() authenticatedFirstLogin,
     required TResult Function() loading,
@@ -406,6 +555,7 @@ class _$_MainAppStateAuthenticatedFirstLogin
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticated,
+    TResult? Function()? initial,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticatedFirstLogin,
     TResult? Function()? loading,
@@ -418,6 +568,7 @@ class _$_MainAppStateAuthenticatedFirstLogin
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     TResult Function()? authenticatedFirstLogin,
     TResult Function()? loading,
@@ -434,6 +585,7 @@ class _$_MainAppStateAuthenticatedFirstLogin
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
     required TResult Function(_MainAppStateUnauthenticated value)
         unauthenticated,
     required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
@@ -448,6 +600,7 @@ class _$_MainAppStateAuthenticatedFirstLogin
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
     TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -461,6 +614,7 @@ class _$_MainAppStateAuthenticatedFirstLogin
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
     TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -519,6 +673,7 @@ class _$_MainAppStateLoading implements _MainAppStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
     required TResult Function() authenticatedFirstLogin,
     required TResult Function() loading,
@@ -531,6 +686,7 @@ class _$_MainAppStateLoading implements _MainAppStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticated,
+    TResult? Function()? initial,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticatedFirstLogin,
     TResult? Function()? loading,
@@ -543,6 +699,7 @@ class _$_MainAppStateLoading implements _MainAppStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     TResult Function()? authenticatedFirstLogin,
     TResult Function()? loading,
@@ -559,6 +716,7 @@ class _$_MainAppStateLoading implements _MainAppStateLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
     required TResult Function(_MainAppStateUnauthenticated value)
         unauthenticated,
     required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
@@ -573,6 +731,7 @@ class _$_MainAppStateLoading implements _MainAppStateLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
     TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -586,6 +745,7 @@ class _$_MainAppStateLoading implements _MainAppStateLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
     TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -670,6 +830,7 @@ class _$_MainAppStateError implements _MainAppStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() authenticated,
+    required TResult Function() initial,
     required TResult Function() unauthenticated,
     required TResult Function() authenticatedFirstLogin,
     required TResult Function() loading,
@@ -682,6 +843,7 @@ class _$_MainAppStateError implements _MainAppStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticated,
+    TResult? Function()? initial,
     TResult? Function()? unauthenticated,
     TResult? Function()? authenticatedFirstLogin,
     TResult? Function()? loading,
@@ -694,6 +856,7 @@ class _$_MainAppStateError implements _MainAppStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticated,
+    TResult Function()? initial,
     TResult Function()? unauthenticated,
     TResult Function()? authenticatedFirstLogin,
     TResult Function()? loading,
@@ -710,6 +873,7 @@ class _$_MainAppStateError implements _MainAppStateError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MainAppStateAuthenticated value) authenticated,
+    required TResult Function(_MainAppStateInitial value) initial,
     required TResult Function(_MainAppStateUnauthenticated value)
         unauthenticated,
     required TResult Function(_MainAppStateAuthenticatedFirstLogin value)
@@ -724,6 +888,7 @@ class _$_MainAppStateError implements _MainAppStateError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult? Function(_MainAppStateInitial value)? initial,
     TResult? Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult? Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,
@@ -737,6 +902,7 @@ class _$_MainAppStateError implements _MainAppStateError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MainAppStateAuthenticated value)? authenticated,
+    TResult Function(_MainAppStateInitial value)? initial,
     TResult Function(_MainAppStateUnauthenticated value)? unauthenticated,
     TResult Function(_MainAppStateAuthenticatedFirstLogin value)?
         authenticatedFirstLogin,

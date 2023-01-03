@@ -5,6 +5,7 @@ part 'main_app_state.freezed.dart';
 @freezed
 abstract class MainAppState with _$MainAppState {
   const factory MainAppState.authenticated() = _MainAppStateAuthenticated;
+  const factory MainAppState.initial() = _MainAppStateInitial;
   const factory MainAppState.unauthenticated() = _MainAppStateUnauthenticated;
   const factory MainAppState.authenticatedFirstLogin() =
       _MainAppStateAuthenticatedFirstLogin;
