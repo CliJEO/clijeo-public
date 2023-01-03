@@ -18,29 +18,47 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditSettingsFormState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String gender,
-            String language, String? phoneNumber, String? location)
+    required TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult? Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? completed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,21 +66,21 @@ mixin _$EditSettingsFormState {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditSettingsFormStable value) stable,
     required TResult Function(_EditSettingsFormLoading value) loading,
-    required TResult Function(_EditSettingsFormError value) error,
+    required TResult Function(_EditSettingsFormCompleted value) completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditSettingsFormStable value)? stable,
     TResult? Function(_EditSettingsFormLoading value)? loading,
-    TResult? Function(_EditSettingsFormError value)? error,
+    TResult? Function(_EditSettingsFormCompleted value)? completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditSettingsFormStable value)? stable,
     TResult Function(_EditSettingsFormLoading value)? loading,
-    TResult Function(_EditSettingsFormError value)? error,
+    TResult Function(_EditSettingsFormCompleted value)? completed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,7 +117,8 @@ abstract class _$$_EditSettingsFormStableCopyWith<$Res> {
       String gender,
       String language,
       String? phoneNumber,
-      String? location});
+      String? location,
+      String? saveProfileDetailsError});
 }
 
 /// @nodoc
@@ -119,6 +138,7 @@ class __$$_EditSettingsFormStableCopyWithImpl<$Res>
     Object? language = null,
     Object? phoneNumber = freezed,
     Object? location = freezed,
+    Object? saveProfileDetailsError = freezed,
   }) {
     return _then(_$_EditSettingsFormStable(
       name: null == name
@@ -145,6 +165,10 @@ class __$$_EditSettingsFormStableCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      saveProfileDetailsError: freezed == saveProfileDetailsError
+          ? _value.saveProfileDetailsError
+          : saveProfileDetailsError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -158,7 +182,8 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
       required this.gender,
       required this.language,
       this.phoneNumber,
-      this.location});
+      this.location,
+      this.saveProfileDetailsError});
 
   @override
   final String name;
@@ -172,10 +197,12 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
   final String? phoneNumber;
   @override
   final String? location;
+  @override
+  final String? saveProfileDetailsError;
 
   @override
   String toString() {
-    return 'EditSettingsFormState.stable(name: $name, age: $age, gender: $gender, language: $language, phoneNumber: $phoneNumber, location: $location)';
+    return 'EditSettingsFormState.stable(name: $name, age: $age, gender: $gender, language: $language, phoneNumber: $phoneNumber, location: $location, saveProfileDetailsError: $saveProfileDetailsError)';
   }
 
   @override
@@ -191,12 +218,15 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            (identical(
+                    other.saveProfileDetailsError, saveProfileDetailsError) ||
+                other.saveProfileDetailsError == saveProfileDetailsError));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, age, gender, language, phoneNumber, location);
+  int get hashCode => Object.hash(runtimeType, name, age, gender, language,
+      phoneNumber, location, saveProfileDetailsError);
 
   @JsonKey(ignore: true)
   @override
@@ -208,39 +238,60 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String gender,
-            String language, String? phoneNumber, String? location)
+    required TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() completed,
   }) {
-    return stable(name, age, gender, language, phoneNumber, location);
+    return stable(name, age, gender, language, phoneNumber, location,
+        saveProfileDetailsError);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult? Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? completed,
   }) {
-    return stable?.call(name, age, gender, language, phoneNumber, location);
+    return stable?.call(name, age, gender, language, phoneNumber, location,
+        saveProfileDetailsError);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(name, age, gender, language, phoneNumber, location);
+      return stable(name, age, gender, language, phoneNumber, location,
+          saveProfileDetailsError);
     }
     return orElse();
   }
@@ -250,7 +301,7 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditSettingsFormStable value) stable,
     required TResult Function(_EditSettingsFormLoading value) loading,
-    required TResult Function(_EditSettingsFormError value) error,
+    required TResult Function(_EditSettingsFormCompleted value) completed,
   }) {
     return stable(this);
   }
@@ -260,7 +311,7 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditSettingsFormStable value)? stable,
     TResult? Function(_EditSettingsFormLoading value)? loading,
-    TResult? Function(_EditSettingsFormError value)? error,
+    TResult? Function(_EditSettingsFormCompleted value)? completed,
   }) {
     return stable?.call(this);
   }
@@ -270,7 +321,7 @@ class _$_EditSettingsFormStable implements _EditSettingsFormStable {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditSettingsFormStable value)? stable,
     TResult Function(_EditSettingsFormLoading value)? loading,
-    TResult Function(_EditSettingsFormError value)? error,
+    TResult Function(_EditSettingsFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (stable != null) {
@@ -287,7 +338,8 @@ abstract class _EditSettingsFormStable implements EditSettingsFormState {
       required final String gender,
       required final String language,
       final String? phoneNumber,
-      final String? location}) = _$_EditSettingsFormStable;
+      final String? location,
+      final String? saveProfileDetailsError}) = _$_EditSettingsFormStable;
 
   String get name;
   int? get age;
@@ -295,6 +347,7 @@ abstract class _EditSettingsFormStable implements EditSettingsFormState {
   String get language;
   String? get phoneNumber;
   String? get location;
+  String? get saveProfileDetailsError;
   @JsonKey(ignore: true)
   _$$_EditSettingsFormStableCopyWith<_$_EditSettingsFormStable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -340,11 +393,17 @@ class _$_EditSettingsFormLoading implements _EditSettingsFormLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String gender,
-            String language, String? phoneNumber, String? location)
+    required TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() completed,
   }) {
     return loading();
   }
@@ -352,11 +411,17 @@ class _$_EditSettingsFormLoading implements _EditSettingsFormLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult? Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? completed,
   }) {
     return loading?.call();
   }
@@ -364,11 +429,17 @@ class _$_EditSettingsFormLoading implements _EditSettingsFormLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -382,7 +453,7 @@ class _$_EditSettingsFormLoading implements _EditSettingsFormLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditSettingsFormStable value) stable,
     required TResult Function(_EditSettingsFormLoading value) loading,
-    required TResult Function(_EditSettingsFormError value) error,
+    required TResult Function(_EditSettingsFormCompleted value) completed,
   }) {
     return loading(this);
   }
@@ -392,7 +463,7 @@ class _$_EditSettingsFormLoading implements _EditSettingsFormLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditSettingsFormStable value)? stable,
     TResult? Function(_EditSettingsFormLoading value)? loading,
-    TResult? Function(_EditSettingsFormError value)? error,
+    TResult? Function(_EditSettingsFormCompleted value)? completed,
   }) {
     return loading?.call(this);
   }
@@ -402,7 +473,7 @@ class _$_EditSettingsFormLoading implements _EditSettingsFormLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditSettingsFormStable value)? stable,
     TResult Function(_EditSettingsFormLoading value)? loading,
-    TResult Function(_EditSettingsFormError value)? error,
+    TResult Function(_EditSettingsFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -417,103 +488,98 @@ abstract class _EditSettingsFormLoading implements EditSettingsFormState {
 }
 
 /// @nodoc
-abstract class _$$_EditSettingsFormErrorCopyWith<$Res> {
-  factory _$$_EditSettingsFormErrorCopyWith(_$_EditSettingsFormError value,
-          $Res Function(_$_EditSettingsFormError) then) =
-      __$$_EditSettingsFormErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
+abstract class _$$_EditSettingsFormCompletedCopyWith<$Res> {
+  factory _$$_EditSettingsFormCompletedCopyWith(
+          _$_EditSettingsFormCompleted value,
+          $Res Function(_$_EditSettingsFormCompleted) then) =
+      __$$_EditSettingsFormCompletedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_EditSettingsFormErrorCopyWithImpl<$Res>
-    extends _$EditSettingsFormStateCopyWithImpl<$Res, _$_EditSettingsFormError>
-    implements _$$_EditSettingsFormErrorCopyWith<$Res> {
-  __$$_EditSettingsFormErrorCopyWithImpl(_$_EditSettingsFormError _value,
-      $Res Function(_$_EditSettingsFormError) _then)
+class __$$_EditSettingsFormCompletedCopyWithImpl<$Res>
+    extends _$EditSettingsFormStateCopyWithImpl<$Res,
+        _$_EditSettingsFormCompleted>
+    implements _$$_EditSettingsFormCompletedCopyWith<$Res> {
+  __$$_EditSettingsFormCompletedCopyWithImpl(
+      _$_EditSettingsFormCompleted _value,
+      $Res Function(_$_EditSettingsFormCompleted) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_EditSettingsFormError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_EditSettingsFormError implements _EditSettingsFormError {
-  const _$_EditSettingsFormError(this.error);
-
-  @override
-  final String error;
+class _$_EditSettingsFormCompleted implements _EditSettingsFormCompleted {
+  const _$_EditSettingsFormCompleted();
 
   @override
   String toString() {
-    return 'EditSettingsFormState.error(error: $error)';
+    return 'EditSettingsFormState.completed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EditSettingsFormError &&
-            (identical(other.error, error) || other.error == error));
+            other is _$_EditSettingsFormCompleted);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_EditSettingsFormErrorCopyWith<_$_EditSettingsFormError> get copyWith =>
-      __$$_EditSettingsFormErrorCopyWithImpl<_$_EditSettingsFormError>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, int? age, String gender,
-            String language, String? phoneNumber, String? location)
+    required TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() completed,
   }) {
-    return error(this.error);
+    return completed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult? Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? completed,
   }) {
-    return error?.call(this.error);
+    return completed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, int? age, String gender, String language,
-            String? phoneNumber, String? location)?
+    TResult Function(
+            String name,
+            int? age,
+            String gender,
+            String language,
+            String? phoneNumber,
+            String? location,
+            String? saveProfileDetailsError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? completed,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this.error);
+    if (completed != null) {
+      return completed();
     }
     return orElse();
   }
@@ -523,9 +589,9 @@ class _$_EditSettingsFormError implements _EditSettingsFormError {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditSettingsFormStable value) stable,
     required TResult Function(_EditSettingsFormLoading value) loading,
-    required TResult Function(_EditSettingsFormError value) error,
+    required TResult Function(_EditSettingsFormCompleted value) completed,
   }) {
-    return error(this);
+    return completed(this);
   }
 
   @override
@@ -533,9 +599,9 @@ class _$_EditSettingsFormError implements _EditSettingsFormError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditSettingsFormStable value)? stable,
     TResult? Function(_EditSettingsFormLoading value)? loading,
-    TResult? Function(_EditSettingsFormError value)? error,
+    TResult? Function(_EditSettingsFormCompleted value)? completed,
   }) {
-    return error?.call(this);
+    return completed?.call(this);
   }
 
   @override
@@ -543,22 +609,16 @@ class _$_EditSettingsFormError implements _EditSettingsFormError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditSettingsFormStable value)? stable,
     TResult Function(_EditSettingsFormLoading value)? loading,
-    TResult Function(_EditSettingsFormError value)? error,
+    TResult Function(_EditSettingsFormCompleted value)? completed,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (completed != null) {
+      return completed(this);
     }
     return orElse();
   }
 }
 
-abstract class _EditSettingsFormError implements EditSettingsFormState {
-  const factory _EditSettingsFormError(final String error) =
-      _$_EditSettingsFormError;
-
-  String get error;
-  @JsonKey(ignore: true)
-  _$$_EditSettingsFormErrorCopyWith<_$_EditSettingsFormError> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _EditSettingsFormCompleted implements EditSettingsFormState {
+  const factory _EditSettingsFormCompleted() = _$_EditSettingsFormCompleted;
 }

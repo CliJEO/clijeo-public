@@ -7,7 +7,7 @@ import 'package:clijeo_public/view/core/common_components/custom_back_button.dar
 import 'package:clijeo_public/view/core/common_components/disabled_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/disabled_toggle_button.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
@@ -42,7 +42,7 @@ class SettingsMainScreen extends StatelessWidget {
     final sizeConfig = SizeConfig(context);
     return Consumer<ClijeoUserController>(
         builder: (context, userController, _) => userController.state.when(
-            noUser: () => ErrorScreen(),
+            noUser: () => QueryThreadErrorScreen(),
             loading: () => const Loading(),
             stable: (user, refreshError) => Scaffold(
                 backgroundColor: AppTheme.backgroundColor,

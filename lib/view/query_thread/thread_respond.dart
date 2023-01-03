@@ -5,7 +5,7 @@ import 'package:clijeo_public/controllers/thread_respond_from/thread_respond_for
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:clijeo_public/view/core/theme/app_text_style.dart';
@@ -38,7 +38,7 @@ class ThreadRespondScreen extends StatelessWidget {
           builder: (context, threadRespondFormController, _) {
         return threadRespondFormController.state.when(
             loading: () => const Loading(),
-            error: (error) => const ErrorScreen(),
+            error: (error) => const QueryThreadErrorScreen(),
             stable: (body) => Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(

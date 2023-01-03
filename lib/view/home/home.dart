@@ -5,7 +5,7 @@ import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/home/components/no_prev_query_widget.dart';
 import 'package:clijeo_public/view/home/components/query_cards.dart';
-import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
 import 'package:clijeo_public/view/settings/settings_main_screen.dart';
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
     final sizeConfig = SizeConfig(context);
     return Consumer<ClijeoUserController>(
         builder: (context, userController, _) => userController.state.when(
-            noUser: () => ErrorScreen(),
+            noUser: () => QueryThreadErrorScreen(),
             loading: () => Loading(),
             stable: (user, refreshError) => Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
