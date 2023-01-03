@@ -1,13 +1,20 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:clijeo_public/view/core/constants.dart';
+import 'package:clijeo_public/controllers/core/constants.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:flutter/material.dart';
 
 class LanguageController extends ChangeNotifier {
   // Currently selected language
-  String _currentLanguageCode = Platform.localeName.split("_").first;
+  String _currentLanguageCode = Constants.getSupportedLanguages().first;
+
+  LanguageController() {
+    String languageCode = _stripCountryCode(Platform.localeName);
+    if (Constants.getSupportedLanguages().contains(languageCode)) {
+      _currentLanguageCode = languageCode;
+    }
+  }
 
   String _stripCountryCode(String languageCode) {
     return languageCode.split("_").first;

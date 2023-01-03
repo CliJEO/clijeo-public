@@ -1,9 +1,9 @@
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
-import 'package:clijeo_public/view/core/constants.dart';
+import 'package:clijeo_public/controllers/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
 import 'package:clijeo_public/controllers/first_login_form/first_login_form_state.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';

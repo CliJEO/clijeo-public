@@ -1,5 +1,5 @@
 import 'package:clijeo_public/models/attachments/local_attachments.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/models/query/media/query_media.dart';
 import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
 import 'package:clijeo_public/view/loading/loading_widget.dart';

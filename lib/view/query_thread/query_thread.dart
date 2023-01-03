@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/models/query/query.dart';
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
