@@ -49,5 +49,8 @@
     "SendMessage": "Send Message",
     "Unspecified": "Unspecified",
     "OtherAttachments": "Other Attachments",
-    "VoiceAttachment": "Voice Attachment"
+    "VoiceAttachment": "Voice Attachment",
+    "SignInError":  "Error: Sign In failed\nPlease try again later",
+    "SignOutError": "Error: Sign Out failed",
+    "RefreshUserError": "Error: Unable to refresh user data"
 }

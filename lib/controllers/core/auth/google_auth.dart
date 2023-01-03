@@ -22,7 +22,7 @@ class GoogleAuth {
     return googleAuth?.idToken;
   }
 
-  static Future<void> googleSignOut() async {
+  static Future<void> disconnectGoogleSignInControllerConnection() async {
     await GoogleSignIn().disconnect();
   }
 }

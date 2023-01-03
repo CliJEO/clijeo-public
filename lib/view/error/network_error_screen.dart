@@ -1,5 +1,5 @@
 import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 class NetworkErrorScreen extends StatelessWidget {
@@ -9,9 +9,8 @@ class NetworkErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-            backgroundColor: AppTheme.backgroundColor,
-            body: Center(
-              child: Text(LocaleTextClass.getTextWithKey(context, "NoNetwork")),
-            )));
+      backgroundColor: Colors.green,
+      body: Container(),
+    ));
   }
 }

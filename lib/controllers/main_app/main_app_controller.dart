@@ -1,62 +1,48 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/auth/google_auth.dart';
 import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/core/language/language_controller.dart';
+import 'package:clijeo_public/controllers/error/error_controller.dart';
 import 'package:clijeo_public/controllers/main_app/main_app_state.dart';
-import 'package:clijeo_public/controllers/core/notifications/notifications.dart';
+import 'package:clijeo_public/controllers/core/notification/notification_controller.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:clijeo_public/models/sign_in_response/sign_in_response.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class MainAppController extends ChangeNotifier {
   MainAppState state = const MainAppState.initial();
 
   Future<void> initializeApp(ClijeoUserController userController,
       LanguageController languageController) async {
+    // loading shared preferences for language and backend auth token
     await ClijeoSharedPref.loadSharedPrefToApp(languageController);
 
     if (BackendAuth.getToken().isNotEmpty) {
-      await ClijeoNotifications.setupNotifications();
-      state = const MainAppState.authenticated();
-      notifyListeners();
+      // Setup notification specifics for the app
+      await ClijeoNotificationController.setupNotifications();
 
-      await state.maybeWhen(
-          authenticated: () async {
-            await userController.refreshUser();
+      // Load the user
+      await userController.refreshUser();
+
+      // Set authentication status based on user state
+      userController.state.maybeWhen(
+          stable: (user, _) {
+            if (ClijeoUserController.isFirstLoggedInUser(user)) {
+              state = const MainAppState.authenticatedFirstLogin();
+            } else {
+              state = const MainAppState.authenticated();
+            }
           },
-          orElse: () {});
+          orElse: () => state = const MainAppState.networkError());
     } else {
       state = const MainAppState.unauthenticated();
-      notifyListeners();
     }
-  }
-
-  Future<void> signUserOut(ClijeoUserController userController) async {
-    state = const MainAppState.loading();
-    notifyListeners();
-
-    try {
-      await GoogleAuth.googleSignOut();
-      userController.clearUserState();
-      BackendAuth.clearToken();
-      state = const MainAppState.unauthenticated();
-      notifyListeners();
-    } catch (e) {
-      state = MainAppState.error(e.toString());
-      notifyListeners();
-    }
-  }
-
-  Future<void> firstLoginCompleted(ClijeoUserController userController) async {
-    await userController.refreshUser();
-    state = const MainAppState.authenticated();
     notifyListeners();
   }
 
@@ -67,34 +53,78 @@ class MainAppController extends ChangeNotifier {
       // Returning if access token is null
       if (idToken == null) throw Exception("NULL access token");
 
+      state = const MainAppState.loading();
+      notifyListeners();
+
       // Authenticating with the backend server
       final result = await DioBase.dioInstance
           .post(ApiUtils.loginUrl, data: {"idToken": idToken});
 
+      // disconnecting from google sign in controller
+      await GoogleAuth.disconnectGoogleSignInControllerConnection();
+
       final signInResponse = SignInResponse.fromJson(result.data);
 
-      signInResponse.when((firstLogin, jwt) async {
-        // Setting the BackendAuth static variable to the jwt token
-        await BackendAuth.setTokenAndUpdateSharedPref(jwt);
+      // Setting the BackendAuth static variable to the jwt token
+      await BackendAuth.setTokenAndUpdateSharedPref(signInResponse.jwt);
 
-        state = firstLogin
-            ? const MainAppState.authenticatedFirstLogin()
-            : const MainAppState.authenticated();
+      // updating the user controller state
+      await userController.refreshUser();
 
-        await userController.refreshUser();
-      }, error: () {
-        log("Error");
-      });
+      userController.state.maybeWhen(
+          stable: (user, _) {
+            // Setting the state based on first login
+            state = signInResponse.firstLogin
+                ? const MainAppState.authenticatedFirstLogin()
+                : const MainAppState.authenticated();
+          },
+          orElse: () => state);
     } on DioError catch (e) {
-      log("Dio Error: ${e.message}");
-      state = MainAppState.error(e.message);
+      // triggered when it is unable to communicate with the backend
+      log("MainAppController] (signIn) DioError: ${e.message}");
+
+      // cleanup: disconnecting from google sign in controller
+      await GoogleAuth.disconnectGoogleSignInControllerConnection();
+
+      state = MainAppState.unauthenticated(
+          signInError: ErrorController.signInError);
+    } on PlatformException catch (e) {
+      if (e.code == GoogleSignIn.kNetworkError) {
+        // triggered when there is no network
+        log("MainAppController] (signIn) Network Error");
+        state = const MainAppState.networkError();
+      }
     } on Exception catch (e) {
-      log("Exception Thrown: ${e.toString()}");
-      state = MainAppState.error(e.toString());
+      // triggered when the signInWithGoogle is cancelled
+      // no state update
+      log("[MainAppController] (signIn) Exception: ${e.toString()}");
     } on Error catch (e) {
-      log("Error Occured in SignUpController");
-      state = MainAppState.error(e.toString());
+      // triggered when the response from backend does not match models
+      log("[MainAppController] (signIn) Models mismatch: ${e.toString()}");
+      state = MainAppState.unauthenticated(
+          signInError: ErrorController.signInError);
     }
+    notifyListeners();
+  }
+
+  Future<void> firstLoginCompleted(ClijeoUserController userController) async {
+    // user controller state refreshed
+    await userController.refreshUser();
+
+    // updating the state
+    state = const MainAppState.authenticated();
+    notifyListeners();
+  }
+
+  Future<void> signUserOut(ClijeoUserController userController) async {
+    // clear user controller state
+    userController.clearUserState();
+
+    // clear backend token from memory and remove shared pref
+    await BackendAuth.clearToken();
+
+    // updating the state
+    state = const MainAppState.unauthenticated();
     notifyListeners();
   }
 }

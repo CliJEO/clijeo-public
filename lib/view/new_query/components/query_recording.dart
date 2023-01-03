@@ -1,7 +1,7 @@
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
 import 'package:clijeo_public/controllers/new_query/recording/recording_controller.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

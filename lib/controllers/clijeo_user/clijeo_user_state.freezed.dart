@@ -18,45 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ClijeoUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ClijeoUser user) stable,
+    required TResult Function() noUser,
+    required TResult Function(ClijeoUser user, String? refreshError) stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ClijeoUser user)? stable,
+    TResult? Function()? noUser,
+    TResult? Function(ClijeoUser user, String? refreshError)? stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ClijeoUser user)? stable,
+    TResult Function()? noUser,
+    TResult Function(ClijeoUser user, String? refreshError)? stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ClijeoUserNoUser value) noUser,
     required TResult Function(_ClijeoUserStable value) stable,
     required TResult Function(_ClijeoUserLoading value) loading,
-    required TResult Function(_ClijeoUserError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClijeoUserNoUser value)? noUser,
     TResult? Function(_ClijeoUserStable value)? stable,
     TResult? Function(_ClijeoUserLoading value)? loading,
-    TResult? Function(_ClijeoUserError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClijeoUserNoUser value)? noUser,
     TResult Function(_ClijeoUserStable value)? stable,
     TResult Function(_ClijeoUserLoading value)? loading,
-    TResult Function(_ClijeoUserError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,12 +81,120 @@ class _$ClijeoUserStateCopyWithImpl<$Res, $Val extends ClijeoUserState>
 }
 
 /// @nodoc
+abstract class _$$_ClijeoUserNoUserCopyWith<$Res> {
+  factory _$$_ClijeoUserNoUserCopyWith(
+          _$_ClijeoUserNoUser value, $Res Function(_$_ClijeoUserNoUser) then) =
+      __$$_ClijeoUserNoUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClijeoUserNoUserCopyWithImpl<$Res>
+    extends _$ClijeoUserStateCopyWithImpl<$Res, _$_ClijeoUserNoUser>
+    implements _$$_ClijeoUserNoUserCopyWith<$Res> {
+  __$$_ClijeoUserNoUserCopyWithImpl(
+      _$_ClijeoUserNoUser _value, $Res Function(_$_ClijeoUserNoUser) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ClijeoUserNoUser implements _ClijeoUserNoUser {
+  const _$_ClijeoUserNoUser();
+
+  @override
+  String toString() {
+    return 'ClijeoUserState.noUser()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ClijeoUserNoUser);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noUser,
+    required TResult Function(ClijeoUser user, String? refreshError) stable,
+    required TResult Function() loading,
+  }) {
+    return noUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noUser,
+    TResult? Function(ClijeoUser user, String? refreshError)? stable,
+    TResult? Function()? loading,
+  }) {
+    return noUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noUser,
+    TResult Function(ClijeoUser user, String? refreshError)? stable,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (noUser != null) {
+      return noUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClijeoUserNoUser value) noUser,
+    required TResult Function(_ClijeoUserStable value) stable,
+    required TResult Function(_ClijeoUserLoading value) loading,
+  }) {
+    return noUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClijeoUserNoUser value)? noUser,
+    TResult? Function(_ClijeoUserStable value)? stable,
+    TResult? Function(_ClijeoUserLoading value)? loading,
+  }) {
+    return noUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClijeoUserNoUser value)? noUser,
+    TResult Function(_ClijeoUserStable value)? stable,
+    TResult Function(_ClijeoUserLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (noUser != null) {
+      return noUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClijeoUserNoUser implements ClijeoUserState {
+  const factory _ClijeoUserNoUser() = _$_ClijeoUserNoUser;
+}
+
+/// @nodoc
 abstract class _$$_ClijeoUserStableCopyWith<$Res> {
   factory _$$_ClijeoUserStableCopyWith(
           _$_ClijeoUserStable value, $Res Function(_$_ClijeoUserStable) then) =
       __$$_ClijeoUserStableCopyWithImpl<$Res>;
   @useResult
-  $Res call({ClijeoUser user});
+  $Res call({ClijeoUser user, String? refreshError});
 
   $ClijeoUserCopyWith<$Res> get user;
 }
@@ -103,12 +211,17 @@ class __$$_ClijeoUserStableCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
+    Object? refreshError = freezed,
   }) {
     return _then(_$_ClijeoUserStable(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as ClijeoUser,
+      refreshError: freezed == refreshError
+          ? _value.refreshError
+          : refreshError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -124,14 +237,16 @@ class __$$_ClijeoUserStableCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClijeoUserStable implements _ClijeoUserStable {
-  const _$_ClijeoUserStable({required this.user});
+  const _$_ClijeoUserStable({required this.user, this.refreshError});
 
   @override
   final ClijeoUser user;
+  @override
+  final String? refreshError;
 
   @override
   String toString() {
-    return 'ClijeoUserState.stable(user: $user)';
+    return 'ClijeoUserState.stable(user: $user, refreshError: $refreshError)';
   }
 
   @override
@@ -139,11 +254,13 @@ class _$_ClijeoUserStable implements _ClijeoUserStable {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClijeoUserStable &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.refreshError, refreshError) ||
+                other.refreshError == refreshError));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, refreshError);
 
   @JsonKey(ignore: true)
   @override
@@ -154,33 +271,33 @@ class _$_ClijeoUserStable implements _ClijeoUserStable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ClijeoUser user) stable,
+    required TResult Function() noUser,
+    required TResult Function(ClijeoUser user, String? refreshError) stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
   }) {
-    return stable(user);
+    return stable(user, refreshError);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ClijeoUser user)? stable,
+    TResult? Function()? noUser,
+    TResult? Function(ClijeoUser user, String? refreshError)? stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
   }) {
-    return stable?.call(user);
+    return stable?.call(user, refreshError);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ClijeoUser user)? stable,
+    TResult Function()? noUser,
+    TResult Function(ClijeoUser user, String? refreshError)? stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(user);
+      return stable(user, refreshError);
     }
     return orElse();
   }
@@ -188,9 +305,9 @@ class _$_ClijeoUserStable implements _ClijeoUserStable {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ClijeoUserNoUser value) noUser,
     required TResult Function(_ClijeoUserStable value) stable,
     required TResult Function(_ClijeoUserLoading value) loading,
-    required TResult Function(_ClijeoUserError value) error,
   }) {
     return stable(this);
   }
@@ -198,9 +315,9 @@ class _$_ClijeoUserStable implements _ClijeoUserStable {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClijeoUserNoUser value)? noUser,
     TResult? Function(_ClijeoUserStable value)? stable,
     TResult? Function(_ClijeoUserLoading value)? loading,
-    TResult? Function(_ClijeoUserError value)? error,
   }) {
     return stable?.call(this);
   }
@@ -208,9 +325,9 @@ class _$_ClijeoUserStable implements _ClijeoUserStable {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClijeoUserNoUser value)? noUser,
     TResult Function(_ClijeoUserStable value)? stable,
     TResult Function(_ClijeoUserLoading value)? loading,
-    TResult Function(_ClijeoUserError value)? error,
     required TResult orElse(),
   }) {
     if (stable != null) {
@@ -221,10 +338,12 @@ class _$_ClijeoUserStable implements _ClijeoUserStable {
 }
 
 abstract class _ClijeoUserStable implements ClijeoUserState {
-  const factory _ClijeoUserStable({required final ClijeoUser user}) =
-      _$_ClijeoUserStable;
+  const factory _ClijeoUserStable(
+      {required final ClijeoUser user,
+      final String? refreshError}) = _$_ClijeoUserStable;
 
   ClijeoUser get user;
+  String? get refreshError;
   @JsonKey(ignore: true)
   _$$_ClijeoUserStableCopyWith<_$_ClijeoUserStable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -268,9 +387,9 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ClijeoUser user) stable,
+    required TResult Function() noUser,
+    required TResult Function(ClijeoUser user, String? refreshError) stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -278,9 +397,9 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ClijeoUser user)? stable,
+    TResult? Function()? noUser,
+    TResult? Function(ClijeoUser user, String? refreshError)? stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -288,9 +407,9 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ClijeoUser user)? stable,
+    TResult Function()? noUser,
+    TResult Function(ClijeoUser user, String? refreshError)? stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -302,9 +421,9 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ClijeoUserNoUser value) noUser,
     required TResult Function(_ClijeoUserStable value) stable,
     required TResult Function(_ClijeoUserLoading value) loading,
-    required TResult Function(_ClijeoUserError value) error,
   }) {
     return loading(this);
   }
@@ -312,9 +431,9 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClijeoUserNoUser value)? noUser,
     TResult? Function(_ClijeoUserStable value)? stable,
     TResult? Function(_ClijeoUserLoading value)? loading,
-    TResult? Function(_ClijeoUserError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -322,9 +441,9 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClijeoUserNoUser value)? noUser,
     TResult Function(_ClijeoUserStable value)? stable,
     TResult Function(_ClijeoUserLoading value)? loading,
-    TResult Function(_ClijeoUserError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -336,143 +455,4 @@ class _$_ClijeoUserLoading implements _ClijeoUserLoading {
 
 abstract class _ClijeoUserLoading implements ClijeoUserState {
   const factory _ClijeoUserLoading() = _$_ClijeoUserLoading;
-}
-
-/// @nodoc
-abstract class _$$_ClijeoUserErrorCopyWith<$Res> {
-  factory _$$_ClijeoUserErrorCopyWith(
-          _$_ClijeoUserError value, $Res Function(_$_ClijeoUserError) then) =
-      __$$_ClijeoUserErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
-}
-
-/// @nodoc
-class __$$_ClijeoUserErrorCopyWithImpl<$Res>
-    extends _$ClijeoUserStateCopyWithImpl<$Res, _$_ClijeoUserError>
-    implements _$$_ClijeoUserErrorCopyWith<$Res> {
-  __$$_ClijeoUserErrorCopyWithImpl(
-      _$_ClijeoUserError _value, $Res Function(_$_ClijeoUserError) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_ClijeoUserError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ClijeoUserError implements _ClijeoUserError {
-  const _$_ClijeoUserError(this.error);
-
-  @override
-  final String error;
-
-  @override
-  String toString() {
-    return 'ClijeoUserState.error(error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ClijeoUserError &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ClijeoUserErrorCopyWith<_$_ClijeoUserError> get copyWith =>
-      __$$_ClijeoUserErrorCopyWithImpl<_$_ClijeoUserError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ClijeoUser user) stable,
-    required TResult Function() loading,
-    required TResult Function(String error) error,
-  }) {
-    return error(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ClijeoUser user)? stable,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ClijeoUser user)? stable,
-    TResult Function()? loading,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ClijeoUserStable value) stable,
-    required TResult Function(_ClijeoUserLoading value) loading,
-    required TResult Function(_ClijeoUserError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ClijeoUserStable value)? stable,
-    TResult? Function(_ClijeoUserLoading value)? loading,
-    TResult? Function(_ClijeoUserError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ClijeoUserStable value)? stable,
-    TResult Function(_ClijeoUserLoading value)? loading,
-    TResult Function(_ClijeoUserError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ClijeoUserError implements ClijeoUserState {
-  const factory _ClijeoUserError(final String error) = _$_ClijeoUserError;
-
-  String get error;
-  @JsonKey(ignore: true)
-  _$$_ClijeoUserErrorCopyWith<_$_ClijeoUserError> get copyWith =>
-      throw _privateConstructorUsedError;
 }

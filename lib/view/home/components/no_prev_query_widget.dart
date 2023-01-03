@@ -1,6 +1,6 @@
 import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 class NoPrevQueryWidget extends StatelessWidget {

@@ -8,7 +8,6 @@ class SignInResponse with _$SignInResponse {
   const factory SignInResponse(
       {required bool firstLogin, required String jwt}) = _SignInResponse;
 
-  const factory SignInResponse.error() = _SignInResponseError;
   factory SignInResponse.fromJson(Map<String, dynamic> json) =>
       _SignInResponse.fromJson(json);
 }

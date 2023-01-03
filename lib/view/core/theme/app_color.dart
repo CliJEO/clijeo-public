@@ -11,4 +11,5 @@ class AppTheme {
   static const Color containerBorder = Color(0xFFE4E3E9);
   static const Color disabledColor = Color(0xFF89949F);
   static const Color activeColor = Color(0xFF01A67D);
+  static const Color errorColor = Color(0xFFFF3333);
 }

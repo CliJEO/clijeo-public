@@ -1,6 +1,6 @@
 import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
 import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
-import 'package:clijeo_public/controllers/core/constants.dart';
+import 'package:clijeo_public/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/language/app_localization.dart';
 import 'package:clijeo_public/controllers/core/language/language_controller.dart';
