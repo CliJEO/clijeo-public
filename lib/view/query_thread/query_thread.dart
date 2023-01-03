@@ -9,9 +9,9 @@ import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/query_thread/components/badges.dart';
 import 'package:clijeo_public/view/query_thread/components/message_card.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

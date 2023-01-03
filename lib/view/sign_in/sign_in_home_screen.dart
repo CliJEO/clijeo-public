@@ -4,16 +4,18 @@ import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/view/error/error_widget.dart';
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignInHomeScreen extends StatelessWidget {
   static String id = "SignUpHomeScreen";
-  const SignInHomeScreen({Key? key}) : super(key: key);
+  const SignInHomeScreen({Key? key, this.signInError}) : super(key: key);
+  final String? signInError;
 
   Future<void> signIn(context) async {
     ClijeoUserController userController =
@@ -110,7 +112,14 @@ class SignInHomeScreen extends StatelessWidget {
                                 style: AppTextStyle.smallLightTitle,
                               )
                             ],
-                          ))
+                          )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (signInError != null)
+                        CustomErrorWidget(
+                            errorText: LocaleTextClass.getTextWithKey(
+                                context, signInError!)),
                     ],
                   ),
                 ),

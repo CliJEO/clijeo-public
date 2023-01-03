@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_color.dart';
+import '../theme/app_color.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({super.key, this.returnValueOnPop});

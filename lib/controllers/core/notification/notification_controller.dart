@@ -11,7 +11,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ClijeoNotifications {
+class ClijeoNotificationController {
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'clijeo_notifs', // id
     'CliJEO Notifications', // name
@@ -70,17 +70,22 @@ class ClijeoNotifications {
     bool? isFcmTokenPushed =
         await ClijeoSharedPref.getIsFcmTokenPushedFromSharedPref();
     if (isFcmTokenPushed == null || !isFcmTokenPushed) {
-      // Pushing the data to the backend
-      await DioBase.dioInstance.post(ApiUtils.fcmTokenSaveUrl,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer ${BackendAuth.getToken()}',
-            },
-          ),
-          data: {"fcmToken": fcmToken});
-
-      // Updating shared preferences
-      await ClijeoSharedPref.addIsFcmTokenPushedToSharedPref(true);
+      try {
+        // Pushing the data to the backend
+        await DioBase.dioInstance.post(ApiUtils.fcmTokenSaveUrl,
+            options: Options(
+              headers: {
+                'Authorization': 'Bearer ${BackendAuth.getToken()}',
+              },
+            ),
+            data: {"fcmToken": fcmToken});
+        // Updating shared preferences
+        await ClijeoSharedPref.addIsFcmTokenPushedToSharedPref(true);
+      } on DioError catch (e) {
+        log("[ClijeoNotifications] (_fcmTokenHandler) DioError: ${e.message}");
+      } on Error catch (e) {
+        log("[ClijeoNotifications] (_fcmTokenHandler) Error: ${e.toString()}");
+      }
     }
   }
 

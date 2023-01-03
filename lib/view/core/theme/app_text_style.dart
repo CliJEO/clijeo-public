@@ -1,4 +1,4 @@
-import 'package:clijeo_public/view/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
@@ -6,6 +6,11 @@ class AppTextStyle {
       color: AppTheme.textLight,
       fontWeight: FontWeight.bold,
       fontSize: 16,
+      fontFamily: "Inter");
+  static const TextStyle midSmallLightTitle = TextStyle(
+      color: AppTheme.textLight,
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
       fontFamily: "Inter");
   static const TextStyle verySmallLightTitle = TextStyle(
       color: AppTheme.textLight,

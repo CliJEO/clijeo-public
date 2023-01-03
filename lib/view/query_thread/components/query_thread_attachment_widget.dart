@@ -1,5 +1,5 @@
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class QueryThreadAttachmentWidget extends StatelessWidget {

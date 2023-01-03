@@ -10,9 +10,9 @@ import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/error/error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,9 +42,9 @@ class SettingsMainScreen extends StatelessWidget {
     final sizeConfig = SizeConfig(context);
     return Consumer<ClijeoUserController>(
         builder: (context, userController, _) => userController.state.when(
+            noUser: () => ErrorScreen(),
             loading: () => const Loading(),
-            error: (error) => const ErrorScreen(),
-            stable: (user) => Scaffold(
+            stable: (user, refreshError) => Scaffold(
                 backgroundColor: AppTheme.backgroundColor,
                 body: Padding(
                   padding: EdgeInsets.symmetric(
