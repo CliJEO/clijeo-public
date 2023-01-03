@@ -10,7 +10,8 @@ abstract class FirstLoginFormState with _$FirstLoginFormState {
       required String gender,
       required String language,
       String? phoneNumber,
-      String? location}) = _FirstLoginFormStable;
+      String? location,
+      String? saveProfileDetailsError}) = _FirstLoginFormStable;
   const factory FirstLoginFormState.loading() = _FirstLoginFormLoading;
-  const factory FirstLoginFormState.error(String error) = _FirstLoginFormError;
+  const factory FirstLoginFormState.completed() = _FirstLoginFormCompleted;
 }

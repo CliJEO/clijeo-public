@@ -50,7 +50,9 @@
     "Unspecified": "Unspecified",
     "OtherAttachments": "Other Attachments",
     "VoiceAttachment": "Voice Attachment",
-    "SignInError":  "Error: Sign In failed\nPlease try again later",
-    "SignOutError": "Error: Sign Out failed",
-    "RefreshUserError": "Error: Unable to refresh user data"
+    "Error": "ERROR",
+    "SignInError":  "Sign In failed\nPlease try again later",
+    "SignOutError": "Sign Out failed\nPlease try again later",
+    "RefreshUserError": "Unable to refresh user data\nPlease try again later",
+    "SaveProfileDetailsError": "Failed to save profile details"
 }

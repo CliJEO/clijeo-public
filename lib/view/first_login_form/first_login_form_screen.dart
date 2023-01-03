@@ -11,6 +11,7 @@ import 'package:clijeo_public/view/core/common_components/custom_form_field.dart
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/view/error/error_screen.dart';
+import 'package:clijeo_public/view/error/error_widget.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:clijeo_public/view/core/theme/app_text_style.dart';
@@ -33,7 +34,6 @@ class FirstLoginFormScreen extends StatelessWidget {
     var ans = Provider.of<ClijeoUserController>(context, listen: false)
         .state
         .maybeMap(stable: (state) => state.user.name, orElse: () => "");
-    print("USERNAME: $ans");
     return ans;
   }
 
@@ -51,11 +51,13 @@ class FirstLoginFormScreen extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       await controller.saveProfileDetails(languageController);
-
-      ClijeoUserController userController =
-          Provider.of<ClijeoUserController>(context, listen: false);
-      await Provider.of<MainAppController>(context, listen: false)
-          .firstLoginCompleted(userController);
+      await controller.state.maybeWhen(
+          completed: () async {
+            await Provider.of<MainAppController>(context, listen: false)
+                .firstLoginCompleted(
+                    Provider.of<ClijeoUserController>(context, listen: false));
+          },
+          orElse: () {});
     }
   }
 
@@ -70,10 +72,9 @@ class FirstLoginFormScreen extends StatelessWidget {
       child: Consumer<FirstLoginFormController>(
           builder: (context, controller, child) => controller.state.when(
               loading: () => const Loading(),
-              error: (error) {
-                return const ErrorScreen();
-              },
-              stable: (name, age, gender, language, phoneNumber, location) {
+              completed: () => const Loading(),
+              stable: (name, age, gender, language, phoneNumber, location,
+                  saveProfileDetailsError) {
                 return Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
@@ -117,6 +118,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                             validator:
                                 FormValidationController.nullStringValidation,
                             onSaved: controller.updateStableStateAge,
+                            initialValue: age?.toString(),
                             textInputType: TextInputType.number,
                             fieldTitle:
                                 LocaleTextClass.getTextWithKey(context, "Age"),
@@ -158,8 +160,9 @@ class FirstLoginFormScreen extends StatelessWidget {
                           ),
                           CustomFormField(
                             validator:
-                                FormValidationController.nullStringValidation,
+                                FormValidationController.phoneNumberValidation,
                             onSaved: controller.updateStableStatePhoneNumber,
+                            initialValue: phoneNumber,
                             textInputType: TextInputType.phone,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "PhoneNumber"),
@@ -174,6 +177,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 FormValidationController.nullStringValidation,
                             onSaved: controller.updateStableStateLocation,
                             textInputType: TextInputType.text,
+                            initialValue: location,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "Location"),
                             fieldHintText: LocaleTextClass.getTextWithKey(
@@ -197,7 +201,14 @@ class FirstLoginFormScreen extends StatelessWidget {
                                       context, "SaveProfileDetails"),
                                   style: AppTextStyle.smallLightTitle,
                                 ),
-                              ))
+                              )),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          if (saveProfileDetailsError != null)
+                            CustomErrorWidget(
+                                errorText: LocaleTextClass.getTextWithKey(
+                                    context, saveProfileDetailsError)),
                         ],
                       ),
                     ),

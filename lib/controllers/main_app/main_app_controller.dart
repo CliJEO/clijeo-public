@@ -81,7 +81,7 @@ class MainAppController extends ChangeNotifier {
           orElse: () => state);
     } on DioError catch (e) {
       // triggered when it is unable to communicate with the backend
-      log("MainAppController] (signIn) DioError: ${e.message}");
+      log("[MainAppController] (signIn) DioError: ${e.message}");
 
       // cleanup: disconnecting from google sign in controller
       await GoogleAuth.disconnectGoogleSignInControllerConnection();
@@ -91,7 +91,7 @@ class MainAppController extends ChangeNotifier {
     } on PlatformException catch (e) {
       if (e.code == GoogleSignIn.kNetworkError) {
         // triggered when there is no network
-        log("MainAppController] (signIn) Network Error");
+        log("[MainAppController] (signIn) Network Error");
         state = const MainAppState.networkError();
       }
     } on Exception catch (e) {
