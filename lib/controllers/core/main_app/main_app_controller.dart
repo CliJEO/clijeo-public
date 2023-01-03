@@ -16,7 +16,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class MainAppController extends ChangeNotifier {
-  MainAppState state = const MainAppState.unauthenticated();
+  MainAppState state = const MainAppState.initial();
 
   Future<void> initializeApp(ClijeoUserController userController,
       LanguageController languageController) async {
@@ -32,6 +32,9 @@ class MainAppController extends ChangeNotifier {
             await userController.refreshUser();
           },
           orElse: () {});
+    } else {
+      state = const MainAppState.unauthenticated();
+      notifyListeners();
     }
   }
 

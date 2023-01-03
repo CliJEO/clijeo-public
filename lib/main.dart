@@ -43,29 +43,31 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'CLIJEO-PUBLIC',
-        locale: Locale(Provider.of<LanguageController>(context, listen: false)
-            .getCurrentLanguageCode()),
-        supportedLocales:
-            Constants.getSupportedLanguages().map((e) => Locale(e)).toList(),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        initialRoute: Wrapper.id,
-        routes: {
-          HomeScreen.id: (context) => const HomeScreen(),
-          NewQueryFormScreen.id: (context) => const NewQueryFormScreen(),
-          QueryThread.id: (context) => const QueryThread(),
-          ThreadRespondScreen.id: (context) => const ThreadRespondScreen(),
-          SettingsMainScreen.id: (context) => const SettingsMainScreen(),
-          SettingsEditScreen.id: (context) => const SettingsEditScreen(),
-          SignInHomeScreen.id: (context) => const SignInHomeScreen(),
-          FirstLoginFormScreen.id: (context) => const FirstLoginFormScreen(),
-          Wrapper.id: (context) => const Wrapper(),
-        });
+    return Consumer<LanguageController>(
+        builder: (context, languageController, _) {
+      return MaterialApp(
+          title: 'CLIJEO-PUBLIC',
+          locale: Locale(languageController.getCurrentLanguageCode()),
+          supportedLocales:
+              Constants.getSupportedLanguages().map((e) => Locale(e)).toList(),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          initialRoute: Wrapper.id,
+          routes: {
+            HomeScreen.id: (context) => const HomeScreen(),
+            NewQueryFormScreen.id: (context) => const NewQueryFormScreen(),
+            QueryThread.id: (context) => const QueryThread(),
+            ThreadRespondScreen.id: (context) => const ThreadRespondScreen(),
+            SettingsMainScreen.id: (context) => const SettingsMainScreen(),
+            SettingsEditScreen.id: (context) => const SettingsEditScreen(),
+            SignInHomeScreen.id: (context) => const SignInHomeScreen(),
+            FirstLoginFormScreen.id: (context) => const FirstLoginFormScreen(),
+            Wrapper.id: (context) => const Wrapper(),
+          });
+    });
   }
 }

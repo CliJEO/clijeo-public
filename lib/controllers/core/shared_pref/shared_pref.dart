@@ -62,8 +62,10 @@ class ClijeoSharedPref {
 
     final languageCode = await _getLanguageFromSharedPref();
     if (languageCode != null) {
+      log("From Shared Pref: $languageCode");
       languageController.setCurrentLanguageCode(languageCode);
     } else {
+      log("No Language in shared pref");
       await addLanguageToSharedPref(
           languageController.getCurrentLanguageCode());
     }

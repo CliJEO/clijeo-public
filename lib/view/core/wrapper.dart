@@ -4,6 +4,7 @@ import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/error/error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/sign_in/sign_in_home_screen.dart';
+import 'package:clijeo_public/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class Wrapper extends StatelessWidget {
     return Consumer<MainAppController>(
         builder: (context, mainAppController, _) {
       return mainAppController.state.when(
+          initial: () => const SplashScreen(),
           authenticated: () => const HomeScreen(),
           authenticatedFirstLogin: () => const FirstLoginFormScreen(),
           loading: () => const Loading(),
