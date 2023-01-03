@@ -6,7 +6,7 @@ import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +88,7 @@ class EditSettingsFormController extends ChangeNotifier {
     }
   }
 
-  Future<void> saveProfileDetails() async {
+  Future<void> saveProfileDetails(LanguageController languageController) async {
     await state.maybeWhen(
         stable: (name, age, gender, language, phoneNumber, location) async {
           final user = ClijeoUserDto(
@@ -112,7 +112,10 @@ class EditSettingsFormController extends ChangeNotifier {
                 data: user.toJson());
 
             // Updating the shared pref and static variable for language
-            await Language.setCurrentLanguageCodeAndUpdateSharedPref(language);
+            await languageController
+                .setCurrentLanguageCodeAndUpdateSharedPref(language);
+
+            log("language added to shared pref");
           } on DioError catch (e) {
             state = EditSettingsFormState.error("Dio Error: ${e.response}");
             notifyListeners();

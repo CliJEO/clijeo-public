@@ -6,7 +6,7 @@ import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:clijeo_public/controllers/first_login_form/first_login_form_state.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +14,11 @@ import 'package:flutter/material.dart';
 class FirstLoginFormController extends ChangeNotifier {
   FirstLoginFormState state;
 
-  FirstLoginFormController(String name)
+  FirstLoginFormController(String name, String languageCode)
       : state = FirstLoginFormState.stable(
             name: name,
             gender: Constants.getAllGenders().first,
-            language: Language.getCurrentLanguageCode());
+            language: languageCode);
 
   void updateStableStateName(String? updatedName) {
     if (updatedName != null) {
@@ -80,31 +80,31 @@ class FirstLoginFormController extends ChangeNotifier {
     }
   }
 
-  Future<void> getUserNameFromBackend() async {
-    try {
-      final result = await DioBase.dioInstance.get(
-        ApiUtils.userUrl,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer ${BackendAuth.getToken()}',
-          },
-        ),
-      );
-      final user = ClijeoUserDto.fromJson(result.data);
-      state = FirstLoginFormState.stable(
-          name: user.name,
-          language: Language.getCurrentLanguageCode(),
-          gender: Constants.getAllGenders().first);
-      notifyListeners();
-    } on DioError catch (e) {
-      state = FirstLoginFormState.error("Dio Error: ${e.response}");
-    } on Error catch (e) {
-      state = FirstLoginFormState.error("Error: ${e.toString()}");
-    }
-    notifyListeners();
-  }
+  // Future<void> getUserNameFromBackend() async {
+  //   try {
+  //     final result = await DioBase.dioInstance.get(
+  //       ApiUtils.userUrl,
+  //       options: Options(
+  //         headers: {
+  //           'Authorization': 'Bearer ${BackendAuth.getToken()}',
+  //         },
+  //       ),
+  //     );
+  //     final user = ClijeoUserDto.fromJson(result.data);
+  //     state = FirstLoginFormState.stable(
+  //         name: user.name,
+  //         language: LanguageController.getCurrentLanguageCode(),
+  //         gender: Constants.getAllGenders().first);
+  //     notifyListeners();
+  //   } on DioError catch (e) {
+  //     state = FirstLoginFormState.error("Dio Error: ${e.response}");
+  //   } on Error catch (e) {
+  //     state = FirstLoginFormState.error("Error: ${e.toString()}");
+  //   }
+  //   notifyListeners();
+  // }
 
-  Future<void> saveProfileDetails() async {
+  Future<void> saveProfileDetails(LanguageController languageController) async {
     await state.maybeWhen(
         stable: (name, age, gender, language, phoneNumber, location) async {
           final user = ClijeoUserDto(
@@ -128,7 +128,8 @@ class FirstLoginFormController extends ChangeNotifier {
                 data: user.toJson());
 
             // Updating the shared pref and static variable for language
-            await Language.setCurrentLanguageCodeAndUpdateSharedPref(language);
+            await languageController
+                .setCurrentLanguageCodeAndUpdateSharedPref(language);
           } on DioError catch (e) {
             state = FirstLoginFormState.error("Dio Error: ${e.response}");
             notifyListeners();

@@ -1,5 +1,5 @@
 import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
@@ -120,7 +120,10 @@ class SettingsMainScreen extends StatelessWidget {
                                 fieldTitle: LocaleTextClass.getTextWithKey(
                                     context, "LanguagePreference"),
                                 fieldValue: LocaleTextClass.getTextWithKey(
-                                    context, Language.getCurrentLanguageCode()),
+                                    context,
+                                    Provider.of<LanguageController>(context,
+                                            listen: false)
+                                        .getCurrentLanguageCode()),
                               ),
                               const SizedBox(
                                 height: 20,

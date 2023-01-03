@@ -22,7 +22,7 @@ QueryResponseAdminDetails _$QueryResponseAdminDetailsFromJson(
 /// @nodoc
 mixin _$QueryResponseAdminDetails {
   String get name => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
+  String get profilePicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $QueryResponseAdminDetailsCopyWith<$Res> {
           $Res Function(QueryResponseAdminDetails) then) =
       _$QueryResponseAdminDetailsCopyWithImpl<$Res, QueryResponseAdminDetails>;
   @useResult
-  $Res call({String name, String avatar});
+  $Res call({String name, String profilePicture});
 }
 
 /// @nodoc
@@ -54,16 +54,16 @@ class _$QueryResponseAdminDetailsCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
-    Object? avatar = null,
+    Object? profilePicture = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
+      profilePicture: null == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -78,7 +78,7 @@ abstract class _$$_QueryResponseAdminDetailsCopyWith<$Res>
       __$$_QueryResponseAdminDetailsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String avatar});
+  $Res call({String name, String profilePicture});
 }
 
 /// @nodoc
@@ -95,16 +95,16 @@ class __$$_QueryResponseAdminDetailsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? avatar = null,
+    Object? profilePicture = null,
   }) {
     return _then(_$_QueryResponseAdminDetails(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
+      profilePicture: null == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -116,7 +116,7 @@ class _$_QueryResponseAdminDetails
     with DiagnosticableTreeMixin
     implements _QueryResponseAdminDetails {
   const _$_QueryResponseAdminDetails(
-      {required this.name, required this.avatar});
+      {required this.name, required this.profilePicture});
 
   factory _$_QueryResponseAdminDetails.fromJson(Map<String, dynamic> json) =>
       _$$_QueryResponseAdminDetailsFromJson(json);
@@ -124,11 +124,11 @@ class _$_QueryResponseAdminDetails
   @override
   final String name;
   @override
-  final String avatar;
+  final String profilePicture;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'QueryResponseAdminDetails(name: $name, avatar: $avatar)';
+    return 'QueryResponseAdminDetails(name: $name, profilePicture: $profilePicture)';
   }
 
   @override
@@ -137,7 +137,7 @@ class _$_QueryResponseAdminDetails
     properties
       ..add(DiagnosticsProperty('type', 'QueryResponseAdminDetails'))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('avatar', avatar));
+      ..add(DiagnosticsProperty('profilePicture', profilePicture));
   }
 
   @override
@@ -146,12 +146,13 @@ class _$_QueryResponseAdminDetails
         (other.runtimeType == runtimeType &&
             other is _$_QueryResponseAdminDetails &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar));
+            (identical(other.profilePicture, profilePicture) ||
+                other.profilePicture == profilePicture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, avatar);
+  int get hashCode => Object.hash(runtimeType, name, profilePicture);
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +172,7 @@ class _$_QueryResponseAdminDetails
 abstract class _QueryResponseAdminDetails implements QueryResponseAdminDetails {
   const factory _QueryResponseAdminDetails(
       {required final String name,
-      required final String avatar}) = _$_QueryResponseAdminDetails;
+      required final String profilePicture}) = _$_QueryResponseAdminDetails;
 
   factory _QueryResponseAdminDetails.fromJson(Map<String, dynamic> json) =
       _$_QueryResponseAdminDetails.fromJson;
@@ -179,7 +180,7 @@ abstract class _QueryResponseAdminDetails implements QueryResponseAdminDetails {
   @override
   String get name;
   @override
-  String get avatar;
+  String get profilePicture;
   @override
   @JsonKey(ignore: true)
   _$$_QueryResponseAdminDetailsCopyWith<_$_QueryResponseAdminDetails>

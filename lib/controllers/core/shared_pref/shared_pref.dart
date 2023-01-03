@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ClijeoSharedPref {
@@ -43,12 +45,14 @@ class ClijeoSharedPref {
   }
 
   static Future<void> addLanguageToSharedPref(String languageCode) async {
+    log("Adding Language to Shared Pref");
     if (_sharedPreferences == null) await _instantiateSharedPref();
     await _sharedPreferences!.setString(languageTokenKey, languageCode);
   }
 
   // Load all shared Preferences to app
-  static Future<void> loadSharedPrefToApp() async {
+  static Future<void> loadSharedPrefToApp(
+      LanguageController languageController) async {
     if (_sharedPreferences == null) await _instantiateSharedPref();
 
     final userToken = await _getUserAccessTokenFromSharedPref();
@@ -58,9 +62,10 @@ class ClijeoSharedPref {
 
     final languageCode = await _getLanguageFromSharedPref();
     if (languageCode != null) {
-      Language.setCurrentLanguageCode(languageCode);
+      languageController.setCurrentLanguageCode(languageCode);
     } else {
-      await addLanguageToSharedPref(Constants.getSupportedLanguages().first);
+      await addLanguageToSharedPref(
+          languageController.getCurrentLanguageCode());
     }
   }
 }
