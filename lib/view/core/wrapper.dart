@@ -1,4 +1,4 @@
-import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/error/error_screen.dart';
