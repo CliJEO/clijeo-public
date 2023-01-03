@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/view/core/constants.dart';
+import 'package:clijeo_public/controllers/core/constants.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ClijeoSharedPref {

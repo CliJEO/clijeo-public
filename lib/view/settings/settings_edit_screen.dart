@@ -1,13 +1,13 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/edit_settings_form/edit_settings_form_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
-import 'package:clijeo_public/view/core/constants.dart';
+import 'package:clijeo_public/controllers/core/constants.dart';
 import 'package:clijeo_public/view/error/error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/theme/app_color.dart';

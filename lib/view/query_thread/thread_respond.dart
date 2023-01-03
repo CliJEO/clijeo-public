@@ -1,5 +1,5 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/controllers/thread_respond_from/thread_respond_form_controller.dart';
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
