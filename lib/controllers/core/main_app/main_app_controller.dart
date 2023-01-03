@@ -1,10 +1,12 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/core/auth/google_auth.dart';
 import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:clijeo_public/controllers/core/main_app/main_app_state.dart';
 import 'package:clijeo_public/controllers/core/notifications/notifications.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
@@ -16,8 +18,9 @@ import 'package:flutter/material.dart';
 class MainAppController extends ChangeNotifier {
   MainAppState state = const MainAppState.unauthenticated();
 
-  Future<void> initializeApp(ClijeoUserController userController) async {
-    await ClijeoSharedPref.loadSharedPrefToApp();
+  Future<void> initializeApp(ClijeoUserController userController,
+      LanguageController languageController) async {
+    await ClijeoSharedPref.loadSharedPrefToApp(languageController);
 
     if (BackendAuth.getToken().isNotEmpty) {
       await ClijeoNotifications.setupNotifications();

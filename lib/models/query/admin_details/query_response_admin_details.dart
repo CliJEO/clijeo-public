@@ -8,7 +8,7 @@ part 'query_response_admin_details.freezed.dart';
 class QueryResponseAdminDetails with _$QueryResponseAdminDetails {
   const factory QueryResponseAdminDetails({
     required String name,
-    required String avatar,
+    required String profilePicture,
   }) = _QueryResponseAdminDetails;
 
   factory QueryResponseAdminDetails.fromJson(Map<String, dynamic> json) =>

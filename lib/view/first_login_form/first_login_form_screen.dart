@@ -4,7 +4,7 @@ import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controlle
 import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
 import 'package:clijeo_public/view/core/constants.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/first_login_form/first_login_form_controller.dart';
@@ -48,11 +48,11 @@ class FirstLoginFormScreen extends StatelessWidget {
         controller.updateStableStateLanguage(_allLanguageList[index]);
   }
 
-  Future<void> _saveProfileDetails(
-      context, FirstLoginFormController controller) async {
+  Future<void> _saveProfileDetails(context, FirstLoginFormController controller,
+      LanguageController languageController) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await controller.saveProfileDetails();
+      await controller.saveProfileDetails(languageController);
 
       ClijeoUserController userController =
           Provider.of<ClijeoUserController>(context, listen: false);
@@ -65,7 +65,10 @@ class FirstLoginFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<FirstLoginFormController>(
-      create: (context) => FirstLoginFormController(_getUsername(context)),
+      create: (context) => FirstLoginFormController(
+          _getUsername(context),
+          Provider.of<LanguageController>(context, listen: false)
+              .getCurrentLanguageCode()),
       child: Consumer<FirstLoginFormController>(
           builder: (context, controller, child) => controller.state.when(
               loading: () => const Loading(),
@@ -184,8 +187,11 @@ class FirstLoginFormScreen extends StatelessWidget {
                             height: 20,
                           ),
                           PrimaryButton(
-                              onTap: () =>
-                                  _saveProfileDetails(context, controller),
+                              onTap: () => _saveProfileDetails(
+                                  context,
+                                  controller,
+                                  Provider.of<LanguageController>(context,
+                                      listen: false)),
                               sizeConfig: sizeConfig,
                               child: Center(
                                 child: Text(

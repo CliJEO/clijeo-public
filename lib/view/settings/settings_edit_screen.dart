@@ -1,5 +1,5 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
 import 'package:clijeo_public/controllers/edit_settings_form/edit_settings_form_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
@@ -35,10 +35,12 @@ class SettingsEditScreen extends StatelessWidget {
   }
 
   Future<void> _saveProfileDetails(
-      context, EditSettingsFormController controller) async {
+      context,
+      EditSettingsFormController controller,
+      LanguageController languageController) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await controller.saveProfileDetails();
+      await controller.saveProfileDetails(languageController);
       Navigator.of(context).pop(true);
     }
   }
@@ -54,7 +56,8 @@ class SettingsEditScreen extends StatelessWidget {
           gender: user.gender ?? Constants.getAllGenders().first,
           location: user.location,
           phoneNumber: user.phoneNumber,
-          language: Language.getCurrentLanguageCode()),
+          language: Provider.of<LanguageController>(context, listen: false)
+              .getCurrentLanguageCode()),
       child: Consumer<EditSettingsFormController>(
           builder: (context, settingsFormController, _) =>
               settingsFormController.state.when(
@@ -210,7 +213,11 @@ class SettingsEditScreen extends StatelessWidget {
                                           PrimaryButton(
                                               onTap: () => _saveProfileDetails(
                                                   context,
-                                                  settingsFormController),
+                                                  settingsFormController,
+                                                  Provider.of<
+                                                          LanguageController>(
+                                                      context,
+                                                      listen: false)),
                                               sizeConfig: sizeConfig,
                                               child: Center(
                                                 child: Text(

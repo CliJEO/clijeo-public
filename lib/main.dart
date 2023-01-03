@@ -3,7 +3,7 @@ import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart
 import 'package:clijeo_public/view/core/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/localization/app_localization.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/localization/language_controller.dart';
 import 'package:clijeo_public/view/home/home.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
 import 'package:clijeo_public/view/query_thread/query_thread.dart';
@@ -21,15 +21,19 @@ void main() async {
   DioBase.initDio();
   final appController = MainAppController();
   final userController = ClijeoUserController();
+  final languageController = LanguageController();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<MainAppController>(
         create: (context) => appController),
     ChangeNotifierProvider<ClijeoUserController>(
-        create: (context) => userController)
+        create: (context) => userController),
+    ChangeNotifierProvider<LanguageController>(
+      create: (context) => languageController,
+    )
   ], child: const MainApp()));
 
   // Initialize App properties
-  await appController.initializeApp(userController);
+  await appController.initializeApp(userController, languageController);
 }
 
 class MainApp extends StatelessWidget {
@@ -41,7 +45,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'CLIJEO-PUBLIC',
-        locale: Locale(Language.getCurrentLanguageCode()),
+        locale: Locale(Provider.of<LanguageController>(context, listen: false)
+            .getCurrentLanguageCode()),
         supportedLocales:
             Constants.getSupportedLanguages().map((e) => Locale(e)).toList(),
         localizationsDelegates: const [
