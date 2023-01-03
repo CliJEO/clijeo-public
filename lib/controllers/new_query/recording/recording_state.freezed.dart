@@ -21,7 +21,6 @@ mixin _$RecordingState {
     required TResult Function() notRecording,
     required TResult Function(int duration) recording,
     required TResult Function() recordingCompleted,
-    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +28,6 @@ mixin _$RecordingState {
     TResult? Function()? notRecording,
     TResult? Function(int duration)? recording,
     TResult? Function()? recordingCompleted,
-    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +35,6 @@ mixin _$RecordingState {
     TResult Function()? notRecording,
     TResult Function(int duration)? recording,
     TResult Function()? recordingCompleted,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,7 +44,6 @@ mixin _$RecordingState {
     required TResult Function(_RecordingStateRecording value) recording,
     required TResult Function(_RecordingStateRecordingCompleted value)
         recordingCompleted,
-    required TResult Function(_RecordingStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,7 +52,6 @@ mixin _$RecordingState {
     TResult? Function(_RecordingStateRecording value)? recording,
     TResult? Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult? Function(_RecordingStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,7 +60,6 @@ mixin _$RecordingState {
     TResult Function(_RecordingStateRecording value)? recording,
     TResult Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult Function(_RecordingStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,7 +127,6 @@ class _$_RecordingStateNotRecording implements _RecordingStateNotRecording {
     required TResult Function() notRecording,
     required TResult Function(int duration) recording,
     required TResult Function() recordingCompleted,
-    required TResult Function(String error) error,
   }) {
     return notRecording();
   }
@@ -144,7 +137,6 @@ class _$_RecordingStateNotRecording implements _RecordingStateNotRecording {
     TResult? Function()? notRecording,
     TResult? Function(int duration)? recording,
     TResult? Function()? recordingCompleted,
-    TResult? Function(String error)? error,
   }) {
     return notRecording?.call();
   }
@@ -155,7 +147,6 @@ class _$_RecordingStateNotRecording implements _RecordingStateNotRecording {
     TResult Function()? notRecording,
     TResult Function(int duration)? recording,
     TResult Function()? recordingCompleted,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (notRecording != null) {
@@ -171,7 +162,6 @@ class _$_RecordingStateNotRecording implements _RecordingStateNotRecording {
     required TResult Function(_RecordingStateRecording value) recording,
     required TResult Function(_RecordingStateRecordingCompleted value)
         recordingCompleted,
-    required TResult Function(_RecordingStateError value) error,
   }) {
     return notRecording(this);
   }
@@ -183,7 +173,6 @@ class _$_RecordingStateNotRecording implements _RecordingStateNotRecording {
     TResult? Function(_RecordingStateRecording value)? recording,
     TResult? Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult? Function(_RecordingStateError value)? error,
   }) {
     return notRecording?.call(this);
   }
@@ -195,7 +184,6 @@ class _$_RecordingStateNotRecording implements _RecordingStateNotRecording {
     TResult Function(_RecordingStateRecording value)? recording,
     TResult Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult Function(_RecordingStateError value)? error,
     required TResult orElse(),
   }) {
     if (notRecording != null) {
@@ -279,7 +267,6 @@ class _$_RecordingStateRecording implements _RecordingStateRecording {
     required TResult Function() notRecording,
     required TResult Function(int duration) recording,
     required TResult Function() recordingCompleted,
-    required TResult Function(String error) error,
   }) {
     return recording(duration);
   }
@@ -290,7 +277,6 @@ class _$_RecordingStateRecording implements _RecordingStateRecording {
     TResult? Function()? notRecording,
     TResult? Function(int duration)? recording,
     TResult? Function()? recordingCompleted,
-    TResult? Function(String error)? error,
   }) {
     return recording?.call(duration);
   }
@@ -301,7 +287,6 @@ class _$_RecordingStateRecording implements _RecordingStateRecording {
     TResult Function()? notRecording,
     TResult Function(int duration)? recording,
     TResult Function()? recordingCompleted,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (recording != null) {
@@ -317,7 +302,6 @@ class _$_RecordingStateRecording implements _RecordingStateRecording {
     required TResult Function(_RecordingStateRecording value) recording,
     required TResult Function(_RecordingStateRecordingCompleted value)
         recordingCompleted,
-    required TResult Function(_RecordingStateError value) error,
   }) {
     return recording(this);
   }
@@ -329,7 +313,6 @@ class _$_RecordingStateRecording implements _RecordingStateRecording {
     TResult? Function(_RecordingStateRecording value)? recording,
     TResult? Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult? Function(_RecordingStateError value)? error,
   }) {
     return recording?.call(this);
   }
@@ -341,7 +324,6 @@ class _$_RecordingStateRecording implements _RecordingStateRecording {
     TResult Function(_RecordingStateRecording value)? recording,
     TResult Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult Function(_RecordingStateError value)? error,
     required TResult orElse(),
   }) {
     if (recording != null) {
@@ -407,7 +389,6 @@ class _$_RecordingStateRecordingCompleted
     required TResult Function() notRecording,
     required TResult Function(int duration) recording,
     required TResult Function() recordingCompleted,
-    required TResult Function(String error) error,
   }) {
     return recordingCompleted();
   }
@@ -418,7 +399,6 @@ class _$_RecordingStateRecordingCompleted
     TResult? Function()? notRecording,
     TResult? Function(int duration)? recording,
     TResult? Function()? recordingCompleted,
-    TResult? Function(String error)? error,
   }) {
     return recordingCompleted?.call();
   }
@@ -429,7 +409,6 @@ class _$_RecordingStateRecordingCompleted
     TResult Function()? notRecording,
     TResult Function(int duration)? recording,
     TResult Function()? recordingCompleted,
-    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (recordingCompleted != null) {
@@ -445,7 +424,6 @@ class _$_RecordingStateRecordingCompleted
     required TResult Function(_RecordingStateRecording value) recording,
     required TResult Function(_RecordingStateRecordingCompleted value)
         recordingCompleted,
-    required TResult Function(_RecordingStateError value) error,
   }) {
     return recordingCompleted(this);
   }
@@ -457,7 +435,6 @@ class _$_RecordingStateRecordingCompleted
     TResult? Function(_RecordingStateRecording value)? recording,
     TResult? Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult? Function(_RecordingStateError value)? error,
   }) {
     return recordingCompleted?.call(this);
   }
@@ -469,7 +446,6 @@ class _$_RecordingStateRecordingCompleted
     TResult Function(_RecordingStateRecording value)? recording,
     TResult Function(_RecordingStateRecordingCompleted value)?
         recordingCompleted,
-    TResult Function(_RecordingStateError value)? error,
     required TResult orElse(),
   }) {
     if (recordingCompleted != null) {
@@ -482,154 +458,4 @@ class _$_RecordingStateRecordingCompleted
 abstract class _RecordingStateRecordingCompleted implements RecordingState {
   const factory _RecordingStateRecordingCompleted() =
       _$_RecordingStateRecordingCompleted;
-}
-
-/// @nodoc
-abstract class _$$_RecordingStateErrorCopyWith<$Res> {
-  factory _$$_RecordingStateErrorCopyWith(_$_RecordingStateError value,
-          $Res Function(_$_RecordingStateError) then) =
-      __$$_RecordingStateErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
-}
-
-/// @nodoc
-class __$$_RecordingStateErrorCopyWithImpl<$Res>
-    extends _$RecordingStateCopyWithImpl<$Res, _$_RecordingStateError>
-    implements _$$_RecordingStateErrorCopyWith<$Res> {
-  __$$_RecordingStateErrorCopyWithImpl(_$_RecordingStateError _value,
-      $Res Function(_$_RecordingStateError) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_RecordingStateError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_RecordingStateError implements _RecordingStateError {
-  const _$_RecordingStateError(this.error);
-
-  @override
-  final String error;
-
-  @override
-  String toString() {
-    return 'RecordingState.error(error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RecordingStateError &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RecordingStateErrorCopyWith<_$_RecordingStateError> get copyWith =>
-      __$$_RecordingStateErrorCopyWithImpl<_$_RecordingStateError>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() notRecording,
-    required TResult Function(int duration) recording,
-    required TResult Function() recordingCompleted,
-    required TResult Function(String error) error,
-  }) {
-    return error(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? notRecording,
-    TResult? Function(int duration)? recording,
-    TResult? Function()? recordingCompleted,
-    TResult? Function(String error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notRecording,
-    TResult Function(int duration)? recording,
-    TResult Function()? recordingCompleted,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RecordingStateNotRecording value) notRecording,
-    required TResult Function(_RecordingStateRecording value) recording,
-    required TResult Function(_RecordingStateRecordingCompleted value)
-        recordingCompleted,
-    required TResult Function(_RecordingStateError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RecordingStateNotRecording value)? notRecording,
-    TResult? Function(_RecordingStateRecording value)? recording,
-    TResult? Function(_RecordingStateRecordingCompleted value)?
-        recordingCompleted,
-    TResult? Function(_RecordingStateError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RecordingStateNotRecording value)? notRecording,
-    TResult Function(_RecordingStateRecording value)? recording,
-    TResult Function(_RecordingStateRecordingCompleted value)?
-        recordingCompleted,
-    TResult Function(_RecordingStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RecordingStateError implements RecordingState {
-  const factory _RecordingStateError(final String error) =
-      _$_RecordingStateError;
-
-  String get error;
-  @JsonKey(ignore: true)
-  _$$_RecordingStateErrorCopyWith<_$_RecordingStateError> get copyWith =>
-      throw _privateConstructorUsedError;
 }

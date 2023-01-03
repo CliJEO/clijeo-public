@@ -1,6 +1,7 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
+import 'package:clijeo_public/view/error/error_widget.dart';
 import 'package:clijeo_public/view/new_query/components/new_query_form_attachment_widget.dart';
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
@@ -27,7 +28,8 @@ class NewQueryFormScreen extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       await newQueryFormController.registerQuery();
-      Navigator.pop(context, true);
+      newQueryFormController.state.maybeWhen(
+          completed: () => Navigator.pop(context, true), orElse: () {});
     }
   }
 
@@ -40,8 +42,14 @@ class NewQueryFormScreen extends StatelessWidget {
             builder: (context, newQueryFormController, _) {
           return newQueryFormController.state.when(
               loading: () => const Loading(),
-              error: (error) => QueryThreadErrorScreen(),
-              stable: (subject, body, voiceAttachmentPath, otherAttachments) =>
+              completed: () => const Loading(),
+              stable: (subject,
+                      body,
+                      voiceAttachmentPath,
+                      otherAttachments,
+                      voiceAttachmentError,
+                      otherAttachmentError,
+                      registerQueryError) =>
                   Scaffold(
                       backgroundColor: AppTheme.backgroundColor,
                       body: SingleChildScrollView(
@@ -84,6 +92,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                           CustomFormField(
                                             onSaved: newQueryFormController
                                                 .updateStableStateSubject,
+                                            initialValue: subject,
                                             validator: FormValidationController
                                                 .nullStringValidation,
                                             fieldTitle:
@@ -101,6 +110,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                                 .updateStableStateBody,
                                             validator: FormValidationController
                                                 .nullStringValidation,
+                                            initialValue: body,
                                             fieldTitle:
                                                 LocaleTextClass.getTextWithKey(
                                                     context, "Body"),
@@ -122,12 +132,20 @@ class NewQueryFormScreen extends StatelessWidget {
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          if (voiceAttachmentPath == null)
+                                          if (voiceAttachmentError != null)
+                                            CustomErrorWidget(
+                                                showErrorHeading: false,
+                                                errorText: LocaleTextClass
+                                                    .getTextWithKey(context,
+                                                        voiceAttachmentError)),
+                                          if (voiceAttachmentError == null &&
+                                              voiceAttachmentPath == null)
                                             QueryRecording(
                                               formController:
                                                   newQueryFormController,
                                             ),
-                                          if (voiceAttachmentPath != null)
+                                          if (voiceAttachmentError == null &&
+                                              voiceAttachmentPath != null)
                                             QueryAudioPlayer(
                                               voiceAttachmentPath:
                                                   voiceAttachmentPath,
@@ -150,33 +168,49 @@ class NewQueryFormScreen extends StatelessWidget {
                                                 style: AppTextStyle
                                                     .smallDarkLightBoldBody,
                                               ),
-                                              GestureDetector(
-                                                onTap: newQueryFormController
-                                                    .addFilesToOtherAttachments,
-                                                child: const Icon(Icons.add,
-                                                    color:
-                                                        AppTheme.textDarkLight,
-                                                    size: 20),
-                                              )
+                                              if (otherAttachmentError == null)
+                                                GestureDetector(
+                                                  onTap: newQueryFormController
+                                                      .addFilesToOtherAttachments,
+                                                  child: const Icon(Icons.add,
+                                                      color: AppTheme
+                                                          .textDarkLight,
+                                                      size: 20),
+                                                )
                                             ],
                                           ),
-                                          if (otherAttachments != null &&
-                                              otherAttachments.isNotEmpty)
-                                            ListView.builder(
-                                                physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                shrinkWrap: true,
-                                                itemCount:
-                                                    otherAttachments.length,
-                                                itemBuilder: (context, index) =>
-                                                    NewQueryFormAttachmentWidget(
-                                                        closeFunction: () =>
-                                                            newQueryFormController
-                                                                .removeFileFromOtherAttachments(
-                                                                    index),
-                                                        name: otherAttachments[
-                                                                index]
-                                                            .name)),
+                                          if (otherAttachmentError != null)
+                                            CustomErrorWidget(
+                                                showErrorHeading: false,
+                                                errorText: LocaleTextClass
+                                                    .getTextWithKey(context,
+                                                        otherAttachmentError)),
+                                          Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              if (otherAttachments != null &&
+                                                  otherAttachments.isNotEmpty)
+                                                ListView.builder(
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    shrinkWrap: true,
+                                                    itemCount:
+                                                        otherAttachments.length,
+                                                    itemBuilder: (context,
+                                                            index) =>
+                                                        NewQueryFormAttachmentWidget(
+                                                            closeFunction: () =>
+                                                                newQueryFormController
+                                                                    .removeFileFromOtherAttachments(
+                                                                        index),
+                                                            name:
+                                                                otherAttachments[
+                                                                        index]
+                                                                    .name)),
+                                            ],
+                                          ),
                                           const SizedBox(
                                             height: 20,
                                           ),
@@ -194,7 +228,19 @@ class NewQueryFormScreen extends StatelessWidget {
                                                   style: AppTextStyle
                                                       .smallLightTitle,
                                                 ),
-                                              ))
+                                              )),
+                                          if (registerQueryError != null)
+                                            Column(
+                                              children: [
+                                                const SizedBox(
+                                                  height: 20,
+                                                ),
+                                                CustomErrorWidget(
+                                                    errorText: LocaleTextClass
+                                                        .getTextWithKey(context,
+                                                            registerQueryError)),
+                                              ],
+                                            ),
                                         ],
                                       ),
                                     ))

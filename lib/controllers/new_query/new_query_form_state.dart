@@ -9,7 +9,10 @@ abstract class NewQueryFormState with _$NewQueryFormState {
       {String? subject,
       String? body,
       String? voiceAttachmentPath,
-      List<LocalAttachments>? otherAttachments}) = _NewQueryFormStable;
+      List<LocalAttachments>? otherAttachments,
+      String? voiceAttachmentError,
+      String? otherAttachmentError,
+      String? registerQueryError}) = _NewQueryFormStable;
   const factory NewQueryFormState.loading() = _NewQueryFormLoading;
-  const factory NewQueryFormState.error(String error) = _NewQueryFormError;
+  const factory NewQueryFormState.completed() = _NewQueryFormCompleted;
 }

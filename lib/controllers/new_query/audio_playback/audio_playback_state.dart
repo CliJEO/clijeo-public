@@ -11,5 +11,4 @@ abstract class AudioPlaybackState with _$AudioPlaybackState {
   const factory AudioPlaybackState.playing(
       {required Duration currentPos,
       required Duration duration}) = _AudioPlaybackPlaying;
-  const factory AudioPlaybackState.error(String error) = _AudioPlaybackError;
 }

@@ -46,9 +46,6 @@ class AudioPlaybackController extends ChangeNotifier {
             orElse: () => state);
         notifyListeners();
       });
-    } else {
-      state = AudioPlaybackState.error("NULL AUDIO PLAYER");
-      notifyListeners();
     }
   }
 
@@ -60,9 +57,6 @@ class AudioPlaybackController extends ChangeNotifier {
           orElse: () => state);
       notifyListeners();
       await _audioPlayer!.resume();
-    } else {
-      state = AudioPlaybackState.error("NULL AUDIO PLAYER");
-      notifyListeners();
     }
   }
 
@@ -73,23 +67,14 @@ class AudioPlaybackController extends ChangeNotifier {
           playing: (value) => AudioPlaybackState.paused(
               currentPos: value.currentPos, duration: value.duration),
           orElse: () => state);
-    } else {
-      state = AudioPlaybackState.error("NULL AUDIO PLAYER");
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   Future<void> seekAudioPosition(double value) async {
     int seekval = value.round();
     if (_audioPlayer != null) {
       await _audioPlayer!.seek(Duration(milliseconds: seekval));
-      // state.maybeMap(
-      //     playing: (value) => value.copyWith(currentPos: seekval),
-      //     paused: (value) => value.copyWith(currentPos: seekval),
-      //     orElse: () => state);
-    } else {
-      state = AudioPlaybackState.error("NULL AUDIO PLAYER");
-      notifyListeners();
     }
   }
 }

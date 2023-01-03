@@ -3,4 +3,8 @@ class ErrorController {
   static String signOutError = "SignOutError";
   static String refreshUserError = "RefreshUserError";
   static String saveProfileDetailsError = "SaveProfileDetailsError";
+  static String recordingError = "RecordingError";
+  static String recordingPermission = "RecordingPermission";
+  static String registerQueryError = "RegisterQueryError";
+  static String fileAttachmentPermission = "FileAttachmentPermission";
 }
