@@ -175,7 +175,7 @@ class SettingsEditScreen extends StatelessWidget {
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
-                                                .nullStringValidation,
+                                                .phoneNumberValidation,
                                             initialValue: phoneNumber,
                                             onSaved: settingsFormController
                                                 .updateStableStatePhoneNumber,

@@ -1,3 +1,4 @@
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:clijeo_public/view/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,21 @@ class CustomErrorWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(
-          errorText,
-          style: AppTextStyle.midSmallLightTitle,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              LocaleTextClass.getTextWithKey(context, "Error"),
+              style: AppTextStyle.smallLightTitle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              errorText,
+              style: AppTextStyle.midSmallLightTitle,
+            ),
+          ],
         ),
       ),
     );
