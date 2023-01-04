@@ -79,9 +79,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
                       child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: sizeConfig.safeBlockSizeHorizontal(0.08),
-                        vertical: sizeConfig.safeBlockSizeVertical(0.05)),
+                    padding: const EdgeInsets.fromLTRB(30, 60, 30, 20),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -112,7 +110,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 context, "Name-Hint"),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomFormField(
                             validator:
@@ -126,7 +124,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 context, "Age-Hint"),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomToggleButton(
                               isSelected: _allGenderList
@@ -141,7 +139,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                       context, e))
                                   .toList()),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomToggleButton(
                               isSelected: _allLanguageList
@@ -156,7 +154,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                       context, e))
                                   .toList()),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomFormField(
                             validator:
@@ -170,7 +168,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 context, "PhoneNumber-Hint"),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomFormField(
                             validator:
@@ -186,7 +184,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                             maxLines: 8,
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
                           PrimaryButton(
                               onTap: () => _saveProfileDetails(

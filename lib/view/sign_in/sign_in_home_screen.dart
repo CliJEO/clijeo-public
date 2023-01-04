@@ -28,6 +28,7 @@ class SignInHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     return Scaffold(
+      backgroundColor: AppTheme.backgroundColor,
       body: Column(
         children: [
           Container(
@@ -36,7 +37,7 @@ class SignInHomeScreen extends StatelessWidget {
             color: AppTheme.primaryColor,
             child: Padding(
               padding: EdgeInsets.only(
-                  left: sizeConfig.safeBlockSizeHorizontal(0.1)),
+                  left: sizeConfig.safeBlockSizeHorizontal(0.1), top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
