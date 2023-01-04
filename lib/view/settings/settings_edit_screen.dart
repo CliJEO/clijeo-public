@@ -71,10 +71,7 @@ class SettingsEditScreen extends StatelessWidget {
                         backgroundColor: AppTheme.backgroundColor,
                         body: SingleChildScrollView(
                             child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  sizeConfig.safeBlockSizeHorizontal(0.06),
-                              vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                          padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -120,7 +117,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                     context, "Name-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
@@ -137,7 +134,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                     context, "Age-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomToggleButton(
                                               isSelected: _allGenderList
@@ -155,7 +152,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                           context, e))
                                                   .toList()),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomToggleButton(
                                               isSelected: _allLanguageList
@@ -173,7 +170,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                           context, e))
                                                   .toList()),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
@@ -191,7 +188,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                     "PhoneNumber-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
@@ -210,7 +207,7 @@ class SettingsEditScreen extends StatelessWidget {
                                             maxLines: 8,
                                           ),
                                           const SizedBox(
-                                            height: 20,
+                                            height: 30,
                                           ),
                                           PrimaryButton(
                                               onTap: () => _saveProfileDetails(

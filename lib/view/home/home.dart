@@ -84,8 +84,11 @@ class HomeScreen extends StatelessWidget {
                                   GestureDetector(
                                       onTap: () => Navigator.pushNamed(
                                           context, SettingsMainScreen.id),
-                                      child: const Icon(Icons.settings,
-                                          color: AppTheme.textDark, size: 25)),
+                                      child: const SizedBox(
+                                        width: 40,
+                                        child: Icon(Icons.settings,
+                                            color: AppTheme.textDark, size: 25),
+                                      )),
                                 ],
                               ),
                               const SizedBox(

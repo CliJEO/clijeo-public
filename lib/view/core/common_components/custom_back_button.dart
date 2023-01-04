@@ -15,7 +15,10 @@ class CustomBackButton extends StatelessWidget {
           Navigator.pop(context, returnValueOnPop);
         }
       },
-      child: const Icon(Icons.arrow_back, color: AppTheme.textDark, size: 20),
+      child: Container(
+          width: 40,
+          child:
+              const Icon(Icons.arrow_back, color: AppTheme.textDark, size: 20)),
     );
   }
 }

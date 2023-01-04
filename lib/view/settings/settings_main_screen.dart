@@ -47,9 +47,7 @@ class SettingsMainScreen extends StatelessWidget {
             stable: (user, refreshError) => Scaffold(
                 backgroundColor: AppTheme.backgroundColor,
                 body: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
-                      vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                  padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                   child: SingleChildScrollView(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,9 +59,6 @@ class SettingsMainScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               const CustomBackButton(),
-                              const SizedBox(
-                                width: 10,
-                              ),
                               Text(
                                 LocaleTextClass.getTextWithKey(
                                     context, "Settings"),
@@ -74,12 +69,15 @@ class SettingsMainScreen extends StatelessWidget {
                           GestureDetector(
                               onTap: () => _editSettingsPressed(
                                   context, userController, user),
-                              child: const Icon(Icons.edit,
-                                  color: AppTheme.textDark, size: 20)),
+                              child: const SizedBox(
+                                width: 40,
+                                child: Icon(Icons.edit,
+                                    color: AppTheme.textDark, size: 20),
+                              )),
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -140,7 +138,7 @@ class SettingsMainScreen extends StatelessWidget {
                                       context, "Location"),
                                   fieldValue: user.location),
                               const SizedBox(
-                                height: 20,
+                                height: 30,
                               ),
                               PrimaryButton(
                                   onTap: () => _signOutButtonPressed(
