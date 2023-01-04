@@ -15,12 +15,12 @@ import 'package:open_file_plus/open_file_plus.dart';
 class NewQueryFormController extends ChangeNotifier {
   NewQueryFormState state = const NewQueryFormState.stable();
   bool _disposed = false;
-  CancelToken uploadCancelToken = CancelToken();
+  CancelToken _uploadCancelToken = CancelToken();
 
   @override
   void dispose() {
     _disposed = true;
-    uploadCancelToken.cancel();
+    _uploadCancelToken.cancel();
     super.dispose();
   }
 
@@ -81,14 +81,15 @@ class NewQueryFormController extends ChangeNotifier {
                     'Authorization': 'Bearer ${BackendAuth.getToken()}',
                   },
                 ),
-                cancelToken: uploadCancelToken,
+                cancelToken: _uploadCancelToken,
                 data: formData);
 
             return const NewQueryFormState.completed();
           } on DioError catch (e) {
             log("[NewQueryFormController] (registerQuery) DioError:${e.message}");
             return oldState.copyWith(
-                registerQueryError: ErrorController.registerQueryError);
+                registerQueryError:
+                    ErrorController.mapServerRegisterQueryError(e.message));
           }
         },
         orElse: () => state);

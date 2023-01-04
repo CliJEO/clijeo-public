@@ -1,4 +1,5 @@
 import 'package:clijeo_public/controllers/core/file/file_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_attachment/query_thread_attachment_controller.dart';
 import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
@@ -7,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-class QueryThreadAttachmentWidget extends StatelessWidget {
-  const QueryThreadAttachmentWidget({super.key, required this.attachment});
+class QueryThreadOtherAttachmentWidget extends StatelessWidget {
+  const QueryThreadOtherAttachmentWidget({super.key, required this.attachment});
   final Attachment attachment;
 
   String _preprocessString(String str) {
@@ -40,24 +41,42 @@ class QueryThreadAttachmentWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  queryThreadAttachmentController.state.map(
-                    downloading: (_) =>
-                        const SpinKitRing(color: AppTheme.textLight),
-                    downloaded: (_) => Icon(
-                        FileController.getIconForFiletype(attachment.filetype),
-                        color: AppTheme.textDark,
-                        size: 12),
-                    notDownloaded: (_) => const Icon(Icons.download,
-                        color: AppTheme.textDark, size: 12),
+                  Row(
+                    children: [
+                      queryThreadAttachmentController.state.map(
+                        downloading: (_) =>
+                            const SpinKitRing(color: AppTheme.textLight),
+                        downloaded: (_) => Icon(
+                            FileController.getIconForFiletype(
+                                attachment.filetype),
+                            color: AppTheme.textDark,
+                            size: 12),
+                        notDownloaded: (_) => const Icon(Icons.download,
+                            color: AppTheme.textDark, size: 12),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        _preprocessString(attachment.name),
+                        style: AppTextStyle.verySmallLightTitle,
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    _preprocessString(attachment.name),
-                    style: AppTextStyle.verySmallLightTitle,
-                  ),
+                  queryThreadAttachmentController.state.maybeMap(
+                      notDownloaded: (value) {
+                        if (value.downloadingError != null) {
+                          return Text(
+                            "[${LocaleTextClass.getTextWithKey(context, value.downloadingError!)}]",
+                            style: AppTextStyle.verySmallLightTitle,
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
+                      orElse: () => Container()),
                 ],
               ),
             ),
