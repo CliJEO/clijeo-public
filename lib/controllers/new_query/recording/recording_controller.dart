@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/error/error_controller.dart';
+import 'package:clijeo_public/controllers/core/error/error_controller.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_controller.dart';
 import 'package:clijeo_public/controllers/new_query/recording/recording_state.dart';
 import 'package:flutter/material.dart';

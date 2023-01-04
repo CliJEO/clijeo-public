@@ -7,4 +7,5 @@ class ErrorController {
   static String recordingPermission = "RecordingPermission";
   static String registerQueryError = "RegisterQueryError";
   static String fileAttachmentPermission = "FileAttachmentPermission";
+  static String replyInThreadError = "ReplyInThreadError";
 }

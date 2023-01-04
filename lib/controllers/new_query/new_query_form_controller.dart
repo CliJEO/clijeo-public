@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
-import 'package:clijeo_public/controllers/error/error_controller.dart';
+import 'package:clijeo_public/controllers/core/error/error_controller.dart';
 import 'package:clijeo_public/models/attachments/local_attachments.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
 import 'package:clijeo_public/controllers/new_query/new_query_form_state.dart';
