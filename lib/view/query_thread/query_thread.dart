@@ -47,9 +47,9 @@ class QueryThread extends StatelessWidget {
               return const Loading();
             },
             loading: () => const Loading(),
-            error: (error) => const QueryThreadErrorScreen(),
-            stable: (query, isLoadingAttachments, voiceAttachments,
-                    otherAttachments) =>
+            error: () => const QueryThreadErrorScreen(),
+            stable: (query, voiceAttachments, otherAttachments,
+                    attachmentError) =>
                 Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: RefreshIndicator(
@@ -133,8 +133,7 @@ class QueryThread extends StatelessWidget {
                                                   otherAttachments,
                                               voiceAttachments:
                                                   voiceAttachments,
-                                              isLoadingAttachments:
-                                                  isLoadingAttachments,
+                                              attachmentError: attachmentError,
                                             ),
                                             if (query.responses.isNotEmpty)
                                               ListView.builder(
@@ -167,8 +166,6 @@ class QueryThread extends StatelessWidget {
                                                         otherAttachmentDownloadFunction:
                                                             null,
                                                         otherAttachments: null,
-                                                        isLoadingAttachments:
-                                                            false,
                                                       )),
                                             if (!query.closed)
                                               Row(

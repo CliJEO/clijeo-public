@@ -5,9 +5,10 @@ import 'package:clijeo_public/config.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
+import 'package:clijeo_public/controllers/core/error/error_controller.dart';
 import 'package:clijeo_public/controllers/core/file/file_controller.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_state.dart';
-import 'package:clijeo_public/models/attachments/local_attachments.dart';
+import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:clijeo_public/models/query/query.dart';
 import 'package:clijeo_public/models/query/query_response/query_response.dart';
 import 'package:dio/dio.dart';
@@ -35,70 +36,57 @@ class QueryThreadController extends ChangeNotifier {
         ),
       );
       final query = Query.fromJson(result.data);
-      state = QueryThreadState.stable(
-          query: query,
-          voiceAttachments: [],
-          otherAttachments: [],
-          isLoadingAttachments: true);
-      notifyListeners();
-
       final attachments = await _loadAttachments(query);
-      state = QueryThreadState.stable(
-          query: query,
-          voiceAttachments: attachments["audio"]!,
-          otherAttachments: attachments["other"]!,
-          isLoadingAttachments: false);
+      if (attachments == null) {
+        state = QueryThreadState.stable(
+            query: query,
+            voiceAttachments: [],
+            otherAttachments: [],
+            attachmentError: ErrorController.loadingAttachmentError);
+      } else {
+        state = QueryThreadState.stable(
+            query: query,
+            voiceAttachments: attachments["audio"]!,
+            otherAttachments: attachments["other"]!);
+      }
     } on DioError catch (e) {
-      state = QueryThreadState.error("Dio Error: ${e.response}");
-      log("Error: ${e.message}");
+      log("[QueryThreadController] (getQueryDetails) DioError:${e.message}");
+      state = const QueryThreadState.error();
     } on Error catch (e) {
-      state = QueryThreadState.error("Error: ${e.toString()}");
-      log("Error: ${e.toString()}");
+      log("[QueryThreadController] (getQueryDetails) Error:${e.toString}");
+      state = const QueryThreadState.error();
     }
     notifyListeners();
   }
 
-  Future<Map<String, List<LocalAttachments>>> _loadAttachments(
-      Query query) async {
-    Map<String, List<LocalAttachments>> attachments = {
-      "audio": [],
-      "other": []
-    };
+  Future<Map<String, List<Attachment>>?> _loadAttachments(Query query) async {
+    Map<String, List<Attachment>> attachments = {"audio": [], "other": []};
 
-    Directory directory = await getApplicationDocumentsDirectory();
+    try {
+      Directory directory = await getApplicationDocumentsDirectory();
 
-    for (var element in query.media) {
-      try {
-        if (FileController.isAudioFile(element.filename)) {
-          String filepath = "${directory.path}/${element.filename}";
-          File file = File(filepath);
-
-          if (!file.existsSync()) {
-            final result = await DioBase.dioInstance.get(
-              ApiUtils.mediaUrl(element.filename),
-              // onReceiveProgress: showDownloadProgress,
-              //Received data with List<int>
-              options: Options(headers: {
-                'Authorization': 'Bearer ${BackendAuth.getToken()}',
-              }, responseType: ResponseType.bytes),
-            );
-
-            file.writeAsBytesSync(result.data);
-          }
-
-          attachments["audio"]!.add(
-              LocalAttachments(filename: element.filename, path: filepath));
+      for (var element in query.media) {
+        String filepath = "${directory.path}/${element.filename}";
+        File file = File(filepath);
+        if (file.existsSync()) {
+          attachments[FileController.isAudioFile(element.filename)
+                  ? "audio"
+                  : "other"]!
+              .add(Attachment(filename: element.filename, path: filepath));
         } else {
-          attachments["other"]!.add(LocalAttachments(
-              filename: element.filename,
-              path: ClijeoConfig.backendBaseUrl +
-                  ApiUtils.mediaUrl(element.filename)));
+          attachments[FileController.isAudioFile(element.filename)
+                  ? "audio"
+                  : "other"]!
+              .add(Attachment(
+                  filename: element.filename,
+                  path: ClijeoConfig.backendBaseUrl +
+                      ApiUtils.mediaUrl(element.filename),
+                  isLocal: false));
         }
-      } on DioError catch (e) {
-        log(e.message);
-      } on Error catch (e) {
-        log("NORMAL ERROR: ${e.toString()}");
       }
+    } on Exception catch (e) {
+      log("[QueryThreadController] (_loadAttachments) Exception:${e.toString()}");
+      return null;
     }
     return attachments;
   }
@@ -109,7 +97,7 @@ class QueryThreadController extends ChangeNotifier {
   }
 
   static Function(int) getDownloadAttachmentFunction(
-      List<LocalAttachments> attachments) {
+      List<Attachment> attachments) {
     Future<void> downloadAttachmentFunction(int index) async {
       if (index < attachments.length) {
         Directory directory = await getApplicationDocumentsDirectory();

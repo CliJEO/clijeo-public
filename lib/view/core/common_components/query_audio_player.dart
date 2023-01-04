@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:clijeo_public/controllers/new_query/audio_playback/audio_playback_controller.dart';
 import 'package:clijeo_public/view/loading/loading_widget.dart';
-import 'package:clijeo_public/view/error/error_widget.dart';
+import 'package:clijeo_public/view/error/custom_error_widget.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:clijeo_public/view/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
