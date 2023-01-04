@@ -20,9 +20,8 @@ class QueryRecording extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onLongPressStart: (_) =>
-                  controller.startRecording(formController),
-              onLongPressEnd: (_) => controller.stopRecording(formController),
+              onTapDown: (_) => controller.startRecording(formController),
+              onTapUp: (_) => controller.stopRecording(formController),
               child: Container(
                 decoration: BoxDecoration(
                     color: controller.state.maybeMap(
@@ -40,6 +39,15 @@ class QueryRecording extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+                controller.state.map(
+                    notRecording: (_) => LocaleTextClass.getTextWithKey(
+                        context, "RecordingInstructions"),
+                    recording: (_) =>
+                        LocaleTextClass.getTextWithKey(context, "Recording"),
+                    recordingCompleted: (_) => LocaleTextClass.getTextWithKey(
+                        context, "RecordingCompleted")),
+                style: AppTextStyle.midSmallDarkLightTitle),
             Container(
               decoration: BoxDecoration(
                   color: controller.state.maybeMap(

@@ -11,6 +11,7 @@ class LoadingWidget extends StatelessWidget {
     return const SpinKitRing(
       color: AppTheme.primaryColor,
       lineWidth: 5,
+      size: 20,
     );
   }
 }

@@ -35,7 +35,7 @@ class FileController {
         return Icons.image;
       case "video":
         return Icons.video_file;
-      case "document":
+      case "application":
         return Icons.description;
       default:
         return Icons.text_snippet;

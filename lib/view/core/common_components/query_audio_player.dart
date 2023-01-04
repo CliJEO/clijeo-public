@@ -89,7 +89,7 @@ class QueryAudioPlayerWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: actionFunction,
                   child: Icon(isPlaying ? Icons.pause : Icons.play_arrow,
-                      color: AppTheme.textDark, size: 20),
+                      color: AppTheme.textDark, size: 25),
                 ),
                 Expanded(
                     child: SliderTheme(

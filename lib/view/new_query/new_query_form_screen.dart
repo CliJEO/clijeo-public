@@ -58,10 +58,7 @@ class NewQueryFormScreen extends StatelessWidget {
                       backgroundColor: AppTheme.backgroundColor,
                       body: SingleChildScrollView(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  sizeConfig.safeBlockSizeHorizontal(0.06),
-                              vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                          padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -107,7 +104,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                                     context, "Subject-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             onSaved: newQueryFormController
@@ -125,7 +122,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                             maxLines: 100,
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           Text(
                                             LocaleTextClass.getTextWithKey(
@@ -134,7 +131,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                                 .smallDarkLightBoldBody,
                                           ),
                                           const SizedBox(
-                                            height: 10,
+                                            height: 15,
                                           ),
                                           if (voiceAttachmentError != null)
                                             CustomErrorWidget(
@@ -159,7 +156,7 @@ class NewQueryFormScreen extends StatelessWidget {
                                                           null),
                                             ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -183,51 +180,45 @@ class NewQueryFormScreen extends StatelessWidget {
                                                 )
                                             ],
                                           ),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
                                           if (otherAttachmentError != null)
                                             CustomErrorWidget(
                                                 showErrorHeading: false,
                                                 errorText: LocaleTextClass
                                                     .getTextWithKey(context,
                                                         otherAttachmentError)),
-                                          if (otherAttachmentError == null)
-                                            Column(
-                                              children: [
-                                                const SizedBox(
-                                                  height: 20,
-                                                ),
-                                                if (otherAttachments != null &&
-                                                    otherAttachments.isNotEmpty)
-                                                  ListView.builder(
-                                                      physics:
-                                                          const NeverScrollableScrollPhysics(),
-                                                      shrinkWrap: true,
-                                                      itemCount:
-                                                          otherAttachments
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                              index) =>
-                                                          NewQueryFormAttachmentWidget(
-                                                            openFunction: () =>
-                                                                newQueryFormController
-                                                                    .openFileFromOtherAttachments(
-                                                                        index),
-                                                            closeFunction: () =>
-                                                                newQueryFormController
-                                                                    .removeFileFromOtherAttachments(
-                                                                        index),
-                                                            name:
-                                                                otherAttachments[
-                                                                        index]
-                                                                    .name,
-                                                            filetype:
-                                                                otherAttachments[
-                                                                        index]
-                                                                    .filetype,
-                                                          )),
-                                              ],
-                                            ),
+                                          if (otherAttachmentError == null &&
+                                              otherAttachments != null &&
+                                              otherAttachments.isNotEmpty)
+                                            ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                physics:
+                                                    const NeverScrollableScrollPhysics(),
+                                                shrinkWrap: true,
+                                                itemCount:
+                                                    otherAttachments.length,
+                                                itemBuilder: (context, index) =>
+                                                    NewQueryFormAttachmentWidget(
+                                                      openFunction: () =>
+                                                          newQueryFormController
+                                                              .openFileFromOtherAttachments(
+                                                                  index),
+                                                      closeFunction: () =>
+                                                          newQueryFormController
+                                                              .removeFileFromOtherAttachments(
+                                                                  index),
+                                                      name: otherAttachments[
+                                                              index]
+                                                          .name,
+                                                      filetype:
+                                                          otherAttachments[
+                                                                  index]
+                                                              .filetype,
+                                                    )),
                                           const SizedBox(
-                                            height: 20,
+                                            height: 40,
                                           ),
                                           PrimaryButton(
                                               onTap: () async {
