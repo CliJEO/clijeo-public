@@ -28,60 +28,69 @@ class QueryThreadVoiceAttachmentWidget extends StatelessWidget {
       child: Consumer<QueryThreadAttachmentController>(
           builder: (context, queryThreadAttachmentController, _) =>
               queryThreadAttachmentController.state.maybeWhen(
-                  downloaded: (attachmentPath) =>
-                      QueryAudioPlayer(voiceAttachmentPath: attachmentPath),
+                  downloaded: (attachmentPath) => Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: QueryAudioPlayer(
+                            voiceAttachmentPath: attachmentPath),
+                      ),
                   orElse: () => GestureDetector(
                         onTap: queryThreadAttachmentController.state.maybeMap(
                             notDownloaded: (_) =>
                                 queryThreadAttachmentController.download,
                             orElse: () => null),
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: queryThreadAttachmentController.state
-                                  .maybeMap(
-                                      downloading: (_) =>
-                                          AppTheme.lighterPrimaryColor,
-                                      orElse: () => AppTheme.primaryColor),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    queryThreadAttachmentController.state
-                                        .maybeMap(
-                                      downloading: (_) => const SpinKitRing(
-                                          color: AppTheme.textLight),
-                                      orElse: () => const Icon(Icons.download,
-                                          color: AppTheme.textDark, size: 12),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      _preprocessString(attachment.name),
-                                      style: AppTextStyle.verySmallLightTitle,
-                                    ),
-                                  ],
-                                ),
-                                queryThreadAttachmentController.state.maybeMap(
-                                    notDownloaded: (value) {
-                                      if (value.downloadingError != null) {
-                                        return Text(
-                                          "[${LocaleTextClass.getTextWithKey(context, value.downloadingError!)}]",
-                                          style:
-                                              AppTextStyle.verySmallLightTitle,
-                                        );
-                                      } else {
-                                        return Container();
-                                      }
-                                    },
-                                    orElse: () => Container()),
-                              ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: queryThreadAttachmentController.state
+                                    .maybeMap(
+                                        downloading: (_) =>
+                                            AppTheme.lighterPrimaryColor,
+                                        orElse: () => AppTheme.primaryColor),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      queryThreadAttachmentController.state
+                                          .maybeMap(
+                                        downloading: (_) => const SpinKitRing(
+                                            color: AppTheme.textLight),
+                                        orElse: () => const Icon(Icons.download,
+                                            color: AppTheme.textDark, size: 12),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        _preprocessString(attachment.name),
+                                        style: AppTextStyle.verySmallLightTitle,
+                                      ),
+                                    ],
+                                  ),
+                                  queryThreadAttachmentController.state
+                                      .maybeMap(
+                                          notDownloaded: (value) {
+                                            if (value.downloadingError !=
+                                                null) {
+                                              return Text(
+                                                "[${LocaleTextClass.getTextWithKey(context, value.downloadingError!)}]",
+                                                style: AppTextStyle
+                                                    .verySmallLightTitle,
+                                              );
+                                            } else {
+                                              return Container();
+                                            }
+                                          },
+                                          orElse: () => Container()),
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -39,29 +39,31 @@ class QueryThreadOtherAttachmentWidget extends StatelessWidget {
                     orElse: () => AppTheme.primaryColor),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       queryThreadAttachmentController.state.map(
-                        downloading: (_) =>
-                            const SpinKitRing(color: AppTheme.textLight),
+                        downloading: (_) => const SpinKitRing(
+                          color: AppTheme.textLight,
+                          lineWidth: 5,
+                        ),
                         downloaded: (_) => Icon(
                             FileController.getIconForFiletype(
                                 attachment.filetype),
-                            color: AppTheme.textDark,
-                            size: 12),
+                            color: AppTheme.textLight,
+                            size: 25),
                         notDownloaded: (_) => const Icon(Icons.download,
-                            color: AppTheme.textDark, size: 12),
+                            color: AppTheme.textLight, size: 25),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
                         _preprocessString(attachment.name),
-                        style: AppTextStyle.verySmallLightTitle,
+                        style: AppTextStyle.veryMidSmallLightTitle,
                       ),
                     ],
                   ),

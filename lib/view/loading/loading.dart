@@ -1,22 +1,34 @@
+import 'dart:developer';
+
 import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatelessWidget {
   static String id = "Loading";
-  const Loading({super.key});
+  const Loading({super.key, this.percentCompleted});
+  final int? percentCompleted;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    log(percentCompleted?.toString() ?? "");
+    return Scaffold(
       backgroundColor: AppTheme.backgroundColor,
-      body: Center(
-          child: SpinKitRing(
-        color: AppTheme.primaryColor,
-        lineWidth: 5,
-      )),
+      body: Stack(children: [
+        if (percentCompleted != null)
+          Center(
+            child: Text(
+              "${percentCompleted.toString()}%",
+              style: AppTextStyle.regularAccentTitle,
+            ),
+          ),
+        const SpinKitRing(
+          color: AppTheme.primaryColor,
+          lineWidth: 5,
+          size: 70,
+        ),
+      ]),
     );
   }
 }
