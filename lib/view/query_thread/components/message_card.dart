@@ -4,10 +4,11 @@ import 'package:clijeo_public/models/query/media/query_media.dart';
 import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
 import 'package:clijeo_public/view/error/custom_error_widget.dart';
 import 'package:clijeo_public/view/loading/loading_widget.dart';
-import 'package:clijeo_public/view/query_thread/components/query_thread_attachment_widget.dart';
+import 'package:clijeo_public/view/query_thread/components/query_thread_other_attachment_widget.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:clijeo_public/view/core/theme/app_text_style.dart';
 import 'package:clijeo_public/view/core/theme/size_config.dart';
+import 'package:clijeo_public/view/query_thread/components/query_thread_voice_attachment_widget.dart';
 import 'package:flutter/material.dart';
 
 class MessageCard extends StatelessWidget {
@@ -90,9 +91,9 @@ class MessageCard extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: voiceAttachments!.length,
-                        itemBuilder: (context, index) => QueryAudioPlayer(
-                            voiceAttachmentPath:
-                                voiceAttachments![index].path)),
+                        itemBuilder: (context, index) =>
+                            QueryThreadVoiceAttachmentWidget(
+                                attachment: voiceAttachments![index])),
                   const SizedBox(
                     height: 10,
                   ),
@@ -105,7 +106,7 @@ class MessageCard extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: otherAttachments!.length,
                         itemBuilder: (context, index) =>
-                            QueryThreadAttachmentWidget(
+                            QueryThreadOtherAttachmentWidget(
                               attachment: otherAttachments![index],
                             )),
                 ],

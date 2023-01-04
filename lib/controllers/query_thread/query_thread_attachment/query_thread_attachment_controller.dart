@@ -14,7 +14,7 @@ import 'package:path_provider/path_provider.dart';
 class QueryThreadAttachmentController extends ChangeNotifier {
   QueryThreadAttachmentState state;
   bool _disposed = false;
-  CancelToken downloadCancelToken = CancelToken();
+  CancelToken _downloadCancelToken = CancelToken();
   QueryThreadAttachmentController({required Attachment attachment})
       : state = attachment.isLocal
             ? QueryThreadAttachmentState.downloaded(
@@ -25,7 +25,7 @@ class QueryThreadAttachmentController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
-    downloadCancelToken.cancel();
+    _downloadCancelToken.cancel();
     super.dispose();
   }
 
@@ -49,7 +49,7 @@ class QueryThreadAttachmentController extends ChangeNotifier {
             File file = File(filepath);
             final result = await DioBase.dioInstance.get(
               oldState.downloadPath,
-              cancelToken: downloadCancelToken,
+              cancelToken: _downloadCancelToken,
               // onReceiveProgress: showDownloadProgress,
               //Received data with List<int>
               options: Options(headers: {

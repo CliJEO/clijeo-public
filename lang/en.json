@@ -60,5 +60,8 @@
     "FileAttachmentPermission": "Insufficient Permissions to view device files",
     "ReplyInThreadError": "Unable to reply in thread",
     "LoadingAttachmentError": "Failed to load attachments",
-    "DownloadAttachmentError": "Unable to download attachment"
+    "DownloadAttachmentError": "Download Failed",
+    "RegisterQueryErrorExcessFile": "Too many attachments. Reduce the number of attachments.",
+    "RegisterQueryErrorLargeFile": "File size of attachments too large. Remove large attachments.",
+    "RegisterQueryErrorTitleOrContent": "Title or content not within limits."
 }
