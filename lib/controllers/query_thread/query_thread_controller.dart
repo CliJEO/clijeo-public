@@ -5,6 +5,7 @@ import 'package:clijeo_public/config.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
+import 'package:clijeo_public/controllers/core/file/file_controller.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_state.dart';
 import 'package:clijeo_public/models/attachments/local_attachments.dart';
 import 'package:clijeo_public/models/query/query.dart';
@@ -68,14 +69,13 @@ class QueryThreadController extends ChangeNotifier {
 
     for (var element in query.media) {
       try {
-        if (element.mimetype.split("/")[0] == "audio") {
-          String filepath = "${directory.path}/${element.url.split("/")[2]}";
+        if (FileController.isAudioFile(element.filename)) {
+          String filepath = "${directory.path}/${element.filename}";
           File file = File(filepath);
-          log(filepath);
 
           if (!file.existsSync()) {
             final result = await DioBase.dioInstance.get(
-              element.url,
+              ApiUtils.mediaUrl(element.filename),
               // onReceiveProgress: showDownloadProgress,
               //Received data with List<int>
               options: Options(headers: {
@@ -84,15 +84,15 @@ class QueryThreadController extends ChangeNotifier {
             );
 
             file.writeAsBytesSync(result.data);
-            log("WRITE COMPLETED");
           }
 
-          attachments["audio"]!.add(LocalAttachments(
-              name: element.url.split("/")[2], path: filepath));
+          attachments["audio"]!.add(
+              LocalAttachments(filename: element.filename, path: filepath));
         } else {
           attachments["other"]!.add(LocalAttachments(
-              name: element.url.split("/")[2],
-              path: ClijeoConfig.backendBaseUrl + element.url));
+              filename: element.filename,
+              path: ClijeoConfig.backendBaseUrl +
+                  ApiUtils.mediaUrl(element.filename)));
         }
       } on DioError catch (e) {
         log(e.message);
