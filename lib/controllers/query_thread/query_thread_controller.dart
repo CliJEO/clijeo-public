@@ -95,32 +95,4 @@ class QueryThreadController extends ChangeNotifier {
     final dateObj = DateTime.parse(datetime).toLocal();
     return "${dateObj.day}/${dateObj.month}/${dateObj.year} ${dateObj.hour}:${dateObj.minute}";
   }
-
-  static Function(int) getDownloadAttachmentFunction(
-      List<Attachment> attachments) {
-    Future<void> downloadAttachmentFunction(int index) async {
-      if (index < attachments.length) {
-        Directory directory = await getApplicationDocumentsDirectory();
-        String filepath =
-            "${directory.path}/${attachments[index].path.split("/").last}";
-        File file = File(filepath);
-        if (!file.existsSync()) {
-          final result = await DioBase.dioInstance.get(
-            attachments[index].path,
-            // onReceiveProgress: showDownloadProgress,
-            //Received data with List<int>
-            options: Options(headers: {
-              'Authorization': 'Bearer ${BackendAuth.getToken()}',
-            }, responseType: ResponseType.bytes),
-          );
-
-          file.writeAsBytesSync(result.data);
-          log("WRITE COMPLETED");
-        }
-        await OpenFile.open(filepath);
-      }
-    }
-
-    return downloadAttachmentFunction;
-  }
 }

@@ -88,8 +88,8 @@ class NewQueryFormController extends ChangeNotifier {
           } on DioError catch (e) {
             log("[NewQueryFormController] (registerQuery) DioError:${e.message}");
             return oldState.copyWith(
-                registerQueryError:
-                    ErrorController.mapServerRegisterQueryError(e.message));
+                registerQueryError: ErrorController.mapServerRegisterQueryError(
+                    e.response?.data["message"]));
           }
         },
         orElse: () => state);

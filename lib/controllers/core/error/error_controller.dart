@@ -15,7 +15,7 @@ class ErrorController {
   static String registerQueryErrorTitleOrContent =
       "RegisterQueryErrorTitleOrContent";
 
-  static String mapServerRegisterQueryError(String serverError) {
+  static String mapServerRegisterQueryError(String? serverError) {
     if (serverError == "Unexpected field") {
       return registerQueryErrorExcessFile;
     } else if (serverError == "File too large") {

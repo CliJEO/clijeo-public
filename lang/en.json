@@ -1,5 +1,5 @@
 {
-    "NoNetwork": "Are you connected to the Network?",
+    "NoNetwork": "Unable to connect to the network.",
     "AppTitle": "CLIJEO",
     "AppFullTitle": "CLINICAL JUSTICE EDUCATION ORGANISATION",
     "SignUpHomePageHeadingSecondParaHeading": "Answering your queries",
@@ -63,5 +63,6 @@
     "DownloadAttachmentError": "Download Failed",
     "RegisterQueryErrorExcessFile": "Too many attachments. Reduce the number of attachments.",
     "RegisterQueryErrorLargeFile": "File size of attachments too large. Remove large attachments.",
-    "RegisterQueryErrorTitleOrContent": "Title or content not within limits."
+    "RegisterQueryErrorTitleOrContent": "Title or content not within limits.",
+    "QueryFetchError": "Unable to fetch details for this query."
 }

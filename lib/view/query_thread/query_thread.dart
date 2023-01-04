@@ -125,10 +125,6 @@ class QueryThread extends StatelessWidget {
                                                       query.timestamp),
                                               isArchived: query.closed,
                                               sizeConfig: sizeConfig,
-                                              otherAttachmentDownloadFunction:
-                                                  QueryThreadController
-                                                      .getDownloadAttachmentFunction(
-                                                          otherAttachments),
                                               otherAttachments:
                                                   otherAttachments,
                                               voiceAttachments:
@@ -163,8 +159,6 @@ class QueryThread extends StatelessWidget {
                                                         isArchived:
                                                             query.closed,
                                                         sizeConfig: sizeConfig,
-                                                        otherAttachmentDownloadFunction:
-                                                            null,
                                                         otherAttachments: null,
                                                       )),
                                             if (!query.closed)
