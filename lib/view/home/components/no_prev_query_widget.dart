@@ -1,7 +1,8 @@
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class NoPrevQueryWidget extends StatelessWidget {
   const NoPrevQueryWidget({super.key, required this.sizeConfig});
@@ -10,13 +11,17 @@ class NoPrevQueryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: sizeConfig.safeBlockSizeVertical(0.1),
+        const SizedBox(
+          height: 20,
         ),
         SizedBox(
+          height: sizeConfig.safeBlockSizeVertical(0.3),
           width: sizeConfig.safeBlockSizeHorizontal(0.7),
-          child: Image.asset("assets/no_query_art.png"),
+          child: SvgPicture.asset(
+            "assets/no_query.svg",
+          ),
         ),
         Text(
           LocaleTextClass.getTextWithKey(context, "NoPostedQuery"),

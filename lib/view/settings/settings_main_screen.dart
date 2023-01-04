@@ -1,18 +1,18 @@
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
+import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
-import 'package:clijeo_public/view/common_components/custom_back_button.dart';
-import 'package:clijeo_public/view/common_components/disabled_form_field.dart';
-import 'package:clijeo_public/view/common_components/disabled_toggle_button.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
-import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
+import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/core/common_components/disabled_form_field.dart';
+import 'package:clijeo_public/view/core/common_components/disabled_toggle_button.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/settings/settings_edit_screen.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,14 +42,12 @@ class SettingsMainScreen extends StatelessWidget {
     final sizeConfig = SizeConfig(context);
     return Consumer<ClijeoUserController>(
         builder: (context, userController, _) => userController.state.when(
+            noUser: () => QueryThreadErrorScreen(),
             loading: () => const Loading(),
-            error: (error) => const ErrorScreen(),
-            stable: (user) => Scaffold(
+            stable: (user, refreshError) => Scaffold(
                 backgroundColor: AppTheme.backgroundColor,
                 body: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
-                      vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                  padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                   child: SingleChildScrollView(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,9 +59,6 @@ class SettingsMainScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               const CustomBackButton(),
-                              const SizedBox(
-                                width: 10,
-                              ),
                               Text(
                                 LocaleTextClass.getTextWithKey(
                                     context, "Settings"),
@@ -74,12 +69,15 @@ class SettingsMainScreen extends StatelessWidget {
                           GestureDetector(
                               onTap: () => _editSettingsPressed(
                                   context, userController, user),
-                              child: const Icon(Icons.edit,
-                                  color: AppTheme.textDark, size: 20)),
+                              child: const SizedBox(
+                                width: 40,
+                                child: Icon(Icons.edit,
+                                    color: AppTheme.textDark, size: 20),
+                              )),
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -120,7 +118,10 @@ class SettingsMainScreen extends StatelessWidget {
                                 fieldTitle: LocaleTextClass.getTextWithKey(
                                     context, "LanguagePreference"),
                                 fieldValue: LocaleTextClass.getTextWithKey(
-                                    context, Language.getCurrentLanguageCode()),
+                                    context,
+                                    Provider.of<LanguageController>(context,
+                                            listen: false)
+                                        .getCurrentLanguageCode()),
                               ),
                               const SizedBox(
                                 height: 20,
@@ -137,7 +138,7 @@ class SettingsMainScreen extends StatelessWidget {
                                       context, "Location"),
                                   fieldValue: user.location),
                               const SizedBox(
-                                height: 20,
+                                height: 30,
                               ),
                               PrimaryButton(
                                   onTap: () => _signOutButtonPressed(

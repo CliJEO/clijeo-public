@@ -4,9 +4,9 @@ part 'thread_respond_form_state.freezed.dart';
 
 @freezed
 abstract class ThreadRespondFormState with _$ThreadRespondFormState {
-  const factory ThreadRespondFormState.stable({String? body}) =
-      _ThreadRespondFormStable;
+  const factory ThreadRespondFormState.stable(
+      {String? body, String? replyError}) = _ThreadRespondFormStable;
   const factory ThreadRespondFormState.loading() = _ThreadRespondFormLoading;
-  const factory ThreadRespondFormState.error(String error) =
-      _ThreadRespondFormError;
+  const factory ThreadRespondFormState.completed() =
+      _ThreadRespondFormCompleted;
 }

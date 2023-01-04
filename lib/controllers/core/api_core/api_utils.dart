@@ -16,4 +16,10 @@ class ApiUtils {
 
   // For replying to a particular query
   static String replyQueryUrl(int queryId) => '/respond/$queryId/user';
+
+  // For saving the fcm token of a user
+  static String fcmTokenSaveUrl = '/fcm-token/save/user';
+
+  // For fetching media
+  static String mediaUrl(String filename) => '/media/$filename';
 }

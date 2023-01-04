@@ -1,22 +1,21 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
-import 'package:clijeo_public/models/user/clijeo_user.dart';
-import 'package:clijeo_public/view/core/constants.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
+import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
 import 'package:clijeo_public/controllers/first_login_form/first_login_form_controller.dart';
-import 'package:clijeo_public/view/common_components/custom_form_field.dart';
-import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
-import 'package:clijeo_public/view/home/home.dart';
-import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
+import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
+import 'package:clijeo_public/view/error/widgets/custom_error_widget.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +34,6 @@ class FirstLoginFormScreen extends StatelessWidget {
     var ans = Provider.of<ClijeoUserController>(context, listen: false)
         .state
         .maybeMap(stable: (state) => state.user.name, orElse: () => "");
-    print("USERNAME: $ans");
     return ans;
   }
 
@@ -48,16 +46,18 @@ class FirstLoginFormScreen extends StatelessWidget {
         controller.updateStableStateLanguage(_allLanguageList[index]);
   }
 
-  Future<void> _saveProfileDetails(
-      context, FirstLoginFormController controller) async {
+  Future<void> _saveProfileDetails(context, FirstLoginFormController controller,
+      LanguageController languageController) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await controller.saveProfileDetails();
-
-      ClijeoUserController userController =
-          Provider.of<ClijeoUserController>(context, listen: false);
-      await Provider.of<MainAppController>(context, listen: false)
-          .firstLoginCompleted(userController);
+      await controller.saveProfileDetails(languageController);
+      await controller.state.maybeWhen(
+          completed: () async {
+            await Provider.of<MainAppController>(context, listen: false)
+                .firstLoginCompleted(
+                    Provider.of<ClijeoUserController>(context, listen: false));
+          },
+          orElse: () {});
     }
   }
 
@@ -65,21 +65,21 @@ class FirstLoginFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     return ChangeNotifierProvider<FirstLoginFormController>(
-      create: (context) => FirstLoginFormController(_getUsername(context)),
+      create: (context) => FirstLoginFormController(
+          _getUsername(context),
+          Provider.of<LanguageController>(context, listen: false)
+              .getCurrentLanguageCode()),
       child: Consumer<FirstLoginFormController>(
           builder: (context, controller, child) => controller.state.when(
               loading: () => const Loading(),
-              error: (error) {
-                return const ErrorScreen();
-              },
-              stable: (name, age, gender, language, phoneNumber, location) {
+              completed: () => const Loading(),
+              stable: (name, age, gender, language, phoneNumber, location,
+                  saveProfileDetailsError) {
                 return Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
                       child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: sizeConfig.safeBlockSizeHorizontal(0.08),
-                        vertical: sizeConfig.safeBlockSizeVertical(0.05)),
+                    padding: const EdgeInsets.fromLTRB(30, 60, 30, 20),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -110,12 +110,13 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 context, "Name-Hint"),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomFormField(
                             validator:
                                 FormValidationController.nullStringValidation,
                             onSaved: controller.updateStableStateAge,
+                            initialValue: age?.toString(),
                             textInputType: TextInputType.number,
                             fieldTitle:
                                 LocaleTextClass.getTextWithKey(context, "Age"),
@@ -123,7 +124,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 context, "Age-Hint"),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomToggleButton(
                               isSelected: _allGenderList
@@ -138,7 +139,7 @@ class FirstLoginFormScreen extends StatelessWidget {
                                       context, e))
                                   .toList()),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomToggleButton(
                               isSelected: _allLanguageList
@@ -153,12 +154,13 @@ class FirstLoginFormScreen extends StatelessWidget {
                                       context, e))
                                   .toList()),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomFormField(
                             validator:
-                                FormValidationController.nullStringValidation,
+                                FormValidationController.phoneNumberValidation,
                             onSaved: controller.updateStableStatePhoneNumber,
+                            initialValue: phoneNumber,
                             textInputType: TextInputType.phone,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "PhoneNumber"),
@@ -166,13 +168,14 @@ class FirstLoginFormScreen extends StatelessWidget {
                                 context, "PhoneNumber-Hint"),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           CustomFormField(
                             validator:
                                 FormValidationController.nullStringValidation,
                             onSaved: controller.updateStableStateLocation,
                             textInputType: TextInputType.text,
+                            initialValue: location,
                             fieldTitle: LocaleTextClass.getTextWithKey(
                                 context, "Location"),
                             fieldHintText: LocaleTextClass.getTextWithKey(
@@ -181,11 +184,14 @@ class FirstLoginFormScreen extends StatelessWidget {
                             maxLines: 8,
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
                           PrimaryButton(
-                              onTap: () =>
-                                  _saveProfileDetails(context, controller),
+                              onTap: () => _saveProfileDetails(
+                                  context,
+                                  controller,
+                                  Provider.of<LanguageController>(context,
+                                      listen: false)),
                               sizeConfig: sizeConfig,
                               child: Center(
                                 child: Text(
@@ -193,7 +199,14 @@ class FirstLoginFormScreen extends StatelessWidget {
                                       context, "SaveProfileDetails"),
                                   style: AppTextStyle.smallLightTitle,
                                 ),
-                              ))
+                              )),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          if (saveProfileDetailsError != null)
+                            CustomErrorWidget(
+                                errorText: LocaleTextClass.getTextWithKey(
+                                    context, saveProfileDetailsError)),
                         ],
                       ),
                     ),

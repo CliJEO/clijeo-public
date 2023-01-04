@@ -8,8 +8,9 @@ class BackendAuth {
     _userToken = token;
   }
 
-  static void clearToken() {
+  static Future<void> clearToken() async {
     _userToken = "";
+    await ClijeoSharedPref.clearUserAccessTokenToSharedPref();
   }
 
   static Future<void> setTokenAndUpdateSharedPref(String token) async {

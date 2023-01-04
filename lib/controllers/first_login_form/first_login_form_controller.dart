@@ -1,12 +1,13 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/error/error_controller.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
-import 'package:clijeo_public/view/core/constants.dart';
+import 'package:clijeo_public/constants.dart';
 import 'package:clijeo_public/controllers/core/api_core/api_utils.dart';
 import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
 import 'package:clijeo_public/controllers/first_login_form/first_login_form_state.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -14,18 +15,17 @@ import 'package:flutter/material.dart';
 class FirstLoginFormController extends ChangeNotifier {
   FirstLoginFormState state;
 
-  FirstLoginFormController(String name)
+  FirstLoginFormController(String name, String languageCode)
       : state = FirstLoginFormState.stable(
             name: name,
             gender: Constants.getAllGenders().first,
-            language: Language.getCurrentLanguageCode());
+            language: languageCode);
 
   void updateStableStateName(String? updatedName) {
     if (updatedName != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(name: updatedName),
-          orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
@@ -33,10 +33,9 @@ class FirstLoginFormController extends ChangeNotifier {
     if (updatedGender != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(gender: updatedGender),
-          orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+          orElse: () => state);
 
-      // Since these fields correspond to UI that needs to change
+      // Since this field correspond to UI that needs to change
       notifyListeners();
     }
   }
@@ -45,10 +44,9 @@ class FirstLoginFormController extends ChangeNotifier {
     if (updatedLanguage != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(language: updatedLanguage),
-          orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+          orElse: () => state);
 
-      // Since these fields correspond to UI that needs to change
+      // Since this field corresponds to UI that needs to change
       notifyListeners();
     }
   }
@@ -57,8 +55,7 @@ class FirstLoginFormController extends ChangeNotifier {
     if (updatedAge != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(age: int.tryParse(updatedAge)),
-          orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
@@ -66,8 +63,7 @@ class FirstLoginFormController extends ChangeNotifier {
     if (updatedPhoneNumber != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(phoneNumber: updatedPhoneNumber),
-          orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
@@ -75,46 +71,22 @@ class FirstLoginFormController extends ChangeNotifier {
     if (updatedLocation != null) {
       state = state.maybeMap(
           stable: (value) => value.copyWith(location: updatedLocation),
-          orElse: () =>
-              const FirstLoginFormState.error("State Error: Invalid State"));
+          orElse: () => state);
     }
   }
 
-  Future<void> getUserNameFromBackend() async {
-    try {
-      final result = await DioBase.dioInstance.get(
-        ApiUtils.userUrl,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer ${BackendAuth.getToken()}',
-          },
-        ),
-      );
-      final user = ClijeoUserDto.fromJson(result.data);
-      state = FirstLoginFormState.stable(
-          name: user.name,
-          language: Language.getCurrentLanguageCode(),
-          gender: Constants.getAllGenders().first);
-      notifyListeners();
-    } on DioError catch (e) {
-      state = FirstLoginFormState.error("Dio Error: ${e.response}");
-    } on Error catch (e) {
-      state = FirstLoginFormState.error("Error: ${e.toString()}");
-    }
-    notifyListeners();
-  }
-
-  Future<void> saveProfileDetails() async {
-    await state.maybeWhen(
-        stable: (name, age, gender, language, phoneNumber, location) async {
+  Future<void> saveProfileDetails(LanguageController languageController) async {
+    state = await state.maybeMap(
+        stable: (oldState) async {
           final user = ClijeoUserDto(
-            name: name,
-            age: age,
-            gender: gender,
-            phoneNumber: phoneNumber,
-            location: location,
+            name: oldState.name,
+            age: oldState.age,
+            gender: oldState.gender,
+            phoneNumber: oldState.phoneNumber,
+            location: oldState.location,
           );
 
+          // Setting the state to loading as processing continues
           state = const FirstLoginFormState.loading();
           notifyListeners();
 
@@ -128,15 +100,18 @@ class FirstLoginFormController extends ChangeNotifier {
                 data: user.toJson());
 
             // Updating the shared pref and static variable for language
-            await Language.setCurrentLanguageCodeAndUpdateSharedPref(language);
+            await languageController
+                .setCurrentLanguageCodeAndUpdateSharedPref(oldState.language);
+
+            return const FirstLoginFormState.completed();
           } on DioError catch (e) {
-            state = FirstLoginFormState.error("Dio Error: ${e.response}");
-            notifyListeners();
-          } on Error catch (e) {
-            state = FirstLoginFormState.error("Error: ${e.toString()}");
-            notifyListeners();
+            log("[FirstLoginFormController] (saveProfileDetails) DioError:${e.message}");
+            return oldState.copyWith(
+                saveProfileDetailsError:
+                    ErrorController.saveProfileDetailsError);
           }
         },
-        orElse: () {});
+        orElse: () => state);
+    notifyListeners();
   }
 }

@@ -25,6 +25,7 @@ mixin _$Query {
   String get content => throw _privateConstructorUsedError;
   bool get closed => throw _privateConstructorUsedError;
   String get timestamp => throw _privateConstructorUsedError;
+  List<QueryMedia> get media => throw _privateConstructorUsedError;
   List<QueryResponse> get responses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $QueryCopyWith<$Res> {
       String content,
       bool closed,
       String timestamp,
+      List<QueryMedia> media,
       List<QueryResponse> responses});
 }
 
@@ -64,6 +66,7 @@ class _$QueryCopyWithImpl<$Res, $Val extends Query>
     Object? content = null,
     Object? closed = null,
     Object? timestamp = null,
+    Object? media = null,
     Object? responses = null,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +90,10 @@ class _$QueryCopyWithImpl<$Res, $Val extends Query>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as String,
+      media: null == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as List<QueryMedia>,
       responses: null == responses
           ? _value.responses
           : responses // ignore: cast_nullable_to_non_nullable
@@ -107,6 +114,7 @@ abstract class _$$_QueryCopyWith<$Res> implements $QueryCopyWith<$Res> {
       String content,
       bool closed,
       String timestamp,
+      List<QueryMedia> media,
       List<QueryResponse> responses});
 }
 
@@ -124,6 +132,7 @@ class __$$_QueryCopyWithImpl<$Res> extends _$QueryCopyWithImpl<$Res, _$_Query>
     Object? content = null,
     Object? closed = null,
     Object? timestamp = null,
+    Object? media = null,
     Object? responses = null,
   }) {
     return _then(_$_Query(
@@ -147,6 +156,10 @@ class __$$_QueryCopyWithImpl<$Res> extends _$QueryCopyWithImpl<$Res, _$_Query>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as String,
+      media: null == media
+          ? _value._media
+          : media // ignore: cast_nullable_to_non_nullable
+              as List<QueryMedia>,
       responses: null == responses
           ? _value._responses
           : responses // ignore: cast_nullable_to_non_nullable
@@ -164,8 +177,10 @@ class _$_Query with DiagnosticableTreeMixin implements _Query {
       required this.content,
       required this.closed,
       required this.timestamp,
+      required final List<QueryMedia> media,
       required final List<QueryResponse> responses})
-      : _responses = responses;
+      : _media = media,
+        _responses = responses;
 
   factory _$_Query.fromJson(Map<String, dynamic> json) =>
       _$$_QueryFromJson(json);
@@ -180,6 +195,14 @@ class _$_Query with DiagnosticableTreeMixin implements _Query {
   final bool closed;
   @override
   final String timestamp;
+  final List<QueryMedia> _media;
+  @override
+  List<QueryMedia> get media {
+    if (_media is EqualUnmodifiableListView) return _media;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_media);
+  }
+
   final List<QueryResponse> _responses;
   @override
   List<QueryResponse> get responses {
@@ -190,7 +213,7 @@ class _$_Query with DiagnosticableTreeMixin implements _Query {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Query(id: $id, title: $title, content: $content, closed: $closed, timestamp: $timestamp, responses: $responses)';
+    return 'Query(id: $id, title: $title, content: $content, closed: $closed, timestamp: $timestamp, media: $media, responses: $responses)';
   }
 
   @override
@@ -203,6 +226,7 @@ class _$_Query with DiagnosticableTreeMixin implements _Query {
       ..add(DiagnosticsProperty('content', content))
       ..add(DiagnosticsProperty('closed', closed))
       ..add(DiagnosticsProperty('timestamp', timestamp))
+      ..add(DiagnosticsProperty('media', media))
       ..add(DiagnosticsProperty('responses', responses));
   }
 
@@ -217,14 +241,22 @@ class _$_Query with DiagnosticableTreeMixin implements _Query {
             (identical(other.closed, closed) || other.closed == closed) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
+            const DeepCollectionEquality().equals(other._media, _media) &&
             const DeepCollectionEquality()
                 .equals(other._responses, _responses));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, content, closed,
-      timestamp, const DeepCollectionEquality().hash(_responses));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      content,
+      closed,
+      timestamp,
+      const DeepCollectionEquality().hash(_media),
+      const DeepCollectionEquality().hash(_responses));
 
   @JsonKey(ignore: true)
   @override
@@ -247,6 +279,7 @@ abstract class _Query implements Query {
       required final String content,
       required final bool closed,
       required final String timestamp,
+      required final List<QueryMedia> media,
       required final List<QueryResponse> responses}) = _$_Query;
 
   factory _Query.fromJson(Map<String, dynamic> json) = _$_Query.fromJson;
@@ -261,6 +294,8 @@ abstract class _Query implements Query {
   bool get closed;
   @override
   String get timestamp;
+  @override
+  List<QueryMedia> get media;
   @override
   List<QueryResponse> get responses;
   @override

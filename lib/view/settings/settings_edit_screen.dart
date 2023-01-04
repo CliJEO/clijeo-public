@@ -1,18 +1,19 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/language.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/language/language_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/edit_settings_form/edit_settings_form_controller.dart';
 import 'package:clijeo_public/models/user/clijeo_user.dart';
-import 'package:clijeo_public/view/common_components/custom_back_button.dart';
-import 'package:clijeo_public/view/common_components/custom_form_field.dart';
-import 'package:clijeo_public/view/common_components/custom_toggle_buttons.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
-import 'package:clijeo_public/view/core/constants.dart';
-import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
+import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/constants.dart';
+import 'package:clijeo_public/view/error/widgets/custom_error_widget.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,11 +36,14 @@ class SettingsEditScreen extends StatelessWidget {
   }
 
   Future<void> _saveProfileDetails(
-      context, EditSettingsFormController controller) async {
+      context,
+      EditSettingsFormController controller,
+      LanguageController languageController) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      await controller.saveProfileDetails();
-      Navigator.of(context).pop(true);
+      await controller.saveProfileDetails(languageController);
+      controller.state.maybeWhen(
+          completed: () => Navigator.of(context).pop(true), orElse: () {});
     }
   }
 
@@ -54,22 +58,20 @@ class SettingsEditScreen extends StatelessWidget {
           gender: user.gender ?? Constants.getAllGenders().first,
           location: user.location,
           phoneNumber: user.phoneNumber,
-          language: Language.getCurrentLanguageCode()),
+          language: Provider.of<LanguageController>(context, listen: false)
+              .getCurrentLanguageCode()),
       child: Consumer<EditSettingsFormController>(
           builder: (context, settingsFormController, _) =>
               settingsFormController.state.when(
                   loading: () => Loading(),
-                  error: (error) => ErrorScreen(),
-                  stable: ((name, age, gender, language, phoneNumber,
-                          location) =>
+                  completed: () => const Loading(),
+                  stable: ((name, age, gender, language, phoneNumber, location,
+                          saveProfileDetailsError) =>
                       Scaffold(
                         backgroundColor: AppTheme.backgroundColor,
                         body: SingleChildScrollView(
                             child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  sizeConfig.safeBlockSizeHorizontal(0.06),
-                              vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                          padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -115,12 +117,12 @@ class SettingsEditScreen extends StatelessWidget {
                                                     context, "Name-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
                                                 .nullStringValidation,
-                                            initialValue: age.toString(),
+                                            initialValue: age?.toString(),
                                             onSaved: settingsFormController
                                                 .updateStableStateAge,
                                             textInputType: TextInputType.number,
@@ -132,7 +134,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                     context, "Age-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomToggleButton(
                                               isSelected: _allGenderList
@@ -150,7 +152,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                           context, e))
                                                   .toList()),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomToggleButton(
                                               isSelected: _allLanguageList
@@ -168,11 +170,11 @@ class SettingsEditScreen extends StatelessWidget {
                                                           context, e))
                                                   .toList()),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
-                                                .nullStringValidation,
+                                                .phoneNumberValidation,
                                             initialValue: phoneNumber,
                                             onSaved: settingsFormController
                                                 .updateStableStatePhoneNumber,
@@ -186,7 +188,7 @@ class SettingsEditScreen extends StatelessWidget {
                                                     "PhoneNumber-Hint"),
                                           ),
                                           const SizedBox(
-                                            height: 15,
+                                            height: 20,
                                           ),
                                           CustomFormField(
                                             validator: FormValidationController
@@ -205,12 +207,16 @@ class SettingsEditScreen extends StatelessWidget {
                                             maxLines: 8,
                                           ),
                                           const SizedBox(
-                                            height: 20,
+                                            height: 30,
                                           ),
                                           PrimaryButton(
                                               onTap: () => _saveProfileDetails(
                                                   context,
-                                                  settingsFormController),
+                                                  settingsFormController,
+                                                  Provider.of<
+                                                          LanguageController>(
+                                                      context,
+                                                      listen: false)),
                                               sizeConfig: sizeConfig,
                                               child: Center(
                                                 child: Text(
@@ -224,6 +230,13 @@ class SettingsEditScreen extends StatelessWidget {
                                         ],
                                       ),
                                     )),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                if (saveProfileDetailsError != null)
+                                  CustomErrorWidget(
+                                      errorText: LocaleTextClass.getTextWithKey(
+                                          context, saveProfileDetailsError)),
                               ]),
                         )),
                       )))),

@@ -1,15 +1,16 @@
 import 'package:clijeo_public/controllers/core/form_validation/form_validation_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/controllers/query_thread/query_thread_controller.dart';
 import 'package:clijeo_public/controllers/thread_respond_from/thread_respond_form_controller.dart';
-import 'package:clijeo_public/view/common_components/custom_back_button.dart';
-import 'package:clijeo_public/view/common_components/custom_form_field.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
-import 'package:clijeo_public/view/misc_screens/error_screen.dart';
-import 'package:clijeo_public/view/misc_screens/loading.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
+import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
+import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/view/error/widgets/custom_error_widget.dart';
+import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,8 @@ class ThreadRespondScreen extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       await threadRespondFormController.replyInThread(queryId);
-      Navigator.pop(context, true);
+      threadRespondFormController.state.maybeWhen(
+          completed: () => Navigator.pop(context, true), orElse: () {});
     }
   }
 
@@ -38,14 +40,12 @@ class ThreadRespondScreen extends StatelessWidget {
           builder: (context, threadRespondFormController, _) {
         return threadRespondFormController.state.when(
             loading: () => const Loading(),
-            error: (error) => const ErrorScreen(),
-            stable: (body) => Scaffold(
+            completed: () => const Loading(),
+            stable: (body, replyError) => Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
                       child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
-                        vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                    padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -81,6 +81,7 @@ class ThreadRespondScreen extends StatelessWidget {
                                           .nullStringValidation,
                                       onSaved: threadRespondFormController
                                           .updateStableStateBody,
+                                      initialValue: body,
                                       fieldTitle:
                                           LocaleTextClass.getTextWithKey(
                                               context, "Body"),
@@ -91,7 +92,7 @@ class ThreadRespondScreen extends StatelessWidget {
                                       maxLines: 100,
                                     ),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 30,
                                     ),
                                     PrimaryButton(
                                         onTap: () => _replyInThread(
@@ -105,7 +106,19 @@ class ThreadRespondScreen extends StatelessWidget {
                                                 context, "SendMessage"),
                                             style: AppTextStyle.smallLightTitle,
                                           ),
-                                        ))
+                                        )),
+                                    if (replyError != null)
+                                      Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          CustomErrorWidget(
+                                              errorText: LocaleTextClass
+                                                  .getTextWithKey(
+                                                      context, replyError)),
+                                        ],
+                                      ),
                                   ],
                                 ),
                               )),

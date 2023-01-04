@@ -19,28 +19,46 @@ mixin _$NewQueryFormState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)
         stable,
-    required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function(int percentCompleted) loading,
+    required TResult Function() completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function(int percentCompleted)? loading,
+    TResult? Function()? completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function(int percentCompleted)? loading,
+    TResult Function()? completed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,21 +66,21 @@ mixin _$NewQueryFormState {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewQueryFormStable value) stable,
     required TResult Function(_NewQueryFormLoading value) loading,
-    required TResult Function(_NewQueryFormError value) error,
+    required TResult Function(_NewQueryFormCompleted value) completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewQueryFormStable value)? stable,
     TResult? Function(_NewQueryFormLoading value)? loading,
-    TResult? Function(_NewQueryFormError value)? error,
+    TResult? Function(_NewQueryFormCompleted value)? completed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewQueryFormStable value)? stable,
     TResult Function(_NewQueryFormLoading value)? loading,
-    TResult Function(_NewQueryFormError value)? error,
+    TResult Function(_NewQueryFormCompleted value)? completed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,7 +111,13 @@ abstract class _$$_NewQueryFormStableCopyWith<$Res> {
       __$$_NewQueryFormStableCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String? subject, String? body, List<Attachments>? otherAttachments});
+      {String? subject,
+      String? body,
+      String? voiceAttachmentPath,
+      List<Attachment>? otherAttachments,
+      String? voiceAttachmentError,
+      String? otherAttachmentError,
+      String? registerQueryError});
 }
 
 /// @nodoc
@@ -109,7 +133,11 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
   $Res call({
     Object? subject = freezed,
     Object? body = freezed,
+    Object? voiceAttachmentPath = freezed,
     Object? otherAttachments = freezed,
+    Object? voiceAttachmentError = freezed,
+    Object? otherAttachmentError = freezed,
+    Object? registerQueryError = freezed,
   }) {
     return _then(_$_NewQueryFormStable(
       subject: freezed == subject
@@ -120,10 +148,26 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String?,
+      voiceAttachmentPath: freezed == voiceAttachmentPath
+          ? _value.voiceAttachmentPath
+          : voiceAttachmentPath // ignore: cast_nullable_to_non_nullable
+              as String?,
       otherAttachments: freezed == otherAttachments
           ? _value._otherAttachments
           : otherAttachments // ignore: cast_nullable_to_non_nullable
-              as List<Attachments>?,
+              as List<Attachment>?,
+      voiceAttachmentError: freezed == voiceAttachmentError
+          ? _value.voiceAttachmentError
+          : voiceAttachmentError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      otherAttachmentError: freezed == otherAttachmentError
+          ? _value.otherAttachmentError
+          : otherAttachmentError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      registerQueryError: freezed == registerQueryError
+          ? _value.registerQueryError
+          : registerQueryError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -132,16 +176,24 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
 
 class _$_NewQueryFormStable implements _NewQueryFormStable {
   const _$_NewQueryFormStable(
-      {this.subject, this.body, final List<Attachments>? otherAttachments})
+      {this.subject,
+      this.body,
+      this.voiceAttachmentPath,
+      final List<Attachment>? otherAttachments,
+      this.voiceAttachmentError,
+      this.otherAttachmentError,
+      this.registerQueryError})
       : _otherAttachments = otherAttachments;
 
   @override
   final String? subject;
   @override
   final String? body;
-  final List<Attachments>? _otherAttachments;
   @override
-  List<Attachments>? get otherAttachments {
+  final String? voiceAttachmentPath;
+  final List<Attachment>? _otherAttachments;
+  @override
+  List<Attachment>? get otherAttachments {
     final value = _otherAttachments;
     if (value == null) return null;
     if (_otherAttachments is EqualUnmodifiableListView)
@@ -151,8 +203,15 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   }
 
   @override
+  final String? voiceAttachmentError;
+  @override
+  final String? otherAttachmentError;
+  @override
+  final String? registerQueryError;
+
+  @override
   String toString() {
-    return 'NewQueryFormState.stable(subject: $subject, body: $body, otherAttachments: $otherAttachments)';
+    return 'NewQueryFormState.stable(subject: $subject, body: $body, voiceAttachmentPath: $voiceAttachmentPath, otherAttachments: $otherAttachments, voiceAttachmentError: $voiceAttachmentError, otherAttachmentError: $otherAttachmentError, registerQueryError: $registerQueryError)';
   }
 
   @override
@@ -162,13 +221,28 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             other is _$_NewQueryFormStable &&
             (identical(other.subject, subject) || other.subject == subject) &&
             (identical(other.body, body) || other.body == body) &&
+            (identical(other.voiceAttachmentPath, voiceAttachmentPath) ||
+                other.voiceAttachmentPath == voiceAttachmentPath) &&
             const DeepCollectionEquality()
-                .equals(other._otherAttachments, _otherAttachments));
+                .equals(other._otherAttachments, _otherAttachments) &&
+            (identical(other.voiceAttachmentError, voiceAttachmentError) ||
+                other.voiceAttachmentError == voiceAttachmentError) &&
+            (identical(other.otherAttachmentError, otherAttachmentError) ||
+                other.otherAttachmentError == otherAttachmentError) &&
+            (identical(other.registerQueryError, registerQueryError) ||
+                other.registerQueryError == registerQueryError));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, subject, body,
-      const DeepCollectionEquality().hash(_otherAttachments));
+  int get hashCode => Object.hash(
+      runtimeType,
+      subject,
+      body,
+      voiceAttachmentPath,
+      const DeepCollectionEquality().hash(_otherAttachments),
+      voiceAttachmentError,
+      otherAttachmentError,
+      registerQueryError);
 
   @JsonKey(ignore: true)
   @override
@@ -181,38 +255,59 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)
         stable,
-    required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function(int percentCompleted) loading,
+    required TResult Function() completed,
   }) {
-    return stable(subject, body, otherAttachments);
+    return stable(subject, body, voiceAttachmentPath, otherAttachments,
+        voiceAttachmentError, otherAttachmentError, registerQueryError);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function(int percentCompleted)? loading,
+    TResult? Function()? completed,
   }) {
-    return stable?.call(subject, body, otherAttachments);
+    return stable?.call(subject, body, voiceAttachmentPath, otherAttachments,
+        voiceAttachmentError, otherAttachmentError, registerQueryError);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function(int percentCompleted)? loading,
+    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(subject, body, otherAttachments);
+      return stable(subject, body, voiceAttachmentPath, otherAttachments,
+          voiceAttachmentError, otherAttachmentError, registerQueryError);
     }
     return orElse();
   }
@@ -222,7 +317,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewQueryFormStable value) stable,
     required TResult Function(_NewQueryFormLoading value) loading,
-    required TResult Function(_NewQueryFormError value) error,
+    required TResult Function(_NewQueryFormCompleted value) completed,
   }) {
     return stable(this);
   }
@@ -232,7 +327,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewQueryFormStable value)? stable,
     TResult? Function(_NewQueryFormLoading value)? loading,
-    TResult? Function(_NewQueryFormError value)? error,
+    TResult? Function(_NewQueryFormCompleted value)? completed,
   }) {
     return stable?.call(this);
   }
@@ -242,7 +337,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewQueryFormStable value)? stable,
     TResult Function(_NewQueryFormLoading value)? loading,
-    TResult Function(_NewQueryFormError value)? error,
+    TResult Function(_NewQueryFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (stable != null) {
@@ -256,11 +351,19 @@ abstract class _NewQueryFormStable implements NewQueryFormState {
   const factory _NewQueryFormStable(
       {final String? subject,
       final String? body,
-      final List<Attachments>? otherAttachments}) = _$_NewQueryFormStable;
+      final String? voiceAttachmentPath,
+      final List<Attachment>? otherAttachments,
+      final String? voiceAttachmentError,
+      final String? otherAttachmentError,
+      final String? registerQueryError}) = _$_NewQueryFormStable;
 
   String? get subject;
   String? get body;
-  List<Attachments>? get otherAttachments;
+  String? get voiceAttachmentPath;
+  List<Attachment>? get otherAttachments;
+  String? get voiceAttachmentError;
+  String? get otherAttachmentError;
+  String? get registerQueryError;
   @JsonKey(ignore: true)
   _$$_NewQueryFormStableCopyWith<_$_NewQueryFormStable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -271,6 +374,8 @@ abstract class _$$_NewQueryFormLoadingCopyWith<$Res> {
   factory _$$_NewQueryFormLoadingCopyWith(_$_NewQueryFormLoading value,
           $Res Function(_$_NewQueryFormLoading) then) =
       __$$_NewQueryFormLoadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int percentCompleted});
 }
 
 /// @nodoc
@@ -280,63 +385,107 @@ class __$$_NewQueryFormLoadingCopyWithImpl<$Res>
   __$$_NewQueryFormLoadingCopyWithImpl(_$_NewQueryFormLoading _value,
       $Res Function(_$_NewQueryFormLoading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? percentCompleted = null,
+  }) {
+    return _then(_$_NewQueryFormLoading(
+      percentCompleted: null == percentCompleted
+          ? _value.percentCompleted
+          : percentCompleted // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_NewQueryFormLoading implements _NewQueryFormLoading {
-  const _$_NewQueryFormLoading();
+  const _$_NewQueryFormLoading({required this.percentCompleted});
+
+  @override
+  final int percentCompleted;
 
   @override
   String toString() {
-    return 'NewQueryFormState.loading()';
+    return 'NewQueryFormState.loading(percentCompleted: $percentCompleted)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NewQueryFormLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$_NewQueryFormLoading &&
+            (identical(other.percentCompleted, percentCompleted) ||
+                other.percentCompleted == percentCompleted));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, percentCompleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NewQueryFormLoadingCopyWith<_$_NewQueryFormLoading> get copyWith =>
+      __$$_NewQueryFormLoadingCopyWithImpl<_$_NewQueryFormLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)
         stable,
-    required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function(int percentCompleted) loading,
+    required TResult Function() completed,
   }) {
-    return loading();
+    return loading(percentCompleted);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function(int percentCompleted)? loading,
+    TResult? Function()? completed,
   }) {
-    return loading?.call();
+    return loading?.call(percentCompleted);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function(int percentCompleted)? loading,
+    TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(percentCompleted);
     }
     return orElse();
   }
@@ -346,7 +495,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewQueryFormStable value) stable,
     required TResult Function(_NewQueryFormLoading value) loading,
-    required TResult Function(_NewQueryFormError value) error,
+    required TResult Function(_NewQueryFormCompleted value) completed,
   }) {
     return loading(this);
   }
@@ -356,7 +505,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewQueryFormStable value)? stable,
     TResult? Function(_NewQueryFormLoading value)? loading,
-    TResult? Function(_NewQueryFormError value)? error,
+    TResult? Function(_NewQueryFormCompleted value)? completed,
   }) {
     return loading?.call(this);
   }
@@ -366,7 +515,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewQueryFormStable value)? stable,
     TResult Function(_NewQueryFormLoading value)? loading,
-    TResult Function(_NewQueryFormError value)? error,
+    TResult Function(_NewQueryFormCompleted value)? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -377,107 +526,104 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
 }
 
 abstract class _NewQueryFormLoading implements NewQueryFormState {
-  const factory _NewQueryFormLoading() = _$_NewQueryFormLoading;
+  const factory _NewQueryFormLoading({required final int percentCompleted}) =
+      _$_NewQueryFormLoading;
+
+  int get percentCompleted;
+  @JsonKey(ignore: true)
+  _$$_NewQueryFormLoadingCopyWith<_$_NewQueryFormLoading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_NewQueryFormErrorCopyWith<$Res> {
-  factory _$$_NewQueryFormErrorCopyWith(_$_NewQueryFormError value,
-          $Res Function(_$_NewQueryFormError) then) =
-      __$$_NewQueryFormErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
+abstract class _$$_NewQueryFormCompletedCopyWith<$Res> {
+  factory _$$_NewQueryFormCompletedCopyWith(_$_NewQueryFormCompleted value,
+          $Res Function(_$_NewQueryFormCompleted) then) =
+      __$$_NewQueryFormCompletedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NewQueryFormErrorCopyWithImpl<$Res>
-    extends _$NewQueryFormStateCopyWithImpl<$Res, _$_NewQueryFormError>
-    implements _$$_NewQueryFormErrorCopyWith<$Res> {
-  __$$_NewQueryFormErrorCopyWithImpl(
-      _$_NewQueryFormError _value, $Res Function(_$_NewQueryFormError) _then)
+class __$$_NewQueryFormCompletedCopyWithImpl<$Res>
+    extends _$NewQueryFormStateCopyWithImpl<$Res, _$_NewQueryFormCompleted>
+    implements _$$_NewQueryFormCompletedCopyWith<$Res> {
+  __$$_NewQueryFormCompletedCopyWithImpl(_$_NewQueryFormCompleted _value,
+      $Res Function(_$_NewQueryFormCompleted) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_NewQueryFormError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_NewQueryFormError implements _NewQueryFormError {
-  const _$_NewQueryFormError(this.error);
-
-  @override
-  final String error;
+class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
+  const _$_NewQueryFormCompleted();
 
   @override
   String toString() {
-    return 'NewQueryFormState.error(error: $error)';
+    return 'NewQueryFormState.completed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewQueryFormError &&
-            (identical(other.error, error) || other.error == error));
+        (other.runtimeType == runtimeType && other is _$_NewQueryFormCompleted);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_NewQueryFormErrorCopyWith<_$_NewQueryFormError> get copyWith =>
-      __$$_NewQueryFormErrorCopyWithImpl<_$_NewQueryFormError>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)
         stable,
-    required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function(int percentCompleted) loading,
+    required TResult Function() completed,
   }) {
-    return error(this.error);
+    return completed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function(int percentCompleted)? loading,
+    TResult? Function()? completed,
   }) {
-    return error?.call(this.error);
+    return completed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String? subject, String? body, List<Attachments>? otherAttachments)?
+            String? subject,
+            String? body,
+            String? voiceAttachmentPath,
+            List<Attachment>? otherAttachments,
+            String? voiceAttachmentError,
+            String? otherAttachmentError,
+            String? registerQueryError)?
         stable,
-    TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function(int percentCompleted)? loading,
+    TResult Function()? completed,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this.error);
+    if (completed != null) {
+      return completed();
     }
     return orElse();
   }
@@ -487,9 +633,9 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewQueryFormStable value) stable,
     required TResult Function(_NewQueryFormLoading value) loading,
-    required TResult Function(_NewQueryFormError value) error,
+    required TResult Function(_NewQueryFormCompleted value) completed,
   }) {
-    return error(this);
+    return completed(this);
   }
 
   @override
@@ -497,9 +643,9 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewQueryFormStable value)? stable,
     TResult? Function(_NewQueryFormLoading value)? loading,
-    TResult? Function(_NewQueryFormError value)? error,
+    TResult? Function(_NewQueryFormCompleted value)? completed,
   }) {
-    return error?.call(this);
+    return completed?.call(this);
   }
 
   @override
@@ -507,21 +653,16 @@ class _$_NewQueryFormError implements _NewQueryFormError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewQueryFormStable value)? stable,
     TResult Function(_NewQueryFormLoading value)? loading,
-    TResult Function(_NewQueryFormError value)? error,
+    TResult Function(_NewQueryFormCompleted value)? completed,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (completed != null) {
+      return completed(this);
     }
     return orElse();
   }
 }
 
-abstract class _NewQueryFormError implements NewQueryFormState {
-  const factory _NewQueryFormError(final String error) = _$_NewQueryFormError;
-
-  String get error;
-  @JsonKey(ignore: true)
-  _$$_NewQueryFormErrorCopyWith<_$_NewQueryFormError> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _NewQueryFormCompleted implements NewQueryFormState {
+  const factory _NewQueryFormCompleted() = _$_NewQueryFormCompleted;
 }

@@ -1,3 +1,4 @@
+import 'package:clijeo_public/config.dart';
 import 'package:dio/dio.dart';
 
 class DioBase {
@@ -5,7 +6,9 @@ class DioBase {
 
   static void initDio() {
     //TODO: CHANGE TO BACKEND DOMAIN
-    final baseOptions = BaseOptions(baseUrl: 'http://10.0.2.2:3001');
+    final baseOptions = BaseOptions(baseUrl: ClijeoConfig.backendBaseUrl);
     dioInstance = Dio(baseOptions);
   }
 }
+
+// USUAL: 'http://10.0.2.2:3001'

@@ -1,4 +1,4 @@
-import 'package:clijeo_public/controllers/core/attachments/attachments.dart';
+import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'new_query_form_state.freezed.dart';
@@ -8,7 +8,12 @@ abstract class NewQueryFormState with _$NewQueryFormState {
   const factory NewQueryFormState.stable(
       {String? subject,
       String? body,
-      List<Attachments>? otherAttachments}) = _NewQueryFormStable;
-  const factory NewQueryFormState.loading() = _NewQueryFormLoading;
-  const factory NewQueryFormState.error(String error) = _NewQueryFormError;
+      String? voiceAttachmentPath,
+      List<Attachment>? otherAttachments,
+      String? voiceAttachmentError,
+      String? otherAttachmentError,
+      String? registerQueryError}) = _NewQueryFormStable;
+  const factory NewQueryFormState.loading({required int percentCompleted}) =
+      _NewQueryFormLoading;
+  const factory NewQueryFormState.completed() = _NewQueryFormCompleted;
 }

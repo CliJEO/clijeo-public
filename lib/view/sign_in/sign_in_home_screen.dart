@@ -1,19 +1,21 @@
 import 'package:clijeo_public/controllers/core/auth/backend_auth.dart';
-import 'package:clijeo_public/controllers/core/clijeo_user/clijeo_user_controller.dart';
-import 'package:clijeo_public/controllers/core/localization/locale_text_class.dart';
-import 'package:clijeo_public/controllers/core/main_app/main_app_controller.dart';
+import 'package:clijeo_public/controllers/clijeo_user/clijeo_user_controller.dart';
+import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
+import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/controllers/core/shared_pref/shared_pref.dart';
-import 'package:clijeo_public/view/common_components/primary_button.dart';
+import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/view/error/widgets/custom_error_widget.dart';
 import 'package:clijeo_public/view/first_login_form/first_login_form_screen.dart';
-import 'package:clijeo_public/view/theme/app_text_style.dart';
-import 'package:clijeo_public/view/theme/size_config.dart';
-import 'package:clijeo_public/view/theme/app_color.dart';
+import 'package:clijeo_public/view/core/theme/app_text_style.dart';
+import 'package:clijeo_public/view/core/theme/size_config.dart';
+import 'package:clijeo_public/view/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignInHomeScreen extends StatelessWidget {
   static String id = "SignUpHomeScreen";
-  const SignInHomeScreen({Key? key}) : super(key: key);
+  const SignInHomeScreen({Key? key, this.signInError}) : super(key: key);
+  final String? signInError;
 
   Future<void> signIn(context) async {
     ClijeoUserController userController =
@@ -26,6 +28,7 @@ class SignInHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
     return Scaffold(
+      backgroundColor: AppTheme.backgroundColor,
       body: Column(
         children: [
           Container(
@@ -34,7 +37,7 @@ class SignInHomeScreen extends StatelessWidget {
             color: AppTheme.primaryColor,
             child: Padding(
               padding: EdgeInsets.only(
-                  left: sizeConfig.safeBlockSizeHorizontal(0.1)),
+                  left: sizeConfig.safeBlockSizeHorizontal(0.1), top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -110,7 +113,14 @@ class SignInHomeScreen extends StatelessWidget {
                                 style: AppTextStyle.smallLightTitle,
                               )
                             ],
-                          ))
+                          )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (signInError != null)
+                        CustomErrorWidget(
+                            errorText: LocaleTextClass.getTextWithKey(
+                                context, signInError!)),
                     ],
                   ),
                 ),

@@ -1,5 +1,5 @@
 {
-    "NoNetwork": "Are you connected to the Network?",
+    "NoNetwork": "Unable to connect to the network.",
     "AppTitle": "CLIJEO",
     "AppFullTitle": "CLINICAL JUSTICE EDUCATION ORGANISATION",
     "SignUpHomePageHeadingSecondParaHeading": "Answering your queries",
@@ -48,5 +48,24 @@
     "Reply-Hint": "Enter reply here",
     "SendMessage": "Send Message",
     "Unspecified": "Unspecified",
-    "OtherAttachments": "Other Attachments"
+    "OtherAttachments": "Other Attachments",
+    "VoiceAttachment": "Voice Attachment",
+    "Error": "ERROR",
+    "SignInError":  "Sign In failed",
+    "RefreshUserError": "Unable to refresh user data",
+    "SaveProfileDetailsError": "Failed to save profile details",
+    "RecorderError": "Audio Recording failed",
+    "RecordingPermission": "Insufficient Permissions for recording",
+    "RegisterQueryError": "Unable to register query",
+    "FileAttachmentPermission": "Insufficient Permissions to view device files",
+    "ReplyInThreadError": "Unable to reply in thread",
+    "LoadingAttachmentError": "Failed to load attachments",
+    "DownloadAttachmentError": "Download Failed",
+    "RegisterQueryErrorExcessFile": "Too many attachments. Reduce the number of attachments.",
+    "RegisterQueryErrorLargeFile": "File size of attachments too large. Remove large attachments.",
+    "RegisterQueryErrorTitleOrContent": "Title or content not within limits.",
+    "QueryFetchError": "Unable to fetch details for this query.",
+    "RecordingInstructions": "Tap and hold to record",
+    "Recording": "Recording...",
+    "RecordingCompleted": "RecordingCompleted"
 }

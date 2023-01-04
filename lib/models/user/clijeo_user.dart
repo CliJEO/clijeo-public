@@ -16,9 +16,9 @@ class ClijeoUser with _$ClijeoUser {
       String? location,
       required List<UserQuery> queries}) = _ClijeoUser;
 
-  factory ClijeoUser.empty() {
-    return const ClijeoUser(name: "", queries: []);
-  }
+  // factory ClijeoUser.empty() {
+  //   return const ClijeoUser(name: "", queries: []);
+  // }
 
   factory ClijeoUser.fromJson(Map<String, dynamic> json) =>
       _ClijeoUser.fromJson(json);
