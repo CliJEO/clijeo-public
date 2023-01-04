@@ -19,40 +19,31 @@ mixin _$QueryThreadState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)
+    required TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult? Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,14 +131,11 @@ class _$_QueryThreadInitial implements _QueryThreadInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)
+    required TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() error,
   }) {
     return initial();
   }
@@ -156,14 +144,11 @@ class _$_QueryThreadInitial implements _QueryThreadInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult? Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? error,
   }) {
     return initial?.call();
   }
@@ -172,14 +157,11 @@ class _$_QueryThreadInitial implements _QueryThreadInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -238,9 +220,9 @@ abstract class _$$_QueryThreadStableCopyWith<$Res> {
   @useResult
   $Res call(
       {Query query,
-      bool isLoadingAttachments,
-      List<LocalAttachments> voiceAttachments,
-      List<LocalAttachments> otherAttachments});
+      List<Attachment> voiceAttachments,
+      List<Attachment> otherAttachments,
+      String? attachmentError});
 
   $QueryCopyWith<$Res> get query;
 }
@@ -257,27 +239,27 @@ class __$$_QueryThreadStableCopyWithImpl<$Res>
   @override
   $Res call({
     Object? query = null,
-    Object? isLoadingAttachments = null,
     Object? voiceAttachments = null,
     Object? otherAttachments = null,
+    Object? attachmentError = freezed,
   }) {
     return _then(_$_QueryThreadStable(
       query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as Query,
-      isLoadingAttachments: null == isLoadingAttachments
-          ? _value.isLoadingAttachments
-          : isLoadingAttachments // ignore: cast_nullable_to_non_nullable
-              as bool,
       voiceAttachments: null == voiceAttachments
           ? _value._voiceAttachments
           : voiceAttachments // ignore: cast_nullable_to_non_nullable
-              as List<LocalAttachments>,
+              as List<Attachment>,
       otherAttachments: null == otherAttachments
           ? _value._otherAttachments
           : otherAttachments // ignore: cast_nullable_to_non_nullable
-              as List<LocalAttachments>,
+              as List<Attachment>,
+      attachmentError: freezed == attachmentError
+          ? _value.attachmentError
+          : attachmentError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -295,28 +277,26 @@ class __$$_QueryThreadStableCopyWithImpl<$Res>
 class _$_QueryThreadStable implements _QueryThreadStable {
   const _$_QueryThreadStable(
       {required this.query,
-      required this.isLoadingAttachments,
-      required final List<LocalAttachments> voiceAttachments,
-      required final List<LocalAttachments> otherAttachments})
+      required final List<Attachment> voiceAttachments,
+      required final List<Attachment> otherAttachments,
+      this.attachmentError})
       : _voiceAttachments = voiceAttachments,
         _otherAttachments = otherAttachments;
 
   @override
   final Query query;
+  final List<Attachment> _voiceAttachments;
   @override
-  final bool isLoadingAttachments;
-  final List<LocalAttachments> _voiceAttachments;
-  @override
-  List<LocalAttachments> get voiceAttachments {
+  List<Attachment> get voiceAttachments {
     if (_voiceAttachments is EqualUnmodifiableListView)
       return _voiceAttachments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_voiceAttachments);
   }
 
-  final List<LocalAttachments> _otherAttachments;
+  final List<Attachment> _otherAttachments;
   @override
-  List<LocalAttachments> get otherAttachments {
+  List<Attachment> get otherAttachments {
     if (_otherAttachments is EqualUnmodifiableListView)
       return _otherAttachments;
     // ignore: implicit_dynamic_type
@@ -324,8 +304,11 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   }
 
   @override
+  final String? attachmentError;
+
+  @override
   String toString() {
-    return 'QueryThreadState.stable(query: $query, isLoadingAttachments: $isLoadingAttachments, voiceAttachments: $voiceAttachments, otherAttachments: $otherAttachments)';
+    return 'QueryThreadState.stable(query: $query, voiceAttachments: $voiceAttachments, otherAttachments: $otherAttachments, attachmentError: $attachmentError)';
   }
 
   @override
@@ -334,21 +317,21 @@ class _$_QueryThreadStable implements _QueryThreadStable {
         (other.runtimeType == runtimeType &&
             other is _$_QueryThreadStable &&
             (identical(other.query, query) || other.query == query) &&
-            (identical(other.isLoadingAttachments, isLoadingAttachments) ||
-                other.isLoadingAttachments == isLoadingAttachments) &&
             const DeepCollectionEquality()
                 .equals(other._voiceAttachments, _voiceAttachments) &&
             const DeepCollectionEquality()
-                .equals(other._otherAttachments, _otherAttachments));
+                .equals(other._otherAttachments, _otherAttachments) &&
+            (identical(other.attachmentError, attachmentError) ||
+                other.attachmentError == attachmentError));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       query,
-      isLoadingAttachments,
       const DeepCollectionEquality().hash(_voiceAttachments),
-      const DeepCollectionEquality().hash(_otherAttachments));
+      const DeepCollectionEquality().hash(_otherAttachments),
+      attachmentError);
 
   @JsonKey(ignore: true)
   @override
@@ -361,53 +344,42 @@ class _$_QueryThreadStable implements _QueryThreadStable {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)
+    required TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() error,
   }) {
-    return stable(
-        query, isLoadingAttachments, voiceAttachments, otherAttachments);
+    return stable(query, voiceAttachments, otherAttachments, attachmentError);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult? Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? error,
   }) {
     return stable?.call(
-        query, isLoadingAttachments, voiceAttachments, otherAttachments);
+        query, voiceAttachments, otherAttachments, attachmentError);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (stable != null) {
-      return stable(
-          query, isLoadingAttachments, voiceAttachments, otherAttachments);
+      return stable(query, voiceAttachments, otherAttachments, attachmentError);
     }
     return orElse();
   }
@@ -452,16 +424,15 @@ class _$_QueryThreadStable implements _QueryThreadStable {
 
 abstract class _QueryThreadStable implements QueryThreadState {
   const factory _QueryThreadStable(
-          {required final Query query,
-          required final bool isLoadingAttachments,
-          required final List<LocalAttachments> voiceAttachments,
-          required final List<LocalAttachments> otherAttachments}) =
-      _$_QueryThreadStable;
+      {required final Query query,
+      required final List<Attachment> voiceAttachments,
+      required final List<Attachment> otherAttachments,
+      final String? attachmentError}) = _$_QueryThreadStable;
 
   Query get query;
-  bool get isLoadingAttachments;
-  List<LocalAttachments> get voiceAttachments;
-  List<LocalAttachments> get otherAttachments;
+  List<Attachment> get voiceAttachments;
+  List<Attachment> get otherAttachments;
+  String? get attachmentError;
   @JsonKey(ignore: true)
   _$$_QueryThreadStableCopyWith<_$_QueryThreadStable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -506,14 +477,11 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)
+    required TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -522,14 +490,11 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult? Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -538,14 +503,11 @@ class _$_QueryThreadLoading implements _QueryThreadLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -601,8 +563,6 @@ abstract class _$$_QueryThreadErrorCopyWith<$Res> {
   factory _$$_QueryThreadErrorCopyWith(
           _$_QueryThreadError value, $Res Function(_$_QueryThreadError) then) =
       __$$_QueryThreadErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
 }
 
 /// @nodoc
@@ -612,99 +572,66 @@ class __$$_QueryThreadErrorCopyWithImpl<$Res>
   __$$_QueryThreadErrorCopyWithImpl(
       _$_QueryThreadError _value, $Res Function(_$_QueryThreadError) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_QueryThreadError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_QueryThreadError implements _QueryThreadError {
-  const _$_QueryThreadError(this.error);
-
-  @override
-  final String error;
+  const _$_QueryThreadError();
 
   @override
   String toString() {
-    return 'QueryThreadState.error(error: $error)';
+    return 'QueryThreadState.error()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_QueryThreadError &&
-            (identical(other.error, error) || other.error == error));
+        (other.runtimeType == runtimeType && other is _$_QueryThreadError);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_QueryThreadErrorCopyWith<_$_QueryThreadError> get copyWith =>
-      __$$_QueryThreadErrorCopyWithImpl<_$_QueryThreadError>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)
+    required TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)
         stable,
     required TResult Function() loading,
-    required TResult Function(String error) error,
+    required TResult Function() error,
   }) {
-    return error(this.error);
+    return error();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult? Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult? Function()? loading,
-    TResult? Function(String error)? error,
+    TResult? Function()? error,
   }) {
-    return error?.call(this.error);
+    return error?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            Query query,
-            bool isLoadingAttachments,
-            List<LocalAttachments> voiceAttachments,
-            List<LocalAttachments> otherAttachments)?
+    TResult Function(Query query, List<Attachment> voiceAttachments,
+            List<Attachment> otherAttachments, String? attachmentError)?
         stable,
     TResult Function()? loading,
-    TResult Function(String error)? error,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error();
     }
     return orElse();
   }
@@ -748,10 +675,5 @@ class _$_QueryThreadError implements _QueryThreadError {
 }
 
 abstract class _QueryThreadError implements QueryThreadState {
-  const factory _QueryThreadError(final String error) = _$_QueryThreadError;
-
-  String get error;
-  @JsonKey(ignore: true)
-  _$$_QueryThreadErrorCopyWith<_$_QueryThreadError> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _QueryThreadError() = _$_QueryThreadError;
 }

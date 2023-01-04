@@ -1,4 +1,4 @@
-import 'package:clijeo_public/models/attachments/local_attachments.dart';
+import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recording_state.freezed.dart';

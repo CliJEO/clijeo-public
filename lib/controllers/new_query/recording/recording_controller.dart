@@ -11,9 +11,20 @@ class RecordingController extends ChangeNotifier {
   RecordingState state = const RecordingState.notRecording();
   final Record _audioRecorder = Record();
   Timer? _timer;
+  bool _disposed = false;
 
-  void disposeController() {
+  @override
+  void dispose() {
     _timer?.cancel();
+    _disposed = true;
+    super.dispose();
+  }
+
+  @override
+  void notifyListeners() {
+    if (!_disposed) {
+      super.notifyListeners();
+    }
   }
 
   void _startTimer() {

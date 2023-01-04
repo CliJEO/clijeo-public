@@ -22,7 +22,7 @@ mixin _$NewQueryFormState {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)
@@ -37,7 +37,7 @@ mixin _$NewQueryFormState {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -52,7 +52,7 @@ mixin _$NewQueryFormState {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -114,7 +114,7 @@ abstract class _$$_NewQueryFormStableCopyWith<$Res> {
       {String? subject,
       String? body,
       String? voiceAttachmentPath,
-      List<LocalAttachments>? otherAttachments,
+      List<Attachment>? otherAttachments,
       String? voiceAttachmentError,
       String? otherAttachmentError,
       String? registerQueryError});
@@ -155,7 +155,7 @@ class __$$_NewQueryFormStableCopyWithImpl<$Res>
       otherAttachments: freezed == otherAttachments
           ? _value._otherAttachments
           : otherAttachments // ignore: cast_nullable_to_non_nullable
-              as List<LocalAttachments>?,
+              as List<Attachment>?,
       voiceAttachmentError: freezed == voiceAttachmentError
           ? _value.voiceAttachmentError
           : voiceAttachmentError // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
       {this.subject,
       this.body,
       this.voiceAttachmentPath,
-      final List<LocalAttachments>? otherAttachments,
+      final List<Attachment>? otherAttachments,
       this.voiceAttachmentError,
       this.otherAttachmentError,
       this.registerQueryError})
@@ -191,9 +191,9 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
   final String? body;
   @override
   final String? voiceAttachmentPath;
-  final List<LocalAttachments>? _otherAttachments;
+  final List<Attachment>? _otherAttachments;
   @override
-  List<LocalAttachments>? get otherAttachments {
+  List<Attachment>? get otherAttachments {
     final value = _otherAttachments;
     if (value == null) return null;
     if (_otherAttachments is EqualUnmodifiableListView)
@@ -258,7 +258,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)
@@ -277,7 +277,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -296,7 +296,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -352,7 +352,7 @@ abstract class _NewQueryFormStable implements NewQueryFormState {
       {final String? subject,
       final String? body,
       final String? voiceAttachmentPath,
-      final List<LocalAttachments>? otherAttachments,
+      final List<Attachment>? otherAttachments,
       final String? voiceAttachmentError,
       final String? otherAttachmentError,
       final String? registerQueryError}) = _$_NewQueryFormStable;
@@ -360,7 +360,7 @@ abstract class _NewQueryFormStable implements NewQueryFormState {
   String? get subject;
   String? get body;
   String? get voiceAttachmentPath;
-  List<LocalAttachments>? get otherAttachments;
+  List<Attachment>? get otherAttachments;
   String? get voiceAttachmentError;
   String? get otherAttachmentError;
   String? get registerQueryError;
@@ -411,7 +411,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)
@@ -429,7 +429,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -447,7 +447,7 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -543,7 +543,7 @@ class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)
@@ -561,7 +561,7 @@ class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?
@@ -579,7 +579,7 @@ class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
             String? subject,
             String? body,
             String? voiceAttachmentPath,
-            List<LocalAttachments>? otherAttachments,
+            List<Attachment>? otherAttachments,
             String? voiceAttachmentError,
             String? otherAttachmentError,
             String? registerQueryError)?

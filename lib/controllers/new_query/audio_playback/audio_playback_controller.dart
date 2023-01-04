@@ -7,9 +7,25 @@ import 'package:flutter/material.dart';
 class AudioPlaybackController extends ChangeNotifier {
   AudioPlaybackState state = const AudioPlaybackState.initial();
   final String _audioPath;
+
   AudioPlaybackController({required String path}) : _audioPath = path;
 
   AudioPlayer? _audioPlayer;
+  bool _disposed = false;
+
+  @override
+  void dispose() {
+    _audioPlayer?.dispose();
+    _disposed = true;
+    super.dispose();
+  }
+
+  @override
+  void notifyListeners() {
+    if (!_disposed) {
+      super.notifyListeners();
+    }
+  }
 
   Future<void> initAudioPlayer() async {
     _audioPlayer = AudioPlayer();

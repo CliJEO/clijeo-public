@@ -8,7 +8,7 @@ import 'package:clijeo_public/view/core/common_components/custom_form_field.dart
 import 'package:clijeo_public/view/core/common_components/custom_toggle_buttons.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
 import 'package:clijeo_public/constants.dart';
-import 'package:clijeo_public/view/error/error_widget.dart';
+import 'package:clijeo_public/view/error/custom_error_widget.dart';
 import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';

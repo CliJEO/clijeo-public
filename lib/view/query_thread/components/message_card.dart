@@ -1,7 +1,8 @@
-import 'package:clijeo_public/models/attachments/local_attachments.dart';
+import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/models/query/media/query_media.dart';
 import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
+import 'package:clijeo_public/view/error/custom_error_widget.dart';
 import 'package:clijeo_public/view/loading/loading_widget.dart';
 import 'package:clijeo_public/view/query_thread/components/query_thread_attachment_widget.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
@@ -17,7 +18,7 @@ class MessageCard extends StatelessWidget {
       required this.date,
       required this.isArchived,
       required this.sizeConfig,
-      required this.isLoadingAttachments,
+      this.attachmentError,
       this.voiceAttachments,
       this.otherAttachments,
       this.otherAttachmentDownloadFunction});
@@ -26,9 +27,9 @@ class MessageCard extends StatelessWidget {
   final bool isArchived;
   final String body;
   final String date;
-  final bool isLoadingAttachments;
-  final List<LocalAttachments>? otherAttachments;
-  final List<LocalAttachments>? voiceAttachments;
+  final String? attachmentError;
+  final List<Attachment>? otherAttachments;
+  final List<Attachment>? voiceAttachments;
   final Function(int)? otherAttachmentDownloadFunction;
 
   @override
@@ -74,9 +75,12 @@ class MessageCard extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            if (isLoadingAttachments)
-              const SizedBox(height: 100, child: LoadingWidget()),
-            if (!isLoadingAttachments)
+            if (attachmentError != null)
+              CustomErrorWidget(
+                  showErrorHeading: false,
+                  errorText: LocaleTextClass.getTextWithKey(
+                      context, attachmentError!)),
+            if (attachmentError == null)
               Column(
                 children: [
                   if (!isArchived &&
@@ -102,10 +106,8 @@ class MessageCard extends StatelessWidget {
                         itemCount: otherAttachments!.length,
                         itemBuilder: (context, index) =>
                             QueryThreadAttachmentWidget(
-                                downloadFunction: () =>
-                                    otherAttachmentDownloadFunction!(index),
-                                // TODO: Replace with name
-                                name: otherAttachments![index].name)),
+                              attachment: otherAttachments![index],
+                            )),
                 ],
               ),
           ]),

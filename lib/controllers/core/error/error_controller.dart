@@ -8,4 +8,6 @@ class ErrorController {
   static String registerQueryError = "RegisterQueryError";
   static String fileAttachmentPermission = "FileAttachmentPermission";
   static String replyInThreadError = "ReplyInThreadError";
+  static String loadingAttachmentError = "LoadingAttachmentError";
+  static String downloadAttachmentError = "DownloadAttachmentError";
 }

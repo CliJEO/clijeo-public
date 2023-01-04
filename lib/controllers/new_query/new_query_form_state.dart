@@ -1,4 +1,4 @@
-import 'package:clijeo_public/models/attachments/local_attachments.dart';
+import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'new_query_form_state.freezed.dart';
@@ -9,7 +9,7 @@ abstract class NewQueryFormState with _$NewQueryFormState {
       {String? subject,
       String? body,
       String? voiceAttachmentPath,
-      List<LocalAttachments>? otherAttachments,
+      List<Attachment>? otherAttachments,
       String? voiceAttachmentError,
       String? otherAttachmentError,
       String? registerQueryError}) = _NewQueryFormStable;
