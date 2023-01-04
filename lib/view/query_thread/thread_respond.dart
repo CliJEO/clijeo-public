@@ -5,6 +5,7 @@ import 'package:clijeo_public/controllers/thread_respond_from/thread_respond_for
 import 'package:clijeo_public/view/core/common_components/custom_back_button.dart';
 import 'package:clijeo_public/view/core/common_components/custom_form_field.dart';
 import 'package:clijeo_public/view/core/common_components/primary_button.dart';
+import 'package:clijeo_public/view/error/error_widget.dart';
 import 'package:clijeo_public/view/error/query_thread_error_screen.dart';
 import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
@@ -24,7 +25,8 @@ class ThreadRespondScreen extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       await threadRespondFormController.replyInThread(queryId);
-      Navigator.pop(context, true);
+      threadRespondFormController.state.maybeWhen(
+          completed: () => Navigator.pop(context, true), orElse: () {});
     }
   }
 
@@ -38,8 +40,8 @@ class ThreadRespondScreen extends StatelessWidget {
           builder: (context, threadRespondFormController, _) {
         return threadRespondFormController.state.when(
             loading: () => const Loading(),
-            error: (error) => const QueryThreadErrorScreen(),
-            stable: (body) => Scaffold(
+            completed: () => const Loading(),
+            stable: (body, replyError) => Scaffold(
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
                       child: Padding(
@@ -81,6 +83,7 @@ class ThreadRespondScreen extends StatelessWidget {
                                           .nullStringValidation,
                                       onSaved: threadRespondFormController
                                           .updateStableStateBody,
+                                      initialValue: body,
                                       fieldTitle:
                                           LocaleTextClass.getTextWithKey(
                                               context, "Body"),
@@ -105,7 +108,19 @@ class ThreadRespondScreen extends StatelessWidget {
                                                 context, "SendMessage"),
                                             style: AppTextStyle.smallLightTitle,
                                           ),
-                                        ))
+                                        )),
+                                    if (replyError != null)
+                                      Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          CustomErrorWidget(
+                                              errorText: LocaleTextClass
+                                                  .getTextWithKey(
+                                                      context, replyError)),
+                                        ],
+                                      ),
                                   ],
                                 ),
                               )),

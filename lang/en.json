@@ -57,5 +57,6 @@
     "RecorderError": "Audio Recording failed",
     "RecordingPermission": "Insufficient Permissions for recording",
     "RegisterQueryError": "Unable to register query",
-    "FileAttachmentPermission": "Insufficient Permissions to view device files"
+    "FileAttachmentPermission": "Insufficient Permissions to view device files",
+    "ReplyInThreadError": "Unable to reply in thread"
 }

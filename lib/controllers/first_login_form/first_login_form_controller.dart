@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:clijeo_public/controllers/error/error_controller.dart';
+import 'package:clijeo_public/controllers/core/error/error_controller.dart';
 import 'package:clijeo_public/controllers/main_app/main_app_controller.dart';
 import 'package:clijeo_public/models/user_dto/clijeo_user_dto.dart';
 import 'package:clijeo_public/constants.dart';
