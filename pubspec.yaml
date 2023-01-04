@@ -84,6 +84,7 @@ flutter:
     - lang/en.json
     - lang/ml.json
     - assets/google_logo.png
+    - assets/clijeo.jpeg
     - assets/serverdown.svg
     - assets/no_query.svg
   
