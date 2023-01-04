@@ -2,7 +2,7 @@ import 'package:clijeo_public/models/attachment/attachment.dart';
 import 'package:clijeo_public/controllers/core/language/locale_text_class.dart';
 import 'package:clijeo_public/models/query/media/query_media.dart';
 import 'package:clijeo_public/view/core/common_components/query_audio_player.dart';
-import 'package:clijeo_public/view/error/custom_error_widget.dart';
+import 'package:clijeo_public/view/error/widgets/custom_error_widget.dart';
 import 'package:clijeo_public/view/loading/loading_widget.dart';
 import 'package:clijeo_public/view/query_thread/components/query_thread_other_attachment_widget.dart';
 import 'package:clijeo_public/view/core/theme/app_color.dart';
@@ -21,8 +21,7 @@ class MessageCard extends StatelessWidget {
       required this.sizeConfig,
       this.attachmentError,
       this.voiceAttachments,
-      this.otherAttachments,
-      this.otherAttachmentDownloadFunction});
+      this.otherAttachments});
   final SizeConfig sizeConfig;
   final String user;
   final bool isArchived;
@@ -31,7 +30,6 @@ class MessageCard extends StatelessWidget {
   final String? attachmentError;
   final List<Attachment>? otherAttachments;
   final List<Attachment>? voiceAttachments;
-  final Function(int)? otherAttachmentDownloadFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +97,7 @@ class MessageCard extends StatelessWidget {
                   ),
                   if (!isArchived &&
                       otherAttachments != null &&
-                      otherAttachments!.isNotEmpty &&
-                      otherAttachmentDownloadFunction != null)
+                      otherAttachments!.isNotEmpty)
                     ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
