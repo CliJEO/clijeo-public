@@ -67,9 +67,6 @@ class MainApp extends StatelessWidget {
             SettingsEditScreen.id: (context) => const SettingsEditScreen(),
             SignInHomeScreen.id: (context) => const SignInHomeScreen(),
             FirstLoginFormScreen.id: (context) => const FirstLoginFormScreen(),
-            // Loading.id: (context) => const Loading(
-            //       percentCompleted: 20,
-            //     ),
             Wrapper.id: (context) => const Wrapper(),
           });
     });

@@ -27,7 +27,7 @@ mixin _$NewQueryFormState {
             String? otherAttachmentError,
             String? registerQueryError)
         stable,
-    required TResult Function() loading,
+    required TResult Function(int percentCompleted) loading,
     required TResult Function() completed,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ mixin _$NewQueryFormState {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
+    TResult? Function(int percentCompleted)? loading,
     TResult? Function()? completed,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ mixin _$NewQueryFormState {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult Function()? loading,
+    TResult Function(int percentCompleted)? loading,
     TResult Function()? completed,
     required TResult orElse(),
   }) =>
@@ -263,7 +263,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             String? otherAttachmentError,
             String? registerQueryError)
         stable,
-    required TResult Function() loading,
+    required TResult Function(int percentCompleted) loading,
     required TResult Function() completed,
   }) {
     return stable(subject, body, voiceAttachmentPath, otherAttachments,
@@ -282,7 +282,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
+    TResult? Function(int percentCompleted)? loading,
     TResult? Function()? completed,
   }) {
     return stable?.call(subject, body, voiceAttachmentPath, otherAttachments,
@@ -301,7 +301,7 @@ class _$_NewQueryFormStable implements _NewQueryFormStable {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult Function()? loading,
+    TResult Function(int percentCompleted)? loading,
     TResult Function()? completed,
     required TResult orElse(),
   }) {
@@ -374,6 +374,8 @@ abstract class _$$_NewQueryFormLoadingCopyWith<$Res> {
   factory _$$_NewQueryFormLoadingCopyWith(_$_NewQueryFormLoading value,
           $Res Function(_$_NewQueryFormLoading) then) =
       __$$_NewQueryFormLoadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int percentCompleted});
 }
 
 /// @nodoc
@@ -383,26 +385,52 @@ class __$$_NewQueryFormLoadingCopyWithImpl<$Res>
   __$$_NewQueryFormLoadingCopyWithImpl(_$_NewQueryFormLoading _value,
       $Res Function(_$_NewQueryFormLoading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? percentCompleted = null,
+  }) {
+    return _then(_$_NewQueryFormLoading(
+      percentCompleted: null == percentCompleted
+          ? _value.percentCompleted
+          : percentCompleted // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_NewQueryFormLoading implements _NewQueryFormLoading {
-  const _$_NewQueryFormLoading();
+  const _$_NewQueryFormLoading({required this.percentCompleted});
+
+  @override
+  final int percentCompleted;
 
   @override
   String toString() {
-    return 'NewQueryFormState.loading()';
+    return 'NewQueryFormState.loading(percentCompleted: $percentCompleted)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NewQueryFormLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$_NewQueryFormLoading &&
+            (identical(other.percentCompleted, percentCompleted) ||
+                other.percentCompleted == percentCompleted));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, percentCompleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NewQueryFormLoadingCopyWith<_$_NewQueryFormLoading> get copyWith =>
+      __$$_NewQueryFormLoadingCopyWithImpl<_$_NewQueryFormLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -416,10 +444,10 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
             String? otherAttachmentError,
             String? registerQueryError)
         stable,
-    required TResult Function() loading,
+    required TResult Function(int percentCompleted) loading,
     required TResult Function() completed,
   }) {
-    return loading();
+    return loading(percentCompleted);
   }
 
   @override
@@ -434,10 +462,10 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
+    TResult? Function(int percentCompleted)? loading,
     TResult? Function()? completed,
   }) {
-    return loading?.call();
+    return loading?.call(percentCompleted);
   }
 
   @override
@@ -452,12 +480,12 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult Function()? loading,
+    TResult Function(int percentCompleted)? loading,
     TResult Function()? completed,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(percentCompleted);
     }
     return orElse();
   }
@@ -498,7 +526,13 @@ class _$_NewQueryFormLoading implements _NewQueryFormLoading {
 }
 
 abstract class _NewQueryFormLoading implements NewQueryFormState {
-  const factory _NewQueryFormLoading() = _$_NewQueryFormLoading;
+  const factory _NewQueryFormLoading({required final int percentCompleted}) =
+      _$_NewQueryFormLoading;
+
+  int get percentCompleted;
+  @JsonKey(ignore: true)
+  _$$_NewQueryFormLoadingCopyWith<_$_NewQueryFormLoading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -548,7 +582,7 @@ class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
             String? otherAttachmentError,
             String? registerQueryError)
         stable,
-    required TResult Function() loading,
+    required TResult Function(int percentCompleted) loading,
     required TResult Function() completed,
   }) {
     return completed();
@@ -566,7 +600,7 @@ class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult? Function()? loading,
+    TResult? Function(int percentCompleted)? loading,
     TResult? Function()? completed,
   }) {
     return completed?.call();
@@ -584,7 +618,7 @@ class _$_NewQueryFormCompleted implements _NewQueryFormCompleted {
             String? otherAttachmentError,
             String? registerQueryError)?
         stable,
-    TResult Function()? loading,
+    TResult Function(int percentCompleted)? loading,
     TResult Function()? completed,
     required TResult orElse(),
   }) {

@@ -19,7 +19,7 @@ mixin _$QueryThreadAttachmentState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String attachmentPath) downloaded,
-    required TResult Function() downloading,
+    required TResult Function(int percentCompleted) downloading,
     required TResult Function(String downloadPath, String? downloadingError)
         notDownloaded,
   }) =>
@@ -27,7 +27,7 @@ mixin _$QueryThreadAttachmentState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String attachmentPath)? downloaded,
-    TResult? Function()? downloading,
+    TResult? Function(int percentCompleted)? downloading,
     TResult? Function(String downloadPath, String? downloadingError)?
         notDownloaded,
   }) =>
@@ -35,7 +35,7 @@ mixin _$QueryThreadAttachmentState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String attachmentPath)? downloaded,
-    TResult Function()? downloading,
+    TResult Function(int percentCompleted)? downloading,
     TResult Function(String downloadPath, String? downloadingError)?
         notDownloaded,
     required TResult orElse(),
@@ -160,7 +160,7 @@ class _$_QueryThreadAttachmentDownloaded
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String attachmentPath) downloaded,
-    required TResult Function() downloading,
+    required TResult Function(int percentCompleted) downloading,
     required TResult Function(String downloadPath, String? downloadingError)
         notDownloaded,
   }) {
@@ -171,7 +171,7 @@ class _$_QueryThreadAttachmentDownloaded
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String attachmentPath)? downloaded,
-    TResult? Function()? downloading,
+    TResult? Function(int percentCompleted)? downloading,
     TResult? Function(String downloadPath, String? downloadingError)?
         notDownloaded,
   }) {
@@ -182,7 +182,7 @@ class _$_QueryThreadAttachmentDownloaded
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String attachmentPath)? downloaded,
-    TResult Function()? downloading,
+    TResult Function(int percentCompleted)? downloading,
     TResult Function(String downloadPath, String? downloadingError)?
         notDownloaded,
     required TResult orElse(),
@@ -250,6 +250,8 @@ abstract class _$$_QueryThreadAttachmentDownloadingCopyWith<$Res> {
           _$_QueryThreadAttachmentDownloading value,
           $Res Function(_$_QueryThreadAttachmentDownloading) then) =
       __$$_QueryThreadAttachmentDownloadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int percentCompleted});
 }
 
 /// @nodoc
@@ -261,62 +263,88 @@ class __$$_QueryThreadAttachmentDownloadingCopyWithImpl<$Res>
       _$_QueryThreadAttachmentDownloading _value,
       $Res Function(_$_QueryThreadAttachmentDownloading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? percentCompleted = null,
+  }) {
+    return _then(_$_QueryThreadAttachmentDownloading(
+      percentCompleted: null == percentCompleted
+          ? _value.percentCompleted
+          : percentCompleted // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_QueryThreadAttachmentDownloading
     implements _QueryThreadAttachmentDownloading {
-  const _$_QueryThreadAttachmentDownloading();
+  const _$_QueryThreadAttachmentDownloading({required this.percentCompleted});
+
+  @override
+  final int percentCompleted;
 
   @override
   String toString() {
-    return 'QueryThreadAttachmentState.downloading()';
+    return 'QueryThreadAttachmentState.downloading(percentCompleted: $percentCompleted)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_QueryThreadAttachmentDownloading);
+            other is _$_QueryThreadAttachmentDownloading &&
+            (identical(other.percentCompleted, percentCompleted) ||
+                other.percentCompleted == percentCompleted));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, percentCompleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_QueryThreadAttachmentDownloadingCopyWith<
+          _$_QueryThreadAttachmentDownloading>
+      get copyWith => __$$_QueryThreadAttachmentDownloadingCopyWithImpl<
+          _$_QueryThreadAttachmentDownloading>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String attachmentPath) downloaded,
-    required TResult Function() downloading,
+    required TResult Function(int percentCompleted) downloading,
     required TResult Function(String downloadPath, String? downloadingError)
         notDownloaded,
   }) {
-    return downloading();
+    return downloading(percentCompleted);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String attachmentPath)? downloaded,
-    TResult? Function()? downloading,
+    TResult? Function(int percentCompleted)? downloading,
     TResult? Function(String downloadPath, String? downloadingError)?
         notDownloaded,
   }) {
-    return downloading?.call();
+    return downloading?.call(percentCompleted);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String attachmentPath)? downloaded,
-    TResult Function()? downloading,
+    TResult Function(int percentCompleted)? downloading,
     TResult Function(String downloadPath, String? downloadingError)?
         notDownloaded,
     required TResult orElse(),
   }) {
     if (downloading != null) {
-      return downloading();
+      return downloading(percentCompleted);
     }
     return orElse();
   }
@@ -361,8 +389,15 @@ class _$_QueryThreadAttachmentDownloading
 
 abstract class _QueryThreadAttachmentDownloading
     implements QueryThreadAttachmentState {
-  const factory _QueryThreadAttachmentDownloading() =
+  const factory _QueryThreadAttachmentDownloading(
+          {required final int percentCompleted}) =
       _$_QueryThreadAttachmentDownloading;
+
+  int get percentCompleted;
+  @JsonKey(ignore: true)
+  _$$_QueryThreadAttachmentDownloadingCopyWith<
+          _$_QueryThreadAttachmentDownloading>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -447,7 +482,7 @@ class _$_QueryThreadAttachmentNotDownloaded
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String attachmentPath) downloaded,
-    required TResult Function() downloading,
+    required TResult Function(int percentCompleted) downloading,
     required TResult Function(String downloadPath, String? downloadingError)
         notDownloaded,
   }) {
@@ -458,7 +493,7 @@ class _$_QueryThreadAttachmentNotDownloaded
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String attachmentPath)? downloaded,
-    TResult? Function()? downloading,
+    TResult? Function(int percentCompleted)? downloading,
     TResult? Function(String downloadPath, String? downloadingError)?
         notDownloaded,
   }) {
@@ -469,7 +504,7 @@ class _$_QueryThreadAttachmentNotDownloaded
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String attachmentPath)? downloaded,
-    TResult Function()? downloading,
+    TResult Function(int percentCompleted)? downloading,
     TResult Function(String downloadPath, String? downloadingError)?
         notDownloaded,
     required TResult orElse(),

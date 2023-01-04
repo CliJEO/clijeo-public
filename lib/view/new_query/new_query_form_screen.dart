@@ -41,8 +41,12 @@ class NewQueryFormScreen extends StatelessWidget {
         child: Consumer<NewQueryFormController>(
             builder: (context, newQueryFormController, _) {
           return newQueryFormController.state.when(
-              loading: () => const Loading(),
-              completed: () => const Loading(),
+              loading: (percentCompleted) => Loading(
+                    percentCompleted: percentCompleted,
+                  ),
+              completed: () => const Loading(
+                    percentCompleted: 100,
+                  ),
               stable: (subject,
                       body,
                       voiceAttachmentPath,

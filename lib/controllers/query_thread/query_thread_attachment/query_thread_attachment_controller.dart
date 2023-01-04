@@ -14,7 +14,7 @@ import 'package:path_provider/path_provider.dart';
 class QueryThreadAttachmentController extends ChangeNotifier {
   QueryThreadAttachmentState state;
   bool _disposed = false;
-  CancelToken _downloadCancelToken = CancelToken();
+  final CancelToken _downloadCancelToken = CancelToken();
   QueryThreadAttachmentController({required Attachment attachment})
       : state = attachment.isLocal
             ? QueryThreadAttachmentState.downloaded(
@@ -40,7 +40,8 @@ class QueryThreadAttachmentController extends ChangeNotifier {
     state = await state.maybeMap(
         notDownloaded: (oldState) async {
           try {
-            state = const QueryThreadAttachmentState.downloading();
+            state = const QueryThreadAttachmentState.downloading(
+                percentCompleted: 0);
             notifyListeners();
 
             Directory directory = await getApplicationDocumentsDirectory();
@@ -50,8 +51,11 @@ class QueryThreadAttachmentController extends ChangeNotifier {
             final result = await DioBase.dioInstance.get(
               oldState.downloadPath,
               cancelToken: _downloadCancelToken,
-              // onReceiveProgress: showDownloadProgress,
-              //Received data with List<int>
+              onReceiveProgress: (count, total) {
+                state = QueryThreadAttachmentState.downloading(
+                    percentCompleted: ((count / total) * 100).toInt());
+                notifyListeners();
+              },
               options: Options(headers: {
                 'Authorization': 'Bearer ${BackendAuth.getToken()}',
               }, responseType: ResponseType.bytes),
