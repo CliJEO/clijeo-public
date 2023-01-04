@@ -16,8 +16,8 @@ class NewQueryFormAttachmentWidget extends StatelessWidget {
   final Function() closeFunction;
 
   String _preprocessString(String str) {
-    if (str.length > 10) {
-      return "${str.substring(0, 10)}..";
+    if (str.length > 20) {
+      return "${str.substring(0, 20)}..";
     }
     return str;
   }

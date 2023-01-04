@@ -15,7 +15,7 @@ class QueryThreadVoiceAttachmentWidget extends StatelessWidget {
 
   String _preprocessString(String str) {
     if (str.length > 20) {
-      return "${str.substring(0, 10)}..";
+      return "${str.substring(0, 20)}..";
     }
     return str;
   }

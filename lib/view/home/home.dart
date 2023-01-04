@@ -32,6 +32,13 @@ class HomeScreen extends StatelessWidget {
     await userController.refreshUser();
   }
 
+  String _preprocessString(String str) {
+    if (str.split(" ").first.length > 10) {
+      return "${str.split(" ").first.substring(0, 10)}..";
+    }
+    return str.split(" ").first;
+  }
+
   @override
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
@@ -49,10 +56,7 @@ class HomeScreen extends StatelessWidget {
                     onRefresh: () => _refresh(userController),
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                sizeConfig.safeBlockSizeHorizontal(0.08),
-                            vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                        padding: const EdgeInsets.fromLTRB(30, 60, 30, 20),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -72,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                                         width: 3,
                                       ),
                                       Text(
-                                        user.name,
+                                        _preprocessString(user.name),
                                         style: AppTextStyle.regularAccentTitle,
                                       )
                                     ],
@@ -106,9 +110,6 @@ class HomeScreen extends StatelessWidget {
                                 LocaleTextClass.getTextWithKey(
                                     context, "PreviousQueries"),
                                 style: AppTextStyle.smallDarkTitle,
-                              ),
-                              const SizedBox(
-                                height: 20,
                               ),
                               if (user.queries.isEmpty)
                                 Center(

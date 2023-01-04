@@ -26,6 +26,7 @@ class QueryCard extends StatelessWidget {
         onTap: () =>
             Navigator.pushNamed(context, QueryThread.id, arguments: queryId),
         child: Container(
+          height: 110,
           width: double.infinity,
           decoration: const BoxDecoration(
             color: AppTheme.backgroundColor,
