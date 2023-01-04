@@ -13,6 +13,7 @@ abstract class NewQueryFormState with _$NewQueryFormState {
       String? voiceAttachmentError,
       String? otherAttachmentError,
       String? registerQueryError}) = _NewQueryFormStable;
-  const factory NewQueryFormState.loading() = _NewQueryFormLoading;
+  const factory NewQueryFormState.loading({required int percentCompleted}) =
+      _NewQueryFormLoading;
   const factory NewQueryFormState.completed() = _NewQueryFormCompleted;
 }

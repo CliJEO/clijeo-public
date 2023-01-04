@@ -23,10 +23,10 @@ class Loading extends StatelessWidget {
               style: AppTextStyle.regularAccentTitle,
             ),
           ),
-        const SpinKitRing(
+        SpinKitRing(
           color: AppTheme.primaryColor,
           lineWidth: 5,
-          size: 70,
+          size: percentCompleted != null ? 75 : 60,
         ),
       ]),
     );

@@ -15,7 +15,7 @@ import 'package:open_file_plus/open_file_plus.dart';
 class NewQueryFormController extends ChangeNotifier {
   NewQueryFormState state = const NewQueryFormState.stable();
   bool _disposed = false;
-  CancelToken _uploadCancelToken = CancelToken();
+  final CancelToken _uploadCancelToken = CancelToken();
 
   @override
   void dispose() {
@@ -58,7 +58,7 @@ class NewQueryFormController extends ChangeNotifier {
   Future<void> registerQuery() async {
     state = await state.maybeMap(
         stable: (oldState) async {
-          state = const NewQueryFormState.loading();
+          state = const NewQueryFormState.loading(percentCompleted: 0);
           notifyListeners();
 
           try {
@@ -80,9 +80,11 @@ class NewQueryFormController extends ChangeNotifier {
                   headers: {
                     'Authorization': 'Bearer ${BackendAuth.getToken()}',
                   },
-                ),
-                cancelToken: _uploadCancelToken,
-                data: formData);
+                ), onSendProgress: (count, total) {
+              state = NewQueryFormState.loading(
+                  percentCompleted: ((count / total) * 100).toInt());
+              notifyListeners();
+            }, cancelToken: _uploadCancelToken, data: formData);
 
             return const NewQueryFormState.completed();
           } on DioError catch (e) {

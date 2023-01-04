@@ -61,16 +61,21 @@ class QueryThreadVoiceAttachmentWidget extends StatelessWidget {
                                       queryThreadAttachmentController.state
                                           .maybeMap(
                                         downloading: (_) => const SpinKitRing(
-                                            color: AppTheme.textLight),
+                                          color: AppTheme.textLight,
+                                          lineWidth: 3,
+                                          size: 20,
+                                        ),
                                         orElse: () => const Icon(Icons.download,
-                                            color: AppTheme.textDark, size: 12),
+                                            color: AppTheme.textLight,
+                                            size: 20),
                                       ),
                                       const SizedBox(
                                         width: 10,
                                       ),
                                       Text(
                                         _preprocessString(attachment.name),
-                                        style: AppTextStyle.verySmallLightTitle,
+                                        style:
+                                            AppTextStyle.veryMidSmallLightTitle,
                                       ),
                                     ],
                                   ),
@@ -80,7 +85,9 @@ class QueryThreadVoiceAttachmentWidget extends StatelessWidget {
                                             if (value.downloadingError !=
                                                 null) {
                                               return Text(
-                                                "[${LocaleTextClass.getTextWithKey(context, value.downloadingError!)}]",
+                                                LocaleTextClass.getTextWithKey(
+                                                    context,
+                                                    value.downloadingError!),
                                                 style: AppTextStyle
                                                     .verySmallLightTitle,
                                               );
@@ -88,6 +95,11 @@ class QueryThreadVoiceAttachmentWidget extends StatelessWidget {
                                               return Container();
                                             }
                                           },
+                                          downloading: (value) => Text(
+                                                "${value.percentCompleted}%",
+                                                style: AppTextStyle
+                                                    .verySmallLightTitle,
+                                              ),
                                           orElse: () => Container()),
                                 ],
                               ),

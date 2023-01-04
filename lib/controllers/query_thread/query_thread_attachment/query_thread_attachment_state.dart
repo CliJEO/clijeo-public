@@ -8,8 +8,8 @@ part 'query_thread_attachment_state.freezed.dart';
 abstract class QueryThreadAttachmentState with _$QueryThreadAttachmentState {
   const factory QueryThreadAttachmentState.downloaded(
       {required String attachmentPath}) = _QueryThreadAttachmentDownloaded;
-  const factory QueryThreadAttachmentState.downloading() =
-      _QueryThreadAttachmentDownloading;
+  const factory QueryThreadAttachmentState.downloading(
+      {required int percentCompleted}) = _QueryThreadAttachmentDownloading;
   const factory QueryThreadAttachmentState.notDownloaded(
       {required String downloadPath,
       String? downloadingError}) = _QueryThreadAttachmentNotDownloaded;

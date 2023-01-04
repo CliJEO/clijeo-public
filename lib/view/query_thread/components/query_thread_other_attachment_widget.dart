@@ -26,60 +26,69 @@ class QueryThreadOtherAttachmentWidget extends StatelessWidget {
           QueryThreadAttachmentController(attachment: attachment),
       child: Consumer<QueryThreadAttachmentController>(
           builder: (context, queryThreadAttachmentController, _) {
-        return GestureDetector(
-          onTap: queryThreadAttachmentController.state.maybeMap(
-              notDownloaded: (_) => queryThreadAttachmentController.download,
-              downloaded: (_) => queryThreadAttachmentController.open,
-              orElse: () => null),
-          child: Container(
-            height: 50,
-            decoration: BoxDecoration(
-                color: queryThreadAttachmentController.state.maybeMap(
-                    downloading: (_) => AppTheme.lighterPrimaryColor,
-                    orElse: () => AppTheme.primaryColor),
-                borderRadius: BorderRadius.all(Radius.circular(5))),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      queryThreadAttachmentController.state.map(
-                        downloading: (_) => const SpinKitRing(
-                          color: AppTheme.textLight,
-                          lineWidth: 5,
-                        ),
-                        downloaded: (_) => Icon(
-                            FileController.getIconForFiletype(
-                                attachment.filetype),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: GestureDetector(
+            onTap: queryThreadAttachmentController.state.maybeMap(
+                notDownloaded: (_) => queryThreadAttachmentController.download,
+                downloaded: (_) => queryThreadAttachmentController.open,
+                orElse: () => null),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  color: queryThreadAttachmentController.state.maybeMap(
+                      downloading: (_) => AppTheme.lighterPrimaryColor,
+                      orElse: () => AppTheme.primaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        queryThreadAttachmentController.state.map(
+                          downloading: (_) => const SpinKitRing(
                             color: AppTheme.textLight,
-                            size: 25),
-                        notDownloaded: (_) => const Icon(Icons.download,
-                            color: AppTheme.textLight, size: 25),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        _preprocessString(attachment.name),
-                        style: AppTextStyle.veryMidSmallLightTitle,
-                      ),
-                    ],
-                  ),
-                  queryThreadAttachmentController.state.maybeMap(
-                      notDownloaded: (value) {
-                        if (value.downloadingError != null) {
-                          return Text(
-                            "[${LocaleTextClass.getTextWithKey(context, value.downloadingError!)}]",
-                            style: AppTextStyle.verySmallLightTitle,
-                          );
-                        } else {
-                          return Container();
-                        }
-                      },
-                      orElse: () => Container()),
-                ],
+                            lineWidth: 3,
+                            size: 20,
+                          ),
+                          downloaded: (_) => Icon(
+                              FileController.getIconForFiletype(
+                                  attachment.filetype),
+                              color: AppTheme.textLight,
+                              size: 25),
+                          notDownloaded: (_) => const Icon(Icons.download,
+                              color: AppTheme.textLight, size: 20),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          _preprocessString(attachment.name),
+                          style: AppTextStyle.veryMidSmallLightTitle,
+                        ),
+                      ],
+                    ),
+                    queryThreadAttachmentController.state.maybeMap(
+                        notDownloaded: (value) {
+                          if (value.downloadingError != null) {
+                            return Text(
+                              LocaleTextClass.getTextWithKey(
+                                  context, value.downloadingError!),
+                              style: AppTextStyle.verySmallLightTitle,
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                        downloading: (value) => Text(
+                              "${value.percentCompleted}%",
+                              style: AppTextStyle.verySmallLightTitle,
+                            ),
+                        orElse: () => Container()),
+                  ],
+                ),
               ),
             ),
           ),
