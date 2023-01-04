@@ -24,47 +24,48 @@ class NewQueryFormAttachmentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 30,
-      decoration: const BoxDecoration(
-          color: AppTheme.selectedColor,
-          borderRadius: BorderRadius.all(Radius.circular(5))),
-      child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: openFunction,
-                child: Row(
-                  children: [
-                    Icon(FileController.getIconForFiletype(filetype),
-                        color: AppTheme.textDark, size: 12),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      _preprocessString(name),
-                      style: AppTextStyle.verySmallDarkTitle,
-                    ),
-                  ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Container(
+        height: 50,
+        decoration: const BoxDecoration(
+            color: AppTheme.selectedColor,
+            borderRadius: BorderRadius.all(Radius.circular(5))),
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: openFunction,
+                  child: Row(
+                    children: [
+                      Icon(FileController.getIconForFiletype(filetype),
+                          color: AppTheme.textDark, size: 25),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        _preprocessString(name),
+                        style: AppTextStyle.veryMidSmallDarkTitle,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: closeFunction,
-                child: Container(
-                  width: 20,
-                  decoration: const BoxDecoration(
-                      border: Border(
-                    left: BorderSide(width: 5.0, color: AppTheme.textDark),
-                  )),
-                  child: const Icon(Icons.close,
-                      color: AppTheme.textDark, size: 12),
+                GestureDetector(
+                  onTap: closeFunction,
+                  child: const SizedBox(
+                    width: 40,
+                    child: Center(
+                      child: const Icon(Icons.close,
+                          color: AppTheme.textDark, size: 20),
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            )),
+      ),
     );
   }
 }

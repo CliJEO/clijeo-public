@@ -64,5 +64,8 @@
     "RegisterQueryErrorExcessFile": "Too many attachments. Reduce the number of attachments.",
     "RegisterQueryErrorLargeFile": "File size of attachments too large. Remove large attachments.",
     "RegisterQueryErrorTitleOrContent": "Title or content not within limits.",
-    "QueryFetchError": "Unable to fetch details for this query."
+    "QueryFetchError": "Unable to fetch details for this query.",
+    "RecordingInstructions": "Tap and hold to record",
+    "Recording": "Recording...",
+    "RecordingCompleted": "RecordingCompleted"
 }
