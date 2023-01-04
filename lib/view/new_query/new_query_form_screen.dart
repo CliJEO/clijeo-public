@@ -185,22 +185,28 @@ class NewQueryFormScreen extends StatelessWidget {
                                                 errorText: LocaleTextClass
                                                     .getTextWithKey(context,
                                                         otherAttachmentError)),
-                                          Column(
-                                            children: [
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              if (otherAttachments != null &&
-                                                  otherAttachments.isNotEmpty)
-                                                ListView.builder(
-                                                    physics:
-                                                        const NeverScrollableScrollPhysics(),
-                                                    shrinkWrap: true,
-                                                    itemCount:
-                                                        otherAttachments.length,
-                                                    itemBuilder: (context,
-                                                            index) =>
-                                                        NewQueryFormAttachmentWidget(
+                                          if (otherAttachmentError == null)
+                                            Column(
+                                              children: [
+                                                const SizedBox(
+                                                  height: 20,
+                                                ),
+                                                if (otherAttachments != null &&
+                                                    otherAttachments.isNotEmpty)
+                                                  ListView.builder(
+                                                      physics:
+                                                          const NeverScrollableScrollPhysics(),
+                                                      shrinkWrap: true,
+                                                      itemCount:
+                                                          otherAttachments
+                                                              .length,
+                                                      itemBuilder: (context,
+                                                              index) =>
+                                                          NewQueryFormAttachmentWidget(
+                                                            openFunction: () =>
+                                                                newQueryFormController
+                                                                    .openFileFromOtherAttachments(
+                                                                        index),
                                                             closeFunction: () =>
                                                                 newQueryFormController
                                                                     .removeFileFromOtherAttachments(
@@ -208,9 +214,14 @@ class NewQueryFormScreen extends StatelessWidget {
                                                             name:
                                                                 otherAttachments[
                                                                         index]
-                                                                    .name)),
-                                            ],
-                                          ),
+                                                                    .name,
+                                                            filetype:
+                                                                otherAttachments[
+                                                                        index]
+                                                                    .filetype,
+                                                          )),
+                                              ],
+                                            ),
                                           const SizedBox(
                                             height: 20,
                                           ),

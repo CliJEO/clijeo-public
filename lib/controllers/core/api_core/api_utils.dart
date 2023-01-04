@@ -20,6 +20,6 @@ class ApiUtils {
   // For saving the fcm token of a user
   static String fcmTokenSaveUrl = '/fcm-token/save/user';
 
-  // // For fetching media
-  // static String mediaUrl(String filename) => '/media/$filename';
+  // For fetching media
+  static String mediaUrl(String filename) => '/media/$filename';
 }

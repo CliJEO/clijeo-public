@@ -4,6 +4,11 @@ class Constants {
 
   // List of all genders
   static List<String> getAllGenders() => ["male", "female", "other"];
-}
 
-enum RecognizedFileTypes { image, video, audio, document }
+  // List of all recognized file types
+  static List<String> getAllRecognizedFileTypes() =>
+      ["image", "video", "audio", "application"];
+
+  // Get unrecognized file type handle
+  static String getUnrecognizedFileTypeHandle() => "other";
+}

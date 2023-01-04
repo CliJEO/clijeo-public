@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:open_file_plus/open_file_plus.dart';
 
 class NewQueryFormController extends ChangeNotifier {
   NewQueryFormState state = const NewQueryFormState.stable();
@@ -32,7 +33,8 @@ class NewQueryFormController extends ChangeNotifier {
 
   void updateStableStateVoiceAttachmentError(String error) {
     state = state.maybeMap(
-        stable: (value) => value.copyWith(voiceAttachmentError: error),
+        stable: (value) => value.copyWith(
+            voiceAttachmentError: error, voiceAttachmentPath: null),
         orElse: () => state);
     notifyListeners();
   }
@@ -90,7 +92,8 @@ class NewQueryFormController extends ChangeNotifier {
 
       // obtain Attachment objects from the result object
       List<LocalAttachments> newOtherAttachments = result.files
-          .map((e) => LocalAttachments(name: e.name, path: e.path!))
+          .map((e) => LocalAttachments(
+              filename: e.path!.split("/").last, path: e.path!))
           .toList();
 
       // update state with attachments
@@ -101,10 +104,6 @@ class NewQueryFormController extends ChangeNotifier {
               otherAttachments.addAll(value.otherAttachments!);
             }
             otherAttachments.addAll(newOtherAttachments);
-            otherAttachments.forEach((element) {
-              log(element.name);
-            });
-
             return value.copyWith(otherAttachments: otherAttachments);
           },
           orElse: () => state);
@@ -114,7 +113,8 @@ class NewQueryFormController extends ChangeNotifier {
       log("[NewQueryFormController] (addFilesToOtherAttachments) Error:${e.message}");
       state = state.maybeMap(
           stable: (value) => value.copyWith(
-              otherAttachmentError: ErrorController.fileAttachmentPermission),
+              otherAttachmentError: ErrorController.fileAttachmentPermission,
+              otherAttachments: null),
           orElse: () => state);
       notifyListeners();
     }
@@ -134,5 +134,16 @@ class NewQueryFormController extends ChangeNotifier {
         },
         orElse: () => state);
     notifyListeners();
+  }
+
+  Future<void> openFileFromOtherAttachments(int index) async {
+    await state.maybeWhen(
+        stable: (subject, body, voiceAttachmentPath, otherAttachments, _, __,
+            ___) async {
+          if (otherAttachments != null && index < otherAttachments.length) {
+            await OpenFile.open(otherAttachments[index].path);
+          }
+        },
+        orElse: () {});
   }
 }
