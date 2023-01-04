@@ -5,6 +5,7 @@ import 'package:clijeo_public/controllers/core/api_core/dio_base.dart';
 import 'package:clijeo_public/controllers/core/language/app_localization.dart';
 import 'package:clijeo_public/controllers/core/language/language_controller.dart';
 import 'package:clijeo_public/view/home/home.dart';
+import 'package:clijeo_public/view/loading/loading.dart';
 import 'package:clijeo_public/view/new_query/new_query_form_screen.dart';
 import 'package:clijeo_public/view/query_thread/query_thread.dart';
 import 'package:clijeo_public/view/query_thread/thread_respond.dart';
@@ -66,6 +67,9 @@ class MainApp extends StatelessWidget {
             SettingsEditScreen.id: (context) => const SettingsEditScreen(),
             SignInHomeScreen.id: (context) => const SignInHomeScreen(),
             FirstLoginFormScreen.id: (context) => const FirstLoginFormScreen(),
+            // Loading.id: (context) => const Loading(
+            //       percentCompleted: 20,
+            //     ),
             Wrapper.id: (context) => const Wrapper(),
           });
     });

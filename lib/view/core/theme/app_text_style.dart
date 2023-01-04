@@ -7,6 +7,11 @@ class AppTextStyle {
       fontWeight: FontWeight.bold,
       fontSize: 16,
       fontFamily: "Inter");
+  static const TextStyle veryMidSmallLightTitle = TextStyle(
+      color: AppTheme.textLight,
+      fontWeight: FontWeight.bold,
+      fontSize: 12,
+      fontFamily: "Inter");
   static const TextStyle midSmallLightTitle = TextStyle(
       color: AppTheme.textLight,
       fontWeight: FontWeight.bold,

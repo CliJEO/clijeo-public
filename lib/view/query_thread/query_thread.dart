@@ -60,11 +60,7 @@ class QueryThread extends StatelessWidget {
                     onRefresh: () => _refresh(queryThreadController),
                     child: SingleChildScrollView(
                         child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    sizeConfig.safeBlockSizeHorizontal(0.06),
-                                vertical:
-                                    sizeConfig.safeBlockSizeVertical(0.04)),
+                            padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -102,7 +98,7 @@ class QueryThread extends StatelessWidget {
                                   ),
                                   Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
+                                          horizontal: 10),
                                       child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -116,9 +112,7 @@ class QueryThread extends StatelessWidget {
                                               height: 20,
                                             ),
                                             MessageCard(
-                                              user: LocaleTextClass
-                                                  .getTextWithKey(
-                                                      context, "You"),
+                                              user: "You",
                                               body: query.content,
                                               date: QueryThreadController
                                                   .getDatetimeString(
@@ -133,6 +127,8 @@ class QueryThread extends StatelessWidget {
                                             ),
                                             if (query.responses.isNotEmpty)
                                               ListView.builder(
+                                                  padding:
+                                                      const EdgeInsets.all(0),
                                                   physics:
                                                       const NeverScrollableScrollPhysics(),
                                                   shrinkWrap: true,
@@ -141,12 +137,10 @@ class QueryThread extends StatelessWidget {
                                                   itemBuilder: (context,
                                                           index) =>
                                                       MessageCard(
-                                                        user: LocaleTextClass.getTextWithKey(
-                                                            context,
-                                                            QueryThreadController
-                                                                .getResponderName(
-                                                                    query.responses[
-                                                                        index])),
+                                                        user: QueryThreadController
+                                                            .getResponderName(
+                                                                query.responses[
+                                                                    index]),
                                                         body: query
                                                             .responses[index]
                                                             .content,

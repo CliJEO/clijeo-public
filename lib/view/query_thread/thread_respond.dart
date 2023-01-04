@@ -45,9 +45,7 @@ class ThreadRespondScreen extends StatelessWidget {
                   backgroundColor: AppTheme.backgroundColor,
                   body: SingleChildScrollView(
                       child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: sizeConfig.safeBlockSizeHorizontal(0.06),
-                        vertical: sizeConfig.safeBlockSizeVertical(0.04)),
+                    padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -94,7 +92,7 @@ class ThreadRespondScreen extends StatelessWidget {
                                       maxLines: 100,
                                     ),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 30,
                                     ),
                                     PrimaryButton(
                                         onTap: () => _replyInThread(
