@@ -13,6 +13,7 @@ import 'package:clijeo_public/models/query/query.dart';
 import 'package:clijeo_public/models/query/query_response/query_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -93,6 +94,6 @@ class QueryThreadController extends ChangeNotifier {
 
   static String getDatetimeString(String datetime) {
     final dateObj = DateTime.parse(datetime).toLocal();
-    return "${dateObj.day}/${dateObj.month}/${dateObj.year} ${dateObj.hour}:${dateObj.minute}";
+    return "${DateFormat.yMMMd().format(dateObj)}  ${DateFormat.jm().format(dateObj)}";
   }
 }
